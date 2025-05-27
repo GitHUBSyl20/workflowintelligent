@@ -16,22 +16,12 @@
       rel="stylesheet"
       type="text/css"
     />
-    <script>
-      console.log("Home page loaded. CSS link:", document.querySelector('link[rel="stylesheet"]')?.href);
-    </script>
-    <style>
-      body::before {
-        content: "INLINE STYLE WORKS";
-        color: red;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 9999;
-        background: white;
-        font-size: 1.2em;
-        padding: 2px 8px;
-      }
-    </style>
+    <link
+      href="css/responsive-overrides.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+   
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link
       href="https://fonts.gstatic.com"
@@ -307,14 +297,11 @@
     </header>
     <section class="section">
       <div class="container">
-        <div class="flex-horizontal flex-vertical flex-gap-lg">
-          <div class="ix-sticky-card is-card-3">
-            <div
-              class="card card-body utility-margin-top-5rem utility-backdrop-filter-blur"
-            >
-              <div
-                class="w-layout-grid grid-layout tablet-1-column grid-gap-xxl utility-aspect-3x2 mobilehomslides"
-              >
+        <div class="scroll-cards-container">
+          <!-- Card 1: Automation - CONTENT RESTORED -->
+          <div class="scroll-card">
+            <div class="card-content-wrapper" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; height: 100%; overflow: auto;">
+              <div class="w-layout-grid grid-layout tablet-1-column grid-gap-xxl utility-aspect-3x2">
                 <div>
                   <img
                     width="528"
@@ -322,51 +309,39 @@
                     alt=""
                     src="https://cdn.prod.website-files.com/67c56b1d4fcf89b38f9026fd/67c56d37429836478ef862f0_2ecc0f31-bcbe-4bc6-820c-a5f7d5f75af4.avif"
                     loading="lazy"
-                    data-aisg-image-id="bc9161e4-d71b-43ff-8f8c-ba7f890f3442"
                     class="image cover-image cardcoverimage"
                   />
                 </div>
-                <div
-                  id="w-node-_953da75b-696f-6029-aa23-a09ae3cf74ed-e3cf74c7"
-                  class="w-node-eb46512a-49b5-9a57-452d-5006d78968f9-8f90271c"
-                >
-                  <div class="eyebrow">Outils d&#x27;Automatisation</div>
+                <div>
+                  <div class="eyebrow">Outils d'Automatisation</div>
                   <h2>Automatisez vos taches répétitives</h2>
                   <p class="paragraph-lg">
-                    Mettez en œuvre des outils d&#x27;automatisation de pointe
+                    Mettez en œuvre des outils d'automatisation de pointe
                     pour gagner du temps et accroître la productivité.
                   </p>
                   <div class="button-group">
-                    <a
-                      href="automatisations.html#explications"
-                      class="button w-button"
-                      >En savoir plus</a
-                    >
+                    <a href="automatisations.html#explications" class="button w-button">En savoir plus</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="ix-sticky-card is-card-1">
-            <div class="card card-body utility-margin-top-5rem">
-              <div
-                class="w-layout-grid grid-layout tablet-1-column grid-gap-xxl utility-aspect-3x2"
-              >
-                <div id="w-node-eb46512a-49b5-9a57-452d-5006d78968d1-8f90271c">
+          
+          <!-- Card 2: Development - CONTENT RESTORED -->
+          <div class="scroll-card">
+            <div class="card-content-wrapper" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; height: 100%; overflow: auto;">
+              <div class="w-layout-grid grid-layout tablet-1-column grid-gap-xxl utility-aspect-3x2">
+                <div>
                   <img
                     width="528"
                     height="768"
                     alt=""
                     src="https://cdn.prod.website-files.com/67c56b1d4fcf89b38f9026fd/67c56d368c6a2c31098fa39d_8c486ecd-bf53-46de-8a85-b866b4e0af03.avif"
                     loading="lazy"
-                    data-aisg-image-id="1b28375b-5114-4556-98ed-6c2891cfd586"
                     class="image cover-image cardcoverimage"
                   />
                 </div>
-                <div
-                  id="w-node-_953da75b-696f-6029-aa23-a09ae3cf74cf-e3cf74c7"
-                  class="w-node-eb46512a-49b5-9a57-452d-5006d78968db-8f90271c"
-                >
+                <div>
                   <div class="eyebrow">developpement logiciels/site web</div>
                   <h2>Accélérer vos développement</h2>
                   <p class="paragraph-lg">
@@ -375,52 +350,36 @@
                     dashboard, moteur de recherche…)
                   </p>
                   <div class="button-group">
-                    <a href="websites.html#explications" class="button w-button"
-                      >Explorer</a
-                    >
+                    <a href="websites.html#explications" class="button w-button">Explorer</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="ix-sticky-card is-card-2">
-            <div
-              class="card card-body utility-margin-top-5rem utility-backdrop-filter-blur"
-            >
-              <div
-                class="w-layout-grid grid-layout tablet-1-column grid-gap-xxl utility-aspect-3x2"
-              >
-                <div id="w-node-eb46512a-49b5-9a57-452d-5006d78968e0-8f90271c">
+          
+          <!-- Card 3: AI - CONTENT RESTORED -->
+          <div class="scroll-card">
+            <div class="card-content-wrapper" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; height: 100%; overflow: auto;">
+              <div class="w-layout-grid grid-layout tablet-1-column grid-gap-xxl utility-aspect-3x2">
+                <div>
                   <img
                     class="image cover-image cardcoverimage"
                     src="https://cdn.prod.website-files.com/67c56b1d4fcf89b38f9026fd/67f4cba6cae5e82e85ba0a4a_Ai_illustration.png"
                     width="528"
                     height="768"
                     alt=""
-                    sizes="(max-width: 767px) 100vw, 528px"
-                    data-aisg-image-id="4ffa15bc-e107-4a7e-a9b6-9008eea1a3ae"
                     loading="lazy"
-                    srcset="
-                      https://cdn.prod.website-files.com/67c56b1d4fcf89b38f9026fd/67f4cba6cae5e82e85ba0a4a_Ai_illustration-p-500.png  500w,
-                      https://cdn.prod.website-files.com/67c56b1d4fcf89b38f9026fd/67f4cba6cae5e82e85ba0a4a_Ai_illustration-p-800.png  800w,
-                      https://cdn.prod.website-files.com/67c56b1d4fcf89b38f9026fd/67f4cba6cae5e82e85ba0a4a_Ai_illustration.png       1019w
-                    "
                   />
                 </div>
-                <div
-                  id="w-node-_953da75b-696f-6029-aa23-a09ae3cf74de-e3cf74c7"
-                  class="w-node-eb46512a-49b5-9a57-452d-5006d78968ea-8f90271c"
-                >
+                <div>
                   <div class="eyebrow">Expertise en IA</div>
-                  <h2>Innover avec l&#x27;intelligence artificielle</h2>
+                  <h2>Innover avec l'intelligence artificielle</h2>
                   <p class="paragraph-lg">
-                    Exploitez l&#x27;intelligence artificielle pour améliorer la
-                    prise de décision et stimuler l&#x27;innovation.
+                    Exploitez l'intelligence artificielle pour améliorer la
+                    prise de décision et stimuler l'innovation.
                   </p>
                   <div class="button-group">
-                    <a href="ai-tools.html#explications" class="button w-button"
-                      >Découvrir</a
-                    >
+                    <a href="ai-tools.html#explications" class="button w-button">Découvrir</a>
                   </div>
                 </div>
               </div>
@@ -796,6 +755,12 @@
     `;
         document.head.appendChild(style);
       })();
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Minimal confirmation, logs removed.
+        const cards = document.querySelectorAll('.scroll-card');
+      });
     </script>
   </body>
 </html>
