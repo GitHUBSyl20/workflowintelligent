@@ -1,0 +1,234 @@
+/* Responsive Overrides for Full Device Support */
+
+/* 1. Universal box-sizing and image scaling */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 2. Remove horizontal scroll and fix overflow */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto !important;
+}
+
+/* 3. Responsive typography scaling */
+h1, .h1-heading {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+h2, .h2-heading {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+h3, .h3-heading {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+}
+h4, .h4-heading {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
+p, .paragraph-lg, .paragraph-xl, .paragraph-sm, .paragraph-xxl {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.6;
+}
+
+/* 4. Responsive container and section padding */
+.container, .section {
+  padding-left: 5vw;
+  padding-right: 5vw;
+  overflow: visible !important;
+  contain: none !important;
+  transform: none !important;
+}
+@media (max-width: 767px) {
+  .container, .section {
+    padding-left: 3vw;
+    padding-right: 3vw;
+  }
+}
+@media (max-width: 479px) {
+  .container, .section {
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+}
+
+/* 5. Grid and Flex enhancements */
+.grid-layout {
+  display: grid !important;
+  gap: 2rem;
+}
+@media (max-width: 991px) {
+  .grid-layout.desktop-3-column {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grid-layout.desktop-4-column {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grid-layout.desktop-5-column,
+  .grid-layout.desktop-6-column,
+  .grid-layout.desktop-8-column,
+  .grid-layout.desktop-10-column,
+  .grid-layout.desktop-12-column {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 767px) {
+  .grid-layout,
+  .grid-layout.desktop-3-column,
+  .grid-layout.desktop-4-column,
+  .grid-layout.desktop-5-column,
+  .grid-layout.desktop-6-column,
+  .grid-layout.desktop-8-column,
+  .grid-layout.desktop-10-column,
+  .grid-layout.desktop-12-column {
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem;
+  }
+}
+.flex-horizontal, .flex-vertical {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.flex-horizontal {
+  flex-direction: row;
+}
+.flex-vertical {
+  flex-direction: column;
+}
+
+/* 6. Navigation and menu responsiveness */
+.w-nav-menu, .nav-menu-full-page {
+  width: 100vw;
+  max-width: 100vw;
+  left: 0;
+  right: 0;
+}
+@media (max-width: 991px) {
+  .w-nav-menu, .nav-menu-full-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    max-width: 100vw;
+    z-index: 1000;
+    background: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---background-color--bg-primary, #fff);
+  }
+}
+
+/* 7. Utility: Remove fixed heights, widths, and margins that break mobile */
+[class*="utility-width-"] {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+[class*="utility-height-"] {
+  height: auto !important;
+  max-height: 100vh !important;
+}
+[class*="utility-margin-"] {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* 8. Buttons and forms */
+.button, .w-button {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  padding: 0.75em 1.5em;
+  border-radius: 0.5em;
+}
+input, textarea, select {
+  font-size: 1em;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* 9. Remove unwanted horizontal scroll on all elements */
+body, html, .container, .section, .w-nav-menu, .nav-menu-full-page {
+  overflow-x: hidden !important;
+}
+
+/* 10. Misc: Ensure all lists, cards, and blocks stack on mobile */
+@media (max-width: 767px) {
+  .w-row, .w-col, .card, .button-group, .sg-selector-wrapper-x {
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* --- SCROLL STACKING CARDS - INDIVIDUAL STICKY WORKING (Final Tweaks) --- */
+
+/* Consistent Parent Overrides */
+html, body, .section, .container, .scroll-cards-container {
+  overflow: visible !important;
+  contain: none !important;
+  transform: none !important;
+}
+html, body {
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+.utility-container-cqw {
+  container-type: normal !important;
+}
+
+/* Scroll Container */
+.scroll-cards-container {
+  min-height: 300vh !important; 
+  position: relative !important;
+  padding-top: 0 !important;
+  margin-top: 0 !important; 
+  z-index: 1 !important; /* Base stacking for cards within */
+}
+
+/* Individual Scroll Card - Each sticks at top, no overlap yet */
+.scroll-card {
+  position: sticky !important;
+  top: 0px !important;
+  width: 100% !important;
+  margin-bottom: 20px !important; /* Small separation */
+  transition: none !important; 
+}
+
+/* Z-index for stacking order when they are all at top:0 */
+.scroll-card:nth-child(1) {
+  z-index: 1 !important; 
+}
+.scroll-card:nth-child(2) {
+  z-index: 2 !important; 
+}
+.scroll-card:nth-child(3) {
+  z-index: 3 !important; 
+}
+
+/* Ensure content after cards appears above them */
+.scroll-cards-container ~ * {
+  position: relative !important;
+  z-index: 10 !important; 
+  background: white !important; 
+}
+
+/* Bottom spacing for the last card to scroll - REDUCED */
+.scroll-cards-container::after {
+  content: '' !important; 
+  display: block !important;
+  height: 40vh !important; /* Reduced from 100vh. Adjust as needed. */
+}
+
+/* --- END SCROLL STACKING CARDS - INDIVIDUAL STICKY WORKING (Final Tweaks) --- */
+
+/* --- Fix for Sticky Scroll Cards: Ensure parent overflow is visible --- */
+.section > .container > .scroll-cards-container,
+.section > .container,
+.section {
+  overflow: visible !important;
+}
+/* --- End Fix for Sticky Scroll Cards --- */ 
