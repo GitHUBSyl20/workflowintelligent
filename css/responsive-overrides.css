@@ -164,6 +164,37 @@ body, html, .container, .section, .w-nav-menu, .nav-menu-full-page {
   }
 }
 
+/* Two-Column Layout for About Page Sections */
+.two-column-layout {
+  display: flex;
+  flex-wrap: wrap; /* Allows columns to stack on smaller screens */
+  gap: 2rem; /* Space between columns, adjust as needed */
+  margin-top: 2rem; /* Optional: space above this new layout */
+  margin-bottom: 2rem; /* Optional: space below this new layout */
+}
+
+.two-column-layout .column {
+  flex: 1 1 0; /* Each column will try to take equal space */
+  min-width: 300px; /* Minimum width before stacking, adjust as needed */
+  /* If you want columns to be strictly 50% and not grow/shrink as much, 
+     you could use: flex-basis: calc(50% - 1rem); where 1rem is half of the gap. 
+     However, flex: 1 is usually more robust for varying content.
+  */
+}
+
+/* Optional: If you need to override text alignment from utility classes inside columns */
+/*
+.two-column-layout .column .utility-text-align-center {
+  text-align: left; 
+}
+.two-column-layout .column h2.h3-heading,
+.two-column-layout .column h4.h4-heading {
+  text-align: left; 
+}
+*/
+
+/* --- END Two-Column Layout --- */
+
 /* --- SCROLL STACKING CARDS - INDIVIDUAL STICKY WORKING (Final Tweaks) --- */
 
 /* Consistent Parent Overrides */
@@ -231,4 +262,22 @@ html, body {
 .section {
   overflow: visible !important;
 }
-/* --- End Fix for Sticky Scroll Cards --- */ 
+/* --- End Fix for Sticky Scroll Cards --- */
+
+/* Class for bolding specific paragraph text */
+.detail-text-bold {
+  font-weight: 700 !important; /* Added !important to ensure override */
+}
+
+.utility-text-justify {
+  text-align: justify;
+}
+
+@media (min-width: 992px) {
+  .container.small-container {
+    max-width: 1400px;
+    width: 95vw;
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+} 

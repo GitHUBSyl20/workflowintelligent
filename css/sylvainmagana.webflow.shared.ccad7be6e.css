@@ -7836,17 +7836,17 @@ a:hover {
   text-align: center;
 }
 
-.paragraph-4, .paragraph-5, .paragraph-6, .paragraph-7, .paragraph-8, .paragraph-9, .paragraph-10, .paragraph-11 {
+.utility-text-justify {
+  text-align: justify;
+}
+
+.paragraph-4, .paragraph-5, .paragraph-6, .paragraph-7, .paragraph-8, .paragraph-9, .paragraph-10, .paragraph-11 .paragraph-12 .paragraph-13 {
   font-weight: 700;
 }
 
 .link, .link-2 {
   font-weight: 700;
   text-decoration: none;
-}
-
-.paragraph-12 {
-  font-weight: 700;
 }
 
 .paragraph-12.workmethodtitle {
