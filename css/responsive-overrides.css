@@ -280,4 +280,56 @@ html, body {
     padding-left: 4vw;
     padding-right: 4vw;
   }
+  .tabs-content .card {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* --- Gagnez en agilité two-column layout --- */
+.agilite-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+.agilite-left {
+  flex: 0 0 220px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+.agilite-right {
+  flex: 1 1 0;
+}
+@media (max-width: 767px) {
+  .agilite-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .agilite-left {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+}
+/* --- END Gagnez en agilité two-column layout --- */
+
+#w-node-_23b939c4-89f1-8eaf-77af-7e11ce8b1175-ce8b1171 {
+  max-width: 420px;
+  width: 80%;
+  height: auto;
+  display: block;
+}
+
+/* Remove aspect ratio and overflow from parent grid and wrappers */
+.grid-layout,
+.w-layout-grid,
+.grid-layout.desktop-3-column {
+  aspect-ratio: unset !important;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
 } 
