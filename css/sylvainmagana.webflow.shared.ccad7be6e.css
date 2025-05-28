@@ -2061,7 +2061,7 @@ textarea.w-input, textarea.w-select {
   --ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---section--section-padding-vertical-tablet: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---spacing--7x);
   --ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---section--section-padding-vertical-mobile-l: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---spacing--6x);
   --ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---section--section-padding-vertical-mobile-p: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---spacing--5x);
-  --ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---spacing--3x: 3rem;
+  --ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---spacing--3x: 4rem;
   --ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---core-neutral-color--neutral-secondary: #f7f7f7;
   --ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---text-color--text-on-accent-primary: #fff;
   --ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---background-color--bg-inverse: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---core-neutral-color--neutral-inverse);
@@ -3697,7 +3697,7 @@ textarea.w-input, textarea.w-select {
   clear: left;
   vertical-align: baseline;
   object-fit: cover;
-  width: 70%;
+  width: 100%;
   height: 100%;
   display: inline-block;
   position: static;
@@ -7168,7 +7168,7 @@ textarea.w-input, textarea.w-select {
 .image.cover-image {
   object-fit: cover;
   width: 100%;
-  max-width: 87%;
+  max-width: 100%;
   height: auto;
 }
 
