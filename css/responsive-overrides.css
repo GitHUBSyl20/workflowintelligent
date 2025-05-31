@@ -182,4 +182,82 @@ html, body, .section, .container, .scroll-cards-container {
     margin-top: 0 !important;
     padding-top: 0 !important;
   }
+}
+
+/* === Feature Cards Section (Custom Home Cards) === */
+.feature-cards-section {
+  width: 100%;
+  padding: 3rem 0;
+  background: transparent;
+}
+.feature-cards-container {
+  display: flex !important;
+  gap: 2rem !important;
+  justify-content: center !important;
+  align-items: stretch !important;
+  flex-wrap: wrap !important;
+}
+.feature-card {
+  background: #fff !important;
+  border-radius: 1.2rem !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 6px rgba(0,0,0,0.06) !important;
+  padding: 2rem 1.5rem 2.5rem 1.5rem !important;
+  max-width: 350px !important;
+  min-width: 260px !important;
+  flex: 1 1 300px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  transition: box-shadow 0.3s cubic-bezier(.4,0,.2,1), transform 0.3s cubic-bezier(.4,0,.2,1) !important;
+  will-change: transform, box-shadow !important;
+  opacity: 0;
+  transform: translateY(40px);
+}
+.feature-card:hover, .feature-card:focus-within {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.16), 0 3px 12px rgba(0,0,0,0.10) !important;
+  transform: scale(1.035) translateY(-4px) !important;
+  z-index: 2 !important;
+}
+.feature-card-image {
+  width: 100% !important;
+  max-width: 180px !important;
+  border-radius: 0.8rem !important;
+  margin-bottom: 1.2rem !important;
+}
+.feature-card-title {
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.7rem !important;
+  text-align: center !important;
+}
+.feature-card-desc {
+  font-size: 1.05rem !important;
+  color: #444 !important;
+  margin-bottom: 1.5rem !important;
+  text-align: center !important;
+}
+.feature-card-btn {
+  display: inline-block !important;
+  background: #FF4B1F !important;
+  color: #fff !important;
+  padding: 0.7em 1.5em !important;
+  border-radius: 0.5em !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: background 0.2s !important;
+  margin-top: auto !important;
+}
+.feature-card-btn:hover, .feature-card-btn:focus {
+  background: #d63c13 !important;
+}
+@media (max-width: 900px) {
+  .feature-cards-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 2rem !important;
+  }
+  .feature-card {
+    max-width: 95vw !important;
+    min-width: 0 !important;
+  }
 } 
