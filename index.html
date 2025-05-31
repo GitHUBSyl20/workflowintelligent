@@ -269,19 +269,10 @@
             id="w-node-_23b74370-d591-db44-5309-b6b13516ecb3-ce8b1171"
             class="flex-vertical w-node-ab342f5d-f7c4-9e44-df48-7aaa184f59d4-8f90271c"
           >
-      
             <h1 class="h1-heading">
               Expertise web, IA &amp; Automatisation
             </h1>
              
-           
-            <div class="button-group">
-              <a
-                href="business-informations.html"
-                class="button primary-button-on-accent-primary w-button"
-                >Commencez</a
-              >
-            </div>
           </div>
           <p
             id="w-node-_23b939c4-89f1-8eaf-77af-7e11ce8b117d-ce8b1171"
@@ -295,65 +286,25 @@
       </div>
     </header>
     <main>
-      <section class="section">
-        <div class="container">
-          <div class="scroll-cards-container">
-            <!-- Card 1: Automation - CONTENT RESTORED -->
-            <div class="scroll-card">
-              <div class="card-content-wrapper" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; height: 100%; overflow: auto;">
-                <div class="w-layout-grid grid-layout tablet-1-column grid-gap-xxl utility-aspect-3x2">
-                  <div>
-                    <img
-                      width="528"
-                      height="768"
-                      alt="Outils d'Automatisation"
-                      src="https://cdn.prod.website-files.com/67c56b1d4fcf89b38f9026fd/67c56d37429836478ef862f0_2ecc0f31-bcbe-4bc6-820c-a5f7d5f75af4.avif"
-                      loading="lazy"
-                      class="image cover-image cardcoverimage"
-                    />
+      <section class="feature-cards-section">
+        <div class="feature-cards-container">
+          <div class="feature-card">
+            <img src="https://cdn.prod.website-files.com/67c56b1d4fcf89b38f9026fd/67c56d36d1d1bc8174802c10_c7fffc6f-5ea3-4727-b2a8-da851e25b44f.avif" alt="Outils d'Automatisation" class="feature-card-image" />
+            <h3 class="feature-card-title">Outils d'Automatisation</h3>
+            <p class="feature-card-desc">Découvrez comment automatiser vos tâches et gagner en efficacité grâce à des outils modernes et accessibles.</p>
+            <a href="automatisations.html#explications" class="feature-card-btn">En savoir plus</a>
                   </div>
-                  <div>
-                    <div class="eyebrow">Outils d'Automatisation</div>
-                    <h2>Automatisez vos taches répétitives</h2>
-                    <p class="paragraph-lg">
-                      Mettez en œuvre des outils d'automatisation de pointe
-                      pour gagner du temps et accroître la productivité.
-                    </p>
-                    <div class="button-group">
-                      <a href="automatisations.html#explications" class="button w-button">En savoir plus</a>
+          <div class="feature-card">
+            <img src="https://cdn.prod.website-files.com/67c56b1d4fcf89b38f9026fd/67c56d36a9d93eee5042c82b_c070f370-a3f7-4645-aac6-bd72430bfa65.avif" alt="Expertise en IA" class="feature-card-image" />
+            <h3 class="feature-card-title">Expertise en IA</h3>
+            <p class="feature-card-desc">Profitez de l'intelligence artificielle pour booster vos projets et prendre une longueur d'avance sur la concurrence.</p>
+            <a href="ai-tools.html#explications" class="feature-card-btn">Découvrir l'IA</a>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            
-            <!-- Card 3: AI - CONTENT RESTORED -->
-            <div class="scroll-card">
-              <div class="card-content-wrapper" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; height: 100%; overflow: auto;">
-                <div class="w-layout-grid grid-layout tablet-1-column grid-gap-xxl utility-aspect-3x2">
-                  <div>
-                    <img
-                      class="image cover-image cardcoverimage"
-                      src="https://cdn.prod.website-files.com/67c56b1d4fcf89b38f9026fd/67f4cba6cae5e82e85ba0a4a_Ai_illustration.png"
-                      alt="Illustration intelligence artificielle"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div>
-                    <div class="eyebrow">Expertise en IA</div>
-                    <h2>Innover avec l'intelligence artificielle</h2>
-                    <p class="paragraph-lg">
-                      Exploitez l'intelligence artificielle pour améliorer la
-                      prise de décision et stimuler l'innovation.
-                    </p>
-                    <div class="button-group">
-                      <a href="ai-tools.html#explications" class="button w-button">Découvrir</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="feature-card">
+            <img src="https://cdn.prod.website-files.com/67c56b1d4fcf89b38f9026fd/67f2ae8665ba737981537ff1_humanPotential.png" alt="Offres" class="feature-card-image" />
+            <h3 class="feature-card-title">Offres</h3>
+            <p class="feature-card-desc">Découvrez nos offres sur mesure pour répondre à vos besoins en digital, IA et automatisation. Solutions flexibles et adaptées à chaque projet.</p>
+            <a href="offres.html" class="feature-card-btn">Voir les offres</a>
           </div>
         </div>
       </section>
@@ -538,5 +489,47 @@
       </div>
     </footer>
     <script src="js/main.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      gsap.to('.feature-card', {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.18,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.feature-cards-section',
+          start: 'top 80%',
+          once: true
+        }
+      });
+
+      // Debug 1: Computed styles for .feature-card
+      var fc = document.querySelector('.feature-card');
+      if (fc) {
+        console.log('[DEBUG] .feature-card computed styles:', getComputedStyle(fc));
+      } else {
+        console.log('[DEBUG] No .feature-card found');
+      }
+
+      // Debug 2: Parent class and computed styles for .feature-cards-container
+      var fcc = document.querySelector('.feature-cards-container');
+      if (fcc && fcc.parentElement) {
+        console.log('[DEBUG] .feature-cards-container parent:', fcc.parentElement.className, getComputedStyle(fcc.parentElement));
+      } else {
+        console.log('[DEBUG] .feature-cards-container or parent not found');
+      }
+
+      // Debug 3: Count of .feature-card elements
+      var fcCount = document.querySelectorAll('.feature-card').length;
+      console.log('[DEBUG] .feature-card count:', fcCount);
+
+      // Debug 4: Src of all .feature-card-image elements
+      document.querySelectorAll('.feature-card-image').forEach(function(img, i) {
+        console.log('[DEBUG] .feature-card-image['+i+'] src:', img.src);
+      });
+      });
+    </script>
   </body>
 </html>

@@ -1,3 +1,7 @@
+console.log('[Tabs Debug] Script loaded, document.readyState:', document.readyState);
+console.log('[Tabs Debug] window.jQuery:', typeof window.jQuery, window.jQuery ? 'version: ' + jQuery.fn.jquery : 'NOT LOADED');
+console.log('[Tabs Debug] $ is:', typeof window.$);
+
 // WebFont Loader
 WebFont.load({
   google: {
@@ -16,24 +20,95 @@ WebFont.load({
     (n.className += t + "touch");
 })(window, document);
 
-// Hide Webflow "Made in Webflow" badge if present
-(function () {
-  "use strict";
-  function hideWebflowBadge() {
-    const selectors = [
-      ".w-webflow-badge",
-      '[class*="webflow-badge"]',
-      '[class*="made-in-webflow"]',
-    ];
-    selectors.forEach((selector) => {
-      document.querySelectorAll(selector).forEach((el) => {
-        el.style.display = "none";
-      });
-    });
+function onReady(fn) {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fn);
+  } else {
+    fn();
   }
-  // Use MutationObserver to hide badge if it appears later
-  const observer = new MutationObserver(hideWebflowBadge);
-  observer.observe(document.body, { childList: true, subtree: true });
-  // Initial call
-  hideWebflowBadge();
-})(); 
+}
+
+onReady(function() {
+  console.log('[Tabs Debug] DOM ready fired');
+  var $tabLinks = $('.w-tab-link');
+  var $tabMenus = $('.w-tab-menu');
+  var $tabPanes = $('.w-tab-pane');
+  var $tabs = $('.w-tabs');
+
+  console.log('[Tabs Debug] .w-tab-link count:', $tabLinks.length);
+  console.log('[Tabs Debug] .w-tab-menu count:', $tabMenus.length);
+  console.log('[Tabs Debug] .w-tab-pane count:', $tabPanes.length);
+  console.log('[Tabs Debug] .w-tabs count:', $tabs.length);
+
+  $tabLinks.each(function(i, el) {
+    console.log('[Tabs Debug] Tab link:', el, 'data-w-tab:', $(el).attr('data-w-tab'));
+  });
+
+  $tabMenus.each(function(i, el) {
+    console.log('[Tabs Debug] Tab menu:', el);
+  });
+
+  $tabPanes.each(function(i, el) {
+    console.log('[Tabs Debug] Tab pane:', el, 'data-w-tab:', $(el).attr('data-w-tab'));
+  });
+
+  $tabs.each(function(i, el) {
+    console.log('[Tabs Debug] Tabs container:', el);
+  });
+
+  $tabLinks.on('click', function(e) {
+    console.log('[Tabs Debug] Tab clicked:', this);
+  });
+
+  // Hide Webflow "Made in Webflow" badge if present
+  (function () {
+    "use strict";
+    function hideWebflowBadge() {
+      const selectors = [
+        ".w-webflow-badge",
+        '[class*="webflow-badge"]',
+        '[class*="made-in-webflow"]',
+      ];
+      selectors.forEach((selector) => {
+        document.querySelectorAll(selector).forEach((el) => {
+          el.style.display = "none";
+        });
+      });
+    }
+    // Use MutationObserver to hide badge if it appears later
+    const observer = new MutationObserver(hideWebflowBadge);
+    observer.observe(document.body, { childList: true, subtree: true });
+    // Initial call
+    hideWebflowBadge();
+  })();
+});
+
+// Minimal, robust tab switching for all pages
+$(function() {
+  $('.w-tab-link').on('click', function(e) {
+    e.preventDefault();
+    var $clicked = $(this);
+    var tab = $clicked.attr('data-w-tab');
+    var $tabs = $clicked.closest('.w-tabs');
+    var $links = $tabs.find('.w-tab-link');
+    var $panes = $tabs.find('.w-tab-pane');
+    $links.removeClass('w--current');
+    $clicked.addClass('w--current');
+    $panes.removeClass('w--tab-active');
+    $panes.filter('[data-w-tab="' + tab + '"]').addClass('w--tab-active');
+  });
+  // On load, ensure only one tab is active
+  $('.w-tabs').each(function() {
+    var $tabs = $(this);
+    var $links = $tabs.find('.w-tab-link');
+    var $panes = $tabs.find('.w-tab-pane');
+    var $current = $links.filter('.w--current');
+    if ($current.length === 0) {
+      $links.first().addClass('w--current');
+      $panes.removeClass('w--tab-active');
+      $panes.first().addClass('w--tab-active');
+    }
+  });
+});
+
+console.log('[Tabs Debug] End of main.js'); 
