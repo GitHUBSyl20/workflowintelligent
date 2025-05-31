@@ -42,10 +42,10 @@ p, .paragraph-lg, .paragraph-xl, .paragraph-sm, .paragraph-xxl {
   transform: none !important;
 }
 @media (max-width: 767px) {
-  .container, .section { padding-left: 3vw; padding-right: 3vw; }
-}
+  .container, .section { padding-left: 3vw; padding-right: 3vw; margin-top: 1rem;}
 @media (max-width: 479px) {
-  .container, .section { padding-left: 2vw; padding-right: 2vw; }
+  .container, .section { padding-left: 2vw; padding-right: 2vw; margin-top: 1rem;}
+}}
 }
 
 /* 5. Grid & Flex Layouts */
@@ -170,4 +170,16 @@ html, body, .section, .container, .scroll-cards-container {
 /* --- End: Standardize grid/flex layouts and clean up unused utility classes --- */
 
 /* --- BEGIN: Deeper Cleanup of Utility Classes --- */
-/* --- End: Standardize grid/flex layouts and clean up unused utility classes --- */ 
+/* --- End: Standardize grid/flex layouts and clean up unused utility classes --- */
+
+@media (max-width: 600px) {
+  .w-tab-menu {
+    margin-top: 0 !important;   /* Reduce as needed */
+    padding-top: 0 !important;
+  }
+  /* If there is a parent adding space, target it too */
+  .w-tabs {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+} 
