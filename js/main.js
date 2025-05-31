@@ -1,16 +1,13 @@
-console.log('[Tabs Debug] Script loaded, document.readyState:', document.readyState);
-console.log('[Tabs Debug] window.jQuery:', typeof window.jQuery, window.jQuery ? 'version: ' + jQuery.fn.jquery : 'NOT LOADED');
-console.log('[Tabs Debug] $ is:', typeof window.$);
-
 // WebFont Loader
-WebFont.load({
-  google: {
-    families: [
-      "Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic",
-    ],
-  },
-});
-
+if (window.WebFont) {
+  WebFont.load({
+    google: {
+      families: [
+        "Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic",
+      ],
+    },
+  });
+}
 // Webflow Touch Detection
 (function (o, c) {
   var n = c.documentElement,
@@ -19,6 +16,10 @@ WebFont.load({
   ("ontouchstart" in o || (o.DocumentTouch && c instanceof DocumentTouch)) &&
     (n.className += t + "touch");
 })(window, document);
+
+console.log('[Tabs Debug] Script loaded, document.readyState:', document.readyState);
+console.log('[Tabs Debug] window.jQuery:', typeof window.jQuery, window.jQuery ? 'version: ' + jQuery.fn.jquery : 'NOT LOADED');
+console.log('[Tabs Debug] $ is:', typeof window.$);
 
 function onReady(fn) {
   if (document.readyState === 'loading') {
