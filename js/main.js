@@ -36,11 +36,6 @@ onReady(function() {
   var $tabPanes = $('.w-tab-pane');
   var $tabs = $('.w-tabs');
 
-  console.log('[Tabs Debug] .w-tab-link count:', $tabLinks.length);
-  console.log('[Tabs Debug] .w-tab-menu count:', $tabMenus.length);
-  console.log('[Tabs Debug] .w-tab-pane count:', $tabPanes.length);
-  console.log('[Tabs Debug] .w-tabs count:', $tabs.length);
-
   $tabLinks.each(function(i, el) {
     console.log('[Tabs Debug] Tab link:', el, 'data-w-tab:', $(el).attr('data-w-tab'));
   });
@@ -112,8 +107,8 @@ $(function() {
   });
 });
 
-// Hamburger menu toggle and active link highlighting (shared for all pages)
-$(function() {
+document.addEventListener('DOMContentLoaded', function() {
+  // Hamburger menu toggle
   const hamburger = document.querySelector('.nav-hamburger');
   const navLinks = document.querySelector('.main-nav-links');
   if (hamburger && navLinks) {
@@ -134,6 +129,23 @@ $(function() {
       link.classList.add('active');
     }
   });
-});
 
-console.log('[Tabs Debug] End of main.js'); 
+  // GSAP animation for feature cards
+  if (window.gsap && document.querySelector('.feature-card')) {
+    if (window.gsap.registerPlugin && window.ScrollTrigger) {
+      window.gsap.registerPlugin(window.ScrollTrigger);
+    }
+    gsap.to('.feature-card', {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.18,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.feature-cards-section',
+        start: 'top 80%',
+        once: true
+      }
+    });
+  }
+});
