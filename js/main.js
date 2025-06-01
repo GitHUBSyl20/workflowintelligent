@@ -1,3 +1,5 @@
+// Debug log: script loaded
+
 // WebFont Loader
 if (window.WebFont) {
   WebFont.load({
@@ -17,10 +19,6 @@ if (window.WebFont) {
     (n.className += t + "touch");
 })(window, document);
 
-console.log('[Tabs Debug] Script loaded, document.readyState:', document.readyState);
-console.log('[Tabs Debug] window.jQuery:', typeof window.jQuery, window.jQuery ? 'version: ' + jQuery.fn.jquery : 'NOT LOADED');
-console.log('[Tabs Debug] $ is:', typeof window.$);
-
 function onReady(fn) {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', fn);
@@ -30,30 +28,24 @@ function onReady(fn) {
 }
 
 onReady(function() {
-  console.log('[Tabs Debug] DOM ready fired');
   var $tabLinks = $('.w-tab-link');
   var $tabMenus = $('.w-tab-menu');
   var $tabPanes = $('.w-tab-pane');
   var $tabs = $('.w-tabs');
 
   $tabLinks.each(function(i, el) {
-    console.log('[Tabs Debug] Tab link:', el, 'data-w-tab:', $(el).attr('data-w-tab'));
   });
 
   $tabMenus.each(function(i, el) {
-    console.log('[Tabs Debug] Tab menu:', el);
   });
 
   $tabPanes.each(function(i, el) {
-    console.log('[Tabs Debug] Tab pane:', el, 'data-w-tab:', $(el).attr('data-w-tab'));
   });
 
   $tabs.each(function(i, el) {
-    console.log('[Tabs Debug] Tabs container:', el);
   });
 
   $tabLinks.on('click', function(e) {
-    console.log('[Tabs Debug] Tab clicked:', this);
   });
 
   // Hide Webflow "Made in Webflow" badge if present
@@ -111,16 +103,33 @@ document.addEventListener('DOMContentLoaded', function() {
   // Hamburger menu toggle
   const hamburger = document.querySelector('.nav-hamburger');
   const navLinks = document.querySelector('.main-nav-links');
-  if (hamburger && navLinks) {
-    hamburger.addEventListener('click', function() {
-      navLinks.classList.toggle('open');
-    });
-    hamburger.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        navLinks.classList.toggle('open');
-      }
-    });
+  if (!hamburger) {
   }
+  if (!navLinks) {
+  }
+  try {
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', function() {
+        navLinks.classList.toggle('open');
+        hamburger.classList.toggle('active');
+      });
+      document.addEventListener('click', function(e) {
+        if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+          navLinks.classList.remove('open');
+          hamburger.classList.remove('active');
+        }
+      });
+      const navItems = navLinks.querySelectorAll('a');
+      navItems.forEach(item => {
+        item.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          hamburger.classList.remove('active');
+        });
+      });
+    }
+  } catch (err) {
+  }
+
   // Active link highlighting
   const links = document.querySelectorAll('.main-nav-link');
   const current = window.location.pathname.split('/').pop();
