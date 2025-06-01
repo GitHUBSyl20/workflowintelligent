@@ -1,4 +1,14 @@
 /* =========================
+   Unified Font Styling: Lato Everywhere
+   ========================= */
+:root {
+  --font-main: 'Lato', sans-serif;
+}
+body, html, h1, h2, h3, h4, h5, h6, p, blockquote, li, button, input, textarea, select, .paragraph-lg, .paragraph-xl, .paragraph-sm, .paragraph-xxl, .detail-text-bold, .utility-text-justify {
+  font-family: var(--font-main) !important;
+}
+
+/* =========================
    Responsive Overrides - Cleaned & Organized
    ========================= */
 
@@ -42,10 +52,10 @@ p, .paragraph-lg, .paragraph-xl, .paragraph-sm, .paragraph-xxl {
   transform: none !important;
 }
 @media (max-width: 767px) {
-  .container, .section { padding-left: 3vw; padding-right: 3vw; margin-top: 1rem;}
+  .container, .section { padding-left: 3vw; padding-right: 3vw; margin-top: 1rem; }
+}
 @media (max-width: 479px) {
-  .container, .section { padding-left: 2vw; padding-right: 2vw; margin-top: 1rem;}
-}}
+  .container, .section { padding-left: 2vw; padding-right: 2vw; margin-top: 1rem; }
 }
 
 /* 5. Grid & Flex Layouts */
@@ -388,4 +398,6 @@ html, body, .section, .container, .scroll-cards-container {
   .main-navbar .nav-hamburger {
     display: flex;
   }
-} 
+}
+
+/* Remove any legacy or unused font-family rules below this point */ 

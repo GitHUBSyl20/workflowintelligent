@@ -11,6 +11,7 @@ This file lists all optimizations, best practices, and improvements to address b
 - [ ] Remove unused CSS (manual or with PurgeCSS)
 - [ ] Minify all CSS files
 - [ ] Combine CSS files to reduce HTTP requests
+- [ ] Make the font homogenous
 
 ## Images
 - [ ] Compress all images (use WebP/AVIF where possible)
