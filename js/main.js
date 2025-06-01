@@ -112,4 +112,28 @@ $(function() {
   });
 });
 
+// Hamburger menu toggle and active link highlighting (shared for all pages)
+$(function() {
+  const hamburger = document.querySelector('.nav-hamburger');
+  const navLinks = document.querySelector('.main-nav-links');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', function() {
+      navLinks.classList.toggle('open');
+    });
+    hamburger.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        navLinks.classList.toggle('open');
+      }
+    });
+  }
+  // Active link highlighting
+  const links = document.querySelectorAll('.main-nav-link');
+  const current = window.location.pathname.split('/').pop();
+  links.forEach(link => {
+    if(link.getAttribute('href') === current) {
+      link.classList.add('active');
+    }
+  });
+});
+
 console.log('[Tabs Debug] End of main.js'); 
