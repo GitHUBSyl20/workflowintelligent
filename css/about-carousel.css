@@ -1,0 +1,82 @@
+/* 1. Universal box-sizing for predictability */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Carousel container: no horizontal padding, hide overflow */
+.carousel-outer {
+  width: 100%;
+  
+  margin: 0 auto;
+
+  padding: 0; /* Remove horizontal padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 3. Carousel track: center images horizontally */
+.carousel-track {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  height: 100%;
+  will-change: transform;
+  justify-content: center; /* Center images */
+  align-items: center;     /* Center vertically */
+}
+
+/* 4. Carousel images: responsive sizing */
+.carousel-track img {
+
+  width: auto;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  display: block;
+  margin: 0 auto;
+}
+
+/* 5. Responsive adjustments */
+@media (max-width: 700px) {
+  .carousel-outer {
+    height: 150px;
+    padding: 0;
+    width: 100vw; /* Ensure full viewport width */
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .carousel-track {
+    gap: 1rem;
+    justify-content: center; /* Center images as a group */
+    width: 100%;
+  }
+  .carousel-track img {
+    height: 100%;
+    max-width: 90px;
+    min-width: 70px;
+    border-radius: 0.7rem;
+  }
+  .carousel-track.align-left {
+    justify-content: flex-start !important;
+  }
+}
+@media (max-width: 479px) {
+  .carousel-outer {
+    height: 120px;
+    padding: 0;
+    width: 100vw;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .carousel-track {
+    justify-content: center;
+    width: 100%;
+  }
+  .carousel-track img {
+    max-width: 70px;
+    min-width: 50px;
+    border-radius: 0.5rem;
+  }
+}
+

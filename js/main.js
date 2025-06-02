@@ -1,4 +1,5 @@
 // Debug log: script loaded
+console.log('[main.js] Script loaded');
 
 // WebFont Loader
 if (window.WebFont) {
@@ -99,45 +100,7 @@ $(function() {
   });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Hamburger menu toggle
-  const hamburger = document.querySelector('.nav-hamburger');
-  const navLinks = document.querySelector('.main-nav-links');
-  if (!hamburger) {
-  }
-  if (!navLinks) {
-  }
-  try {
-    if (hamburger && navLinks) {
-      hamburger.addEventListener('click', function() {
-        navLinks.classList.toggle('open');
-        hamburger.classList.toggle('active');
-      });
-      document.addEventListener('click', function(e) {
-        if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-          navLinks.classList.remove('open');
-          hamburger.classList.remove('active');
-        }
-      });
-      const navItems = navLinks.querySelectorAll('a');
-      navItems.forEach(item => {
-        item.addEventListener('click', () => {
-          navLinks.classList.remove('open');
-          hamburger.classList.remove('active');
-        });
-      });
-    }
-  } catch (err) {
-  }
 
-  // Active link highlighting
-  const links = document.querySelectorAll('.main-nav-link');
-  const current = window.location.pathname.split('/').pop();
-  links.forEach(link => {
-    if(link.getAttribute('href') === current) {
-      link.classList.add('active');
-    }
-  });
 
   // GSAP animation for feature cards
   if (window.gsap && document.querySelector('.feature-card')) {
@@ -157,7 +120,27 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-});
+
+  // GSAP horizontal scroll for about page orange section carousel
+  if (window.gsap && window.ScrollTrigger && document.querySelector('.carousel-track')) {
+    gsap.registerPlugin(ScrollTrigger);
+    const track = document.querySelector('.carousel-track');
+    const outer = document.querySelector('.carousel-outer');
+    gsap.to(track, {
+      x: () => {
+        return -(track.scrollWidth - outer.clientWidth);
+      },
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".orange-section",
+        start: "top center",
+        end: () => `+=${track.scrollWidth - outer.clientWidth}`,
+        scrub: true,
+        pin: false
+      }
+    });
+  }
+
 
 $(document).ready(function(){
   // Portfolio Accordion Script
@@ -190,5 +173,34 @@ $(document).ready(function(){
         console.log(`Accordion item ${i}: open=${isOpen}, borderColor=${borderColor}`);
       });
     }, 350); // Wait for animation to finish
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Hamburger menu toggle
+  const hamburger = document.querySelector('.nav-hamburger');
+  const navLinks = document.querySelector('.main-nav-links');
+
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+    // Close menu when a link is clicked (mobile UX)
+    navLinks.querySelectorAll('.main-nav-link').forEach(link => {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
+  }
+
+  // Active link highlighting
+  const links = document.querySelectorAll('.main-nav-link');
+  const current = window.location.pathname.split('/').pop();
+  links.forEach(link => {
+    if(link.getAttribute('href') === current) {
+      link.classList.add('active');
+    }
   });
 });

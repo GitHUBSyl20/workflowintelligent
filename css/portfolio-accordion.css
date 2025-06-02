@@ -183,4 +183,5 @@ section#automatisation-portfolio.section.portfolio-section div.accordion div.acc
   .portfolio-section .accordion .content .portfolio-text img.image.cover-image {
     max-width: 450px; /* Ensure the image is capped at 450px to allow centering */
   }
-} 
+}
+

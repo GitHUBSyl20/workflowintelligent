@@ -6,12 +6,16 @@ This file lists all optimizations, best practices, and improvements to address b
 - [ ] Remove jQuery dependency and rewrite tab logic in vanilla JS
 - [ ] Minify `js/main.js` and any other custom scripts
 - [ ] Bundle and minify all JS assets
+- [ ] Clean JS file
 
 ## CSS
 - [ ] Remove unused CSS (manual or with PurgeCSS)
 - [ ] Minify all CSS files
 - [ ] Combine CSS files to reduce HTTP requests
 - [ ] Make the font homogenous
+- [ ] Make the burger menu closing in mobile versionn
+- [ ] Make the menu take all the available space in mobile
+- [ ] Remove horrible webfont classes !
 
 ## Images
 - [ ] Compress all images (use WebP/AVIF where possible)
