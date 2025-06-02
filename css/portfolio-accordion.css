@@ -1,0 +1,186 @@
+/* Styles for Portfolio Accordion (CodePen Inspired) */
+.portfolio-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.portfolio-section .accordion {
+  list-style: none; /* Though it's divs, not ul/li, good to ensure no list styles */
+  padding: 0;
+  margin: 0 auto;
+  max-width: 1200px; /* Adjust as per your site's layout */
+}
+
+.portfolio-section .accordion-item {
+  background-color: #fff; /* White background for the item      /
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  overflow: hidden; /* Ensures content respects border-radius */
+}
+
+.portfolio-section .accordion-item .accordion-trigger { /* Changed from a to .accordion-trigger */
+  display: block;
+  width: 100%; /* Ensure button takes full width */
+  padding: 15px 45px 15px 20px;
+  background-color: #f7f7f7;
+  color: #333;
+  text-decoration: none;
+  position: relative;
+  transition: background-color 0.3s ease;
+  border: none; /* Reset button border */
+  text-align: left; /* Align text to the left like a link */
+  cursor: pointer; /* Ensure cursor is pointer */
+  font-family: inherit; /* Inherit font from parent */
+  font-size: inherit; /* Inherit font-size from parent, or set explicitly */
+}
+
+.portfolio-section .accordion-item .accordion-trigger:hover {
+  background-color: #ff7e5f;
+}
+
+/* Ensure h4 inside the button inherits correctly and is styled */
+.portfolio-section .accordion-item .accordion-trigger .h4-heading {
+  margin: 0; /* Reset margin if any from default h4 */
+  font-size: 1.1rem; /* Or your preferred size */
+  font-weight: 600; /* Or your preferred weight */
+  color: inherit; /* Inherits color from <a> tag */
+}
+
+.portfolio-section .accordion-item .accordion-trigger::before { /* Icon styling */
+  content: '+';
+  font-size: 1.6em; /* Adjust size */
+  font-weight: bold;
+  color: #555; /* Icon color */
+  position: absolute;
+  right: 15px; /* Position from the right */
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease-out, color 0.2s ease;
+}
+
+.portfolio-section .accordion-item .accordion-trigger.active {
+  background-color: #ff7e5f;
+}
+
+
+.portfolio-section .accordion-item.open {
+  border-color: #ff7e5f !important;
+  border-width: 3px !important;      /* Make the border thicker */
+  border-style: solid !important;    /* Ensure it's a solid border */
+}
+
+.portfolio-section .accordion-item .accordion-trigger.active::before {
+  content: '-'; /* Standard ASCII hyphen-minus */
+  /* transform: translateY(-50%) rotate(45deg); /* Example if you wanted a rotated cross */
+}
+
+.portfolio-section .accordion .content {
+  padding: 20px;
+  background: #fff; /* Content background */
+  display: none; /* Hidden by default, jQuery will show/hide */
+  border-top: 1px solid #eee; /* Subtle separator if needed */
+}
+
+/* Portfolio specific content styling within the accordion panel */
+.portfolio-section .accordion .content .portfolio-content-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column for mobile/default */
+  gap: 20px;
+  align-items: flex-start; /* Align items at the top */
+}
+
+/* Container for all text and visual elements, now to be centered */
+.portfolio-section .accordion .content .portfolio-text {
+  display: flex;          /* Use flexbox for robust centering of children */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center;    /* Center children horizontally (e.g., images if not full width) */
+  /* border: 2px solid blue !important; */ /* DEBUG BORDER REMOVED */
+}
+
+/* Specific styling for images within .portfolio-text */
+.portfolio-section .accordion .content .portfolio-text img.image.cover-image {
+  display: block;    /* Explicitly block, though flex handles it too */
+  width: 100%;        /* Desired width, less than 100% */
+  max-width: 450px;  /* Cap the maximum size */
+  height: auto;      /* Maintain aspect ratio */
+  margin-top: 1.5rem;    /* Vertical spacing */
+  margin-bottom: 0.5rem;
+  /* margin-left: auto; and margin-right: auto; are not strictly needed for centering if parent is flex with align-items: center */
+}
+
+/* Headings and paragraphs within .portfolio-text */
+section#automatisation-portfolio.section.portfolio-section div.accordion div.accordion-item div.content div.portfolio-content-grid div.portfolio-text h5.h5-heading {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #444; /* Slightly darker for subheadings */
+  font-size: 1rem;
+  font-weight: bold;
+  width: 100% !important; /* Make block full width of parent */
+  text-align: center !important; /* Center text within this block */
+  /* border: 1px dashed red !important; */ /* DEBUG BORDER REMOVED */
+}
+section#automatisation-portfolio.section.portfolio-section div.accordion div.accordion-item div.content div.portfolio-content-grid div.portfolio-text p.paragraph-3 {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  width: 100% !important; /* Make block full width of parent */
+  text-align: center !important; /* Center text within this block */
+  /* border: 1px dashed red !important; */ /* DEBUG BORDER REMOVED */
+}
+
+/* Specific rule for caption text within portfolio-text in the automatisation-portfolio section */
+section#automatisation-portfolio.section.portfolio-section div.accordion div.accordion-item div.content div.portfolio-content-grid div.portfolio-text p.caption-text {
+  font-size: 0.85rem;
+  color: red; /* User adjusted */
+  margin-top: 0.5rem;
+  width: 100% !important; /* Make block full width of parent */
+  text-align: center !important; /* Center text within this block */
+  /* border: 1px dashed red !important; */ /* DEBUG BORDER REMOVED */
+}
+
+/* Fallback for other captions if needed, but ensure the above is more specific */
+.portfolio-section .accordion .content .portfolio-visual .caption-text {
+  font-size: 0.85rem;
+  color: red; /* User adjusted */
+  margin-top: 0.5rem;
+  width: 100%; 
+  text-align: center !important; 
+}
+
+/* Remove original .portfolio-visual img rule if visuals are always inside .portfolio-text */
+/* Or keep if some items might still use the two-column .portfolio-visual structure */
+/* For now, let's assume it might still be used by items 2 and 3 */
+.portfolio-section .accordion .content .portfolio-visual img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid #eee;
+}
+
+.utility-max-width-600 {
+  max-width: 750px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.utility-padding-x-2rem {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.utility-vertical-center {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start; /* or center if you want horizontal centering too */
+  height: 100%; /* or a fixed height if needed */
+}
+
+@media (min-width: 768px) { /* Two columns for wider screens */
+  .portfolio-section .accordion .content .portfolio-content-grid {
+    grid-template-columns: 1fr;
+  }
+  /* Optional: adjust image max-width for larger screens if using % */
+  .portfolio-section .accordion .content .portfolio-text img.image.cover-image {
+    max-width: 450px; /* Ensure the image is capped at 450px to allow centering */
+  }
+} 
