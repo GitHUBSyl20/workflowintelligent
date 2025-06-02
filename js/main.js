@@ -158,3 +158,37 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+$(document).ready(function(){
+  // Portfolio Accordion Script
+  // Selects accordion links within sections having an ID starting with "automatisation-portfolio" or "ai-tools-portfolio"
+  // This makes it reusable if you add a similar accordion to the AI tools page.
+  $(".portfolio-section .accordion .accordion-trigger").on("click", function(e){
+    const $this = $(this);
+    const $content = $this.siblings(".content");
+    const $accordion = $this.closest('.accordion');
+    const $item = $this.closest('.accordion-item');
+
+    const wasActive = $this.hasClass("active");
+
+    // Remove .active and .open from all items in this accordion
+    $accordion.find('.accordion-trigger.active').removeClass("active");
+    $accordion.find('.accordion-item.open').removeClass("open");
+    $accordion.find('.content').slideUp(300);
+
+    if (!wasActive) {
+      $this.addClass("active");
+      $item.addClass("open");
+      $content.slideDown(300);
+    }
+
+    // --- LOGGING FOR DEBUGGING ---
+    setTimeout(() => {
+      $accordion.find('.accordion-item').each(function(i, el) {
+        const isOpen = $(el).hasClass('open');
+        const borderColor = window.getComputedStyle(el).borderColor;
+        console.log(`Accordion item ${i}: open=${isOpen}, borderColor=${borderColor}`);
+      });
+    }, 350); // Wait for animation to finish
+  });
+});
