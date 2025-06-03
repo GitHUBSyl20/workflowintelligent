@@ -136,8 +136,8 @@ html, body, .section, .container, .scroll-cards-container {
 .agilite-left { flex: 0 0 220px; font-size: 1.4rem; font-weight: bold; display: flex; align-items: center; }
 .agilite-right { flex: 1 1 0; }
 @media (max-width: 767px) {
-  .agilite-row { flex-direction: column; gap: 1rem; }
-  .agilite-left { font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .agilite-row { flex-direction: column; gap: 0.5rem; }
+  .agilite-left { font-size: 1.1rem; margin-bottom: 0rem; }
 }
 
 /* 14. Miscellaneous Fixes */

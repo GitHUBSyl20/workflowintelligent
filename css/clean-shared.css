@@ -21,7 +21,8 @@ html, body {
   width: 100vw; max-width: 100vw;
   color: var(--color-text);
   background: var(--color-background);
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  
 }
 img { max-width: 100%; height: auto; display: block; }
 
@@ -53,6 +54,7 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
 .flex-horizontal, .flex-vertical { display: flex; flex-wrap: wrap; gap: 1rem; }
 .flex-horizontal { flex-direction: row; }
 .flex-vertical { flex-direction: column; }
+.offer-proposal-large {width: 60rem}
 
 /* 4. Navigation */
 .main-navbar {
@@ -68,7 +70,7 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
 .main-navbar .nav-logo svg { width: 2.2rem; height: 2.2rem; display: block; }
 .main-navbar .main-nav-links { display: flex; gap: 2.2rem; align-items: center; }
 .main-navbar .main-nav-link {
-  font-size: 1.08rem; color: var(--color-text); text-decoration: none; font-weight: 500;
+  font-size: 1.2rem; color: var(--color-text); text-decoration: none; font-weight: 500;
   padding: 0.4em 0.9em; border-radius: 0.4em; transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   position: relative; outline: none;
 }
@@ -160,7 +162,7 @@ input, textarea, select {
   background: var(--color-background); border-radius: 1.2rem; box-shadow: var(--shadow-md);
   padding: 2rem 1.5rem 2.5rem 1.5rem; max-width: 350px; min-width: 260px; flex: 1 1 300px;
   display: flex; flex-direction: column; align-items: center; transition: box-shadow 0.3s, transform 0.3s;
-  will-change: transform, box-shadow; opacity: 0; transform: translateY(40px);
+  will-change: transform, box-shadow; opacity: 1; transform: none;
 }
 .feature-card:hover, .feature-card:focus-within {
   box-shadow: var(--shadow-lg); transform: scale(1.035) translateY(-4px); z-index: 2;
@@ -281,6 +283,16 @@ input, textarea, select {
 @media (min-width: 701px) {
   .main-navbar .nav-hamburger {
     display: none !important;
+  }
+}
+@media (max-width: 900px) {
+  .feature-card {
+    max-width: 95vw !important;
+    min-width: 0 !important;
+  }
+  /* Hide cards only if menu is open (example: .main-navbar.menu-open) */
+  .main-navbar.menu-open ~ main .feature-card {
+    opacity: 0 !important;
   }
 }
 

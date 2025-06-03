@@ -1,22 +1,29 @@
 /* Styles for Portfolio Accordion (CodePen Inspired) */
 .portfolio-section {
-  padding-top: 3rem;
+  padding-top: 0rem;
   padding-bottom: 3rem;
+  width: 100%; /* Make section take full available width */
+  box-sizing: border-box; /* Ensure padding doesn't add to the 100% width */
 }
 
+/* Adjust .container for full width within .portfolio-section */
+.portfolio-section .container {
+  width: 100%;
+  padding-left: 2rem;     /* Restoring padding for content spacing */
+  padding-right: 2rem;    /* Restoring padding for content spacing */
+  box-sizing: border-box; /* Crucial for width:100% + padding */
+}
+
+/* Accordion fills the container */
 .portfolio-section .accordion {
-  list-style: none; /* Though it's divs, not ul/li, good to ensure no list styles */
-  padding: 0;
-  margin: 0 auto;
-  max-width: 1200px; /* Adjust as per your site's layout */
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .portfolio-section .accordion-item {
   background-color: #fff; /* White background for the item      /
-  border: 1px solid #ddd;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  overflow: hidden; /* Ensures content respects border-radius */
 }
 
 .portfolio-section .accordion-item .accordion-trigger { /* Changed from a to .accordion-trigger */
