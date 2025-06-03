@@ -16,6 +16,7 @@ This file lists all optimizations, best practices, and improvements to address b
 - [ ] Make the burger menu closing in mobile versionn
 - [ ] Make the menu take all the available space in mobile
 - [ ] Remove horrible webfont classes !
+- [ ] Cohérence largeur de texte et position
 
 ## Images
 - [ ] Compress all images (use WebP/AVIF where possible)
