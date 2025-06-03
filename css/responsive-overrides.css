@@ -52,10 +52,10 @@ p, .paragraph-lg, .paragraph-xl, .paragraph-sm, .paragraph-xxl {
   transform: none !important;
 }
 @media (max-width: 767px) {
-  .container, .section { padding-left: 3vw; padding-right: 3vw; margin-top: -3rem; }
+  .container, .section { padding-left: 3vw; padding-right: 3vw; /* margin-top: -3rem; */ }
 }
 @media (max-width: 479px) {
-  .container, .section { padding-left: 2vw; padding-right: 2vw; margin-top: -3rem; }
+  .container, .section { padding-left: 2vw; padding-right: 2vw; /* margin-top: -3rem; */ }
 }
 
 /* 5. Grid & Flex Layouts */
@@ -118,6 +118,7 @@ body, html, .container, .section, .w-nav-menu, .nav-menu-full-page {
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
+  .accordion-title-mobile-margin {margin-top: -2rem !important;}
 }
 
 /* 11. Two-Column Layouts */
@@ -125,6 +126,7 @@ body, html, .container, .section, .w-nav-menu, .nav-menu-full-page {
 .two-column-layout .column { flex: 1 1 0; min-width: 300px; }
 @media (max-width: 767px) {
   .two-column-layout { flex-direction: column; gap: 1rem; }
+
 }
 
 /* 12. Scroll Stacking Cards */
@@ -147,7 +149,7 @@ html, body, .section, .container, .scroll-cards-container {
 .section > .container > .scroll-cards-container, .section > .container, .section { overflow: visible !important; }
 
 /* 13. Agilité Two-Column Layout */
-.agilite-row { display: flex; align-items: flex-start; gap: 2rem; margin: 2rem 0; }
+.agilite-row { display: flex; align-items: center; gap: 2rem; margin: 2rem 0; }
 .agilite-left { flex: 0 0 220px; font-size: 1.4rem; font-weight: bold; display: flex; align-items: center; }
 .agilite-right { flex: 1 1 0; }
 @media (max-width: 767px) {
@@ -352,4 +354,34 @@ html, body, .section, .container, .scroll-cards-container {
   }
 }
 
-/* Remove any legacy or unused font-family rules below this point */ 
+/* Remove any legacy or unused font-family rules below this point */
+
+/* Accordion Trigger Full Width */
+.accordion-trigger {
+  width: 100% !important; /* Make the button take full width */
+  display: flex !important; /* Use flex for internal alignment */
+  justify-content: flex-start !important; /* Align text to the start (left) */
+  align-items: center !important; /* Keep vertical centering */
+  padding-left: 1em !important; /* Add some padding so text isn't at the very edge */
+  padding-right: 1em !important; /* Add some padding so text isn't at the very edge */
+  box-sizing: border-box !important; /* Include padding/border in width calculation */
+  text-align: left !important; /* Ensure text itself is left-aligned if it's not inheriting */
+}
+
+/* === Active Tab Styling === */
+.w-tab-link.w--current {
+  background-color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---core-color-tint--accent-primary-a20) !important; /* Light transparent orange */
+  color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---core-accent-color--accent-primary) !important; /* Solid orange text */
+  border-radius: 8px !important; /* Rounded corners */
+  text-decoration: underline !important;
+  text-decoration-color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---core-accent-color--accent-primary) !important; /* Orange underline */
+  border-bottom: none !important; /* Remove default bottom border */
+}
+
+/* === Reduce top space above specific tab sections on mobile === */
+@media (max-width: 767px) {
+  section[data-record-id="8e08c42a-ea45-e482-0613-b4daf45e5315"] {
+    padding-top: 20px !important;
+    margin-top: 0 !important;
+  }
+} 
