@@ -2491,7 +2491,7 @@ textarea.w-input, textarea.w-select {
 
 .container.small-container {
   max-width: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---container--container-sm-width);
-  width: 75%;
+  width: 95%;
 }
 
 .container.small-container.utility-text-align-center {
@@ -5713,8 +5713,8 @@ textarea.w-input, textarea.w-select {
 
 .footer-link {
   color: color-mix(in srgb, currentColor 60%, transparent);
-  padding-top: .35em;
-  padding-bottom: .35em;
+  padding-top: .05em;
+  padding-bottom: .05em;
   font-weight: 400;
   text-decoration: none;
 }

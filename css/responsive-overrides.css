@@ -52,10 +52,10 @@ p, .paragraph-lg, .paragraph-xl, .paragraph-sm, .paragraph-xxl {
   transform: none !important;
 }
 @media (max-width: 767px) {
-  .container, .section { padding-left: 3vw; padding-right: 3vw; margin-top: 1rem; }
+  .container, .section { padding-left: 3vw; padding-right: 3vw; margin-top: -3rem; }
 }
 @media (max-width: 479px) {
-  .container, .section { padding-left: 2vw; padding-right: 2vw; margin-top: 1rem; }
+  .container, .section { padding-left: 2vw; padding-right: 2vw; margin-top: -3rem; }
 }
 
 /* 5. Grid & Flex Layouts */
@@ -151,8 +151,18 @@ html, body, .section, .container, .scroll-cards-container {
 .agilite-left { flex: 0 0 220px; font-size: 1.4rem; font-weight: bold; display: flex; align-items: center; }
 .agilite-right { flex: 1 1 0; }
 @media (max-width: 767px) {
-  .agilite-row { flex-direction: column; gap: 1rem; }
-  .agilite-left { font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .agilite-row {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: -1rem; /* Pulls the row higher */
+  }
+  .agilite-left {
+    font-size: 1.1rem;
+    margin-bottom: 0rem;
+    width: 100%;        /* Ensure full width for centering */
+    flex-basis: auto;   /* Override desktop fixed width */
+    justify-content: center; /* Center icon and text */
+  }
 }
 
 /* 14. Miscellaneous Fixes */
@@ -186,7 +196,32 @@ html, body, .section, .container, .scroll-cards-container {
   .w-tab-menu {
     margin-top: 0 !important;   /* Reduce as needed */
     padding-top: 0 !important;
+    /* New rules for stacking */
+    display: flex !important; /* Ensure flex display */
+    flex-direction: column !important; /* Stack items vertically */
+    width: 100% !important; /* Ensure tab menu itself is full width */
+    align-items: stretch !important; /* Make items take full width */
   }
+  .w-tab-menu .w-tab-link { /* Targeting .w-tab-link inside .w-tab-menu */
+    width: 100% !important; /* Ensure each tab link takes full width */
+    box-sizing: border-box !important; /* Include padding and border in the element's total width and height */
+    margin-right: 0 !important; /* Remove any right margin */
+    margin-left: 0 !important; /* Remove any left margin */
+    margin-bottom: -2rem !important; /* Further reduced space between stacked tabs */
+    padding: 0.8em 1em !important; /* Adjust padding as needed */
+    text-align: center !important; /* Center the text within the tab */
+    white-space: normal !important; /* Ensure text wraps */
+  }
+  .w-tab-menu .w-tab-link h4 {
+      white-space: normal !important; /* Ensure text wraps in h4 */
+      word-break: break-word !important; /* Help with long words */
+      /* Consider adjusting font-size if still too large after wrapping */
+      /* font-size: clamp(1rem, 2.5vw, 1.2rem); */
+  }
+  .w-tab-menu .w-tab-link:last-child {
+    margin-bottom: 0 !important; /* No margin for the last tab */
+  }
+
   /* If there is a parent adding space, target it too */
   .w-tabs {
     margin-top: 0 !important;
@@ -220,8 +255,8 @@ html, body, .section, .container, .scroll-cards-container {
   align-items: center !important;
   transition: box-shadow 0.3s cubic-bezier(.4,0,.2,1), transform 0.3s cubic-bezier(.4,0,.2,1) !important;
   will-change: transform, box-shadow !important;
-  opacity: 0;
-  transform: translateY(40px);
+  opacity: 1 !important;
+  transform: none !important;
 }
 .feature-card:hover, .feature-card:focus-within {
   box-shadow: 0 8px 32px rgba(0,0,0,0.16), 0 3px 12px rgba(0,0,0,0.10) !important;
@@ -270,6 +305,10 @@ html, body, .section, .container, .scroll-cards-container {
     max-width: 95vw !important;
     min-width: 0 !important;
   }
+  /* Hide cards only if menu is open (example: .main-navbar.menu-open) */
+  .main-navbar.menu-open ~ main .feature-card {
+    opacity: 0 !important;
+  }
 }
 
 /* Modern Sticky Main Navigation Bar */
@@ -303,66 +342,7 @@ html, body, .section, .container, .scroll-cards-container {
   height: 2.2rem;
   display: block;
 }
-/*
-.main-navbar .main-nav-links {
-  display: flex;
-  gap: 2.2rem;
-  align-items: center;
-}
-.main-navbar .main-nav-link {
-  font-size: 1.08rem;
-  color: #222;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 0.4em 0.9em;
-  border-radius: 0.4em;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-  position: relative;
-  outline: none;
-}
-.main-navbar .main-nav-link.active,
-.main-navbar .main-nav-link:focus,
-.main-navbar .main-nav-link:hover {
-  background: #FF4B1F18;
-  color: #FF4B1F;
-  box-shadow: 0 2px 8px rgba(255,75,31,0.08);
-}
-.main-navbar .main-nav-link:after {
-  content: '';
-  display: block;
-  height: 2px;
-  width: 0%;
-  background: #FF4B1F;
-  border-radius: 2px;
-  transition: width 0.25s cubic-bezier(.4,0,.2,1);
-  position: absolute;
-  left: 20%;
-  bottom: 0.2em;
-}
-.main-navbar .main-nav-link.active:after,
-.main-navbar .main-nav-link:focus:after,
-.main-navbar .main-nav-link:hover:after {
-  width: 60%;
-}
-.main-navbar .nav-hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 0.3em;
-  cursor: pointer;
-  width: 2.2em;
-  height: 2.2em;
-  justify-content: center;
-  align-items: center;
-}
-.main-navbar .nav-hamburger span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: #FF4B1F;
-  border-radius: 2px;
-  transition: all 0.3s cubic-bezier(.4,0,.2,1);
-}
-*/
+
 @media (max-width: 900px) {
   .main-navbar {
     padding: 0.5rem 2vw;
