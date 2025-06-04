@@ -27,6 +27,7 @@ This file lists all optimizations, best practices, and improvements to address b
 - [ ] Run an accessibility audit (e.g., Lighthouse, axe)
 - [ ] Ensure all interactive elements are keyboard accessible
 - [ ] Check color contrast and ARIA labels
+- [ ] Click link sends to haut de page
 
 ## HTML & SEO
 - [ ] Validate all HTML (W3C validator)
