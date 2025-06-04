@@ -22,6 +22,7 @@ This file lists all optimizations, best practices, and improvements to address b
 - [ ] Compress all images (use WebP/AVIF where possible)
 - [ ] Ensure all images use responsive `srcset` and `sizes`
 - [ ] Audit for missing or poor `alt` attributes
+- [ ] better icons /images
 
 ## Accessibility
 - [ ] Run an accessibility audit (e.g., Lighthouse, axe)

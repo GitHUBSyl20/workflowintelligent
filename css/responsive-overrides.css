@@ -217,8 +217,7 @@ html, body, .section, .container, .scroll-cards-container {
   .w-tab-menu .w-tab-link h4 {
       white-space: normal !important; /* Ensure text wraps in h4 */
       word-break: break-word !important; /* Help with long words */
-      /* Consider adjusting font-size if still too large after wrapping */
-      /* font-size: clamp(1rem, 2.5vw, 1.2rem); */
+      font-size: clamp(1rem, 2.5vw, 1.2rem); 
   }
   .w-tab-menu .w-tab-link:last-child {
     margin-bottom: 0 !important; /* No margin for the last tab */
@@ -297,7 +296,18 @@ html, body, .section, .container, .scroll-cards-container {
 .feature-card-btn:hover, .feature-card-btn:focus {
   background: #d63c13 !important;
 }
+
+
 @media (max-width: 900px) {
+
+  .bold-text {
+    font-size: clamp(1rem, 2.5vw, 1.2rem); 
+  }
+
+  .agilite-row {
+    margin-bottom: -1rem !important;
+  } 
+
   .feature-cards-container {
     flex-direction: column !important;
     align-items: center !important;
@@ -393,20 +403,6 @@ html, body, .section, .container, .scroll-cards-container {
   }
 }
 
-/* === Make form input fields larger on mobile === */
-@media (max-width: 767px) {
-  #email-form .w-input {
-    height: 48px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-    padding-left: 15px !important;
-    padding-right: 15px !important;
-    font-size: 16px !important;
-    width: 100% !important; /* Take full available width */
-    box-sizing: border-box !important; /* Include padding and border in the element's total width and height */
-  }
-}
-
 /* === Ensure contact form inputs span full mobile screen width by removing grid cell padding === */
 @media (max-width: 767px) {
   #w-node-_6dd82fed-fcd9-4a8c-7e32-3c165081de39-5081de36.w-node-e228b28e-8584-af10-3c53-f84da41c3d89-b3732151 {
@@ -415,7 +411,6 @@ html, body, .section, .container, .scroll-cards-container {
   }
 }
 
-/* === Ensure contact form inputs span full mobile screen width === */
 @media (max-width: 767px) {
   header#contact-form .full-width-container {
     padding-left: 0 !important;
@@ -434,23 +429,6 @@ html, body, .section, .container, .scroll-cards-container {
     width: 100% !important; /* Take full available width */
     box-sizing: border-box !important; /* Include padding and border in the element's total width and height */
   }
-
-  /* Fix: Remove horizontal padding from .form-block */
-  header#contact-form .form-block {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    /* Removed temporary background-color and padding */
-  }
-
-  /* Removed temporary debug styles for grid cell and grid container */
-  header#contact-form #w-node-_6dd82fed-fcd9-4a8c-7e32-3c165081de39-5081de36.w-node-e228b28e-8584-af10-3c53-f84da41c3d89-b3732151 {
-     /* Removed temporary background-color and padding */
-  }
-
-  header#contact-form .w-layout-grid.grid-layout {
-     /* Removed temporary background-color and padding */
-  }
-
 }
 
 /* === Basic Form Styling for Mobile === */
@@ -535,5 +513,45 @@ html, body, .section, .container, .scroll-cards-container {
        padding-left: 0 !important;
        padding-right: 0 !important;
    }
+}
 
+/* === Accordion Content Full Width on Mobile === */
+@media (max-width: 767px) {
+  .accordion {
+    width: 100%;
+  }
+
+  .accordion .accordion-item .content {
+    width: 100vw;
+    max-width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: white; /* Assuming a white background for the content area */
+  }
+
+  .accordion .accordion-item .content .portfolio-content-grid {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* === General styles for portfolio text headings === */
+.portfolio-text h4 {
+  text-decoration: underline;
+}
+
+/* Force 1rem margin-bottom for h4-headings with utility class */
+.h4-heading.utility-margin-bottom-1rem {
+    margin-bottom: 1.5rem !important;
+}
+
+/* Styling for the certification icon */
+.certification-icon {
+    max-width: 40px; /* Adjust as needed */
+    height: auto;    /* Maintain aspect ratio */
+    display: block;  /* Ensures proper block-level behavior for an image if not already flexed */
 } 
