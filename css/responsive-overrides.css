@@ -384,4 +384,156 @@ html, body, .section, .container, .scroll-cards-container {
     padding-top: 20px !important;
     margin-top: 0 !important;
   }
+}
+
+/* === Reduce gap above contact form on business-informations.html for mobile === */
+@media (max-width: 767px) {
+  .calendly-inline-widget {
+    height: 600px !important;
+  }
+}
+
+/* === Make form input fields larger on mobile === */
+@media (max-width: 767px) {
+  #email-form .w-input {
+    height: 48px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    font-size: 16px !important;
+    width: 100% !important; /* Take full available width */
+    box-sizing: border-box !important; /* Include padding and border in the element's total width and height */
+  }
+}
+
+/* === Ensure contact form inputs span full mobile screen width by removing grid cell padding === */
+@media (max-width: 767px) {
+  #w-node-_6dd82fed-fcd9-4a8c-7e32-3c165081de39-5081de36.w-node-e228b28e-8584-af10-3c53-f84da41c3d89-b3732151 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* === Ensure contact form inputs span full mobile screen width === */
+@media (max-width: 767px) {
+  header#contact-form .full-width-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Form Input Fields */
+  #email-form .w-input,
+  #email-form textarea.w-input { /* Added textarea */
+    height: 48px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    font-size: 16px !important;
+    width: 100% !important; /* Take full available width */
+    box-sizing: border-box !important; /* Include padding and border in the element's total width and height */
+  }
+
+  /* Fix: Remove horizontal padding from .form-block */
+  header#contact-form .form-block {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    /* Removed temporary background-color and padding */
+  }
+
+  /* Removed temporary debug styles for grid cell and grid container */
+  header#contact-form #w-node-_6dd82fed-fcd9-4a8c-7e32-3c165081de39-5081de36.w-node-e228b28e-8584-af10-3c53-f84da41c3d89-b3732151 {
+     /* Removed temporary background-color and padding */
+  }
+
+  header#contact-form .w-layout-grid.grid-layout {
+     /* Removed temporary background-color and padding */
+  }
+
+}
+
+/* === Basic Form Styling for Mobile === */
+@media (max-width: 767px) {
+  /* Basic styling for the form itself */
+  form#email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between form elements */
+    padding: 0 15px; /* Add some padding to the form itself to prevent edge-to-edge */
+    width: 100%; /* Ensure form takes full width */
+    box-sizing: border-box; /* Include padding in width */
+  }
+
+  /* Style for labels */
+  form#email-form label {
+    display: block; /* Ensure labels are block elements */
+    font-weight: bold;
+    margin-bottom: 5px; /* Space between label and input */
+    width: 100%; /* Ensure labels take full width */
+    box-sizing: border-box; /* Include padding in width */
+  }
+
+  /* More assertive style for input fields and textarea to ensure full width */
+  header#contact-form form#email-form input[type="text"],
+  header#contact-form form#email-form input[type="email"],
+  header#contact-form form#email-form textarea {
+    display: block !important; /* Force block display */
+    width: 100% !important; /* Force full width */
+    max-width: 100% !important; /* Ensure max-width doesn't restrict */
+    padding: 10px !important; /* Ensure padding is applied */
+    border: 1px solid #ccc !important; /* Basic border */
+    border-radius: 4px !important; /* Slightly rounded corners */
+    box-sizing: border-box !important; /* Ensure box-sizing */
+    font-size: 16px !important; /* Readable font size */
+    margin-left: 0 !important; /* Remove horizontal margins */
+    margin-right: 0 !important; /* Remove horizontal margins */
+  }
+
+  /* Style for the submit button */
+  form#email-form input[type="submit"] {
+    display: block; /* Make button take full width */
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding inside button */
+    background-color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---core-accent-color--accent-primary); /* Orange background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Indicate clickable */
+    font-size: 18px; /* Larger font size */
+    margin-top: 10px; /* Space above button */
+  }
+
+  /* Clean up old Webflow-specific styles if they exist */
+  /* These styles are likely overridden by the more specific rule above, but kept for clarity */
+  #email-form .w-input,
+  #email-form textarea.w-input {
+      width: 100% !important;
+      box-sizing: border-box !important;
+  }
+
+  /* Remove previous Webflow form container padding fix */
+  header#contact-form .full-width-container {
+     padding-left: 0 !important;
+     padding-right: 0 !important;
+  }
+
+  /* Explicitly set padding on the grid cell containing the form to zero */
+  header#contact-form #w-node-_6dd82fed-fcd9-4a8c-7e32-3c165081de39-5081de36.w-node-e228b28e-8584-af10-3c53-f84da41c3d89-b3732151 {
+     padding-left: 0 !important;
+     padding-right: 0 !important;
+  }
+
+  /* Explicitly set padding on the form block wrapper to zero */
+   header#contact-form .form-block {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+   }
+
+   /* Ensure no padding on the grid layout container */
+   header#contact-form .w-layout-grid.grid-layout {
+       padding-left: 0 !important;
+       padding-right: 0 !important;
+   }
+
 } 

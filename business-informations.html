@@ -65,9 +65,9 @@
         <!-- Calendly inline widget begin -->
         <div class="calendly-inline-widget"
           data-url="https://calendly.com/verseau20syl/new-meeting?text_color=ff4c22&primary_color=ff4c22"
-          style="min-width: 320px; height: 1200px"></div>
+          style="min-width: 220px; height: 1200px"></div>
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-        <!-- Calendly inline widget end -->
+        <!-- Calendly inline widget end --> 
       </div>
     </div>
   </section>
@@ -82,29 +82,21 @@
               <h2 class="heading-2">Contactez moi</h2>
             </div>
             <div class="ix-hero-intro-slide-up step-3-hero-intro-slide-up">
-              <div class="form-block w-form">
-                <form id="email-form" name="email-form" data-name="Email Form" method="post"
-                  data-wf-page-id="67c5718dc31de9c7b3732151" data-wf-element-id="9bb2b26a-8ea2-9fe9-df23-d3975d692bbe"
-                  data-turnstile-sitekey="0x4AAAAAAAQTptj2So4dx43e">
-                  <label for="Nom">Nom*</label><input class="text-field-2 w-input" maxlength="256" name="Nom"
-                    data-name="Nom" placeholder="" type="text" id="Nom" /><label for="Pr-nom">Prénom*</label><input
-                    class="text-field-4 w-input" maxlength="256" name="Pr-nom" data-name="Prénom" placeholder=""
-                    type="text" id="Pr-nom" /><label for="email">Adresse email*</label><input
-                    class="text-field-3 w-input" maxlength="256" name="email" data-name="Email" placeholder=""
-                    type="email" id="email" required="" /><label for="Commentaires">Commentaires</label><input
-                    class="text-field w-input" maxlength="256" name="Commentaires" data-name="Commentaires"
-                    placeholder="" type="text" id="Commentaires" /><input type="submit" data-wait="Please wait..."
-                    class="submit-button w-button" value="Envoyez" />
-                </form>
-                <div class="w-form-done">
-                  <div>Thank you! Your submission has been received!</div>
-                </div>
-                <div class="w-form-fail">
-                  <div>
-                    Oops! Something went wrong while submitting the form.
-                  </div>
-                </div>
-              </div>
+              <form id="email-form" name="email-form" method="post">
+                <label for="Nom">Nom*</label>
+                <input type="text" id="Nom" name="Nom" placeholder="" required>
+
+                <label for="Pr-nom">Prénom*</label>
+                <input type="text" id="Pr-nom" name="Pr-nom" placeholder="" required>
+
+                <label for="email">Adresse email*</label>
+                <input type="email" id="email" name="email" placeholder="" required>
+
+                <label for="Commentaires">Commentaires</label>
+                <textarea id="Commentaires" name="Commentaires" placeholder="" rows="4"></textarea>
+
+                <input type="submit" value="Envoyez">
+              </form>
             </div>
           </div>
           <div class="container"></div>
@@ -119,8 +111,8 @@
         class="w-layout-grid grid-layout desktop-5-column tablet-3-column mobile-landscape-2-column mobile-portrait-1-column grid-gap-md utility-margin-bottom-0rem">
         <a id="w-node-bcffb4d2-7c0e-989b-281f-8a6433463903-8b169251" href="business-informations.html#"
           class="logo w-node-cfbb695e-9fcb-7692-100d-985e7bae9698-7bae9695 w-inline-block">
-       
-      
+
+
         </a>
         <ul role="list" class="utility-margin-bottom-0 w-list-unstyled">
           <li>
@@ -167,7 +159,8 @@
             </a>
           </li>
           <li>
-            <a href="https://www.linkedin.com/in/sylvain-magana-web/" class="footer-link footer-link-on-inverse w-inline-block">
+            <a href="https://www.linkedin.com/in/sylvain-magana-web/"
+              class="footer-link footer-link-on-inverse w-inline-block">
               <div>LinkedIn</div>
             </a>
           </li>
@@ -196,5 +189,4 @@
     </div>
   </footer>
 </body>
-
 </html>

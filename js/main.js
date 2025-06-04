@@ -204,3 +204,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+window.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.feature-card');
+  console.log('Number of .feature-card elements:', cards.length);
+  cards.forEach((card, idx) => {
+    const style = window.getComputedStyle(card);
+    console.log(`Card #${idx + 1} display:`, style.display, 'visibility:', style.visibility, 'opacity:', style.opacity);
+  });
+});
