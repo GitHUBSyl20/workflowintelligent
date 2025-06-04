@@ -183,6 +183,16 @@ section#automatisation-portfolio.section.portfolio-section div.accordion div.acc
 }
 
 @media (min-width: 768px) { /* Two columns for wider screens */
+
+  .portfolio-section  {
+    width: 100vw;
+    max-width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+  }
+
   .portfolio-section .accordion .content .portfolio-content-grid {
     grid-template-columns: 1fr;
   }
