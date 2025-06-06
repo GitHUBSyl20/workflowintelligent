@@ -110,8 +110,6 @@ body, html, .container, .section, .w-nav-menu, .nav-menu-full-page {
   }
 }
 
-/* 11. Two-Column Layouts */
-
 /* 12. Scroll Stacking Cards */
 html, body, .section, .container, .scroll-cards-container {
   overflow: visible !important;

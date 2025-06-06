@@ -1,204 +1,198 @@
 /* Styles for Portfolio Accordion (CodePen Inspired) */
 .portfolio-section {
-  padding-top: 0rem;
-  padding-bottom: 3rem;
-  width: 100%; /* Make section take full available width */
-  box-sizing: border-box; /* Ensure padding doesn't add to the 100% width */
-}
-
-/* Adjust .container for full width within .portfolio-section */
-.portfolio-section .container {
-  width: 100%;
-  padding-left: 2rem;     /* Restoring padding for content spacing */
-  padding-right: 2rem;    /* Restoring padding for content spacing */
-  box-sizing: border-box; /* Crucial for width:100% + padding */
-}
-
-/* Accordion fills the container */
-.portfolio-section .accordion {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.portfolio-section .accordion-item {
-  background-color: #fff; /* White background for the item      /
-}
-
-.portfolio-section .accordion-item .accordion-trigger { /* Changed from a to .accordion-trigger */
-  display: block;
-  width: 100%; /* Ensure button takes full width */
-  padding: 15px 45px 15px 20px;
-  background-color: #f7f7f7;
-  color: #333;
-  text-decoration: none;
   position: relative;
-  transition: background-color 0.3s ease;
-  border: none; /* Reset button border */
-  text-align: left; /* Align text to the left like a link */
-  cursor: pointer; /* Ensure cursor is pointer */
-  font-family: inherit; /* Inherit font from parent */
-  font-size: inherit; /* Inherit font-size from parent, or set explicitly */
+  overflow: hidden;
+  padding: 3rem 0;
 }
 
-.portfolio-section .accordion-item .accordion-trigger:hover {
-  background-color: #ff7e5f;
-}
-
-/* Ensure h4 inside the button inherits correctly and is styled */
-.portfolio-section .accordion-item .accordion-trigger .h4-heading {
-  margin: 0; /* Reset margin if any from default h4 */
-  font-size: 1.1rem; /* Or your preferred size */
-  font-weight: 600; /* Or your preferred weight */
-  color: inherit; /* Inherits color from <a> tag */
-}
-
-.portfolio-section .accordion-item .accordion-trigger::before { /* Icon styling */
-  content: '+';
-  font-size: 1.6em; /* Adjust size */
-  font-weight: bold;
-  color: #555; /* Icon color */
-  position: absolute;
-  right: 15px; /* Position from the right */
-  top: 50%;
-  transform: translateY(-50%);
-  transition: transform 0.2s ease-out, color 0.2s ease;
-}
-
-.portfolio-section .accordion-item .accordion-trigger.active {
-  background-color: #ff7e5f;
-}
-
-
-.portfolio-section .accordion-item.open {
-  border-color: #ff7e5f !important;
-  border-width: 3px !important;      /* Make the border thicker */
-  border-style: solid !important;    /* Ensure it's a solid border */
-}
-
-.portfolio-section .accordion-item .accordion-trigger.active::before {
-  content: '-'; /* Standard ASCII hyphen-minus */
-  /* transform: translateY(-50%) rotate(45deg); /* Example if you wanted a rotated cross */
-}
-
-.portfolio-section .accordion .content {
-  padding: 20px;
-  background: #fff; /* Content background */
-  display: none; /* Hidden by default, jQuery will show/hide */
-  border-top: 1px solid #eee; /* Subtle separator if needed */
-}
-
-/* Portfolio specific content styling within the accordion panel */
-.portfolio-section .accordion .content .portfolio-content-grid {
-  display: grid;
-  grid-template-columns: 1fr; /* Single column for mobile/default */
-  gap: 20px;
-  align-items: flex-start; /* Align items at the top */
-}
-
-/* Container for all text and visual elements, now to be centered */
-.portfolio-section .accordion .content .portfolio-text {
-  display: flex;          /* Use flexbox for robust centering of children */
-  flex-direction: column; /* Stack children vertically */
-  align-items: center;    /* Center children horizontally (e.g., images if not full width) */
-  /* border: 2px solid blue !important; */ /* DEBUG BORDER REMOVED */
-}
-
-/* Specific styling for images within .portfolio-text */
-.portfolio-section .accordion .content .portfolio-text img.image.cover-image {
-  display: block;    /* Explicitly block, though flex handles it too */
-  width: 100%;        /* Desired width, less than 100% */
-  max-width: 450px;  /* Cap the maximum size */
-  height: auto;      /* Maintain aspect ratio */
-  margin-top: 1.5rem;    /* Vertical spacing */
-  margin-bottom: 0.5rem;
-  /* margin-left: auto; and margin-right: auto; are not strictly needed for centering if parent is flex with align-items: center */
-}
-
-/* Headings and paragraphs within .portfolio-text */
-section#automatisation-portfolio.section.portfolio-section div.accordion div.accordion-item div.content div.portfolio-content-grid div.portfolio-text h5.h5-heading {
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  color: #444; /* Slightly darker for subheadings */
-  font-size: 1rem;
-  font-weight: bold;
-  width: 100% !important; /* Make block full width of parent */
-  text-align: center !important; /* Center text within this block */
-  /* border: 1px dashed red !important; */ /* DEBUG BORDER REMOVED */
-}
-section#automatisation-portfolio.section.portfolio-section div.accordion div.accordion-item div.content div.portfolio-content-grid div.portfolio-text p.paragraph-3 {
-  margin-bottom: 1rem;
-  line-height: 1.6;
-  width: 100% !important; /* Make block full width of parent */
-  text-align: center !important; /* Center text within this block */
-  /* border: 1px dashed red !important; */ /* DEBUG BORDER REMOVED */
-}
-
-/* Specific rule for caption text within portfolio-text in the automatisation-portfolio section */
-section#automatisation-portfolio.section.portfolio-section div.accordion div.accordion-item div.content div.portfolio-content-grid div.portfolio-text p.caption-text {
-  font-size: 0.85rem;
-  color: red; /* User adjusted */
-  margin-top: 0.5rem;
-  width: 100% !important; /* Make block full width of parent */
-  text-align: center !important; /* Center text within this block */
-  /* border: 1px dashed red !important; */ /* DEBUG BORDER REMOVED */
-}
-
-/* Fallback for other captions if needed, but ensure the above is more specific */
-.portfolio-section .accordion .content .portfolio-visual .caption-text {
-  font-size: 0.85rem;
-  color: red; /* User adjusted */
-  margin-top: 0.5rem;
-  width: 100%; 
-  text-align: center !important; 
-}
-
-/* Remove original .portfolio-visual img rule if visuals are always inside .portfolio-text */
-/* Or keep if some items might still use the two-column .portfolio-visual structure */
-/* For now, let's assume it might still be used by items 2 and 3 */
-.portfolio-section .accordion .content .portfolio-visual img {
+.accordion {
   width: 100%;
-  max-width: 100%;
-  height: auto;
-  border-radius: 6px;
-  border: 1px solid #eee;
+  max-width: 800px;
+  margin: 2rem auto;
 }
 
-.utility-max-width-600 {
-  max-width: 750px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-.utility-padding-x-2rem {
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
+.accordion-item {
+  border-bottom: 1px solid #e0e0e0;
+  transition: border-color 0.3s ease;
 }
 
-.utility-vertical-center {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-start; /* or center if you want horizontal centering too */
-  height: 100%; /* or a fixed height if needed */
+.accordion-item.open {
+   border-bottom-color: #f06449; /* Accent color */
+   border-bottom-width: 2px;
 }
 
-@media (min-width: 768px) { /* Two columns for wider screens */
+.accordion-trigger {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 1.5rem 1rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between !important; /* Force space-between alignment */
+  align-items: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
 
-  .portfolio-section  {
-    width: 100vw;
-    max-width: 100vw;
+.accordion-trigger:hover {
+  background-color: #fff3f0;
+}
+
+.accordion-trigger.active {
+  background-color: #f06449;
+  color: #fff;
+}
+
+.accordion-trigger h4 {
+  transition: color 0.3s ease;
+  margin: 0;
+}
+
+.accordion-trigger.active h4 {
+  color: #fff;
+}
+
+.accordion-trigger::after {
+  content: '+';
+  font-size: 1.8rem;
+  font-weight: 300;
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+  color: #333;
+}
+
+.accordion-trigger.active::after {
+  transform: rotate(45deg);
+  color: #fff;
+}
+
+.content {
+  display: none;
+  padding: 0 1rem 1.5rem 1rem;
+  background-color: #ffffff;
+  border-top: 1px solid #f0f0f0;
+}
+
+.portfolio-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+.portfolio-text h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex; /* Use flex for centering */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 90%;
+  width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  cursor: pointer;
+  color: #333;
+  line-height: 1;
+}
+
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.responsive-table th, .responsive-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.responsive-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .modal-content {
+    padding: 1.5rem 1rem; /* Adjust padding for smaller screens */
+  }
+  .modal-content h4 {
+    font-size: 1.25rem; /* Smaller title in modal on mobile */
+    margin-bottom: 1.5rem;
+  }
+  .responsive-table thead {
+    display: none;
+  }
+  .responsive-table, .responsive-table tbody, .responsive-table tr, .responsive-table td {
+    display: block;
+    width: 100%;
+  }
+  .responsive-table tr {
+    margin-bottom: 1rem;
+  }
+  .responsive-table td {
+    text-align: right;
+    padding: 10px;
+    padding-left: 45%;
     position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    box-sizing: border-box;
+    font-size: 0.9rem;
   }
-
-  .portfolio-section .accordion .content .portfolio-content-grid {
-    grid-template-columns: 1fr;
-  }
-  /* Optional: adjust image max-width for larger screens if using % */
-  .portfolio-section .accordion .content .portfolio-text img.image.cover-image {
-    max-width: 450px; /* Ensure the image is capped at 450px to allow centering */
+  .responsive-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 40%;
+    padding-left: 10px;
+    font-weight: bold;
+    text-align: left;
+    font-size: 0.9rem;
   }
 }
 

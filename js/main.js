@@ -174,6 +174,46 @@ $(document).ready(function(){
       });
     }, 350); // Wait for animation to finish
   });
+
+  // --- Modal Logic for Recap Table ---
+  const openBtn = $('#open-modal-btn');
+  const closeBtn = $('#close-modal-btn');
+  const modal = $('#recap-modal');
+
+  function showModal() {
+    modal.css('display', 'flex');
+    setTimeout(() => modal.addClass('active'), 10); // allow display to apply before transition
+  }
+
+  function hideModal() {
+    modal.removeClass('active');
+    setTimeout(() => modal.css('display', 'none'), 300); // wait for transition to finish
+  }
+
+  if (openBtn.length && modal.length) {
+    openBtn.on('click', function(e) {
+      e.preventDefault();
+      showModal();
+    });
+  }
+
+  if (closeBtn.length) {
+    closeBtn.on('click', hideModal);
+  }
+
+  // Hide modal on overlay click
+  modal.on('click', function(e) {
+    if ($(e.target).is(modal)) {
+      hideModal();
+    }
+  });
+
+  // Hide modal on Escape key press
+  $(document).on('keyup', function(e) {
+    if (e.key === "Escape" && modal.hasClass('active')) {
+      hideModal();
+    }
+  });
 });
 
 document.addEventListener('DOMContentLoaded', function() {
