@@ -554,4 +554,10 @@ html, body, .section, .container, .scroll-cards-container {
     max-width: 40px; /* Adjust as needed */
     height: auto;    /* Maintain aspect ratio */
     display: block;  /* Ensures proper block-level behavior for an image if not already flexed */
+}
+
+@media (min-width: 992px) {
+  .card-body {
+    font-size: 1.15rem; /* Approx 18.4px */
+  }
 } 
