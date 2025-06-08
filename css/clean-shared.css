@@ -83,7 +83,10 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
 .main-navbar .main-nav-link.active,
 .main-navbar .main-nav-link:focus,
 .main-navbar .main-nav-link:hover {
-  background: rgba(255,75,31,0.1); color: var(--color-primary); box-shadow: 0 2px 8px rgba(255,75,31,0.08);
+  background: rgba(255,75,31,0.15); 
+  color: var(--color-primary); 
+  box-shadow: 0 2px 8px rgba(255,75,31,0.12);
+  font-weight: 500;
 }
 .main-navbar .main-nav-link:after {
   content: '';
@@ -102,6 +105,22 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
 .main-navbar .main-nav-link:hover:after {
   width: 60%;
 }
+
+/* Make active links more prominent */
+.main-navbar .main-nav-link.active:after {
+  width: 60%;
+  left: 20%;
+  background: var(--color-primary);
+  height: 3px;
+}
+
+/* DEBUG: Temporary high-specificity active state for debugging */
+.main-navbar .main-nav-link.active {
+  background: rgba(255, 75, 31, 0.3) !important;
+  color: var(--color-primary) !important;
+  font-weight: 500;
+}
+
 .nav-hamburger {
   display: flex; /* Show hamburger on mobile */
   position: fixed; /* Keep it fixed in the viewport */
@@ -235,6 +254,16 @@ input, textarea, select {
     max-width: 500px;
     box-sizing: border-box;
     transition: background 0.2s, color 0.2s;
+  }
+  
+  /* Mobile navigation hover/touch effects */
+  .main-nav-link:hover,
+  .main-nav-link:focus,
+  .main-nav-link:active,
+  .main-nav-link.active {
+    background: rgba(255,75,31,0.15);
+    color: var(--color-primary);
+    box-shadow: 0 2px 8px rgba(255,75,31,0.12);
   }
   
   /* Mobile Hamburger Specific Styles - Consolidated */
@@ -498,4 +527,18 @@ body .inverse-footer a:hover {
   transform: none;
   margin: 0 auto;
   padding: 2rem 0;
+}
+
+/* =========================
+   FIX: List Items Alignment
+   ========================= */
+li.paragraph-3,
+.agilite-right ul li,
+ul li.paragraph-3 {
+  text-align: left;
+}
+
+.agilite-right ul {
+  text-align: left;
+  padding-left: 1.2rem;
 }
