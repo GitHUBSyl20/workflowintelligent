@@ -237,14 +237,61 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Active link highlighting
+  // Active link highlighting - Enhanced version with debugging
   const links = document.querySelectorAll('.main-nav-link');
-  const current = window.location.pathname.split('/').pop();
-  links.forEach(link => {
-    if(link.getAttribute('href') === current) {
+  const currentPath = window.location.pathname;
+  const currentPage = currentPath.split('/').pop() || 'index.html';
+  
+  // DEBUG: Log initial state
+  console.log('=== NAVIGATION DEBUG ===');
+  console.log('Current path:', currentPath);
+  console.log('Current page:', currentPage);
+  console.log('Found navigation links:', links.length);
+  
+  // DEBUG: Log all navigation links and their href attributes
+  links.forEach((link, index) => {
+    const href = link.getAttribute('href');
+    console.log(`Link ${index + 1}: href="${href}", text="${link.textContent.trim()}"`);
+  });
+  
+  // Remove any existing active classes first
+  links.forEach(link => link.classList.remove('active'));
+  
+  // Find and highlight the current page link
+  let foundMatch = false;
+  links.forEach((link, index) => {
+    const href = link.getAttribute('href');
+    
+    // Check for exact match or handle index page
+    const isMatch = href === currentPage || 
+        (currentPage === '' && href === 'index.html') ||
+        (currentPage === 'index.html' && href === 'index.html') ||
+        (currentPath === '/' && href === 'index.html');
+        
+    if (isMatch) {
       link.classList.add('active');
+      foundMatch = true;
+      console.log(`✅ MATCH FOUND: Link ${index + 1} (${href}) set as active`);
+      
+      // DEBUG: Check if class was actually added and styles applied
+      setTimeout(() => {
+        const hasActiveClass = link.classList.contains('active');
+        const computedStyle = window.getComputedStyle(link);
+        console.log(`Link ${index + 1} after styling:`, {
+          hasActiveClass,
+          backgroundColor: computedStyle.backgroundColor,
+          color: computedStyle.color,
+          fontWeight: computedStyle.fontWeight
+        });
+      }, 100);
     }
   });
+  
+  if (!foundMatch) {
+    console.log('❌ NO MATCH FOUND - No navigation link matches current page');
+  }
+  
+  console.log('=== END NAVIGATION DEBUG ===');
 });
 
 window.addEventListener('DOMContentLoaded', () => {

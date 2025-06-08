@@ -232,9 +232,10 @@ html, body, .section, .container, .scroll-cards-container {
 
 /* === Feature Cards Section (Custom Home Cards) === */
 .feature-cards-section {
+  margin-top: -4rem;
   width: 100%;
   padding: 3rem 0;
-  background: transparent;
+  background: transparent;  
 }
 .feature-cards-container {
   display: flex !important;
@@ -314,7 +315,7 @@ html, body, .section, .container, .scroll-cards-container {
     gap: 2rem !important;
   }
   .feature-card {
-    max-width: 95vw !important;
+    max-width: 85vw !important;
     min-width: 0 !important;
   }
   /* Hide cards only if menu is open (example: .main-navbar.menu-open) */
