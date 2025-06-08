@@ -14,11 +14,17 @@
 .accordion-item {
   border-bottom: 1px solid #e0e0e0;
   transition: border-color 0.3s ease;
+  position: relative; /* For z-index context */
+  border-radius: 10px;
+  border: 2px solid #f06449; /* Accent color */
+  margin-bottom: 1rem;
+  z-index: 2;
 }
 
 .accordion-item.open {
-   border-bottom-color: #f06449; /* Accent color */
-   border-bottom-width: 2px;
+  border: 2px solid #f06449; /* Accent color */
+  margin-bottom: 1rem;
+  z-index: 2; /* To ensure the border overlaps adjacent items */
 }
 
 .accordion-trigger {
@@ -38,6 +44,8 @@
 
 .accordion-trigger:hover {
   background-color: #fff3f0;
+  border-radius: 10px;
+  /* Accent color */
 }
 
 .accordion-trigger.active {
@@ -81,10 +89,31 @@
   padding-top: 1.5rem;
 }
 
+.portfolio-text {
+  padding: 1rem 2rem;
+  text-align: justify;
+}
+
 .portfolio-text h4 {
-  margin-top: 0;
+  margin-top: 1.5rem;
   margin-bottom: 0.5rem;
+  font-weight: 600;
   color: #333;
+}
+
+.portfolio-text p, .portfolio-text li, .portfolio-text ul {
+  font-size: 1rem; /* Base font size for mobile */
+}
+
+@media (min-width: 768px) {
+  .portfolio-text p, .portfolio-text li, .portfolio-text ul {
+    font-size: 1.1rem; /* Slightly larger font size for desktop */
+  }
+}
+
+.portfolio-image {
+  padding: 1rem;
+  display: flex;
 }
 
 /* Modal Styles */

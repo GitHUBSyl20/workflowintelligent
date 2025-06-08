@@ -5,6 +5,10 @@
 :root {
   --font-main: 'Lato', sans-serif;
   --color-primary: #FF4B1F;
+  --color-primary-light: #ff7e5f;
+  --color-primary-dark: #d63c13;
+  --color-complementary: #192a56;
+  --color-text-on-complementary: #fff;
   --color-background: #fff;
   --color-text: #222;
   --color-text-light: #444;
@@ -244,12 +248,12 @@ input, textarea, select {
     cursor: pointer;
     transition: transform 0.3s; /* Transition for button rotation */
   }
-
+  
   .main-navbar .nav-hamburger.active {
     transform: rotate(90deg); /* Rotate the button when active */
-    /* Background color is set on spans */
+    background: #b32a00; /* Dark orange color for active bars */
   }
-
+  
   .main-navbar .nav-hamburger span {
     display: block; /* Ensure spans are block elements */
     height: 3px;
@@ -261,17 +265,17 @@ input, textarea, select {
     position: relative;
     opacity: 1;
   }
-
+  
   .main-navbar .nav-hamburger.active span:nth-child(1) {
     transform: translateY(9px) rotate(45deg);
     background: #b32a00; /* Dark orange color for active bars */
   }
-
+  
   .main-navbar .nav-hamburger.active span:nth-child(2) {
     opacity: 0;
     /* Background is not needed when hidden */
   }
-
+  
   .main-navbar .nav-hamburger.active span:nth-child(3) {
     transform: translateY(-9px) rotate(-45deg);
     background: #b32a00; /* Dark orange color for active bars */
@@ -456,4 +460,20 @@ a:hover .mentions-legales-section {
 
 .utility-margin-top-auto {
   margin-top: auto;
+}
+
+.footer-social-link:hover { background-color: rgba(255,75,31,0.1); color: var(--color-primary); box-shadow: 0 2px 8px rgba(255,75,31,0.08); }
+
+body .inverse-footer {
+  background-color: var(--color-complementary);
+  color: var(--color-text-on-complementary);
+}
+
+body .inverse-footer a {
+    color: var(--color-text-on-complementary);
+    text-decoration: underline;
+}
+
+body .inverse-footer a:hover {
+    color: var(--color-primary-light);
 }
