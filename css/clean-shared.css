@@ -72,7 +72,9 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
   color: var(--color-primary); text-decoration: none; gap: 0.7rem; letter-spacing: 0.03em; transition: color 0.2s;
 }
 .main-navbar .nav-logo svg { width: 2.2rem; height: 2.2rem; display: block; }
-.main-navbar .main-nav-links { display: flex; gap: 2.2rem; align-items: center; }
+.main-navbar .main-nav-links {
+  display: flex; gap: 2.2rem; align-items: center;
+}
 .main-navbar .main-nav-link {
   font-size: 1.2rem; color: var(--color-text); text-decoration: none; font-weight: 500;
   padding: 0.4em 0.9em; border-radius: 0.4em; transition: background 0.2s, color 0.2s, box-shadow 0.2s;
@@ -119,7 +121,7 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
 
 .nav-hamburger.active {
   transform: rotate(90deg); /* Rotate the button when active */
-  /* Background color is set on spans */
+  /* Remove the background - only the spans should have color */
 }
 
 .nav-hamburger span {
@@ -197,7 +199,7 @@ input, textarea, select {
   .main-navbar .main-nav-links {
     display: none;
     position: fixed;
-    top: 3.5rem;
+    top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
@@ -212,11 +214,15 @@ input, textarea, select {
     transform: translateX(100%);
     transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
     z-index: 2000;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
   }
   
   .main-navbar .main-nav-links.open {
     display: flex;
     transform: translateX(0);
+    background: var(--color-background) !important;
+    opacity: 1 !important;
   }
   
   .main-nav-link {
@@ -251,7 +257,7 @@ input, textarea, select {
   
   .main-navbar .nav-hamburger.active {
     transform: rotate(90deg); /* Rotate the button when active */
-    background: #b32a00; /* Dark orange color for active bars */
+    /* Remove the background - only the spans should have color */
   }
   
   .main-navbar .nav-hamburger span {
@@ -279,6 +285,13 @@ input, textarea, select {
   .main-navbar .nav-hamburger.active span:nth-child(3) {
     transform: translateY(-9px) rotate(-45deg);
     background: #b32a00; /* Dark orange color for active bars */
+  }
+  
+  /* Prevent body scroll when mobile menu is open */
+  body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
   }
 }
 @media (max-width: 479px) {
@@ -470,10 +483,19 @@ body .inverse-footer {
 }
 
 body .inverse-footer a {
-    color: var(--color-text-on-complementary);
-    text-decoration: underline;
+  color: var(--color-text-on-complementary);
 }
 
 body .inverse-footer a:hover {
-    color: var(--color-primary-light);
+  opacity: .8;
+}
+
+/* =========================
+   FIX: About Page Hero
+   ========================= */
+.about-page .custom-hero-offset-left {
+  position: relative;
+  transform: none;
+  margin: 0 auto;
+  padding: 2rem 0;
 }

@@ -560,4 +560,15 @@ html, body, .section, .container, .scroll-cards-container {
   .card-body {
     font-size: 1.15rem; /* Approx 18.4px */
   }
+}
+
+/* 
+  ==============================================
+  SPECIFIC TEXT ALIGNMENT FOR LISTS
+  ==============================================
+  Purpose: Ensures lists within a justified text block 
+           are left-aligned for better readability.
+*/
+.portfolio-text ul {
+  text-align: left;
 } 
