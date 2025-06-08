@@ -157,14 +157,35 @@
 
 .modal-close-btn {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
+  top: 15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  /* Add !important to prevent overrides from generic button styles on mobile */
+  background: transparent !important;
   border: none;
-  font-size: 1.75rem;
   cursor: pointer;
-  color: #333;
-  line-height: 1;
+  padding: 0;
+}
+
+.modal-close-btn::before,
+.modal-close-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%; /* Control the length of the lines */
+  height: 2px; /* Control the thickness of the lines */
+  /* Change color to the brand's primary orange */
+  background-color: #FF4B1F;
+}
+
+.modal-close-btn::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.modal-close-btn::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .table-container {

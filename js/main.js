@@ -225,12 +225,14 @@ document.addEventListener('DOMContentLoaded', function() {
     hamburger.addEventListener('click', function() {
       hamburger.classList.toggle('active');
       navLinks.classList.toggle('open');
+      document.body.classList.toggle('menu-open');
     });
     // Close menu when a link is clicked (mobile UX)
     navLinks.querySelectorAll('.main-nav-link').forEach(link => {
       link.addEventListener('click', function() {
         hamburger.classList.remove('active');
         navLinks.classList.remove('open');
+        document.body.classList.remove('menu-open');
       });
     });
   }
