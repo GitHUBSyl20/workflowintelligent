@@ -306,3 +306,154 @@ input, textarea, select {
   padding-left: 0;
   padding-right: 0;
 }
+
+/* CGU / CGV */
+
+header .mentions-legales-section {
+  background-color: white;
+  color: #FF4B1F;
+  text-align: center;
+  padding: 20px; 
+}
+nav .mentions-legales-section {
+  background: #e9ecef;
+  padding: 10px 20px;
+  text-align: center;
+}
+nav a .mentions-legales-section {
+  margin: 0 15px;
+  color: #FF4B1F;
+  text-decoration: none;
+  font-weight: bold;
+}
+nav a:hover .mentions-legales-section {
+  text-decoration: underline;
+}
+main .mentions-legales-section {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+  background: white;
+}
+h1, h2 .mentions-legales-section{
+  margin-top: 0;
+}
+h2 .mentions-legales-section {
+  color: #FF4B1F;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+section .mentions-legales-section {
+  margin-bottom: 40px;
+}
+ul .mentions-legales-section {
+  padding-left: 20px;
+}
+
+@media (max-width: 768px) {
+  body .mentions-legales-section {
+    font-size: 16px;
+  }
+  nav a .mentions-legales-section {
+    display: block;
+    margin: 10px 0;
+  }
+}
+
+/* Mentions Légales */
+
+main .mentions-legales-section {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+  background: white;
+}
+h1, h2 .mentions-legales-section {
+  margin-top: 0;
+}
+h2 .mentions-legales-section {
+  color: #FF4B1F;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+section .mentions-legales-section {
+  margin-bottom: 30px;
+}
+ul .mentions-legales-section {
+  padding-left: 20px;
+}
+a .mentions-legales-section {
+  color: #FF4B1F;
+  text-decoration: none;
+}
+a:hover .mentions-legales-section {
+  text-decoration: underline;
+}
+@media (max-width: 768px) {
+  header, main .mentions-legales-section {
+    padding: 15px;
+  }
+}
+@media (max-width: 480px) {
+  body .mentions-legales-section {
+    font-size: 15px;
+  }
+}
+
+.legal-content {
+  height: fit-content; /* Make sidebar only as tall as its content */
+}
+
+.legal-content p, .legal-content li {
+  line-height: 1.7;
+  color: #333;
+}
+
+.legal-content a {
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .grid-layout.desktop-2-column-uneven {
+    grid-template-columns: 2.5fr 1fr; /* Main content takes ~70%, sidebar ~30% */
+  }
+}
+
+.legal-content h2 {
+  margin-top: 2rem;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.legal-content h2:first-child {
+  margin-top: 0;
+}
+
+.legal-content p, .legal-content li {
+  line-height: 1.7;
+  color: #333;
+}
+
+.legal-content a {
+  font-weight: 600;
+}
+
+.legal-sidebar {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  height: fit-content; /* Make sidebar only as tall as its content */
+}
+
+.utility-margin-bottom-1rem {
+  margin-bottom: 1rem;
+}
+
+.utility-margin-bottom-2rem {
+  margin-bottom: 2rem;
+}
+
+.utility-margin-top-auto {
+  margin-top: auto;
+}
