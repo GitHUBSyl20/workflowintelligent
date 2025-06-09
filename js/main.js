@@ -302,3 +302,35 @@ window.addEventListener('DOMContentLoaded', () => {
     console.log(`Card #${idx + 1} display:`, style.display, 'visibility:', style.visibility, 'opacity:', style.opacity);
   });
 });
+
+// Modal functionality
+function openModal() {
+  const modal = document.getElementById('imageModal');
+  if (modal) {
+    modal.style.display = 'block';
+    const modalImage = document.getElementById('modalImage');
+    const caption = document.getElementById('caption');
+    if (modalImage) modalImage.src = '/assets/Demo-relance.png';
+    if (caption) caption.innerHTML = 'Exemple d\'alerte déclenchée automatiquement par retard de paiement';
+  }
+}
+
+function closeModal() {
+  const modal = document.getElementById('imageModal');
+  if (modal) {
+    modal.style.display = 'none';
+  }
+}
+
+// Event listener to close the modal
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('imageModal');
+  if (modal) {
+    // Close modal on escape key press
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    });
+  }
+});
