@@ -18,6 +18,7 @@
   <link href="css/shared.css" rel="stylesheet" type="text/css" />
   <link href="css/responsive-overrides.css" rel="stylesheet" type="text/css" />
   <link href="css/clean-shared.css" rel="stylesheet" type="text/css" />
+  <link href="css/footer.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js"></script>
@@ -94,34 +95,103 @@
       </div>
     </section>
   </main>
-
   <footer class="footer inverse-footer">
     <div class="container">
-      <div
-        class="w-layout-grid grid-layout desktop-5-column tablet-3-column mobile-landscape-2-column mobile-portrait-1-column grid-gap-md utility-margin-bottom-0rem">
-        <a href="index.html" class="logo w-node-cfbb695e-9fcb-7692-100d-985e7bae9698-7bae9695 w-inline-block"></a>
-        <ul role="list" class="utility-margin-bottom-0 w-list-unstyled">
-          <li>
-            <h2 class="h6-heading utility-text-secondary">Plan du site</h2>
-          </li>
-          <li><a href="index.html" class="footer-link footer-link-on-inverse"><div>Accueil</div></a></li>
-          <li><a href="automatisations.html" class="footer-link footer-link-on-inverse"><div>Automatisations</div></a></li>
-          <li><a href="ai-tools.html" class="footer-link footer-link-on-inverse"><div>IA</div></a></li>
-          <li><a href="offres.html" class="footer-link footer-link-on-inverse"><div>Offres</div></a></li>
-          <li><a href="business-informations.html" class="footer-link footer-link-on-inverse"><div>Contact</div></a></li>
-          <li><a href="about.html" class="footer-link footer-link-on-inverse"><div>A propos</div></a></li>
-          <li><a href="mentions-legales.html" class="footer-link footer-link-on-inverse"><div>Mentions légales</div></a></li>
-        </ul>
-        <ul role="list" class="utility-margin-bottom-0 w-list-unstyled">
-          <li>
-            <h2 class="h6-heading utility-text-secondary">Connect</h2>
-          </li>
-          <li><a href="mailto:sylvainmagana@ymail.com" class="footer-link footer-link-on-inverse"><div>Email</div></a></li>
-          <li><a href="https://www.linkedin.com/in/sylvain-magana-web/" class="footer-link footer-link-on-inverse"><div>LinkedIn</div></a></li>
-        </ul>
+      <div class="w-layout-grid grid-layout footer-grid">
+        <a id="w-node-bcffb4d2-7c0e-989b-281f-8a6433463903-8b169251" href="business-informations.html#"
+          class="logo w-node-cfbb695e-9fcb-7692-100d-985e7bae9698-7bae9695 w-inline-block">
+        </a>
+        
+        <div class="footer-links-container">
+            <div class="footer-column">
+                <h2 class="h6-heading utility-text-secondary">Navigation</h2>
+                <ul role="list" class="w-list-unstyled">
+                    <li><a href="index.html" class="footer-link footer-link-on-inverse">Accueil</a></li>
+                    <li><a href="automatisations.html" class="footer-link footer-link-on-inverse">Automatisations</a></li>
+                    <li><a href="ai-tools.html" class="footer-link footer-link-on-inverse">IA</a></li>
+                    <li><a href="offres.html" class="footer-link footer-link-on-inverse">Offres</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h2 class="h6-heading utility-text-secondary">Ressources</h2>
+                <ul role="list" class="w-list-unstyled">
+                    <li><a href="about.html" class="footer-link footer-link-on-inverse">À propos</a></li>
+                    <li><a href="aides.html" class="footer-link footer-link-on-inverse">Aides</a></li>
+                    <li><a href="mentions-legales.html" class="footer-link footer-link-on-inverse">Mentions Légales</a></li>
+                    <li><a href="cgu-cgv.html" class="footer-link footer-link-on-inverse">CGU-CGV</a></li>
+                </ul>
+            </div>
+        </div>
       </div>
+
+      <div class="divider utility-margin-top-1rem"></div>
     </div>
   </footer>
 </body>
 
 </html>
+<style>
+  .footer-grid {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2rem;
+    align-items: start;
+  }
+  .footer-links-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .footer-column {
+    flex: 1;
+    min-width: 150px;
+  }
+  .footer-column .w-list-unstyled {
+    padding: 0;
+    margin: 0;
+  }
+  /* Responsive Styles */
+  @media (max-width: 991px) { /* Tablet */
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .logo {
+      grid-column: 1 / -1; /* Span full width */
+      margin-bottom: 2rem;
+    }
+    .footer-links-container {
+      grid-column: 1 / -1;
+      justify-content: space-between;
+    }
+    .footer-connect {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 767px) { /* Mobile Landscape */
+      .footer-grid {
+          grid-template-columns: 1fr;
+      }
+      .footer-links-container {
+          flex-direction: column;
+      }
+  }
+</style>
+
+<script>
+  function openModal() {
+    document.getElementById('imageModal').style.display = 'block';
+    document.getElementById('modalImage').src = '/assets/Demo-relance.png';
+    document.getElementById('caption').innerHTML = 'Exemple d\'alerte déclenchée automatiquement par retard de paiement';
+  }
+
+  function closeModal() {
+    document.getElementById('imageModal').style.display = 'none';
+  }
+
+  // Fermer la modale en appuyant sur Escape
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  });
+</script>

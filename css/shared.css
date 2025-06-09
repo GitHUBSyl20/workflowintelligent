@@ -5180,8 +5180,8 @@ textarea.w-input, textarea.w-select {
 .footer.inverse-footer {
   padding-top: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---spacing--2x);
   padding-bottom: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---spacing--2x);
-  background-color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---background-color--bg-inverse);
-  color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---text-color--text-inverse-primary);
+  background-color: #000000 !important;
+  color: #ffffff !important;
 }
 
 .footer.accent-secondary-footer {
