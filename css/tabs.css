@@ -1,0 +1,87 @@
+/*
+  Custom Tab Styles for automatisations.html
+  This file overrides the default Webflow tab styles
+  to match the user's specific design request.
+  VERSION 5.0: Final. Using Flexbox for robust vertical alignment.
+*/
+
+/*
+  Targeting the specific tab menu within the designated section.
+  This ensures these styles do not affect other tabs on the site.
+*/
+.w-tab-menu {
+  /* Removing the default bottom border from the tab menu container */
+  border-bottom: none;
+}
+
+/*
+  Set the base styles and use Flexbox for alignment.
+  This is the most robust way to ensure perfect centering.
+*/
+.w-tabs .w-tab-menu .w-tab-link {
+  /* Flexbox for Perfect Centering */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* Layout Stability & Visuals */
+  padding: 10px 15px;
+  border: 2px solid transparent; /* Reserve space */
+  text-decoration: none !important;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/*
+  Target the H5 element directly for all text-related styling.
+  Harmonize font-weight to prevent layout shift.
+*/
+.w-tabs .w-tab-menu .w-tab-link h5 {
+  /* Layout Stability: Harmonize font weight */
+  font-weight: 700; /* Use 'bold' weight for ALL states */
+  
+  /* Visuals & Transitions */
+  color: #FF4B1F; /* Inactive color */
+  text-decoration: none !important;
+  margin-bottom: 0; /* Remove default heading margin */
+  transition: color 0.2s ease-in-out;
+}
+
+/*
+  Style the ACTIVE tab state (.w--current).
+  Only color properties are changed here, ensuring no layout shifts.
+*/
+.w-tabs .w-tab-menu .w-tab-link.w--current h5 {
+  color: white; /* Active color */
+}
+
+/*
+  Removing the default bottom border from the link itself,
+  as the original design had a line under the text.
+*/
+.tab-menu-link-transparent {
+  border-bottom: none !important;
+}
+
+/*
+  Responsive Styles for Mobile
+  ------------------------------
+  Using a media query to apply specific styles for screens
+  smaller than 768px (tablets and phones).
+*/
+@media (max-width: 767px) {
+  .w-tabs .w-tab-menu {
+    /* Stack the tabs vertically instead of horizontally */
+    flex-direction: column;
+    align-items: stretch; /* Make tabs take full width */
+  }
+
+  .w-tabs .w-tab-menu .w-tab-link {
+    /* Add some space between the stacked tabs */
+    margin-bottom: 8px;
+  }
+
+  /* Remove margin from the last tab to prevent extra space at the bottom */
+  .w-tabs .w-tab-menu .w-tab-link:last-child {
+    margin-bottom: 0;
+  }
+} 

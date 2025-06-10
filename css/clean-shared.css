@@ -543,48 +543,30 @@ ul li.paragraph-3 {
   padding-left: 1.2rem;
 }
 
-/* Footer Styles */
-.footer-grid {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 2rem;
-  align-items: start;
+/* Footer Styles are now in css/footer.css */
+
+/* AI Process Transformation Section */
+.ai-process-section {
+  padding: 4rem 1rem;
+  text-align: center;
 }
-.footer-links-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
+
+.ai-process-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.footer-column {
-  flex: 1;
-  min-width: 150px;
-}
-.footer-column .w-list-unstyled {
-  padding: 0;
-  margin: 0;
-}
-/* Responsive Styles */
-@media (max-width: 991px) { /* Tablet */
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .logo {
-    grid-column: 1 / -1; /* Span full width */
-    margin-bottom: 2rem;
-  }
-  .footer-links-container {
-    grid-column: 1 / -1;
-    justify-content: space-between;
-  }
-  .footer-connect {
-    grid-column: 1 / -1;
-  }
-}
-@media (max-width: 767px) { /* Mobile Landscape */
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
-    .footer-links-container {
-        flex-direction: column;
-    }
+
+.ai-process-section blockquote {
+  margin: 1.5rem auto;
+  font-style: italic;
+  color: #444;
+  border-left: 4px solid #eee;
+  padding: 1rem 1.5rem;
+  max-width: 66vw;
+  text-align: left;
+  background-color: #f9f9f9;
+  border-radius: 8px;
 }

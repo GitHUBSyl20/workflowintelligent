@@ -164,15 +164,6 @@ $(document).ready(function(){
       $item.addClass("open");
       $content.slideDown(300);
     }
-
-    // --- LOGGING FOR DEBUGGING ---
-    setTimeout(() => {
-      $accordion.find('.accordion-item').each(function(i, el) {
-        const isOpen = $(el).hasClass('open');
-        const borderColor = window.getComputedStyle(el).borderColor;
-        console.log(`Accordion item ${i}: open=${isOpen}, borderColor=${borderColor}`);
-      });
-    }, 350); // Wait for animation to finish
   });
 
   // --- Modal Logic for Recap Table ---
@@ -241,57 +232,17 @@ document.addEventListener('DOMContentLoaded', function() {
   const links = document.querySelectorAll('.main-nav-link');
   const currentPath = window.location.pathname;
   const currentPage = currentPath.split('/').pop() || 'index.html';
-  
-  // DEBUG: Log initial state
-  console.log('=== NAVIGATION DEBUG ===');
-  console.log('Current path:', currentPath);
-  console.log('Current page:', currentPage);
-  console.log('Found navigation links:', links.length);
-  
-  // DEBUG: Log all navigation links and their href attributes
-  links.forEach((link, index) => {
-    const href = link.getAttribute('href');
-    console.log(`Link ${index + 1}: href="${href}", text="${link.textContent.trim()}"`);
-  });
-  
-  // Remove any existing active classes first
-  links.forEach(link => link.classList.remove('active'));
-  
-  // Find and highlight the current page link
-  let foundMatch = false;
-  links.forEach((link, index) => {
-    const href = link.getAttribute('href');
-    
-    // Check for exact match or handle index page
-    const isMatch = href === currentPage || 
-        (currentPage === '' && href === 'index.html') ||
-        (currentPage === 'index.html' && href === 'index.html') ||
-        (currentPath === '/' && href === 'index.html');
-        
-    if (isMatch) {
+  let matchFound = false;
+
+  links.forEach(link => {
+    const linkPage = link.getAttribute('href').split('/').pop() || 'index.html';
+    if (linkPage === currentPage && !matchFound) {
       link.classList.add('active');
-      foundMatch = true;
-      console.log(`✅ MATCH FOUND: Link ${index + 1} (${href}) set as active`);
-      
-      // DEBUG: Check if class was actually added and styles applied
-      setTimeout(() => {
-        const hasActiveClass = link.classList.contains('active');
-        const computedStyle = window.getComputedStyle(link);
-        console.log(`Link ${index + 1} after styling:`, {
-          hasActiveClass,
-          backgroundColor: computedStyle.backgroundColor,
-          color: computedStyle.color,
-          fontWeight: computedStyle.fontWeight
-        });
-      }, 100);
+      matchFound = true;
+    } else {
+      link.classList.remove('active');
     }
   });
-  
-  if (!foundMatch) {
-    console.log('❌ NO MATCH FOUND - No navigation link matches current page');
-  }
-  
-  console.log('=== END NAVIGATION DEBUG ===');
 });
 
 window.addEventListener('DOMContentLoaded', () => {

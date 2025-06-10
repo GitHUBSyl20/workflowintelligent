@@ -1,0 +1,256 @@
+/* Cookie Consent Modal Styles */
+.cookie-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.cookie-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cookie-modal-content {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(50px);
+  transition: transform 0.3s ease;
+}
+
+.cookie-modal.show .cookie-modal-content {
+  transform: translateY(0);
+}
+
+.cookie-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.cookie-modal-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.cookie-modal-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.cookie-modal-close:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.cookie-modal-body {
+  padding: 2rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.cookie-modal-body p {
+  margin: 0 0 1.5rem 0;
+  font-size: 1rem;
+}
+
+.cookie-types {
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.cookie-type {
+  margin-bottom: 1rem;
+}
+
+.cookie-type:last-child {
+  margin-bottom: 0;
+}
+
+.cookie-type strong {
+  display: block;
+  color: var(--color-primary, #FF4B1F);
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.cookie-type p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.legal-notice {
+  font-size: 0.9rem;
+  color: #666;
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  margin-top: 1.5rem;
+}
+
+.legal-notice a {
+  color: var(--color-primary, #FF4B1F);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.legal-notice a:hover {
+  color: var(--color-primary-dark, #d63c13);
+}
+
+.cookie-modal-actions {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cookie-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  min-width: 150px;
+}
+
+.cookie-btn-accept {
+  background-color: var(--color-primary, #FF4B1F);
+  color: white;
+}
+
+.cookie-btn-accept:hover {
+  background-color: var(--color-primary-dark, #d63c13);
+  transform: translateY(-1px);
+}
+
+.cookie-btn-essential {
+  background-color: #6c757d;
+  color: white;
+}
+
+.cookie-btn-essential:hover {
+  background-color: #5a6268;
+  transform: translateY(-1px);
+}
+
+.cookie-btn-decline {
+  background-color: transparent;
+  color: #6c757d;
+  border: 2px solid #dee2e6;
+}
+
+.cookie-btn-decline:hover {
+  background-color: #f8f9fa;
+  border-color: #adb5bd;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cookie-modal {
+    padding: 0.5rem;
+  }
+  
+  .cookie-modal-content {
+    border-radius: 0.75rem;
+  }
+  
+  .cookie-modal-header {
+    padding: 1rem 1.5rem;
+  }
+  
+  .cookie-modal-header h3 {
+    font-size: 1.25rem;
+  }
+  
+  .cookie-modal-body {
+    padding: 1.5rem;
+  }
+  
+  .cookie-modal-actions {
+    padding: 1rem 1.5rem;
+    flex-direction: column;
+  }
+  
+  .cookie-btn {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .cookie-modal-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .cookie-modal-body {
+    padding: 1rem;
+  }
+  
+  .cookie-types {
+    padding: 1rem;
+  }
+  
+  .cookie-modal-actions {
+    padding: 1rem;
+  }
+}
+
+/* Accessibility */
+.cookie-modal-content:focus {
+  outline: 2px solid var(--color-primary, #FF4B1F);
+  outline-offset: 2px;
+}
+
+/* Animation for better UX */
+@keyframes slideUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.cookie-modal.show .cookie-modal-content {
+  animation: slideUp 0.3s ease-out;
+} 
