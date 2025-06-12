@@ -547,7 +547,7 @@ ul li.paragraph-3 {
 
 /* AI Process Transformation Section */
 .ai-process-section {
-  padding: 4rem 1rem;
+  padding: 0rem 1rem;
   text-align: center;
 }
 
@@ -569,4 +569,8 @@ ul li.paragraph-3 {
   text-align: left;
   background-color: #f9f9f9;
   border-radius: 8px;
+}
+
+.title-orange {
+  color: #FF4B1F;
 }
