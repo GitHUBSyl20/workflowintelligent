@@ -540,11 +540,6 @@ html, body, .section, .container, .scroll-cards-container {
   }
 }
 
-/* === General styles for portfolio text headings === */
-.portfolio-text h4 {
-  text-decoration: underline;
-}
-
 /* Force 1rem margin-bottom for h4-headings with utility class */
 .h4-heading.utility-margin-bottom-1rem {
     margin-bottom: 1.5rem !important;

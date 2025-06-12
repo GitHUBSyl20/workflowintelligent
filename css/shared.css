@@ -5178,8 +5178,8 @@ textarea.w-input, textarea.w-select {
 }
 
 .footer.inverse-footer {
-  padding-top: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---spacing--2x);
-  padding-bottom: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---spacing--2x);
+  padding-top: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---spacing--1x);
+  padding-bottom: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---spacing--1x);
   background-color: #000000 !important;
   color: #ffffff !important;
 }
@@ -7831,6 +7831,7 @@ a:hover {
 
 .bold-text {
   font-size: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1740991264881---spacing--1-5x);
+  color: #FF4B1F;
 }
 
 .paragraph-3, .heading-3 {

@@ -51,6 +51,7 @@
 .accordion-trigger.active {
   background-color: #f06449;
   color: #fff;
+  border-radius: 8px;
 }
 
 .accordion-trigger h4 {
@@ -98,7 +99,7 @@
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
-  color: #333;
+  color: #FF4B1F;
 }
 
 .portfolio-text p, .portfolio-text li, .portfolio-text ul {

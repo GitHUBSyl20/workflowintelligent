@@ -32,9 +32,11 @@
 }
 
 /*
-  Target the H5 element directly for all text-related styling.
-  Harmonize font-weight to prevent layout shift.
+  Target the H4 or H5 element directly for all text-related styling.
+  Using a group selector (h4, h5) makes this component reusable
+  across different pages with slightly different heading structures.
 */
+.w-tabs .w-tab-menu .w-tab-link h4,
 .w-tabs .w-tab-menu .w-tab-link h5 {
   /* Layout Stability: Harmonize font weight */
   font-weight: 700; /* Use 'bold' weight for ALL states */
@@ -50,8 +52,28 @@
   Style the ACTIVE tab state (.w--current).
   Only color properties are changed here, ensuring no layout shifts.
 */
+.w-tabs .w-tab-menu .w-tab-link.w--current h4,
 .w-tabs .w-tab-menu .w-tab-link.w--current h5 {
   color: white; /* Active color */
+}
+
+/*
+  Remove the default browser focus outline.
+  The active state (.w--current) provides a clear enough
+  visual indicator of focus for this specific component.
+*/
+.w-tabs .w-tab-menu .w-tab-link:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/*
+  Ensure no extra border or shadow is applied on the active state,
+  which can cause corner artifacts.
+*/
+.w-tabs .w-tab-menu .w-tab-link.w--current {
+  border-style: none;
+  box-shadow: none;
 }
 
 /*
