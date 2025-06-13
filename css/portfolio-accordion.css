@@ -68,12 +68,12 @@
   font-size: 1.8rem;
   font-weight: 300;
   transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
-  color: #333;
+  color: #FF4B1F; /* Use your brand orange when closed */
 }
 
 .accordion-trigger.active::after {
   transform: rotate(45deg);
-  color: #fff;
+  color: #fff; /* White when open */
 }
 
 .content {
