@@ -281,6 +281,7 @@ html, body, .section, .container, .scroll-cards-container {
   font-size: 1.05rem !important;
   color: #444 !important;
   margin-bottom: 1.5rem !important;
+  margin-top: 2rem !important;
   text-align: center !important;
 }
 .feature-card-btn {
