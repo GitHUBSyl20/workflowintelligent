@@ -144,7 +144,7 @@
   padding: 2rem;
   border-radius: 8px;
   max-width: 90%;
-  width: 800px;
+  width: 1200px;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
@@ -245,5 +245,14 @@
     text-align: left;
     font-size: 0.9rem;
   }
+}
+
+.portfolio-text ul {
+  text-align: left;
+}
+
+.custom-method-list {
+  list-style-type: none;
+  padding-left: 0;
 }
 

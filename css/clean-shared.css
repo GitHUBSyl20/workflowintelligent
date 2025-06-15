@@ -184,13 +184,26 @@ input, textarea, select {
 .feature-cards-section { width: 100%; padding: 3rem 0; background: transparent; }
 .feature-cards-container { display: flex; gap: 2rem; justify-content: center; align-items: stretch; flex-wrap: wrap; }
 .feature-card {
-  background: var(--color-background); border-radius: 1.2rem; box-shadow: var(--shadow-md);
-  padding: 2rem 1.5rem 2.5rem 1.5rem; max-width: 350px; min-width: 260px; flex: 1 1 300px;
-  display: flex; flex-direction: column; align-items: center; transition: box-shadow 0.3s, transform 0.3s;
-  will-change: transform, box-shadow; opacity: 1; transform: none;
+  background: var(--color-background); 
+  border-radius: 1.2rem; 
+  box-shadow: var(--shadow-sm);
+  padding: 2rem 1.5rem 2.5rem 1.5rem; 
+  max-width: 350px; 
+  min-width: 260px; 
+  flex: 1 1 300px;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  transition: box-shadow 0.3s, transform 0.3s;
+  will-change: transform, box-shadow; 
+  opacity: 1; 
+  transform: none;
+  border: none;
 }
 .feature-card:hover, .feature-card:focus-within {
-  box-shadow: var(--shadow-lg); transform: scale(1.035) translateY(-4px); z-index: 2;
+  box-shadow: var(--shadow-md); 
+  transform: translateY(-4px); 
+  z-index: 2;
 }
 .feature-card-image { width: 100%; max-width: 180px; border-radius: 0.8rem; margin-bottom: 1.2rem; }
 .feature-card-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.7rem; text-align: center; }
@@ -573,4 +586,202 @@ ul li.paragraph-3 {
 
 .title-orange {
   color: #FF4B1F;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+  background-color: var(--color-background);
+  margin: 2% auto;
+  padding: 2.5rem;
+  width: 95%;
+  max-width: 1400px;
+  border-radius: 1rem;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.modal-title {
+  color: var(--color-primary);
+  margin-bottom: 2.5rem;
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+.modal-table-container {
+  overflow-x: auto;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.modal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  font-size: 1.05rem; /* Slightly larger font for better readability */
+}
+
+.modal-table th {
+  padding: 1.5rem; /* Increased padding */
+  text-align: left;
+  border: 1px solid #ddd;
+  background-color: var(--color-complementary);
+  color: white;
+  font-weight: 600; /* Enhanced font weight */
+}
+
+.modal-table td {
+  padding: 1.5rem; /* Increased padding */
+  border: 1px solid #ddd;
+  line-height: 1.6; /* Improved line height for readability */
+}
+
+.modal-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.modal-table td:first-child {
+  font-weight: bold;
+  width: 20%; /* Set a consistent width for the first column */
+}
+
+.modal-benefits-title {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.modal-benefits-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.modal-benefits-list li {
+  margin-bottom: 0.5rem;
+}
+
+.modal-closing-text {
+  margin-top: 2rem;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    margin: 10% auto;
+    padding: 1rem;
+    width: 99%;
+    max-width: 100vw;
+  }
+  .modal-table th,
+  .modal-table td {
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+  .modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Process Table Styles */
+.table-container {
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+@media screen and (max-width: 768px) {
+  .modal-content {
+    margin: 10% auto;
+    padding: 1.5rem;
+    width: 95%;
+  }
+
+  .modal-table th,
+  .modal-table td {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.custom-method-list {
+  font-size: 0.95rem;
+  margin: 0.5rem 0 0.5rem 1.5rem;
+  padding-left: 1.2rem;
+  list-style-type: disc;
+}
+.custom-method-list li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+/* Add responsive styles for larger screens */
+@media (min-width: 1200px) {
+  .modal-content {
+    padding: 3rem;
+  }
+  
+  .modal-table th,
+  .modal-table td {
+    padding: 1.75rem;
+  }
+}
+
+/* Two-Column Info Layout */
+.info-row {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.info-col-left {
+  flex: 1;
+  padding-right: 1.5rem;
+  font-weight: bold;
+  text-align: left !important;
+}
+
+.info-col-right {
+  flex: 3;
+  text-align: left !important;
+}
+
+/* Add !important to ensure text alignment works */
+.utility-text-align-left {
+  text-align: left !important;
+}
+
+@media (max-width: 768px) {
+  .info-row {
+    flex-direction: column;
+  }
+  
+  .info-col-left {
+    padding-right: 0;
+    margin-bottom: 0.5rem;
+  }
 }

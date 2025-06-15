@@ -157,14 +157,74 @@ $(document).ready(function(){
     // Remove .active and .open from all items in this accordion
     $accordion.find('.accordion-trigger.active').removeClass("active");
     $accordion.find('.accordion-item.open').removeClass("open");
-    $accordion.find('.content').slideUp(300);
+    
+    // Instead of simple slideUp, create a more elegant animation
+    $accordion.find('.content').each(function() {
+      const $thisContent = $(this);
+      if ($thisContent.is(':visible')) {
+        $thisContent.css('overflow', 'hidden')
+          .animate({
+            height: 0,
+            opacity: 0,
+            paddingTop: 0,
+            paddingBottom: 0
+          }, {
+            duration: 1000,
+            easing: 'easeOutQuart',
+            complete: function() {
+              $(this).hide().css({
+                height: '',
+                opacity: '',
+                paddingTop: '',
+                paddingBottom: '',
+                overflow: ''
+              });
+            }
+          });
+      }
+    });
 
     if (!wasActive) {
       $this.addClass("active");
       $item.addClass("open");
-      $content.slideDown(300);
+      
+      // Instead of simple slideDown, create a more elegant animation
+      $content.css({
+        display: 'block',
+        height: 0,
+        opacity: 0,
+        paddingTop: 0,
+        paddingBottom: 0,
+        overflow: 'hidden'
+      }).animate({
+        height: $content[0].scrollHeight,
+        opacity: 1,
+        paddingTop: '',
+        paddingBottom: ''
+      }, {
+        duration: 800,
+        easing: 'easeOutCubic',
+        complete: function() {
+          $(this).css({
+            height: '',
+            overflow: ''
+          });
+        }
+      });
     }
   });
+
+  // Add easing functions if not already included with jQuery
+  if (typeof $.easing.easeOutCubic !== 'function') {
+    $.extend($.easing, {
+      easeOutCubic: function (x, t, b, c, d) {
+        return c * ((t = t / d - 1) * t * t + 1) + b;
+      },
+      easeOutQuart: function (x, t, b, c, d) {
+        return -c * ((t = t / d - 1) * t * t * t - 1) + b;
+      }
+    });
+  }
 
   // --- Modal Logic for Recap Table ---
   const openBtn = $('#open-modal-btn');
