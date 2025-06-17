@@ -31,7 +31,7 @@ html, body {
 img { max-width: 100%; height: auto; display: block; }
 
 /* 2. Typography */
-h1, .h1-heading { font-size: clamp(2rem, 5vw, 3.5rem); margin: 0.7em 0 0.4em 0; }
+h1, .h1-heading { font-size: clamp(5rem, 10vw, 4.5rem); margin: 0.7em 0 0.4em 0; }
 h2, .h2-heading { font-size: clamp(1.5rem, 4vw, 2.5rem); margin: 0.6em 0 0.3em 0; }
 h3, .h3-heading { font-size: clamp(1.2rem, 3vw, 2rem); margin: 0.5em 0 0.2em 0; }
 h4, .h4-heading { font-size: clamp(1rem, 2.5vw, 1.5rem); margin: 0.4em 0 0.2em 0; }
@@ -45,20 +45,38 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
 .detail-text-bold { font-weight: 700; }
 .utility-text-justify { text-align: justify; }
 
+/* Header Image */
+.header-main-image {
+  max-width: 420px;
+  width: 80%;
+  height: auto;
+  border-radius: 1.5rem;
+}
+
 /* 3. Layout */
 .container, .section {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
   padding-left: 5vw;
   padding-right: 5vw;
   overflow: visible;
 }
-.grid-layout { display: grid; gap: 2rem; }
+.grid-layout { 
+  display: grid; 
+  gap: 2rem; 
+  margin: 0 auto; /* Add margin auto to center the grid */
+}
 .flex-horizontal, .flex-vertical { display: flex; flex-wrap: wrap; gap: 1rem; }
 .flex-horizontal { flex-direction: row; }
 .flex-vertical { flex-direction: column; }
 .offer-proposal-large {width: 60rem}
+
+/* Add x-center class */
+.x-center {
+  justify-content: center;
+  align-items: center;
+}
 
 /* 4. Navigation */
 .main-navbar {
@@ -216,11 +234,16 @@ input, textarea, select {
 
 /* 7. Responsive Adjustments */
 @media (max-width: 991px) {
-  .grid-layout[class*="desktop-"] { grid-template-columns: 1fr 1fr; }
+  .grid-layout[class*="desktop-"] { 
+    grid-template-columns: 1fr 1fr;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 @media (max-width: 700px) {
   .grid-layout { grid-template-columns: 1fr; gap: 1.2rem; }
-  .container, .section { padding-left: 3vw; padding-right: 3vw; margin-top: 1rem; }
+  .container, .section:not([class*="utility-margin-top"]) { padding-left: 3vw; padding-right: 3vw; margin-top: 1rem; }
   .w-row, .w-col, .card, .button-group, .sg-selector-wrapper-x {
     flex-direction: column; width: 100%; max-width: 100%; margin-left: 0; margin-right: 0;
   }
@@ -337,7 +360,7 @@ input, textarea, select {
   }
 }
 @media (max-width: 479px) {
-  .container, .section { padding-left: 2vw; padding-right: 2vw; margin-top: 1rem; }
+  .container, .section:not([class*="utility-margin-top"]) { padding-left: 2vw; padding-right: 2vw; margin-top: 1rem; }
 }
 @media (min-width: 701px) {
   .main-navbar .nav-hamburger {
@@ -515,6 +538,61 @@ a:hover .mentions-legales-section {
 
 .utility-margin-top-auto {
   margin-top: auto;
+}
+
+/* Add missing utility classes */
+.utility-element-align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Desktop 2-column grid layout */
+.grid-layout.desktop-2-column {
+  grid-template-columns: 1fr 1fr;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Add missing utility margin classes */
+.utility-margin-top-0 {
+  margin-top: 0;
+}
+
+.utility-margin-top-0-5rem {
+  margin-top: 0.5rem;
+}
+
+.utility-margin-top-1rem {
+  margin-top: 1rem;
+}
+
+.utility-margin-top-2rem {
+  margin-top: 2rem !important;
+}
+
+.utility-margin-top-3rem {
+  margin-top: 3rem;
+}
+
+.utility-margin-top-4rem {
+  margin-top: 4rem;
+}
+
+.utility-margin-top-5rem {
+  margin-top: 5rem;
+}
+
+.utility-margin-top-6rem {
+  margin-top: 6rem;
+}
+
+.utility-margin-top-7rem {
+  margin-top: 7rem;
+}
+
+.utility-margin-top-8rem {
+  margin-top: 8rem;
 }
 
 .footer-social-link:hover { background-color: rgba(255,75,31,0.1); color: var(--color-primary); box-shadow: 0 2px 8px rgba(255,75,31,0.08); }
