@@ -2,7 +2,6 @@
 .portfolio-section {
   position: relative;
   overflow: hidden;
-  padding: 3rem 0;
 }
 
 .accordion {
@@ -96,7 +95,7 @@
 }
 
 .portfolio-text h4 {
-  margin-bottom: 2rem;
+ /*  margin-bottom: 2rem; */
   font-weight: 600;
   color: #FF4B1F;
 }
