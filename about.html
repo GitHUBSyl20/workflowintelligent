@@ -30,11 +30,15 @@
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript" defer></script>
+  <!-- Load jQuery first -->
+  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js"></script>
+  <!-- Load GSAP and ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js"></script>
+  <!-- Load site scripts -->
   <script src="js/main.js"></script>
   <script src="js/custom.js"></script>
+  <!-- Load carousel script last -->
   <script src="js/about-carousel.js"></script>
 </head>
 
@@ -65,61 +69,79 @@
     </div>
   </nav>
   <!-- End Modern Main Navigation Bar -->
-  <header class="section utility-overflow-hidden accent-primary-section">
-    <div class="container">
-      <div class="container small-container">
-        <div id="w-node-_185f60f0-8ba0-284e-2436-f639fd271ad8-fd271ad5"
-          class="utility-text-align-center utility-margin-bottom-4rem utility-margin-top-2rem w-node-_8a9a703f-4679-9db0-a3e5-e5faf28e4e21-e029d7b9">
-          <h1 class="h1-heading">Votre partenaire de développement digital, IA et automatisation</h1>
+  <header class="about-header">
+    <div class="header-content">
+      <h1>Votre partenaire de développement digital, IA et automatisation</h1>
+    </div>
+    <div class="header-carousel carousel-outer">
+      <div class="carousel-track">
+        <div class="carousel-item">
+          <img alt="Portrait généré IA 1"
+            src="AssetsTo Choose/ai-1.jpg"
+            loading="lazy" />
         </div>
-      </div>
-      <div class="custom-hero-offset-left">
-        <div class="carousel-outer">
-          <div class="carousel-track">
-            <div class="flex-child-no-shrink utility-max-width-sm utility-aspect-1x1">
-              <img alt="Portrait généré IA 1"
-                src="https://cdn.prod.website-files.com/image-generation-assets/9c025b61-bfd6-4588-8f1e-14a636318dfd.avif"
-                loading="lazy" data-aisg-image-id="9c025b61-bfd6-4588-8f1e-14a636318dfd"
-                class="cover-image utility-radius-xl" />
-            </div>
-            <div class="flex-child-no-shrink utility-max-width-sm utility-aspect-1x1">
-              <img alt="Portrait généré IA 2"
-                src="https://cdn.prod.website-files.com/image-generation-assets/9ae3e804-89a1-4bf3-936b-0cba0f2af27a.avif"
-                loading="lazy" data-aisg-image-id="9ae3e804-89a1-4bf3-936b-0cba0f2af27a"
-                class="cover-image utility-radius-xl" />
-            </div>
-            <div class="flex-child-no-shrink utility-max-width-sm utility-aspect-1x1">
-              <img alt="Portrait généré IA 3"
-                src="https://cdn.prod.website-files.com/image-generation-assets/df481101-4619-430b-800a-d8f3899e1b01.avif"
-                loading="lazy" data-aisg-image-id="df481101-4619-430b-800a-d8f3899e1b01"
-                class="cover-image utility-radius-xl" />
-            </div>
-            <div class="flex-child-no-shrink utility-max-width-sm utility-aspect-1x1">
-              <img alt="Portrait généré IA 4"
-                src="https://cdn.prod.website-files.com/image-generation-assets/2e143957-a8cb-4804-ada4-6c19f4fe9968.avif"
-                loading="lazy" data-aisg-image-id="2e143957-a8cb-4804-ada4-6c19f4fe9968"
-                class="cover-image utility-radius-xl" />
-            </div>
-            <div class="flex-child-no-shrink utility-max-width-sm utility-aspect-1x1">
-              <img alt="Portrait généré IA 5"
-                src="https://cdn.prod.website-files.com/image-generation-assets/65218dea-cb6c-4f8d-aa91-d8eb72d3fd67.avif"
-                loading="lazy" data-aisg-image-id="65218dea-cb6c-4f8d-aa91-d8eb72d3fd67"
-                class="cover-image utility-radius-xl" />
-            </div>
-            <div class="flex-child-no-shrink utility-max-width-sm utility-aspect-1x1">
-              <img alt="Portrait généré IA 6"
-                src="https://cdn.prod.website-files.com/image-generation-assets/bfc4d86c-e980-4372-96f6-2a97c54209e0.avif"
-                loading="lazy" data-aisg-image-id="bfc4d86c-e980-4372-96f6-2a97c54209e0"
-                class="cover-image utility-radius-xl" />
-            </div>
-            <div class="flex-child-no-shrink utility-max-width-sm utility-aspect-1x1">
-              <img alt="Portrait généré IA 7"
-                src="https://cdn.prod.website-files.com/image-generation-assets/8a983a35-434d-4da9-bd61-fb00228187c4.avif"
-                loading="lazy" data-aisg-image-id="8a983a35-434d-4da9-bd61-fb00228187c4"
-                class="cover-image utility-radius-xl" />
-            </div>
-          </div>
+        <div class="carousel-item">
+          <img alt="Portrait généré IA 2"
+            src="AssetsTo Choose/ai-2.jpg"
+            loading="lazy" />
         </div>
+        <div class="carousel-item">
+          <img alt="Portrait généré IA 3"
+            src="AssetsTo Choose/ai-3.jpg"
+            loading="lazy" />
+        </div>
+
+        <div class="carousel-item">
+          <img alt="Portrait généré IA 5"
+            src="AssetsTo Choose/pexels-googledeepmind-17485657.jpg"
+            loading="lazy" />
+        </div>
+        <div class="carousel-item">
+          <img alt="Portrait généré IA 6"
+            src="AssetsTo Choose/pexels-pixabay-373543.jpg"
+            loading="lazy" />
+        </div>
+        <div class="carousel-item">
+          <img alt="Portrait généré IA 7"
+            src="AssetsTo Choose/pexels-ron-lach-9783812.jpg"
+            loading="lazy" />
+        </div>
+ 
+        <div class="carousel-item">
+          <img alt="Portrait généré IA 9"
+            src="AssetsTo Choose/craiyon_194351_software_consultants_in_a_room.png"
+            loading="lazy" />
+        </div>
+        <div class="carousel-item">
+          <img alt="Portrait généré IA 10"
+            src="AssetsTo Choose/craiyon_194511_organisational_culture.png"
+            loading="lazy" />
+        </div>
+        <div class="carousel-item">
+          <img alt="Portrait généré IA 11"
+            src="AssetsTo Choose/craiyon_194115_Data_visualization_concept_with_minimal_abstract_graphs_and_analytics_elements__Clean_geometric_circ.png"
+            loading="lazy" />
+        </div>
+        <div class="carousel-item">
+          <img alt="Portrait généré IA 12"
+            src="AssetsTo Choose/AI-remove2.png"
+            loading="lazy" />
+        </div>
+        <div class="carousel-item">
+        <img alt="Portrait généré IA 5"
+        src="AssetsTo Choose/pexels-googledeepmind-17485657.jpg"
+        loading="lazy" />
+    </div>
+    <div class="carousel-item">
+      <img alt="Portrait généré IA 6"
+        src="AssetsTo Choose/pexels-pixabay-373543.jpg"
+        loading="lazy" />
+    </div>
+    <div class="carousel-item">
+      <img alt="Portrait généré IA 7"
+        src="AssetsTo Choose/pexels-ron-lach-9783812.jpg"
+        loading="lazy" />
+    </div>
       </div>
     </div>
   </header>
@@ -355,7 +377,7 @@
                       <br><br>
                       Ces parcours sont enrichis par une veille continue et des bootcamps
                       Udemy/OpenClassrooms. Résultat : une vision full-stack et méthodique,
-                      capable de passer d’un cahier des charges à une application performante, maintenable et centrée
+                      capable de passer d'un cahier des charges à une application performante, maintenable et centrée
                       utilisateur.
                     </p>
                   </div>
@@ -392,27 +414,30 @@
     <section class="section">
       <div class="container">
         <div>
-          <h3 class="bold-text utility-text-align-center"> Envie d'en savoir plus ?</h3>
+          <h2 class="h3-heading titlecontact mobiletitlemeet">
+            Envie d'en savoir plus ?
+          </h2>
           <ul role="list"
             class="grid-layout desktop-4-column tablet-2-column mobile-landscape-1-column grid-gap-lg utility-margin-bottom-0 mobile-1-column w-list-unstyled">
             <li class="flex-horizontal flex-vertical x-left y-space-between utility-margin-bottom-0">
               <div class="utility-margin-bottom-1rem">
-                <div class="utility-aspect-3x2 utility-margin-bottom-2rem mobilemeetmargin">
-                  <img width="264" height="176" alt="Illustration du potentiel humain"
-                    src="https://cdn.prod.website-files.com/67c56b1d4fcf89b38f9026fd/67c56d36d1d1bc8174802c10_c7fffc6f-5ea3-4727-b2a8-da851e25b44f.avif"
-                    loading="lazy" data-aisg-image-id="e19d6cfe-b3ed-40d7-8993-ab24cc49e37f"
-                    class="image cover-image" />
+                <div>
+                  <img alt="Prendre rendez-vous" 
+                    src="AssetsTo Choose/pexels-ron-lach-9783812.jpg"
+                    loading="lazy"
+                    class="image-contact-card"
+                    />
                 </div>
               </div>
               <a href="business-informations.html" class="button contactbutton w-button">Contactez moi</a>
             </li>
             <li class="flex-horizontal flex-vertical x-left y-space-between utility-margin-bottom-0">
               <div class="utility-margin-bottom-1rem">
-                <div class="utility-aspect-3x2 utility-margin-bottom-2rem">
-                  <img width="256" height="171" alt="Illustration de la croissance"
-                    src="https://cdn.prod.website-files.com/67c56b1d4fcf89b38f9026fd/67c56d36a9d93eee5042c82b_c070f370-a3f7-4645-aac6-bd72430bfa65.avif"
-                    loading="lazy" data-aisg-image-id="b836acc3-ed9c-4eef-a5ec-82ba9d68b053"
-                    class="image cover-image" />
+                <div>
+                  <img alt="En savoir plus sur moi"
+                    src="AssetsTo Choose/pexels-pixabay-373543.jpg"
+                    loading="lazy"  
+                    class="image-contact-card" />
                 </div>
               </div>
               <a href="about.html" class="button contactbutton w-button">Qui-suis-je ?</a>

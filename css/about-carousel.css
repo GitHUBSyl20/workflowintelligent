@@ -6,13 +6,15 @@
 /* 2. Carousel container: no horizontal padding, hide overflow */
 .carousel-outer {
   width: 100%;
-  
+  position: relative;
   margin: 0 auto;
-
   padding: 0; /* Remove horizontal padding */
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden; /* Hide overflow to prevent horizontal scrollbars */
+  min-height: 440px; /* Ensure minimum height for desktop */
+  z-index: 1; /* Ensure carousel is above other elements */
 }
 
 /* 3. Carousel track: center images horizontally */
@@ -22,14 +24,18 @@
   gap: 2rem;
   height: 100%;
   will-change: transform;
-  justify-content: center; /* Center images */
+  justify-content: flex-start; /* Start from left */
   align-items: center;     /* Center vertically */
+  position: relative; /* Enable positioning */
+  z-index: 2; /* Higher z-index than container */
+  transform: translateX(0); /* Ensure initial transform is set */
+  min-width: max-content; /* Ensure track is as wide as needed */
 }
 
 /* 4. Carousel images: responsive sizing */
 .carousel-track img {
-
   width: auto;
+  height: 440px; /* Fixed height for desktop */
   object-fit: cover;
   border-radius: 1rem;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
@@ -37,44 +43,53 @@
   margin: 0 auto;
 }
 
-/* 5. Responsive adjustments */
-@media (max-width: 700px) {
+/* 5. Carousel items: consistent sizing */
+.carousel-item {
+  flex: 0 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 6. Responsive adjustments */
+@media (max-width: 767px) {
   .carousel-outer {
-    height: 150px;
-    padding: 0;
-    width: 100vw; /* Ensure full viewport width */
+    height: auto;
+    min-height: 150px;
+    padding: 1rem 0;
+    width: 100%;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow-x: auto; /* Enable horizontal scrolling on mobile */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   }
+  
   .carousel-track {
     gap: 1rem;
-    justify-content: center; /* Center images as a group */
-    width: 100%;
+    justify-content: flex-start; /* Start from left on mobile */
+    padding: 0 1rem; /* Add some padding */
+    width: max-content; /* Allow track to be as wide as needed */
+    transform: none !important; /* Disable GSAP transforms on mobile */
   }
+  
   .carousel-track img {
-    height: 100%;
-    max-width: 90px;
+    height: auto;
+    max-height: 150px;
+    width: auto;
+    max-width: 150px;
     min-width: 70px;
     border-radius: 0.7rem;
   }
-  .carousel-track.align-left {
-    justify-content: flex-start !important;
-  }
 }
+
 @media (max-width: 479px) {
   .carousel-outer {
-    height: 120px;
-    padding: 0;
-    width: 100vw;
-    box-sizing: border-box;
-    overflow: hidden;
+    min-height: 120px;
   }
-  .carousel-track {
-    justify-content: center;
-    width: 100%;
-  }
+  
   .carousel-track img {
-    max-width: 70px;
+    max-height: 120px;
+    max-width: 120px;
     min-width: 50px;
     border-radius: 0.5rem;
   }
