@@ -50,7 +50,11 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
   max-width: 420px;
   width: 80%;
   height: auto;
+  margin-bottom: 2rem;
   border-radius: 1.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* 3. Layout */
@@ -861,5 +865,392 @@ ul li.paragraph-3 {
   .info-col-left {
     padding-right: 0;
     margin-bottom: 0.5rem;
+  }
+}
+
+/* Parallax Header Styles */
+.parallax-header {
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parallax-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)); /* Stronger gradient overlay for better text readability */
+  z-index: 1;
+}
+
+.parallax-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #ffffff;
+  padding: 4rem 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.parallax-content h1 {
+  color: #ffffff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+  margin-top: 1rem;
+  font-weight: 700;
+}
+
+.parallax-content p {
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  font-size: 1.5rem;
+  max-width: 800px;
+  margin: 1rem auto 0;
+}
+
+.parallax-content .header-main-image {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+  max-width: 420px;
+  width: 80%;
+  height: auto;
+  border-radius: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Media query for mobile devices where fixed attachment doesn't work well */
+@media (max-width: 768px) {
+  .parallax-header {
+    background-attachment: scroll;
+    min-height: 500px;
+  }
+  
+  .parallax-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .parallax-content p {
+    font-size: 1.2rem;
+  }
+}
+
+/* Custom class for contact card images */
+.image-contact-card {
+  width: 40em !important;
+  height: 15em !important;
+  max-width: 25em !important; /* Override the global img max-width: 100% rule */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+  border-radius: 1.2rem; /* Matches the style of other images */
+}
+
+/* Center the contact buttons horizontally */
+.grid-layout li.flex-horizontal.flex-vertical {
+  align-items: center !important;
+  text-align: center !important;
+}
+
+.grid-layout li.flex-horizontal.flex-vertical .button {
+  margin: 0 auto !important;
+}
+
+/* Mobile responsive for contact card images */
+@media (max-width: 768px) {
+  .image-contact-card {
+    width: 90% !important;
+    height: 200px !important;
+    max-width: 300px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .image-contact-card {
+    width: 95% !important;
+    height: 180px !important;
+    max-width: 280px !important;
+  }
+}
+
+/* Automation header - mobile-first responsive design */
+.automation-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  gap: 1.5rem;
+  background: var(--primary-color, #FF4B1F);
+  color: white;
+  overflow: hidden;
+}
+
+.automation-header .header-content {
+  flex: 1;
+  max-width: 100%;
+}
+
+.automation-header .header-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.automation-header .header-content p {
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.automation-header .header-image {
+  flex-shrink: 0;
+  max-width: 100%;
+}
+
+.automation-header .header-image img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 1rem;
+}
+
+/* Desktop and larger screens */
+@media (min-width: 768px) {
+  .automation-header {
+    flex-direction: row;
+    text-align: left;
+    padding: 3rem 2rem;
+    gap: 3rem;
+  }
+  
+  .automation-header .header-content {
+    flex: 2;
+  }
+  
+  .automation-header .header-content h1 {
+    font-size: 3rem;
+  }
+  
+  .automation-header .header-content p {
+    font-size: 1.3rem;
+  }
+  
+  .automation-header .header-image {
+    flex: 1;
+  }
+  
+  .automation-header .header-image img {
+    max-width: 400px;
+  }
+}
+
+/* Aides header - reuses automation-header base styles */
+.aides-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  gap: 1.5rem;
+  background: var(--primary-color, #FF4B1F);
+  color: white;
+  overflow: hidden;
+}
+
+.aides-header .header-content {
+  flex: 1;
+  max-width: 100%;
+}
+
+.aides-header .header-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.aides-header .header-content p {
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.aides-header .header-image {
+  flex-shrink: 0;
+  max-width: 100%;
+  order: -1; /* Image appears first on mobile */
+}
+
+.aides-header .header-image img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 1rem;
+}
+
+/* Index header - reuses automation-header base styles */
+.index-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  gap: 1.5rem;
+  background: var(--primary-color, #FF4B1F);
+  color: white;
+  overflow: hidden;
+}
+
+.index-header .header-content {
+  flex: 1;
+  max-width: 100%;
+}
+
+.index-header .header-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.index-header .header-content p {
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.index-header .header-image {
+  flex-shrink: 0;
+  max-width: 100%;
+  order: -1; /* Image appears first on mobile */
+}
+
+.index-header .header-image img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 1.5rem;
+}
+
+/* Desktop styles for aides and index headers */
+@media (min-width: 768px) {
+  .aides-header,
+  .index-header {
+    flex-direction: row;
+    text-align: left;
+    padding: 3rem 2rem;
+    gap: 3rem;
+  }
+  
+  .aides-header .header-content,
+  .index-header .header-content {
+    flex: 2;
+  }
+  
+  .aides-header .header-content h1,
+  .index-header .header-content h1 {
+    font-size: 3rem;
+  }
+  
+  .aides-header .header-content p,
+  .index-header .header-content p {
+    font-size: 1.3rem;
+  }
+  
+  .aides-header .header-image,
+  .index-header .header-image {
+    flex: 1;
+    order: 0; /* Reset order for desktop */
+  }
+  
+  .aides-header .header-image img {
+    max-width: 400px;
+  }
+  
+  .index-header .header-image img {
+    max-width: 420px;
+  }
+}
+
+/* About header - mobile-first responsive design with carousel */
+.about-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  gap: 2rem;
+  background: var(--primary-color, #FF4B1F);
+  color: white;
+  overflow: hidden;
+}
+
+.about-header .header-content {
+  flex: 1;
+  max-width: 100%;
+}
+
+.about-header .header-content h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+/* Simple carousel that always shows images */
+.about-header .header-carousel {
+  width: 100%;
+  overflow: hidden; /* Hide scrollbar but keep overflow content */
+  padding: 1rem 0;
+}
+
+.about-header .carousel-track {
+  display: flex;
+  gap: 1rem;
+  padding: 0 1rem;
+  -ms-overflow-style: none;  /* Hide scrollbar in IE and Edge */
+  scrollbar-width: none;  /* Hide scrollbar in Firefox */
+}
+
+/* Hide scrollbar in Chrome, Safari and Opera */
+.about-header .carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.about-header .carousel-item {
+  flex: 0 0 280px;
+  height: 280px;
+}
+
+.about-header .carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+  .about-header {
+    padding: 3rem 2rem;
+    gap: 3rem;
+  }
+  
+  .about-header .header-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .about-header .carousel-item {
+    flex: 0 0 400px;
+    height: 400px;
+  }
+  
+  .about-header .carousel-item img {
+    border-radius: 1.5rem;
   }
 }

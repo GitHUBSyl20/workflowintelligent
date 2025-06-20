@@ -306,8 +306,20 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 window.addEventListener('DOMContentLoaded', () => {
+  // Debug feature cards
+  console.log('Checking for feature cards...');
   const cards = document.querySelectorAll('.feature-card');
   console.log('Number of .feature-card elements:', cards.length);
+  
+  // Check if the selector might be different
+  const possibleCards = document.querySelectorAll('[class*="feature"]');
+  console.log('Elements with "feature" in class name:', possibleCards.length);
+  if (possibleCards.length > 0) {
+    possibleCards.forEach((el, i) => {
+      console.log(`Possible feature card #${i + 1}:`, el.className);
+    });
+  }
+  
   cards.forEach((card, idx) => {
     const style = window.getComputedStyle(card);
     console.log(`Card #${idx + 1} display:`, style.display, 'visibility:', style.visibility, 'opacity:', style.opacity);
