@@ -1254,3 +1254,175 @@ ul li.paragraph-3 {
     border-radius: 1.5rem;
   }
 }
+
+/* Contact Form Container */
+.contact-form-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+@media (max-width: 768px) {
+  .contact-form-container {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+
+/* Form styling improvements */
+#email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#email-form label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: block;
+}
+
+#email-form input[type="text"],
+#email-form input[type="email"],
+#email-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+#email-form input[type="text"]:focus,
+#email-form input[type="email"]:focus,
+#email-form textarea:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 75, 31, 0.2);
+}
+
+#email-form input[type="submit"] {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+#email-form input[type="submit"]:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* Improved mobile header responsiveness */
+@media (max-width: 768px) {
+  /* Fix for header structure */
+  .section.utility-overflow-clip.accent-primary-section {
+    padding: 1.5rem 0.5rem;
+    overflow: hidden;
+  }
+  
+  /* Text content fixes */
+  .w-layout-grid.grid-layout.tablet-1-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .w-layout-grid.grid-layout.tablet-1-column > div {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .h1-heading {
+    font-size: 2.2rem;
+    margin: 0.5em 0 0.3em;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  
+  .h3-heading {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Fix for all nested containers */
+  .utility-position-relative.flex-horizontal {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  
+  .grid-layout.desktop-9-column {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .utility-aspect-4x3 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  /* Critical fix: Override any conflicting width settings */
+  .image.cover-image {
+    margin: 0 auto;
+    max-width: 90%;
+    width: 90% !important; /* Override width: auto from responsive-overrides.css */
+    height: auto !important;
+    object-fit: contain;
+    display: block !important;
+  }
+}
+
+/* Fix for mobile header image centering */
+@media (max-width: 768px) {
+  /* Reset grid layout for mobile to ensure proper centering */
+  header .grid-layout.desktop-9-column {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Target the direct container of the image */
+  header .utility-aspect-4x3 {
+    width: 100% !important;
+    max-width: 280px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  
+  /* Target the image itself with high specificity */
+  header .utility-aspect-4x3 img.image.cover-image,
+  header .utility-aspect-4x3 img {
+    width: 100% !important; /* Force full width */
+    max-width: 100% !important; /* Override any max-width */
+    margin: 0 auto !important; /* Center horizontally */
+    display: block !important; /* Ensure block display */
+    height: auto !important; /* Maintain aspect ratio */
+    object-fit: contain !important; /* Ensure image fits properly */
+    position: static !important; /* Remove any absolute positioning */
+    transform: none !important; /* Remove any transforms */
+  }
+  
+  /* Ensure the parent container doesn't have conflicting styles */
+  header .utility-position-relative.flex-horizontal {
+    display: block !important; /* Change to block to avoid flex issues */
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+
+/* Improved mobile header responsiveness */
