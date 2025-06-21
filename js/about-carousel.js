@@ -1,23 +1,20 @@
 // Wait for DOM and GSAP to be ready
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('DOM loaded - checking for carousel');
+  
   
   // Get carousel elements
   const track = document.querySelector('.carousel-track');
   const carousel = document.querySelector('.header-carousel');
   
   if (!track || !carousel) {
-    console.error('Carousel elements not found');
+   
     return;
   }
   
   // Check if we're on mobile
   const isMobile = window.innerWidth < 768;
-  console.log('Device detection:', isMobile ? 'Mobile' : 'Desktop');
   
-  // Count images
-  const images = track.querySelectorAll('img');
-  console.log('Found', images.length, 'carousel images');
+  
   
   // Exit early on mobile
   if (isMobile) {
@@ -28,10 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // APPROACH 1: PURE JAVASCRIPT SCROLL-BASED ANIMATION
   // This will work even if GSAP fails to load
   
-  // Calculate the starting position (centered)
-  const trackWidth = track.scrollWidth;
-  const viewportWidth = window.innerWidth;
-  const startPosition = (viewportWidth - trackWidth) / 2;
+  // Set starting position to show the first image on the left
+  const startPosition = 0;
   
   // Set initial position with inline style
   track.style.transform = `translateX(${startPosition}px)`;
@@ -39,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('Initial position set to:', startPosition);
   
   // Calculate the maximum scroll amount
-  const maxScroll = 2000; // Maximum pixels to move
+  const maxScroll = 1000; // Adjust max scroll to show all images
   
   // Add scroll event listener
   window.addEventListener('scroll', function() {
