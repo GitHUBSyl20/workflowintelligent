@@ -966,6 +966,12 @@ ul li.paragraph-3 {
   margin: 0 auto !important;
 }
 
+/* Remove underline from contact buttons */
+.button.contactbutton, 
+.button.contactbutton.w-button {
+  text-decoration: none !important;
+}
+
 /* Mobile responsive for contact card images */
 @media (max-width: 768px) {
   .image-contact-card {
@@ -1236,11 +1242,11 @@ ul li.paragraph-3 {
 
 /* Desktop styles */
 @media (min-width: 768px) {
-  .about-header {
+  /* .about-header {
     padding: 3rem 2rem;
     gap: 3rem;
   }
-  
+   */
   .about-header .header-content h1 {
     font-size: 2.5rem;
   }

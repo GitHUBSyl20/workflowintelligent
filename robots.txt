@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Block access to admin/private areas (if any exist in the future)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /backup_webflow/
+
+# Allow CSS and JS files for proper rendering
+Allow: /css/
+Allow: /js/
+Allow: /assets/
+
+# Sitemap location (we'll create this next)
+Sitemap: https://sylvainmagana.fr/sitemap.xml
+
+# Crawl delay (optional - helps prevent server overload)
+Crawl-delay: 1 

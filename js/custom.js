@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
     initTabs();
     initScrollEffects();
+    initContactForm();
 });
 
 // Tab functionality for custom tab system
@@ -65,6 +66,248 @@ function isInViewport(element) {
         rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
+}
+
+// Initialize contact form with comprehensive security
+function initContactForm() {
+    const form = document.getElementById('email-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const statusDiv = document.getElementById('form-status');
+    const formToken = document.getElementById('form-token');
+    
+    // Security variables
+    let submissionCount = 0;
+    let lastSubmissionTime = 0;
+    const MAX_SUBMISSIONS = 3;
+    const TIME_WINDOW = 60000; // 1 minute
+    const MIN_TIME_BETWEEN_SUBMISSIONS = 3000; // 3 seconds
+
+    if (form && formToken) {
+        // Check if we're returning from a successful submission
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === '1') {
+            showStatus('✅ Message envoyé avec succès ! Vérifiez votre email (et le dossier spam) dans quelques minutes.', 'success');
+            // Clean the URL
+            const cleanUrl = window.location.pathname;
+            window.history.replaceState({}, document.title, cleanUrl);
+        }
+
+        // Generate form token after small delay (anti-bot measure)
+        setTimeout(() => {
+            formToken.value = generateSecureToken();
+        }, 1000);
+
+        // Add real-time input validation
+        addInputValidation();
+        
+        // Add form submission security
+        form.addEventListener('submit', function(e) {
+            // Basic security validation
+            if (!validateFormSecurity(e)) {
+                return;
+            }
+
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.value = 'Envoi en cours...';
+            statusDiv.style.display = 'none';
+
+            // Track submission
+            submissionCount++;
+            lastSubmissionTime = Date.now();
+
+            // Show status message
+            setTimeout(() => {
+                showStatus('Envoi en cours vers sylvainmagana@ymail.com...', 'info');
+            }, 100);
+
+            // Handle form submission result
+            setTimeout(() => {
+                // Check if form was actually submitted
+                const formData = new FormData(form);
+                console.log('Form data being sent:', Object.fromEntries(formData));
+                
+                showStatus('Formulaire envoyé ! Vérifiez votre dossier spam si vous ne recevez pas d\'email.', 'success');
+                
+                // Reset form and re-enable button
+                submitBtn.disabled = false;
+                submitBtn.value = 'Envoyez';
+                
+                // Clear form after successful submission
+                form.reset();
+                formToken.value = generateSecureToken();
+            }, 3000);
+        });
+    }
+
+    function validateFormSecurity(e) {
+        const now = Date.now();
+        
+        // Check honeypot field
+        const honeypot = document.getElementById('website');
+        if (honeypot && honeypot.value.length > 0) {
+            e.preventDefault();
+            showStatus('Soumission bloquée - comportement suspect détecté.', 'error');
+            return false;
+        }
+
+        // Rate limiting check
+        if (submissionCount >= MAX_SUBMISSIONS) {
+            const timeSinceFirst = now - (lastSubmissionTime - TIME_WINDOW);
+            if (timeSinceFirst < TIME_WINDOW) {
+                e.preventDefault();
+                showStatus('Trop de tentatives. Veuillez attendre avant de réessayer.', 'error');
+                return false;
+            } else {
+                // Reset counter after time window
+                submissionCount = 0;
+            }
+        }
+
+        // Minimum time between submissions
+        if (now - lastSubmissionTime < MIN_TIME_BETWEEN_SUBMISSIONS && submissionCount > 0) {
+            e.preventDefault();
+            showStatus('Veuillez attendre quelques secondes avant de renvoyer.', 'error');
+            return false;
+        }
+
+        // Validate form token
+        if (!formToken.value || formToken.value.length < 10) {
+            e.preventDefault();
+            showStatus('Erreur de sécurité. Veuillez recharger la page.', 'error');
+            return false;
+        }
+
+        // Additional content validation
+        if (!validateFormContent()) {
+            e.preventDefault();
+            return false;
+        }
+
+        return true;
+    }
+
+    function validateFormContent() {
+        const nom = document.getElementById('Nom').value;
+        const prenom = document.getElementById('Pr-nom').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('Commentaires').value;
+
+        // Check for suspicious patterns
+        const suspiciousPatterns = [
+            /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+            /javascript:/gi,
+            /on\w+\s*=/gi,
+            /<iframe/gi,
+            /<object/gi,
+            /<embed/gi,
+            /\beval\s*\(/gi,
+            /document\.cookie/gi,
+            /window\.location/gi
+        ];
+
+        const allContent = nom + ' ' + prenom + ' ' + email + ' ' + message;
+        
+        for (let pattern of suspiciousPatterns) {
+            if (pattern.test(allContent)) {
+                showStatus('Contenu suspect détecté. Veuillez vérifier votre saisie.', 'error');
+                return false;
+            }
+        }
+
+        // Check for excessive special characters (potential injection)
+        const specialCharCount = (allContent.match(/[<>{}[\]\\\/]/g) || []).length;
+        if (specialCharCount > 5) {
+            showStatus('Trop de caractères spéciaux détectés.', 'error');
+            return false;
+        }
+
+        // Check for very long URLs (potential spam)
+        const urlPattern = /https?:\/\/[^\s]+/g;
+        const urls = allContent.match(urlPattern) || [];
+        if (urls.some(url => url.length > 100)) {
+            showStatus('URLs trop longues détectées.', 'error');
+            return false;
+        }
+
+        return true;
+    }
+
+    function addInputValidation() {
+        // Real-time input sanitization
+        const textInputs = ['Nom', 'Pr-nom'];
+        textInputs.forEach(id => {
+            const input = document.getElementById(id);
+            if (input) {
+                input.addEventListener('input', function() {
+                    // Remove potentially dangerous characters
+                    this.value = this.value.replace(/[<>{}[\]\\\/]/g, '');
+                });
+            }
+        });
+
+        // Email validation
+        const emailInput = document.getElementById('email');
+        if (emailInput) {
+            emailInput.addEventListener('blur', function() {
+                if (this.value && !isValidEmail(this.value)) {
+                    showStatus('Format d\'email invalide.', 'error');
+                }
+            });
+        }
+
+        // Message content validation
+        const messageInput = document.getElementById('Commentaires');
+        if (messageInput) {
+            messageInput.addEventListener('input', function() {
+                // Remove script tags and other dangerous content
+                this.value = this.value.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+                this.value = this.value.replace(/javascript:/gi, '');
+            });
+        }
+    }
+
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function generateSecureToken() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let token = '';
+        for (let i = 0; i < 16; i++) {
+            token += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return token + Date.now().toString(36);
+    }
+
+    function showStatus(message, type) {
+        statusDiv.textContent = message;
+        statusDiv.style.display = 'block';
+        
+        switch(type) {
+            case 'success':
+                statusDiv.style.backgroundColor = '#d4edda';
+                statusDiv.style.color = '#155724';
+                statusDiv.style.border = '1px solid #c3e6cb';
+                break;
+            case 'error':
+                statusDiv.style.backgroundColor = '#f8d7da';
+                statusDiv.style.color = '#721c24';
+                statusDiv.style.border = '1px solid #f5c6cb';
+                break;
+            case 'info':
+                statusDiv.style.backgroundColor = '#d1ecf1';
+                statusDiv.style.color = '#0c5460';
+                statusDiv.style.border = '1px solid #bee5eb';
+                break;
+        }
+        
+        // Hide status after 5 seconds
+        setTimeout(() => {
+            statusDiv.style.display = 'none';
+        }, 5000);
+    }
 }
 
 // Add touch detection class to html element
