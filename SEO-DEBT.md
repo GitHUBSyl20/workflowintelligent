@@ -180,3 +180,7 @@
 - Mise en ligne et tests
 
 **Objectif :** 2-3 nouvelles pages par mois minimum 
+
+## Analytics 
+Ajouter un suivi analytics	Intégrer Plausible, Google Analytics, ou Umami
+🧠 Ajouter un chatbot IA ou automatisation	Intégrer via Make ou custom JS + API OpenAI
