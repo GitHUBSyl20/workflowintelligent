@@ -2,43 +2,92 @@
   "redirects": [
     {
       "source": "/ai-tools.html",
-      "destination": "/solutions-intelligence-artificielle.html",
+      "destination": "/solutions-ia-entreprise",
+      "permanent": true
+    },
+    {
+      "source": "/solutions-intelligence-artificielle.html",
+      "destination": "/solutions-ia-entreprise",
       "permanent": true
     },
     {
       "source": "/automatisations.html",
-      "destination": "/automatisation-processus-metier.html",
+      "destination": "/automatisation-entreprise",
+      "permanent": true
+    },
+    {
+      "source": "/automatisation-processus-metier.html",
+      "destination": "/automatisation-entreprise",
+      "permanent": true
+    },
+    {
+      "source": "/subventions-aides-numeriques.html",
+      "destination": "/aides-financement-numerique",
       "permanent": true
     },
     {
       "source": "/offres.html",
-      "destination": "/tarifs-prestations.html",
+      "destination": "/tarifs-prestations",
       "permanent": true
     },
     {
       "source": "/business-informations.html",
-      "destination": "/contact-devis.html",
+      "destination": "/contact-devis",
       "permanent": true
     },
     {
       "source": "/about.html",
-      "destination": "/a-propos.html",
+      "destination": "/a-propos",
       "permanent": true
     },
     {
       "source": "/aides.html",
-      "destination": "/subventions-aides-numeriques.html",
+      "destination": "/aides-financement-numerique",
       "permanent": true
     },
     {
       "source": "/cgu-cgv.html",
-      "destination": "/conditions-generales.html",
+      "destination": "/conditions-generales",
       "permanent": true
     },
     {
       "source": "/index.html",
       "destination": "/",
       "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/solutions-ia-entreprise",
+      "destination": "/solutions-ia-entreprise.html"
+    },
+    {
+      "source": "/automatisation-entreprise",
+      "destination": "/automatisation-entreprise.html"
+    },
+    {
+      "source": "/aides-financement-numerique",
+      "destination": "/aides-financement-numerique.html"
+    },
+    {
+      "source": "/tarifs-prestations",
+      "destination": "/tarifs-prestations.html"
+    },
+    {
+      "source": "/contact-devis",
+      "destination": "/contact-devis.html"
+    },
+    {
+      "source": "/a-propos",
+      "destination": "/a-propos.html"
+    },
+    {
+      "source": "/mentions-legales",
+      "destination": "/mentions-legales.html"
+    },
+    {
+      "source": "/conditions-generales",
+      "destination": "/conditions-generales.html"
     }
   ]
 } 
