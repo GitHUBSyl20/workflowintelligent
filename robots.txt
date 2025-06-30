@@ -23,7 +23,7 @@ Allow: /js/
 Allow: /assets/
 
 # Sitemap location (updated with new domain)
-Sitemap: https://workflowintelligent.com/sitemap.xml
+Sitemap: https://workflowintelligent.fr/sitemap.xml
 
 # Crawl delay (optional - helps prevent server overload)
 Crawl-delay: 1 
