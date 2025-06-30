@@ -22,8 +22,8 @@ Allow: /css/
 Allow: /js/
 Allow: /assets/
 
-# Sitemap location (we'll create this next)
-Sitemap: https://sylvainmagana.fr/sitemap.xml
+# Sitemap location (updated with new domain)
+Sitemap: https://workflowintelligent.com/sitemap.xml
 
 # Crawl delay (optional - helps prevent server overload)
 Crawl-delay: 1 

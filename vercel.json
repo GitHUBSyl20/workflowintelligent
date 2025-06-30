@@ -1,0 +1,44 @@
+{
+  "redirects": [
+    {
+      "source": "/ai-tools.html",
+      "destination": "/solutions-intelligence-artificielle.html",
+      "permanent": true
+    },
+    {
+      "source": "/automatisations.html",
+      "destination": "/automatisation-processus-metier.html",
+      "permanent": true
+    },
+    {
+      "source": "/offres.html",
+      "destination": "/tarifs-prestations.html",
+      "permanent": true
+    },
+    {
+      "source": "/business-informations.html",
+      "destination": "/contact-devis.html",
+      "permanent": true
+    },
+    {
+      "source": "/about.html",
+      "destination": "/a-propos.html",
+      "permanent": true
+    },
+    {
+      "source": "/aides.html",
+      "destination": "/subventions-aides-numeriques.html",
+      "permanent": true
+    },
+    {
+      "source": "/cgu-cgv.html",
+      "destination": "/conditions-generales.html",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+} 
