@@ -729,8 +729,6 @@ ul li.paragraph-3 {
   padding: 1.5rem; /* Increased padding */
   text-align: left;
   border: 1px solid #ddd;
-  background-color: var(--color-complementary);
-  color: white;
   font-weight: 600; /* Enhanced font weight */
 }
 
