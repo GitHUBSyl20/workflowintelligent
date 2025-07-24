@@ -204,8 +204,9 @@
 }
 
 .responsive-table th {
-  background-color: #f2f2f2;
+  background-color: #fff !important;
   font-weight: bold;
+  color: #111 !important;
 }
 
 @media screen and (max-width: 768px) {
