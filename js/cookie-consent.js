@@ -22,7 +22,6 @@ class CookieConsent {
   setup() {
     this.modal = document.getElementById('cookie-modal');
     if (!this.modal) {
-      console.warn('Cookie modal element not found in DOM!');
       return;
     }
     this.bindEvents();
@@ -89,7 +88,6 @@ class CookieConsent {
       const stored = localStorage.getItem(this.STORAGE_KEY);
       return stored ? JSON.parse(stored) : null;
     } catch (error) {
-      console.warn('Error reading cookie consent from localStorage:', error);
       return null;
     }
   }
@@ -111,7 +109,7 @@ class CookieConsent {
     try {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(consent));
     } catch (error) {
-      console.warn('Error storing cookie consent:', error);
+      // Silent error handling
     }
     return consent;
   }
@@ -213,7 +211,7 @@ class CookieConsent {
       localStorage.removeItem(this.STORAGE_KEY);
       this.showModal();
     } catch (error) {
-      console.warn('Error resetting cookie consent:', error);
+      // Silent error handling
     }
   }
 }
@@ -224,9 +222,9 @@ window.CookieConsent = cookieConsent;
 document.addEventListener('cookieConsentUpdated', (event) => {
   const consent = event.detail;
   if (consent.analytics) {
-    // console.log('Analytics cookies accepted - you can load GA here');
+    // Analytics cookies accepted - you can load GA here
   }
   if (consent.marketing) {
-    // console.log('Marketing cookies accepted - you can load FB Pixel here');
+    // Marketing cookies accepted - you can load FB Pixel here
   }
 }); 
