@@ -1,5 +1,3 @@
-// Debug log: script loaded
-console.log('[main.js] Script loaded');
 
 // WebFont Loader
 if (window.WebFont) {
@@ -288,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Active link highlighting - Enhanced version with debugging
+  // Active link highlighting
   const links = document.querySelectorAll('.main-nav-link');
   const currentPath = window.location.pathname;
   const currentPage = currentPath.split('/').pop() || 'index.html';
@@ -306,23 +304,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 window.addEventListener('DOMContentLoaded', () => {
-  // Debug feature cards
-  console.log('Checking for feature cards...');
+  // Feature cards initialization
   const cards = document.querySelectorAll('.feature-card');
-  console.log('Number of .feature-card elements:', cards.length);
-  
-  // Check if the selector might be different
-  const possibleCards = document.querySelectorAll('[class*="feature"]');
-  console.log('Elements with "feature" in class name:', possibleCards.length);
-  if (possibleCards.length > 0) {
-    possibleCards.forEach((el, i) => {
-      console.log(`Possible feature card #${i + 1}:`, el.className);
-    });
-  }
   
   cards.forEach((card, idx) => {
     const style = window.getComputedStyle(card);
-    console.log(`Card #${idx + 1} display:`, style.display, 'visibility:', style.visibility, 'opacity:', style.opacity);
+    // Initialize feature cards if needed
   });
 });
 

@@ -136,7 +136,7 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
   height: 3px;
 }
 
-/* DEBUG: Temporary high-specificity active state for debugging */
+/* High-specificity active state for navigation */
 .main-navbar .main-nav-link.active {
   background: rgba(255, 75, 31, 0.3) !important;
   color: var(--color-primary) !important;

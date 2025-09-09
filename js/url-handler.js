@@ -54,7 +54,6 @@
             }
         });
         
-        console.log('🚀 URLs nettoyées pour la production');
     }
     
     // Fonction pour mettre à jour l'URL courante si nécessaire
@@ -78,12 +77,6 @@
         updateCurrentUrl();
         cleanUrls();
         
-        // Info de debug (à retirer en production finale)
-        if (isLocal) {
-            console.log('🏠 Environnement LOCAL - URLs avec .html conservées');
-        } else if (isProduction) {
-            console.log('🌐 Environnement PRODUCTION - URLs nettoyées');
-        }
     });
     
     // Observer pour les contenus chargés dynamiquement

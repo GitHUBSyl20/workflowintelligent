@@ -1,13 +1,8 @@
 // Custom JavaScript for DigitalAIchemy website
 
-// Debug logging function
-function debugLog(message, data = null) {
-    console.log(`[FORM DEBUG] ${message}`, data || '');
-}
 
 // reCAPTCHA callback function - GLOBAL VERSION
 function onRecaptchaSuccess() {
-    debugLog('GLOBAL reCAPTCHA completed - calling checkFormValidation');
     // This function is called when reCAPTCHA is completed
     // The actual button enabling is handled by checkFormValidation()
     checkFormValidation();
@@ -26,7 +21,6 @@ function onRecaptchaError() {
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    debugLog('DOM loaded - initializing components');
     // Initialize all components
     initTabs();
     initScrollEffects();
@@ -95,19 +89,10 @@ function isInViewport(element) {
 
 // Initialize contact form with comprehensive security
 function initContactForm() {
-    debugLog('initContactForm called');
-    
     const form = document.getElementById('email-form');
     const submitBtn = document.getElementById('submit-btn');
     const statusDiv = document.getElementById('form-status');
     const formToken = document.getElementById('form-token');
-    
-    debugLog('Elements found:', {
-        form: !!form,
-        submitBtn: !!submitBtn,
-        statusDiv: !!statusDiv,
-        formToken: !!formToken
-    });
     
     // Security variables
     let submissionCount = 0;
@@ -117,8 +102,6 @@ function initContactForm() {
     const MIN_TIME_BETWEEN_SUBMISSIONS = 3000; // 3 seconds
 
     if (form && formToken) {
-        debugLog('Form and token found - proceeding with initialization');
-        
         // Check if we're in development mode (no reCAPTCHA)
         const isDevelopment = window.location.hostname === 'localhost' || 
                              window.location.hostname === '127.0.0.1' || 
@@ -126,16 +109,11 @@ function initContactForm() {
                              window.location.hostname.includes('local') ||
                              window.location.hostname === '';
         
-        debugLog('Development mode detected:', isDevelopment);
-        
         // Initialize submit button as disabled
         if (submitBtn) {
             submitBtn.disabled = true;
             submitBtn.style.backgroundColor = '#ccc';
             submitBtn.style.cursor = 'not-allowed';
-            debugLog('Submit button initialized as disabled');
-        } else {
-            debugLog('ERROR: Submit button not found!');
         }
 
         // Check if we're returning from a successful submission
@@ -190,10 +168,6 @@ function initContactForm() {
 
             // Handle form submission result
             setTimeout(() => {
-                // Check if form was actually submitted
-                const formData = new FormData(form);
-                console.log('Form data being sent:', Object.fromEntries(formData));
-                
                 showStatus('Formulaire envoyé ! Vérifiez votre dossier spam si vous ne recevez pas d\'email.', 'success');
                 
                 // Reset form and re-enable button
@@ -313,36 +287,24 @@ function initContactForm() {
     }
 
     function addInputValidation() {
-        debugLog('addInputValidation called');
-        
         // Real-time input sanitization
         const textInputs = ['Nom', 'Pr-nom'];
         textInputs.forEach(id => {
             const input = document.getElementById(id);
-            debugLog(`Looking for input with ID: ${id}`, !!input);
             if (input) {
                 input.addEventListener('input', function() {
-                    debugLog(`=== INPUT EVENT FIRED for ${id} ===`);
-                    debugLog(`Value before sanitization: "${this.value}"`);
                     // Remove potentially dangerous characters
                     this.value = this.value.replace(/[<>{}[\]\\\/]/g, '');
-                    debugLog(`Value after sanitization: "${this.value}"`);
                     // Check form validation after input
-                    debugLog(`Calling checkFormValidation from ${id} input event`);
                     checkFormValidation();
                 });
-                debugLog(`Event listener added for ${id}`);
             }
         });
 
         // Email validation
         const emailInput = document.getElementById('email');
-        debugLog('Looking for email input:', !!emailInput);
         if (emailInput) {
             emailInput.addEventListener('input', function() {
-                debugLog(`=== EMAIL INPUT EVENT FIRED ===`);
-                debugLog(`Email value: "${this.value}"`);
-                debugLog('Calling checkFormValidation from email input event');
                 checkFormValidation();
             });
             emailInput.addEventListener('blur', function() {
@@ -350,46 +312,28 @@ function initContactForm() {
                     showStatus('Format d\'email invalide.', 'error');
                 }
             });
-            debugLog('Email event listeners added');
         }
 
         // Message content validation
         const messageInput = document.getElementById('Commentaires');
-        debugLog('Looking for message input:', !!messageInput);
         if (messageInput) {
             messageInput.addEventListener('input', function() {
-                debugLog('Message input event fired:', this.value);
                 // Remove script tags and other dangerous content
                 this.value = this.value.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
                 this.value = this.value.replace(/javascript:/gi, '');
                 checkFormValidation();
             });
-            debugLog('Message event listener added');
         }
     }
 
     function addFormValidation() {
-        debugLog('addFormValidation called');
-        
         // Check form validation on page load
         checkFormValidation();
-        
-        // Add event listeners for reCAPTCHA callback
-        if (typeof grecaptcha !== 'undefined') {
-            debugLog('reCAPTCHA is available');
-            // Don't override the global callback - let it use the global onRecaptchaSuccess
-            debugLog('Using global onRecaptchaSuccess callback');
-        } else {
-            debugLog('reCAPTCHA is not available');
-        }
     }
 
     function checkFormValidation() {
-        debugLog('checkFormValidation called');
-        
         const submitBtn = document.getElementById('submit-btn');
         if (!submitBtn) {
-            debugLog('ERROR: Submit button not found in checkFormValidation!');
             return;
         }
 
@@ -399,57 +343,19 @@ function initContactForm() {
                              window.location.hostname.includes('local') ||
                              window.location.hostname === '';
 
-        debugLog('Current hostname:', window.location.hostname);
-        debugLog('Development mode detected:', isDevelopment);
-
         // Check if form is valid
         const formValid = isFormValid();
-        debugLog('Form validation result:', formValid);
         
         // Check reCAPTCHA (only for production)
         let recaptchaValid = true;
-        let recaptchaResponse = '';
         
         if (!isDevelopment && typeof grecaptcha !== 'undefined' && grecaptcha.getResponse) {
-            recaptchaResponse = grecaptcha.getResponse();
+            const recaptchaResponse = grecaptcha.getResponse();
             recaptchaValid = recaptchaResponse.length > 0;
-            debugLog('reCAPTCHA response length:', recaptchaResponse.length);
-            debugLog('reCAPTCHA validation result:', recaptchaValid);
-            
-            // Additional debugging for reCAPTCHA state
-            if (typeof grecaptcha.getResponse === 'function') {
-                debugLog('grecaptcha.getResponse is available');
-            } else {
-                debugLog('grecaptcha.getResponse is NOT available');
-            }
-            
-            // Check if reCAPTCHA widget is rendered
-            const recaptchaWidget = document.querySelector('.g-recaptcha');
-            if (recaptchaWidget) {
-                debugLog('reCAPTCHA widget found in DOM');
-                const iframe = recaptchaWidget.querySelector('iframe');
-                if (iframe) {
-                    debugLog('reCAPTCHA iframe found');
-                } else {
-                    debugLog('reCAPTCHA iframe NOT found - widget may not be loaded');
-                }
-            } else {
-                debugLog('reCAPTCHA widget NOT found in DOM');
-            }
-        } else {
-            debugLog('reCAPTCHA validation skipped (development mode or not available)');
-            if (isDevelopment) {
-                debugLog('Reason: Development mode detected');
-            } else if (typeof grecaptcha === 'undefined') {
-                debugLog('Reason: grecaptcha is undefined');
-            } else if (!grecaptcha.getResponse) {
-                debugLog('Reason: grecaptcha.getResponse is not available');
-            }
         }
 
         // Enable button if both form and reCAPTCHA are valid
         if (formValid && recaptchaValid) {
-            debugLog('Enabling button - both form and reCAPTCHA are valid');
             submitBtn.disabled = false;
             submitBtn.style.backgroundColor = '#FF4B1F';
             submitBtn.style.cursor = 'pointer';
@@ -460,7 +366,6 @@ function initContactForm() {
                 statusDiv.style.display = 'none';
             }
         } else {
-            debugLog('Keeping button disabled - form or reCAPTCHA not valid');
             submitBtn.disabled = true;
             submitBtn.style.backgroundColor = '#ccc';
             submitBtn.style.cursor = 'not-allowed';
@@ -496,105 +401,20 @@ function initContactForm() {
         const prenom = document.getElementById('Pr-nom');
         const email = document.getElementById('email');
 
-        debugLog('Checking form validity for elements:', {
-            nom: !!nom,
-            prenom: !!prenom,
-            email: !!email
-        });
-
         // Check if required fields are filled
         const nomValid = nom && nom.value.trim().length > 0;
         const prenomValid = prenom && prenom.value.trim().length > 0;
         const emailValid = email && email.value.trim().length > 0 && isValidEmail(email.value);
 
-        debugLog('Field validation results:', {
-            nom: nomValid,
-            prenom: prenomValid,
-            email: emailValid,
-            nomValue: nom ? nom.value : 'NOT FOUND',
-            prenomValue: prenom ? prenom.value : 'NOT FOUND',
-            emailValue: email ? email.value : 'NOT FOUND'
-        });
-
-        const result = nomValid && prenomValid && emailValid;
-        debugLog('Overall form validity:', result);
-        return result;
+        return nomValid && prenomValid && emailValid;
     }
 
     // Make checkFormValidation available globally for reCAPTCHA callback
     window.checkFormValidation = checkFormValidation;
-    debugLog('checkFormValidation made available globally');
-
-    // Manual test function for debugging
-    window.testFormValidation = function() {
-        debugLog('=== MANUAL TEST TRIGGERED ===');
-        const nom = document.getElementById('Nom');
-        const prenom = document.getElementById('Pr-nom');
-        const email = document.getElementById('email');
-        
-        debugLog('Current field values:', {
-            nom: nom ? nom.value : 'NOT FOUND',
-            prenom: prenom ? prenom.value : 'NOT FOUND',
-            email: email ? email.value : 'NOT FOUND'
-        });
-        
-        // Test reCAPTCHA state
-        debugLog('=== reCAPTCHA STATE TEST ===');
-        debugLog('grecaptcha available:', typeof grecaptcha !== 'undefined');
-        if (typeof grecaptcha !== 'undefined') {
-            debugLog('grecaptcha.getResponse available:', typeof grecaptcha.getResponse === 'function');
-            if (typeof grecaptcha.getResponse === 'function') {
-                const response = grecaptcha.getResponse();
-                debugLog('reCAPTCHA response:', response);
-                debugLog('reCAPTCHA response length:', response.length);
-            }
-        }
-        
-        // Test DOM elements
-        const recaptchaWidget = document.querySelector('.g-recaptcha');
-        debugLog('reCAPTCHA widget in DOM:', !!recaptchaWidget);
-        if (recaptchaWidget) {
-            const iframe = recaptchaWidget.querySelector('iframe');
-            debugLog('reCAPTCHA iframe in DOM:', !!iframe);
-        }
-        
-        checkFormValidation();
-    };
-
-    // Additional debug function for reCAPTCHA
-    window.testRecaptcha = function() {
-        debugLog('=== reCAPTCHA SPECIFIC TEST ===');
-        
-        if (typeof grecaptcha === 'undefined') {
-            debugLog('ERROR: grecaptcha is not defined');
-            return;
-        }
-        
-        debugLog('grecaptcha object:', grecaptcha);
-        debugLog('grecaptcha.getResponse type:', typeof grecaptcha.getResponse);
-        
-        if (typeof grecaptcha.getResponse === 'function') {
-            const response = grecaptcha.getResponse();
-            debugLog('Current reCAPTCHA response:', response);
-            debugLog('Response length:', response.length);
-            debugLog('Response is empty:', response.length === 0);
-        } else {
-            debugLog('ERROR: grecaptcha.getResponse is not a function');
-        }
-        
-        // Check if we can reset
-        if (typeof grecaptcha.reset === 'function') {
-            debugLog('grecaptcha.reset is available');
-        } else {
-            debugLog('grecaptcha.reset is NOT available');
-        }
-    };
 
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const result = emailRegex.test(email);
-        debugLog('Email validation:', { email, result });
-        return result;
+        return emailRegex.test(email);
     }
 
     function generateSecureToken() {

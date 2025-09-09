@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Exit early on mobile
   if (isMobile) {
-    console.log('Mobile detected, using native scrolling');
     return;
   }
   
@@ -30,8 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Set initial position with inline style
   track.style.transform = `translateX(${startPosition}px)`;
-  
-  console.log('Initial position set to:', startPosition);
   
   // Calculate the maximum scroll amount
   const maxScroll = 1000; // Adjust max scroll to show all images
@@ -49,9 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Apply new position
     track.style.transform = `translateX(${moveAmount}px)`;
     
-    // Log every 10% change
+    // Track scroll percentage
     if (Math.floor(scrollPercent * 10) !== Math.floor(lastScrollPercent * 10)) {
-      console.log('Scroll:', Math.round(scrollPercent * 100) + '%', 'Position:', Math.round(moveAmount));
       lastScrollPercent = scrollPercent;
     }
   });
@@ -64,8 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function tryGSAPAnimation() {
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      console.log('GSAP detected, setting up animation');
-      
       // Register ScrollTrigger
       gsap.registerPlugin(ScrollTrigger);
       
@@ -82,15 +76,10 @@ document.addEventListener('DOMContentLoaded', function() {
             trigger: "body",
             start: "top top",
             end: "bottom bottom",
-            scrub: 1,
-            onUpdate: function(self) {
-              console.log('GSAP progress:', Math.round(self.progress * 100) + '%');
-            }
+            scrub: 1
           }
         }
       );
-      
-      console.log('GSAP animation setup complete');
     } else {
       // Try again in a moment
       setTimeout(tryGSAPAnimation, 500);
