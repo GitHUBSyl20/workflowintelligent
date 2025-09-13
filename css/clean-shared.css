@@ -94,6 +94,17 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
   color: var(--color-primary); text-decoration: none; gap: 0.7rem; letter-spacing: 0.03em; transition: color 0.2s;
 }
 .main-navbar .nav-logo svg { width: 2.2rem; height: 2.2rem; display: block; }
+.main-navbar .nav-logo .logo-image { 
+  width: 2.2rem; 
+  height: 2.2rem; 
+  display: block; 
+  border-radius: 6px;
+  filter: contrast(1.3) brightness(1.1);
+  transition: filter 0.2s ease;
+}
+.main-navbar .nav-logo .logo-image:hover {
+  filter: contrast(1.5) brightness(1.2);
+}
 .main-navbar .main-nav-links {
   display: flex; gap: 2.2rem; align-items: center;
 }
