@@ -1,0 +1,465 @@
+{
+  "common": {
+    "navigation": {
+      "home": {
+        "fr": "Accueil",
+        "en": "Home"
+      },
+      "automation": {
+        "fr": "Automatisations",
+        "en": "Automation"
+      },
+      "ai": {
+        "fr": "IA",
+        "en": "AI"
+      },
+      "offers": {
+        "fr": "Offres",
+        "en": "Offers"
+      },
+      "funding": {
+        "fr": "Aides",
+        "en": "Funding"
+      },
+      "contact": {
+        "fr": "Contact",
+        "en": "Contact"
+      },
+      "about": {
+        "fr": "À propos",
+        "en": "About"
+      },
+      "logoText": {
+        "fr": "Workflow Intelligent",
+        "en": "Workflow Intelligent"
+      },
+      "menuAriaLabel": {
+        "fr": "Ouvrir le menu",
+        "en": "Open menu"
+      }
+    },
+    "footer": {
+      "navigationTitle": {
+        "fr": "Navigation",
+        "en": "Navigation"
+      },
+      "resourcesTitle": {
+        "fr": "Ressources",
+        "en": "Resources"
+      },
+      "legalTitle": {
+        "fr": "Mentions Légales",
+        "en": "Legal Notice"
+      },
+      "termsTitle": {
+        "fr": "CGU-CGV",
+        "en": "Terms & Conditions"
+      }
+    },
+    "cookieConsent": {
+      "title": {
+        "fr": "🍪 Politique des Cookies",
+        "en": "🍪 Cookie Policy"
+      },
+      "description": {
+        "fr": "J'utilise des cookies pour améliorer votre expérience sur mon site web. Ces cookies me permettent de comprendre comment vous utilisez mon site et d'optimiser mes services.",
+        "en": "I use cookies to improve your experience on my website. These cookies help me understand how you use my site and optimize my services."
+      },
+      "essentialTitle": {
+        "fr": "Cookies essentiels",
+        "en": "Essential Cookies"
+      },
+      "essentialDesc": {
+        "fr": "Nécessaires au bon fonctionnement du site (obligatoires).",
+        "en": "Necessary for the proper functioning of the site (required)."
+      },
+      "analyticsTitle": {
+        "fr": "Cookies d'analyse",
+        "en": "Analytics Cookies"
+      },
+      "analyticsDesc": {
+        "fr": "M'aident à comprendre l'utilisation du site pour l'améliorer.",
+        "en": "Help me understand site usage to improve it."
+      },
+      "legalNotice": {
+        "fr": "En continuant à naviguer sur ce site, vous acceptez mon utilisation des cookies. Pour plus d'informations, consultez mes",
+        "en": "By continuing to browse this site, you accept my use of cookies. For more information, see my"
+      },
+      "legalLink": {
+        "fr": "mentions légales",
+        "en": "legal notice"
+      },
+      "termsLink": {
+        "fr": "conditions générales",
+        "en": "terms and conditions"
+      },
+      "acceptAll": {
+        "fr": "Accepter tous les cookies",
+        "en": "Accept all cookies"
+      },
+      "essentialOnly": {
+        "fr": "Cookies essentiels uniquement",
+        "en": "Essential cookies only"
+      },
+      "decline": {
+        "fr": "Refuser",
+        "en": "Decline"
+      },
+      "notificationAccepted": {
+        "fr": "Tous les cookies ont été acceptés.",
+        "en": "All cookies have been accepted."
+      },
+      "notificationEssential": {
+        "fr": "Seuls les cookies essentiels ont été acceptés.",
+        "en": "Only essential cookies have been accepted."
+      },
+      "notificationDeclined": {
+        "fr": "Les cookies ont été refusés.",
+        "en": "Cookies have been declined."
+      }
+    },
+    "buttons": {
+      "learnMore": {
+        "fr": "En savoir plus",
+        "en": "Learn more"
+      },
+      "contactMe": {
+        "fr": "Contactez-moi",
+        "en": "Contact me"
+      },
+      "discover": {
+        "fr": "Découvrir",
+        "en": "Discover"
+      },
+      "seeOffers": {
+        "fr": "Voir les offres",
+        "en": "See offers"
+      }
+    }
+  },
+  "pages": {
+    "index": {
+      "meta": {
+        "title": {
+          "fr": "Sylvain Magana - IA & Automatisation | Freelance Lyon",
+          "en": "Sylvain Magana - AI & Automation | Freelance Lyon"
+        },
+        "description": {
+          "fr": "Expert freelance en IA et automatisation à Lyon. Transformez votre entreprise avec des solutions sur mesure : assistants IA, automatisation de processus, développement rapide. Consultation gratuite.",
+          "en": "Freelance AI and automation expert in Lyon. Transform your business with custom solutions: AI assistants, process automation, rapid development. Free consultation."
+        }
+      },
+      "hero": {
+        "title": {
+          "fr": "Misez sur l'IA & l'automatisation",
+          "en": "Leverage AI & Automation"
+        },
+        "subtitle": {
+          "fr": "Transformez votre entreprise avec des solutions technologiques de pointe.",
+          "en": "Transform your business with cutting-edge technology solutions."
+        }
+      },
+      "intro": {
+        "text1": {
+          "fr": "Et si votre quotidien devenait (vraiment) plus simple ?",
+          "en": "What if your daily routine became (truly) simpler?"
+        },
+        "text2": {
+          "fr": "Reprenez le contrôle grâce à deux super-pouvoirs digitaux :",
+          "en": "Take back control with two digital superpowers:"
+        },
+        "text3": {
+          "fr": "L'automatisation pour éliminer les tâches chronophages.",
+          "en": "Automation to eliminate time-consuming tasks."
+        },
+        "text4": {
+          "fr": "L'IA pour travailler plus vite… sans perdre en qualité.",
+          "en": "AI to work faster... without compromising quality."
+        },
+        "text5": {
+          "fr": "Explorez deux approches complémentaires",
+          "en": "Explore two complementary approaches"
+        },
+        "text6": {
+          "fr": "à choisir selon vos besoins.",
+          "en": "to choose according to your needs."
+        },
+        "text7": {
+          "fr": "Trouvez les",
+          "en": "Find"
+        },
+        "text8": {
+          "fr": "sur mesure pour transformer vos idées en outils concrets.",
+          "en": "tailored to transform your ideas into concrete tools."
+        },
+        "text9": {
+          "fr": "Pour financer vos projets, allez voir les différentes",
+          "en": "To finance your projects, check out the various"
+        },
+        "text10": {
+          "fr": "existantes.",
+          "en": "available."
+        },
+        "text11": {
+          "fr": "Et pour en savoir plus sur moi :",
+          "en": "And to learn more about me:"
+        }
+      },
+      "features": {
+        "automation": {
+          "title": {
+            "fr": "Outils d'Automatisation",
+            "en": "Automation Tools"
+          },
+          "description": {
+            "fr": "Découvrez comment automatiser vos tâches et gagner en efficacité grâce à des outils modernes et accessibles.",
+            "en": "Discover how to automate your tasks and increase efficiency with modern and accessible tools."
+          },
+          "button": {
+            "fr": "En savoir plus",
+            "en": "Learn more"
+          }
+        },
+        "ai": {
+          "title": {
+            "fr": "Innovation par l'IA",
+            "en": "AI Innovation"
+          },
+          "description": {
+            "fr": "Profitez de l'intelligence artificielle pour booster vos projets et prendre une longueur d'avance sur la concurrence.",
+            "en": "Leverage artificial intelligence to boost your projects and gain a competitive edge."
+          },
+          "button": {
+            "fr": "Découvrir l'IA",
+            "en": "Discover AI"
+          }
+        },
+        "offers": {
+          "title": {
+            "fr": "Choisissez votre offre",
+            "en": "Choose Your Offer"
+          },
+          "description": {
+            "fr": "Découvrez mes offres pour répondre à vos besoins en IA et automatisations flexibles et adaptées à chaque projet.",
+            "en": "Discover my offers to meet your AI and automation needs, flexible and adapted to each project."
+          },
+          "button": {
+            "fr": "Voir les offres",
+            "en": "See offers"
+          }
+        }
+      },
+      "contact": {
+        "title": {
+          "fr": "Envie d'en savoir plus ?",
+          "en": "Want to learn more?"
+        }
+      }
+    },
+    "automation": {
+      "meta": {
+        "title": {
+          "fr": "Automatisation des Processus - Gagnez en Efficacité | Sylvain Magana",
+          "en": "Process Automation - Increase Efficiency | Sylvain Magana"
+        },
+        "description": {
+          "fr": "Automatisation des processus métier : éliminez les tâches répétitives, optimisez votre temps, réduisez vos coûts. Solutions modernes et accessibles pour TPE/PME à Lyon.",
+          "en": "Business process automation: eliminate repetitive tasks, optimize your time, reduce costs. Modern and accessible solutions for SMEs in Lyon."
+        }
+      },
+      "hero": {
+        "title": {
+          "fr": "Automatisation",
+          "en": "Automation"
+        },
+        "subtitle": {
+          "fr": "Libérez le potentiel de votre entreprise grâce à l'automatisation.",
+          "en": "Unlock your company's potential through automation."
+        }
+      },
+      "intro": {
+        "text1": {
+          "fr": "L'automatisation pour ne pas perdre de temps…",
+          "en": "Automation to save time..."
+        },
+        "text2": {
+          "fr": "Stop aux tableaux Excel. Simplifiez les tâches répétitives pour aller plus vite, mieux servir vos clients et réduire vos coûts.",
+          "en": "No more Excel spreadsheets. Simplify repetitive tasks to work faster, better serve your customers, and reduce costs."
+        },
+        "text3": {
+          "fr": "Je vous aide à automatiser vos fonctions support simplement, sans jargon, sans complexité, avec des outils modernes.",
+          "en": "I help you automate your support functions simply, without jargon, without complexity, using modern tools."
+        },
+        "text4": {
+          "fr": "Libérez le potentiel de vos collaborateurs, augmentez votre agilité et développez votre activité.",
+          "en": "Free up your team's potential, increase your agility, and grow your business."
+        }
+      }
+    },
+    "ai": {
+      "meta": {
+        "title": {
+          "fr": "Solutions IA Entreprise - Intelligence Artificielle sur Mesure | Sylvain Magana",
+          "en": "Business AI Solutions - Custom Artificial Intelligence | Sylvain Magana"
+        },
+        "description": {
+          "fr": "Solutions IA personnalisées pour entreprises : assistants intelligents, analyse de données, automatisation cognitive. Expertise IA accessible aux TPE/PME à Lyon.",
+          "en": "Custom AI solutions for businesses: intelligent assistants, data analysis, cognitive automation. Accessible AI expertise for SMEs in Lyon."
+        }
+      },
+      "hero": {
+        "title": {
+          "fr": "Intelligence Artificielle",
+          "en": "Artificial Intelligence"
+        },
+        "subtitle": {
+          "fr": "Exploitez la puissance de l'IA pour transformer votre activité.",
+          "en": "Harness the power of AI to transform your business."
+        }
+      }
+    },
+    "offers": {
+      "meta": {
+        "title": {
+          "fr": "Offres IA & Automatisation - Solutions sur Mesure | Sylvain Magana",
+          "en": "AI & Automation Offers - Custom Solutions | Sylvain Magana"
+        },
+        "description": {
+          "fr": "Découvrez mes offres IA et automatisation : diagnostic, prototypage, développement complet. Solutions personnalisées pour TPE/PME. De 350€ à 13000€. Consultation gratuite.",
+          "en": "Discover my AI and automation offers: diagnosis, prototyping, complete development. Custom solutions for SMEs. From €350 to €13000. Free consultation."
+        }
+      },
+      "hero": {
+        "title": {
+          "fr": "Offres",
+          "en": "Offers"
+        },
+        "subtitle": {
+          "fr": "Explorez les offres adaptées à vos besoins",
+          "en": "Explore offers tailored to your needs"
+        }
+      },
+      "intro": {
+        "text1": {
+          "fr": "Chaque entreprise avance à son rythme.",
+          "en": "Every business moves at its own pace."
+        },
+        "text2": {
+          "fr": "Que vous découvriez tout juste les opportunités offertes par l'intelligence artificielle et/ou l'automatisation avec une idée à tester, ou que vous soyez prêt à passer à",
+          "en": "Whether you're just discovering the opportunities offered by artificial intelligence and/or automation with an idea to test, or you're ready to move to"
+        }
+      }
+    },
+    "funding": {
+      "meta": {
+        "title": {
+          "fr": "Aides & Subventions IA - Financez votre Projet | Sylvain Magana",
+          "en": "AI Grants & Subsidies - Finance Your Project | Sylvain Magana"
+        },
+        "description": {
+          "fr": "Aides et subventions pour vos projets IA : IA Booster (80% financé), Pack IA Région AURA (5000€), accompagnement administratif. Financez votre transformation numérique.",
+          "en": "Grants and subsidies for your AI projects: AI Booster (80% funded), AURA Region AI Pack (€5000), administrative support. Finance your digital transformation."
+        }
+      },
+      "hero": {
+        "title": {
+          "fr": "Financez votre projet",
+          "en": "Finance Your Project"
+        },
+        "subtitle": {
+          "fr": "Faites appel à des financements et aides",
+          "en": "Access funding and grants"
+        }
+      },
+      "intro": {
+        "text1": {
+          "fr": "L'Intelligence Artificielle (IA) et l'automatisation ne sont plus de simples concepts futuristes.",
+          "en": "Artificial Intelligence (AI) and automation are no longer just futuristic concepts."
+        },
+        "text2": {
+          "fr": "En 2025, près de 90% des TPE-PME françaises ont déjà intégré l'IA ou l'automatisation dans leurs processus. Celles qui ont franchi le pas constatent une augmentation de leur productivité de plus de 30 %. Pendant ce temps, d'autres hésitent encore. Ne laissez pas vos concurrents prendre de l'avance : l'IA et l'automatisation ne sont plus des options, mais des leviers essentiels pour rester compétitif.",
+          "en": "In 2025, nearly 90% of French SMEs have already integrated AI or automation into their processes. Those who have taken the step see productivity increases of over 30%. Meanwhile, others still hesitate. Don't let your competitors get ahead: AI and automation are no longer options but essential levers to stay competitive."
+        }
+      }
+    },
+    "contact": {
+      "meta": {
+        "title": {
+          "fr": "Contact - Consultation Gratuite IA & Automatisation | Sylvain Magana",
+          "en": "Contact - Free AI & Automation Consultation | Sylvain Magana"
+        },
+        "description": {
+          "fr": "Contactez Sylvain Magana pour une consultation gratuite en IA et automatisation. Rendez-vous en ligne, accompagnement personnalisé, devis sur mesure. Expert freelance à Lyon.",
+          "en": "Contact Sylvain Magana for a free AI and automation consultation. Online appointments, personalized support, custom quotes. Freelance expert in Lyon."
+        }
+      },
+      "hero": {
+        "title": {
+          "fr": "Contact",
+          "en": "Contact"
+        },
+        "subtitle": {
+          "fr": "Prenez contact pour discuter de votre projet",
+          "en": "Get in touch to discuss your project"
+        }
+      }
+    },
+    "about": {
+      "meta": {
+        "title": {
+          "fr": "About Me - Freelance Me | No-Code, AI & Automation Expert",
+          "en": "About Me - Freelance Me | No-Code, AI & Automation Expert"
+        },
+        "description": {
+          "fr": "Discover my journey as a freelancer specializing in no-code, AI, and automation tools. Let's collaborate and innovate.",
+          "en": "Discover my journey as a freelancer specializing in no-code, AI, and automation tools. Let's collaborate and innovate."
+        }
+      },
+      "hero": {
+        "title": {
+          "fr": "À propos",
+          "en": "About"
+        },
+        "subtitle": {
+          "fr": "Découvrez mon parcours et mon expertise",
+          "en": "Discover my journey and expertise"
+        }
+      }
+    },
+    "legal": {
+      "meta": {
+        "title": {
+          "fr": "Mentions Légales",
+          "en": "Legal Notice"
+        },
+        "description": {
+          "fr": "Mentions légales du site Workflow Intelligent.",
+          "en": "Legal notice for Workflow Intelligent website."
+        }
+      }
+    },
+    "terms": {
+      "meta": {
+        "title": {
+          "fr": "Conditions Générales d'Utilisation et de Vente",
+          "en": "Terms and Conditions of Use and Sale"
+        },
+        "description": {
+          "fr": "Conditions générales d'utilisation et de vente.",
+          "en": "Terms and conditions of use and sale."
+        }
+      }
+    }
+  },
+  "language": {
+    "switchTo": {
+      "fr": "Switch to English",
+      "en": "Passer en français"
+    },
+    "currentLanguage": {
+      "fr": "Français",
+      "en": "English"
+    }
+  }
+}
+

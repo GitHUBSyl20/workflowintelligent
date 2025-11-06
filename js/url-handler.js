@@ -25,7 +25,17 @@
         'a-propos.html': 'a-propos',
         'mentions-legales.html': 'mentions-legales',
         'conditions-generales.html': 'conditions-generales',
-        'index.html': ''
+        'index.html': '',
+        // English versions
+        'solutions-ia-entreprise-en.html': 'solutions-ia-entreprise-en',
+        'automatisation-entreprise-en.html': 'automatisation-entreprise-en', 
+        'aides-financement-numerique-en.html': 'aides-financement-numerique-en',
+        'tarifs-prestations-en.html': 'tarifs-prestations-en',
+        'contact-devis-en.html': 'contact-devis-en',
+        'a-propos-en.html': 'a-propos-en',
+        'mentions-legales-en.html': 'mentions-legales-en',
+        'conditions-generales-en.html': 'conditions-generales-en',
+        'index-en.html': 'index-en'
     };
     
     // Fonction pour nettoyer les URLs en production
@@ -43,12 +53,14 @@
                 return;
             }
             
-            // Retirer l'extension .html
+            // Retirer l'extension .html (mais garder -en si présent)
             const cleanHref = href.replace('.html', '');
             
-            // Cas spécial pour index.html -> /
+            // Cas spécial pour index.html et index-en.html
             if (cleanHref === 'index' || cleanHref === './index' || cleanHref === '/index') {
                 link.setAttribute('href', '/');
+            } else if (cleanHref === 'index-en' || cleanHref === './index-en' || cleanHref === '/index-en') {
+                link.setAttribute('href', '/index-en');
             } else {
                 link.setAttribute('href', cleanHref);
             }
@@ -65,7 +77,8 @@
         // Si l'URL contient .html, rediriger vers la version propre
         if (currentPath.includes('.html')) {
             const cleanPath = currentPath.replace('.html', '');
-            const finalPath = cleanPath === '/index' ? '/' : cleanPath;
+            // Gérer index.html mais pas index-en.html
+            const finalPath = (cleanPath === '/index' || cleanPath === 'index') ? '/' : cleanPath;
             
             // Redirection avec history.replaceState pour éviter un rechargement
             history.replaceState(null, null, finalPath + window.location.search + window.location.hash);
