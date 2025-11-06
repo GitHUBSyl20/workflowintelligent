@@ -8,6 +8,7 @@ class CookieConsent {
     this.STORAGE_KEY = 'cookieConsent';
     this.CONSENT_EXPIRY = 365; // days
     this.modal = null;
+    this.languageManager = null;
     this.init();
   }
 
@@ -24,8 +25,88 @@ class CookieConsent {
     if (!this.modal) {
       return;
     }
+    
+    // Wait for language manager to be ready
+    if (window.LanguageManager) {
+      this.languageManager = window.LanguageManager;
+      this.translateModal();
+    } else {
+      document.addEventListener('languageManagerReady', () => {
+        this.languageManager = window.LanguageManager;
+        this.translateModal();
+      });
+    }
+    
     this.bindEvents();
     this.checkConsent();
+  }
+
+  translateModal() {
+    if (!this.languageManager || !this.modal) {
+      return;
+    }
+
+    const lang = this.languageManager.getCurrentLanguage();
+    const t = (key) => this.languageManager.get(`common.cookieConsent.${key}`);
+
+    // Update modal title
+    const title = this.modal.querySelector('.cookie-modal-header h3');
+    if (title) title.textContent = t('title');
+
+    // Update close button aria-label
+    const closeBtn = this.modal.querySelector('.cookie-modal-close');
+    if (closeBtn) closeBtn.setAttribute('aria-label', lang === 'fr' ? 'Fermer' : 'Close');
+
+    // Update description
+    const description = this.modal.querySelector('.cookie-modal-body > p:first-child');
+    if (description) description.textContent = t('description');
+
+    // Update essential cookies
+    const essentialTitle = this.modal.querySelector('.cookie-type:first-child strong');
+    const essentialDesc = this.modal.querySelector('.cookie-type:first-child p');
+    if (essentialTitle) essentialTitle.textContent = t('essentialTitle');
+    if (essentialDesc) essentialDesc.textContent = t('essentialDesc');
+
+    // Update analytics cookies
+    const analyticsTitle = this.modal.querySelector('.cookie-type:nth-child(2) strong');
+    const analyticsDesc = this.modal.querySelector('.cookie-type:nth-child(2) p');
+    if (analyticsTitle) analyticsTitle.textContent = t('analyticsTitle');
+    if (analyticsDesc) analyticsDesc.textContent = t('analyticsDesc');
+
+    // Update legal notice
+    const legalNotice = this.modal.querySelector('.legal-notice');
+    if (legalNotice) {
+      const legalLink = legalNotice.querySelector('a[href*="mentions-legales"]');
+      const termsLink = legalNotice.querySelector('a[href*="conditions-generales"]');
+      
+      legalNotice.innerHTML = t('legalNotice') + ' ';
+      
+      if (legalLink && termsLink) {
+        const newLegalLink = document.createElement('a');
+        newLegalLink.href = legalLink.href;
+        newLegalLink.target = '_blank';
+        newLegalLink.textContent = t('legalLink');
+        
+        const newTermsLink = document.createElement('a');
+        newTermsLink.href = termsLink.href;
+        newTermsLink.target = '_blank';
+        newTermsLink.textContent = t('termsLink');
+        
+        legalNotice.appendChild(newLegalLink);
+        legalNotice.appendChild(document.createTextNode(' ' + (lang === 'fr' ? 'et mes' : 'and my') + ' '));
+        legalNotice.appendChild(newTermsLink);
+        legalNotice.appendChild(document.createTextNode('.'));
+      }
+    }
+
+    // Update buttons
+    const acceptBtn = this.modal.querySelector('.cookie-btn-accept');
+    const essentialBtn = this.modal.querySelector('.cookie-btn-essential');
+    const declineBtn = this.modal.querySelector('.cookie-btn-decline');
+    
+    if (acceptBtn) acceptBtn.textContent = t('acceptAll');
+    if (essentialBtn) essentialBtn.textContent = t('essentialOnly');
+    if (declineBtn) declineBtn.textContent = t('decline');
   }
 
   bindEvents() {
@@ -118,21 +199,30 @@ class CookieConsent {
     const consent = this.storeConsent({ analytics: true, marketing: true });
     this.applyCookieSettings(consent);
     this.hideModal();
-    this.showNotification('Tous les cookies ont été acceptés.');
+    const message = this.languageManager ? 
+      this.languageManager.get('common.cookieConsent.notificationAccepted') :
+      'Tous les cookies ont été acceptés.';
+    this.showNotification(message);
   }
 
   handleEssentialOnly() {
     const consent = this.storeConsent({ analytics: false, marketing: false });
     this.applyCookieSettings(consent);
     this.hideModal();
-    this.showNotification('Seuls les cookies essentiels ont été acceptés.');
+    const message = this.languageManager ?
+      this.languageManager.get('common.cookieConsent.notificationEssential') :
+      'Seuls les cookies essentiels ont été acceptés.';
+    this.showNotification(message);
   }
 
   handleDecline() {
     const consent = this.storeConsent({ analytics: false, marketing: false });
     this.applyCookieSettings(consent);
     this.hideModal();
-    this.showNotification('Les cookies ont été refusés.');
+    const message = this.languageManager ?
+      this.languageManager.get('common.cookieConsent.notificationDeclined') :
+      'Les cookies ont été refusés.';
+    this.showNotification(message);
   }
 
   applyCookieSettings(consent) {
