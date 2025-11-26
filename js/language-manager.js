@@ -27,7 +27,13 @@ class LanguageManager {
    */
   detectLanguageFromUrl() {
     const path = window.location.pathname;
-    const filename = path.split('/').pop();
+    let filename = path.split('/').pop();
+    
+    if (!filename || filename === '/') {
+      // Normalize root path to homepage filename
+      filename = 'index.html';
+      console.debug('[LanguageManager] Empty path detected, defaulting to index.html');
+    }
     
     // Check if filename contains -en
     if (filename.includes('-en.html')) {
@@ -134,7 +140,10 @@ class LanguageManager {
    */
   getAlternatePageUrl() {
     const path = window.location.pathname;
-    const filename = path.split('/').pop();
+    const filenameFromPath = path.split('/').pop();
+    const filename = (!filenameFromPath || filenameFromPath === '/')
+      ? (this.currentLanguage === 'en' ? 'index-en.html' : 'index.html')
+      : filenameFromPath;
     const search = window.location.search;
     const hash = window.location.hash;
 
