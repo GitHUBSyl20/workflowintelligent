@@ -18,17 +18,18 @@
     // Liste des pages avec leurs URLs optimisées
     const urlMappings = {
         'solutions-ia-entreprise.html': 'solutions-ia-entreprise',
-        'automatisation-entreprise.html': 'automatisation-entreprise', 
+        'automatisation-entreprise.html': 'automatisation-entreprise',
         'aides-financement-numerique.html': 'aides-financement-numerique',
         'tarifs-prestations.html': 'tarifs-prestations',
         'contact-devis.html': 'contact-devis',
         'a-propos.html': 'a-propos',
         'mentions-legales.html': 'mentions-legales',
         'conditions-generales.html': 'conditions-generales',
+        'formations-ia.html': 'formations-ia',
         'index.html': '',
         // English versions
         'solutions-ia-entreprise-en.html': 'solutions-ia-entreprise-en',
-        'automatisation-entreprise-en.html': 'automatisation-entreprise-en', 
+        'automatisation-entreprise-en.html': 'automatisation-entreprise-en',
         'aides-financement-numerique-en.html': 'aides-financement-numerique-en',
         'tarifs-prestations-en.html': 'tarifs-prestations-en',
         'contact-devis-en.html': 'contact-devis-en',
@@ -52,18 +53,29 @@
             if (href.startsWith('http') || href.startsWith('mailto:') || href.includes('#')) {
                 return;
             }
-            
-            // Retirer l'extension .html (mais garder -en si présent)
-            const cleanHref = href.replace('.html', '');
-            
-            // Cas spécial pour index.html et index-en.html
-            if (cleanHref === 'index' || cleanHref === './index' || cleanHref === '/index') {
-                link.setAttribute('href', '/');
-            } else if (cleanHref === 'index-en' || cleanHref === './index-en' || cleanHref === '/index-en') {
-                link.setAttribute('href', '/index-en');
-            } else {
-                link.setAttribute('href', cleanHref);
+
+            // Normaliser la clé de mapping (retire le / initial si présent)
+            const mappingKey = href.replace(/^\//, '');
+            const mapped = urlMappings[mappingKey];
+
+            // Si un mapping existe, l'utiliser pour générer une URL propre
+            if (typeof mapped !== 'undefined') {
+                const normalized = mapped === '' ? '/' : `/${mapped}`;
+                link.setAttribute('href', normalized);
+                return;
             }
+
+            // Retirer l'extension .html (mais garder -en si présent) puis forcer une URL absolue
+            let cleanHref = href.replace('.html', '');
+            if (cleanHref === 'index' || cleanHref === './index' || cleanHref === '/index') {
+                cleanHref = '/';
+            } else if (cleanHref === 'index-en' || cleanHref === './index-en' || cleanHref === '/index-en') {
+                cleanHref = '/index-en';
+            } else if (!cleanHref.startsWith('/')) {
+                cleanHref = `/${cleanHref}`;
+            }
+
+            link.setAttribute('href', cleanHref);
         });
         
     }
@@ -93,21 +105,32 @@
     });
     
     // Observer pour les contenus chargés dynamiquement
-    const observer = new MutationObserver(function(mutations) {
-        if (isProduction) {
+    function startObserver() {
+        const target = document.body;
+        if (!isProduction || !target) {
+            if (!target) {
+                console.warn('[url-handler] body not ready, skipping observer init');
+            }
+            return;
+        }
+        const observer = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
                 if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
                     // Re-nettoyer les nouveaux liens ajoutés
                     setTimeout(cleanUrls, 100);
                 }
             });
-        }
-    });
+        });
+        observer.observe(target, {
+            childList: true,
+            subtree: true
+        });
+    }
     
-    // Démarrer l'observation
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', startObserver);
+    } else {
+        startObserver();
+    }
     
 })(); 

@@ -100,6 +100,10 @@
     {
       "source": "/conditions-generales",
       "destination": "/conditions-generales.html"
+    },
+    {
+      "source": "/formations-ia",
+      "destination": "/formations-ia.html"
     }
   ]
-} 
+}
