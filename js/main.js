@@ -102,21 +102,30 @@ $(function() {
 
   // GSAP animation for feature cards
   if (window.gsap && document.querySelector('.feature-card')) {
+    // Register ScrollTrigger if available
     if (window.gsap.registerPlugin && window.ScrollTrigger) {
       window.gsap.registerPlugin(window.ScrollTrigger);
     }
-    gsap.to('.feature-card', {
+    
+    // Build animation config
+    const animationConfig = {
       opacity: 1,
       y: 0,
       duration: 0.8,
       stagger: 0.18,
-      ease: 'power2.out',
-      scrollTrigger: {
+      ease: 'power2.out'
+    };
+    
+    // Only add scrollTrigger if the plugin is available
+    if (window.ScrollTrigger) {
+      animationConfig.scrollTrigger = {
         trigger: '.feature-cards-section',
         start: 'top 80%',
         once: true
-      }
-    });
+      };
+    }
+    
+    gsap.to('.feature-card', animationConfig);
   }
 
   // GSAP horizontal scroll for about page orange section carousel
