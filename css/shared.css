@@ -7014,6 +7014,7 @@ textarea.w-input, textarea.w-select {
   inset: 0% auto auto 0%;
 }
 
+/* Legacy nav-logo - overridden by .main-navbar .nav-logo */
 .nav-logo {
   grid-column-gap: .5rem;
   grid-row-gap: .5rem;
@@ -7027,6 +7028,16 @@ textarea.w-input, textarea.w-select {
 
 .nav-logo:hover {
   color: color-mix(in srgb, currentColor 80%, transparent);
+}
+
+/* Force override for main-navbar nav-logo to ensure consistency */
+.main-navbar .nav-logo {
+  font-family: var(--font-main, 'Lato', sans-serif) !important;
+  font-weight: 700 !important;
+  font-size: 1.3rem !important;
+  color: #FF4B1F !important;
+  letter-spacing: 0.03em !important;
+  line-height: 1.2 !important;
 }
 
 .nav-wrapper {

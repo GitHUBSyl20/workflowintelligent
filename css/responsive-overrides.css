@@ -341,15 +341,16 @@ html, body, .section, .container, .scroll-cards-container {
   transition: box-shadow 0.3s cubic-bezier(.4,0,.2,1), background 0.3s cubic-bezier(.4,0,.2,1);
 }
 .main-navbar .nav-logo {
-  display: flex;
-  align-items: center;
-  font-weight: 700;
-  font-size: 1.3rem;
-  color: #FF4B1F;
-  text-decoration: none;
-  gap: 0.7rem;
-  letter-spacing: 0.03em;
-  transition: color 0.2s;
+  display: flex !important;
+  align-items: center !important;
+  font-weight: 700 !important;
+  font-size: 1.3rem !important;
+  color: #FF4B1F !important;
+  text-decoration: none !important;
+  gap: 0.7rem !important;
+  letter-spacing: 0.03em !important;
+  transition: color 0.2s !important;
+  font-family: var(--font-main, 'Lato', sans-serif) !important;
 }
 .main-navbar .nav-logo svg {
   width: 2.2rem;

@@ -56,6 +56,12 @@
 .accordion-trigger h4 {
   transition: color 0.3s ease;
   margin: 0;
+  /* Override all h4 global styles to match .accordion-trigger */
+  font-size: 1.1rem !important; /* Match .accordion-trigger font-size */
+  font-weight: 500 !important; /* Match .accordion-trigger font-weight */
+  font-family: inherit !important; /* Inherit from .accordion-trigger, not h4 variables */
+  line-height: 1.2 !important; /* Consistent line-height */
+  letter-spacing: normal !important; /* Reset letter-spacing from h4 variables */
 }
 
 .accordion-trigger.active h4 {
@@ -107,6 +113,36 @@
 @media (min-width: 768px) {
   .portfolio-text p, .portfolio-text li, .portfolio-text ul {
     font-size: 1.1rem; /* Slightly larger font size for desktop */
+  }
+  
+  /* Ensure accordion titles remain consistent on desktop */
+  .accordion-trigger h4 {
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+  }
+}
+
+/* Override h4 styles in tablet breakpoint */
+@media screen and (max-width: 991px) {
+  .accordion-trigger h4 {
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+  }
+}
+
+/* Override h4 styles in mobile breakpoint */
+@media screen and (max-width: 767px) {
+  .accordion-trigger h4 {
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+  }
+}
+
+/* Override h4 styles in small mobile breakpoint */
+@media screen and (max-width: 479px) {
+  .accordion-trigger h4 {
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
   }
 }
 
