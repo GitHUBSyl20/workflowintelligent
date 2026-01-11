@@ -180,10 +180,21 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
   align-items: center;
   width: 2.2em;
   height: 2.2em;
+  min-width: 44px; /* Taille minimale pour le tactile (accessibilité) */
+  min-height: 44px; /* Taille minimale pour le tactile */
   background: none; /* No background on the button itself */
   border: none;
   cursor: pointer;
   transition: transform 0.3s; /* Transition for button rotation */
+  /* Améliorations pour le tactile */
+  touch-action: manipulation; /* Évite le délai de double-tap */
+  -webkit-tap-highlight-color: rgba(255, 75, 31, 0.3); /* Feedback visuel au tap */
+  user-select: none; /* Empêche la sélection de texte */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  pointer-events: auto; /* Assure que les événements fonctionnent */
+  outline: none; /* Enlève l'outline par défaut */
 }
 
 .nav-hamburger.active {
@@ -201,6 +212,10 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
   transition: all 0.3s cubic-bezier(0.4,0,0.2,1); /* Transition for bar transformation */
   position: relative;
   opacity: 1;
+  pointer-events: none; /* Les spans ne doivent pas intercepter les événements */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
 }
 
 .nav-hamburger.active span:nth-child(1) {
@@ -428,10 +443,20 @@ input, textarea, select {
     align-items: center;
     width: 2.2em;
     height: 2.2em;
+    min-width: 44px !important; /* Taille minimale pour le tactile */
+    min-height: 44px !important; /* Taille minimale pour le tactile */
     background: none; /* No background on the button itself */
     border: none;
     cursor: pointer;
     transition: transform 0.3s; /* Transition for button rotation */
+    /* Améliorations tactiles pour mobile */
+    touch-action: manipulation !important; /* Évite le délai de double-tap */
+    -webkit-tap-highlight-color: rgba(255, 75, 31, 0.3) !important; /* Feedback visuel */
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    pointer-events: auto !important; /* Assure que les événements fonctionnent */
+    outline: none !important;
   }
   
   .main-navbar .nav-hamburger.active {
@@ -449,6 +474,10 @@ input, textarea, select {
     transition: all 0.3s cubic-bezier(0.4,0,0.2,1); /* Transition for bar transformation */
     position: relative;
     opacity: 1;
+    pointer-events: none !important; /* Les spans ne doivent pas intercepter les événements */
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
   }
   
   .main-navbar .nav-hamburger.active span:nth-child(1) {

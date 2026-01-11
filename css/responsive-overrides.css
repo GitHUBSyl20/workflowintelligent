@@ -203,13 +203,15 @@ html, body, .section, .container, .scroll-cards-container {
     flex-direction: column !important; /* Stack items vertically */
     width: 100% !important; /* Ensure tab menu itself is full width */
     align-items: stretch !important; /* Make items take full width */
+    gap: 1rem !important; /* Espacement propre entre les onglets */
   }
   .w-tab-menu .w-tab-link { /* Targeting .w-tab-link inside .w-tab-menu */
     width: 100% !important; /* Ensure each tab link takes full width */
     box-sizing: border-box !important; /* Include padding and border in the element's total width and height */
     margin-right: 0 !important; /* Remove any right margin */
     margin-left: 0 !important; /* Remove any left margin */
-    margin-bottom: -2rem !important; /* Further reduced space between stacked tabs */
+    margin-bottom: 0 !important; /* Pas de margin-bottom négatif - utiliser gap du parent */
+    margin-top: 0 !important; /* Pas de margin-top négatif */
     padding: 0.8em 1em !important; /* Adjust padding as needed */
     text-align: center !important; /* Center the text within the tab */
     white-space: normal !important; /* Ensure text wraps */
@@ -218,9 +220,15 @@ html, body, .section, .container, .scroll-cards-container {
       white-space: normal !important; /* Ensure text wraps in h4 */
       word-break: break-word !important; /* Help with long words */
       font-size: clamp(1rem, 2.5vw, 1.2rem); 
+      margin: 0 !important; /* Pas de margin sur le h4 */
   }
   .w-tab-menu .w-tab-link:last-child {
     margin-bottom: 0 !important; /* No margin for the last tab */
+  }
+  
+  /* Corriger le margin négatif de accordion-title-mobile-margin pour les onglets */
+  .w-tab-menu .w-tab-link.accordion-title-mobile-margin {
+    margin-top: 0 !important; /* Annuler le margin-top négatif sur les onglets */
   }
 
   /* If there is a parent adding space, target it too */
