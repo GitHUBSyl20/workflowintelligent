@@ -403,6 +403,198 @@
       <div class="divider utility-margin-top-1rem"></div>
     </div>
   </footer>
+
+  <!-- Debug Panel Script -->
+  <script>
+// ============================================
+// DEBUGGING: Visual Debug Panel - ULTRA ROBUST
+// ============================================
+(function() {
+  'use strict';
+  
+  // IMMEDIATE VISUAL INDICATOR - Shows script is running
+  function createImmediateIndicator() {
+    const indicator = document.createElement('div');
+    indicator.id = 'debug-indicator';
+    indicator.style.cssText = 'position: fixed; top: 10px; right: 10px; ' +
+      'background: #ff0000; color: #fff; padding: 8px 12px; ' +
+      'border-radius: 5px; z-index: 999999; font-family: Arial; ' +
+      'font-size: 12px; font-weight: bold; box-shadow: 0 2px 10px rgba(0,0,0,0.5);';
+    indicator.textContent = '🔴 DEBUG ACTIF';
+    
+    // Try multiple methods to append
+    function tryAppend() {
+      if (document.body) {
+        document.body.appendChild(indicator);
+        return true;
+      } else if (document.documentElement) {
+        document.documentElement.appendChild(indicator);
+        return true;
+      }
+      return false;
+    }
+    
+    if (!tryAppend()) {
+      // Retry when DOM is ready
+      const checkInterval = setInterval(function() {
+        if (tryAppend()) {
+          clearInterval(checkInterval);
+        }
+      }, 50);
+      
+      // Also try on DOMContentLoaded
+      if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', function() {
+          tryAppend();
+          clearInterval(checkInterval);
+        });
+      }
+    }
+    
+    return indicator;
+  }
+  
+  // Create indicator immediately
+  createImmediateIndicator();
+  
+  // Debug logs storage
+  let debugLogs = [];
+  const MAX_LOGS = 30;
+  let debugPanel = null;
+  let panelCreated = false;
+  
+  // Function to create debug panel
+  function createDebugPanel() {
+    if (panelCreated) return;
+    
+    debugPanel = document.createElement('div');
+    debugPanel.id = 'menu-debug-panel';
+    debugPanel.style.cssText = 'position: fixed; bottom: 10px; left: 10px; right: 10px; ' +
+      'background: rgba(0, 0, 0, 0.95); color: #0f0; ' +
+      'font-family: monospace; font-size: 11px; ' +
+      'padding: 10px; border-radius: 5px; ' +
+      'z-index: 99999; max-height: 300px; overflow-y: auto; ' +
+      'border: 2px solid #0f0; box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);';
+    
+    debugPanel.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+        <strong style="color: #0f0;">🔍 MENU DEBUG</strong>
+        <button id="debug-toggle" style="background: #0f0; color: #000; border: none; 
+                padding: 5px 10px; border-radius: 3px; cursor: pointer; font-weight: bold;">
+          Masquer
+        </button>
+      </div>
+      <div id="debug-content" style="max-height: 250px; overflow-y: auto;"></div>
+    `;
+    
+    // Try multiple methods to append panel
+    function tryAppendPanel() {
+      if (document.body) {
+        document.body.appendChild(debugPanel);
+        panelCreated = true;
+        return true;
+      } else if (document.documentElement) {
+        document.documentElement.appendChild(debugPanel);
+        panelCreated = true;
+        return true;
+      }
+      return false;
+    }
+    
+    if (!tryAppendPanel()) {
+      // Retry periodically
+      const checkInterval = setInterval(function() {
+        if (tryAppendPanel()) {
+          clearInterval(checkInterval);
+          updateDebugContent();
+        }
+      }, 100);
+      
+      // Also try on DOMContentLoaded
+      if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', function() {
+          tryAppendPanel();
+          updateDebugContent();
+          clearInterval(checkInterval);
+        });
+      }
+    } else {
+      updateDebugContent();
+    }
+    
+    // Setup toggle button
+    setTimeout(function() {
+      const toggleBtn = document.getElementById('debug-toggle');
+      const content = document.getElementById('debug-content');
+      if (toggleBtn && content) {
+        let isVisible = true;
+        toggleBtn.addEventListener('click', function() {
+          isVisible = !isVisible;
+          content.style.display = isVisible ? 'block' : 'none';
+          toggleBtn.textContent = isVisible ? 'Masquer' : 'Afficher';
+        });
+      }
+    }, 200);
+  }
+  
+  // Update debug content
+  function updateDebugContent() {
+    const content = document.getElementById('debug-content');
+    if (content && debugLogs.length > 0) {
+      content.innerHTML = debugLogs.map(log => 
+        `<div style="margin-bottom: 5px; padding: 3px; border-bottom: 1px solid #333; white-space: pre-wrap; word-break: break-word;">${log}</div>`
+      ).join('');
+      content.scrollTop = content.scrollHeight;
+    }
+  }
+  
+  // Add debug log function
+  function addDebugLog(message, data) {
+    const timestamp = new Date().toLocaleTimeString();
+    let logText = `[${timestamp}] ${message}`;
+    
+    if (data) {
+      try {
+        logText += '\n' + JSON.stringify(data, null, 2);
+      } catch (e) {
+        logText += '\n' + String(data);
+      }
+    }
+    
+    console.log('[MENU DEBUG]', message, data || '');
+    
+    debugLogs.push(logText);
+    if (debugLogs.length > MAX_LOGS) {
+      debugLogs.shift();
+    }
+    
+    // Try to create panel if not created
+    if (!panelCreated) {
+      createDebugPanel();
+    }
+    
+    // Update content
+    updateDebugContent();
+  }
+  
+  // Make addDebugLog globally available immediately
+  window.addDebugLog = addDebugLog;
+  
+  // Try to create panel immediately
+  createDebugPanel();
+  
+  // Also try after a short delay
+  setTimeout(createDebugPanel, 100);
+  setTimeout(createDebugPanel, 500);
+  
+  // Log that debug system is initialized
+  addDebugLog('Debug system initialized', {
+    readyState: document.readyState,
+    bodyExists: !!document.body,
+    documentElementExists: !!document.documentElement
+  });
+})();
+  </script>
 </body>
 
 </html>
