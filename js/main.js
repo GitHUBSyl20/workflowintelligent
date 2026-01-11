@@ -280,19 +280,101 @@ document.addEventListener('DOMContentLoaded', function() {
   const navLinks = document.querySelector('.main-nav-links');
 
   if (hamburger && navLinks) {
-    hamburger.addEventListener('click', function() {
+    // Fonction pour toggle le menu
+    function toggleMenu(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      
       hamburger.classList.toggle('active');
       navLinks.classList.toggle('open');
       document.body.classList.toggle('menu-open');
-    });
-    // Close menu when a link is clicked (mobile UX)
+      
+      // Mettre à jour aria-expanded si présent
+      if (hamburger.hasAttribute('aria-expanded')) {
+        const isOpen = navLinks.classList.contains('open');
+        hamburger.setAttribute('aria-expanded', isOpen);
+      }
+    }
+    
+    // Gérer le click (desktop)
+    hamburger.addEventListener('click', toggleMenu);
+    
+    // Gérer le tactile (mobile - Firefox Focus, Android)
+    let touchStartTime = 0;
+    let touchStartPos = { x: 0, y: 0 };
+    
+    hamburger.addEventListener('touchstart', function(e) {
+      touchStartTime = Date.now();
+      const touch = e.touches[0];
+      touchStartPos = { x: touch.clientX, y: touch.clientY };
+    }, { passive: true });
+    
+    hamburger.addEventListener('touchend', function(e) {
+      const touchDuration = Date.now() - touchStartTime;
+      const touch = e.changedTouches[0];
+      const touchEndPos = { x: touch.clientX, y: touch.clientY };
+      const touchDistance = Math.sqrt(
+        Math.pow(touchEndPos.x - touchStartPos.x, 2) + 
+        Math.pow(touchEndPos.y - touchStartPos.y, 2)
+      );
+      
+      // Si le touch est rapide (< 300ms) et court (< 10px), c'est un tap, pas un swipe
+      if (touchDuration < 300 && touchDistance < 10) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMenu(e);
+      }
+    }, { passive: false });
+    
+    // Fermer le menu quand on clique sur un lien
     navLinks.querySelectorAll('.main-nav-link').forEach(link => {
-      link.addEventListener('click', function() {
+      function closeMenu() {
         hamburger.classList.remove('active');
         navLinks.classList.remove('open');
         document.body.classList.remove('menu-open');
+        if (hamburger.hasAttribute('aria-expanded')) {
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      }
+      
+      // Utiliser uniquement 'click' pour fermer le menu
+      // Le click se déclenche après touchend sur mobile, donc la navigation fonctionnera
+      link.addEventListener('click', function(e) {
+        // Fermer le menu après un petit délai pour laisser la navigation commencer
+        setTimeout(closeMenu, 100);
+        // Ne pas empêcher la navigation - laisser le clic se propager normalement
       });
     });
+    
+    // Fermer le menu si on clique/touche en dehors (sur mobile aussi)
+    function closeMenuOnOutside(e) {
+      const target = e.target;
+      const isLink = target.closest('.main-nav-link');
+      const isHamburger = hamburger.contains(target);
+      const isNavLinks = navLinks.contains(target);
+      
+      if (navLinks.classList.contains('open')) {
+        // Ne pas fermer si on clique sur un lien (le lien doit naviguer)
+        if (isLink) {
+          return;
+        }
+        
+        if (!isHamburger && !isNavLinks) {
+          hamburger.classList.remove('active');
+          navLinks.classList.remove('open');
+          document.body.classList.remove('menu-open');
+          if (hamburger.hasAttribute('aria-expanded')) {
+            hamburger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      }
+    }
+    
+    // Utiliser uniquement 'click' pour fermer le menu en dehors
+    // touchstart peut intercepter les touches sur les liens
+    document.addEventListener('click', closeMenuOnOutside);
   }
 
   // Active link highlighting
