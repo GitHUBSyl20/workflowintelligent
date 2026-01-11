@@ -274,63 +274,312 @@ $(document).ready(function(){
   });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Hamburger menu toggle
-  const hamburger = document.querySelector('.nav-hamburger');
-  const navLinks = document.querySelector('.main-nav-links');
-
-  if (hamburger && navLinks) {
-    // Fonction pour toggle le menu
-    function toggleMenu(e) {
-      if (e) {
-        e.preventDefault();
-        e.stopPropagation();
+// ============================================
+// DEBUGGING: Visual Debug Panel - IMMEDIATE
+// ============================================
+(function() {
+  // Create debug panel immediately (before DOMContentLoaded)
+  const debugPanel = document.createElement('div');
+  debugPanel.id = 'menu-debug-panel';
+  debugPanel.style.cssText = 'position: fixed; bottom: 10px; left: 10px; right: 10px; ' +
+    'background: rgba(0, 0, 0, 0.95); color: #0f0; ' +
+    'font-family: monospace; font-size: 11px; ' +
+    'padding: 10px; border-radius: 5px; ' +
+    'z-index: 99999; max-height: 300px; overflow-y: auto; ' +
+    'border: 2px solid #0f0; box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);';
+  
+  debugPanel.innerHTML = `
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+      <strong style="color: #0f0;">🔍 MENU DEBUG</strong>
+      <button id="debug-toggle" style="background: #0f0; color: #000; border: none; 
+              padding: 5px 10px; border-radius: 3px; cursor: pointer; font-weight: bold;">
+        Masquer
+      </button>
+    </div>
+    <div id="debug-content" style="max-height: 250px; overflow-y: auto;"></div>
+  `;
+  
+  // Append immediately if body exists, otherwise wait
+  if (document.body) {
+    document.body.appendChild(debugPanel);
+  } else {
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.appendChild(debugPanel);
+    });
+  }
+  
+  let debugLogs = [];
+  const MAX_LOGS = 30;
+  
+  function addDebugLog(message, data) {
+    const timestamp = new Date().toLocaleTimeString();
+    let logText = `[${timestamp}] ${message}`;
+    
+    if (data) {
+      try {
+        logText += '\n' + JSON.stringify(data, null, 2);
+      } catch (e) {
+        logText += '\n' + String(data);
       }
+    }
+    
+    console.log('[MENU DEBUG]', message, data || '');
+    
+    debugLogs.push(logText);
+    if (debugLogs.length > MAX_LOGS) {
+      debugLogs.shift();
+    }
+    
+    const content = document.getElementById('debug-content');
+    if (content) {
+      content.innerHTML = debugLogs.map(log => 
+        `<div style="margin-bottom: 5px; padding: 3px; border-bottom: 1px solid #333; white-space: pre-wrap; word-break: break-word;">${log}</div>`
+      ).join('');
+      content.scrollTop = content.scrollHeight;
+    }
+  }
+  
+  // Make addDebugLog globally available
+  window.addDebugLog = addDebugLog;
+  
+  // Toggle button
+  setTimeout(function() {
+    const toggleBtn = document.getElementById('debug-toggle');
+    const content = document.getElementById('debug-content');
+    if (toggleBtn && content) {
+      let isVisible = true;
+      toggleBtn.addEventListener('click', function() {
+        isVisible = !isVisible;
+        content.style.display = isVisible ? 'block' : 'none';
+        toggleBtn.textContent = isVisible ? 'Masquer' : 'Afficher';
+      });
+    }
+  }, 100);
+  
+  addDebugLog('Debug panel created');
+})();
+
+// Hamburger menu - ULTRA ROBUST VERSION
+(function initMenu() {
+  function waitForElements() {
+    const hamburger = document.querySelector('.nav-hamburger');
+    const navLinks = document.querySelector('.main-nav-links');
+    
+    if (window.addDebugLog) {
+      window.addDebugLog('Checking for elements', {
+        hamburger: !!hamburger,
+        navLinks: !!navLinks,
+        hamburgerClasses: hamburger ? hamburger.className : 'N/A',
+        navLinksClasses: navLinks ? navLinks.className : 'N/A'
+      });
+    }
+    
+    if (!hamburger || !navLinks) {
+      if (window.addDebugLog) {
+        window.addDebugLog('Elements not found, retrying...');
+      }
+      setTimeout(waitForElements, 100);
+      return;
+    }
+    
+    if (window.addDebugLog) {
+      window.addDebugLog('Elements found! Initializing menu...');
+    }
+    
+    // Track state
+    let isMenuOpen = false;
+    let lastInteraction = 0;
+    let touchStartTime = 0;
+    let touchStartPos = { x: 0, y: 0 };
+    let touchHandled = false;
+    
+    // Simple toggle function
+    function toggleMenu(source) {
+      const now = Date.now();
+      const timeSinceLast = now - lastInteraction;
+      
+      if (window.addDebugLog) {
+        window.addDebugLog(`toggleMenu called from: ${source}`, {
+          timeSinceLast: timeSinceLast + 'ms',
+          currentState: isMenuOpen ? 'OPEN' : 'CLOSED'
+        });
+      }
+      
+      isMenuOpen = !isMenuOpen;
+      lastInteraction = now;
       
       hamburger.classList.toggle('active');
       navLinks.classList.toggle('open');
       document.body.classList.toggle('menu-open');
       
-      // Mettre à jour aria-expanded si présent
+      if (window.addDebugLog) {
+        window.addDebugLog('Menu toggled', {
+          newState: isMenuOpen ? 'OPEN' : 'CLOSED',
+          hamburgerActive: hamburger.classList.contains('active'),
+          navLinksOpen: navLinks.classList.contains('open')
+        });
+      }
+      
       if (hamburger.hasAttribute('aria-expanded')) {
-        const isOpen = navLinks.classList.contains('open');
-        hamburger.setAttribute('aria-expanded', isOpen);
+        hamburger.setAttribute('aria-expanded', isMenuOpen);
       }
     }
     
-    // Gérer le click (desktop)
-    hamburger.addEventListener('click', toggleMenu);
+    // Try MULTIPLE event types to catch everything
+    function handleInteraction(e, source) {
+      if (window.addDebugLog) {
+        window.addDebugLog(`${source} event fired`, {
+          type: e.type,
+          target: e.target.tagName,
+          defaultPrevented: e.defaultPrevented,
+          isTrusted: e.isTrusted
+        });
+      }
+      
+      // Prevent double-trigger
+      const now = Date.now();
+      if (now - lastInteraction < 300) {
+        if (window.addDebugLog) {
+          window.addDebugLog(`${source} blocked - too soon after last interaction`);
+        }
+        if (e.preventDefault) e.preventDefault();
+        if (e.stopPropagation) e.stopPropagation();
+        return;
+      }
+      
+      if (e.preventDefault) e.preventDefault();
+      if (e.stopPropagation) e.stopPropagation();
+      
+      toggleMenu(source);
+    }
     
-    // Gérer le tactile (mobile - Firefox Focus, Android)
-    let touchStartTime = 0;
-    let touchStartPos = { x: 0, y: 0 };
-    
+    // Touch events
     hamburger.addEventListener('touchstart', function(e) {
       touchStartTime = Date.now();
       const touch = e.touches[0];
       touchStartPos = { x: touch.clientX, y: touch.clientY };
-    }, { passive: true });
+      touchHandled = false;
+      
+      if (window.addDebugLog) {
+        window.addDebugLog('TOUCHSTART', {
+          pos: touchStartPos,
+          timestamp: touchStartTime
+        });
+      }
+    }, { passive: true, capture: true });
     
     hamburger.addEventListener('touchend', function(e) {
       const touchDuration = Date.now() - touchStartTime;
       const touch = e.changedTouches[0];
       const touchEndPos = { x: touch.clientX, y: touch.clientY };
-      const touchDistance = Math.sqrt(
+      const distance = Math.sqrt(
         Math.pow(touchEndPos.x - touchStartPos.x, 2) + 
         Math.pow(touchEndPos.y - touchStartPos.y, 2)
       );
       
-      // Si le touch est rapide (< 300ms) et court (< 10px), c'est un tap, pas un swipe
-      if (touchDuration < 300 && touchDistance < 10) {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleMenu(e);
+      if (window.addDebugLog) {
+        window.addDebugLog('TOUCHEND', {
+          duration: touchDuration + 'ms',
+          distance: distance.toFixed(2) + 'px',
+          meetsCriteria: touchDuration < 500 && distance < 20
+        });
       }
-    }, { passive: false });
+      
+      // More lenient criteria for Firefox Focus
+      if (touchDuration < 500 && distance < 20) {
+        if (window.addDebugLog) {
+          window.addDebugLog('TOUCHEND: Criteria met, toggling menu');
+        }
+        try {
+          if (e.preventDefault) e.preventDefault();
+          if (e.stopPropagation) e.stopPropagation();
+        } catch (err) {
+          if (window.addDebugLog) {
+            window.addDebugLog('TOUCHEND: Error preventing default', err.message);
+          }
+        }
+        touchHandled = true;
+        toggleMenu('TOUCHEND');
+        
+        // Block click event for a short time
+        setTimeout(function() {
+          touchHandled = false;
+        }, 500);
+      }
+    }, { passive: false, capture: true });
     
-    // Fermer le menu quand on clique sur un lien
-    navLinks.querySelectorAll('.main-nav-link').forEach(link => {
-      function closeMenu() {
+    // Click event (with protection against double-trigger)
+    hamburger.addEventListener('click', function(e) {
+      if (window.addDebugLog) {
+        window.addDebugLog('CLICK event', {
+          touchHandled: touchHandled,
+          timeSinceLast: Date.now() - lastInteraction + 'ms'
+        });
+      }
+      
+      // If touch was just handled, ignore click
+      if (touchHandled && (Date.now() - lastInteraction) < 600) {
+        if (window.addDebugLog) {
+          window.addDebugLog('CLICK blocked - touch was just handled');
+        }
+        if (e.preventDefault) e.preventDefault();
+        if (e.stopPropagation) e.stopPropagation();
+        return;
+      }
+      
+      handleInteraction(e, 'CLICK');
+    }, { capture: true });
+    
+    // Also try mousedown (some browsers use this)
+    hamburger.addEventListener('mousedown', function(e) {
+      if (window.addDebugLog) {
+        window.addDebugLog('MOUSEDOWN event');
+      }
+      // Don't toggle on mousedown, just log
+    }, { capture: true });
+    
+    // Pointer events (modern browsers)
+    if (hamburger.addEventListener) {
+      hamburger.addEventListener('pointerdown', function(e) {
+        if (window.addDebugLog) {
+          window.addDebugLog('POINTERDOWN event', { pointerType: e.pointerType });
+        }
+        if (e.pointerType === 'touch') {
+          handleInteraction(e, 'POINTERDOWN-TOUCH');
+        }
+      }, { capture: true });
+    }
+    
+    // Close menu on link click
+    navLinks.querySelectorAll('.main-nav-link').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        if (window.addDebugLog) {
+          window.addDebugLog('Link clicked', link.href);
+        }
+        setTimeout(function() {
+          isMenuOpen = false;
+          hamburger.classList.remove('active');
+          navLinks.classList.remove('open');
+          document.body.classList.remove('menu-open');
+          if (hamburger.hasAttribute('aria-expanded')) {
+            hamburger.setAttribute('aria-expanded', 'false');
+          }
+        }, 100);
+      });
+    });
+    
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+      const target = e.target;
+      const isLink = target.closest('.main-nav-link');
+      const isHamburger = hamburger.contains(target);
+      const isNavLinks = navLinks.contains(target);
+      
+      if (isMenuOpen && !isLink && !isHamburger && !isNavLinks) {
+        if (window.addDebugLog) {
+          window.addDebugLog('Closing menu - clicked outside');
+        }
+        isMenuOpen = false;
         hamburger.classList.remove('active');
         navLinks.classList.remove('open');
         document.body.classList.remove('menu-open');
@@ -338,46 +587,23 @@ document.addEventListener('DOMContentLoaded', function() {
           hamburger.setAttribute('aria-expanded', 'false');
         }
       }
-      
-      // Utiliser uniquement 'click' pour fermer le menu
-      // Le click se déclenche après touchend sur mobile, donc la navigation fonctionnera
-      link.addEventListener('click', function(e) {
-        // Fermer le menu après un petit délai pour laisser la navigation commencer
-        setTimeout(closeMenu, 100);
-        // Ne pas empêcher la navigation - laisser le clic se propager normalement
-      });
     });
     
-    // Fermer le menu si on clique/touche en dehors (sur mobile aussi)
-    function closeMenuOnOutside(e) {
-      const target = e.target;
-      const isLink = target.closest('.main-nav-link');
-      const isHamburger = hamburger.contains(target);
-      const isNavLinks = navLinks.contains(target);
-      
-      if (navLinks.classList.contains('open')) {
-        // Ne pas fermer si on clique sur un lien (le lien doit naviguer)
-        if (isLink) {
-          return;
-        }
-        
-        if (!isHamburger && !isNavLinks) {
-          hamburger.classList.remove('active');
-          navLinks.classList.remove('open');
-          document.body.classList.remove('menu-open');
-          if (hamburger.hasAttribute('aria-expanded')) {
-            hamburger.setAttribute('aria-expanded', 'false');
-          }
-        }
-      }
+    if (window.addDebugLog) {
+      window.addDebugLog('All event listeners attached successfully!');
     }
-    
-    // Utiliser uniquement 'click' pour fermer le menu en dehors
-    // touchstart peut intercepter les touches sur les liens
-    document.addEventListener('click', closeMenuOnOutside);
   }
+  
+  // Start checking
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', waitForElements);
+  } else {
+    waitForElements();
+  }
+})();
 
-  // Active link highlighting
+// Active link highlighting
+document.addEventListener('DOMContentLoaded', function() {
   const links = document.querySelectorAll('.main-nav-link');
   const currentPath = window.location.pathname;
   const currentPage = currentPath.split('/').pop() || 'index.html';
