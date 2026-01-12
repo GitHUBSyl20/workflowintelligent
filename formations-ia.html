@@ -221,6 +221,36 @@
   <script src="js/custom.js"></script>
   <script src="js/url-handler.js"></script>
   <script src="js/language-switcher.js" defer></script>
+  
+  <!-- Test direct du hamburger menu -->
+  <script>
+  // Test direct pour vérifier si le hamburger fonctionne
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      const hamburger = document.querySelector('.nav-hamburger');
+      if (hamburger && window.addDebugLog) {
+        window.addDebugLog('TEST DIRECT: Hamburger element found', {
+          element: hamburger,
+          classes: hamburger.className,
+          computedStyle: window.getComputedStyle(hamburger).display
+        });
+        
+        // Test simple d'événement
+        hamburger.addEventListener('click', function(e) {
+          if (window.addDebugLog) {
+            window.addDebugLog('TEST DIRECT: Click event received!', {
+              target: e.target,
+              currentTarget: e.currentTarget
+            });
+          }
+          alert('Hamburger clicked! (Test direct)');
+        });
+      } else if (!hamburger && window.addDebugLog) {
+        window.addDebugLog('TEST DIRECT: Hamburger NOT found!');
+      }
+    }, 1000);
+  });
+  </script>
 
   <!-- Schema.org markup for IA trainings -->
   <script type="application/ld+json">
