@@ -437,20 +437,25 @@ $(document).ready(function(){
     
     // Try MULTIPLE event types to catch everything
     function handleInteraction(e, source) {
+      const now = Date.now();
+      const timeSinceLast = now - lastInteraction;
+      const minTimeBetweenInteractions = 100; // Reduced from 300ms to be less aggressive
+      
       if (window.addDebugLog) {
-        window.addDebugLog(`${source} event fired`, {
+        window.addDebugLog(`🎯 handleInteraction called from ${source}`, {
           type: e.type,
           target: e.target.tagName,
           defaultPrevented: e.defaultPrevented,
-          isTrusted: e.isTrusted
+          isTrusted: e.isTrusted,
+          timeSinceLast: timeSinceLast + 'ms',
+          willBeBlocked: timeSinceLast < minTimeBetweenInteractions
         });
       }
       
-      // Prevent double-trigger
-      const now = Date.now();
-      if (now - lastInteraction < 300) {
+      // Prevent double-trigger - REDUCED from 300ms to 100ms
+      if (timeSinceLast < minTimeBetweenInteractions) {
         if (window.addDebugLog) {
-          window.addDebugLog(`${source} blocked - too soon after last interaction`);
+          window.addDebugLog(`🚫 ${source} blocked - too soon after last interaction (${timeSinceLast}ms < ${minTimeBetweenInteractions}ms)`);
         }
         if (e.preventDefault) e.preventDefault();
         if (e.stopPropagation) e.stopPropagation();
@@ -459,6 +464,10 @@ $(document).ready(function(){
       
       if (e.preventDefault) e.preventDefault();
       if (e.stopPropagation) e.stopPropagation();
+      
+      if (window.addDebugLog) {
+        window.addDebugLog(`✅ ${source} proceeding to toggleMenu`);
+      }
       
       toggleMenu(source);
     }
@@ -548,10 +557,27 @@ $(document).ready(function(){
         });
       }
       
-      // More lenient criteria for Firefox Focus
-      if (touchDuration < 500 && distance < 20) {
+      // MUCH MORE LENIENT CRITERIA - Allow longer taps and more movement
+      // Increased from 500ms to 1000ms and from 20px to 50px
+      const maxDuration = 1000; // 1 second instead of 500ms
+      const maxDistance = 50; // 50px instead of 20px
+      const meetsLenientCriteria = touchDuration < maxDuration && distance < maxDistance;
+      
+      if (window.addDebugLog) {
+        window.addDebugLog('📊 TOUCHEND Criteria Check', {
+          duration: touchDuration + 'ms',
+          maxAllowed: maxDuration + 'ms',
+          distance: distance.toFixed(2) + 'px',
+          maxAllowed: maxDistance + 'px',
+          meetsOldCriteria: meetsCriteria,
+          meetsLenientCriteria: meetsLenientCriteria
+        });
+      }
+      
+      // Use lenient criteria - this should work for most taps
+      if (meetsLenientCriteria) {
         if (window.addDebugLog) {
-          window.addDebugLog('✅ TOUCHEND: Criteria met, toggling menu');
+          window.addDebugLog('✅ TOUCHEND: Lenient criteria met, toggling menu');
         }
         try {
           if (e.preventDefault) e.preventDefault();
@@ -573,8 +599,8 @@ $(document).ready(function(){
         }, 500);
       } else {
         if (window.addDebugLog) {
-          window.addDebugLog('❌ TOUCHEND: Criteria NOT met', {
-            reason: !meetsDuration ? 'Duration too long (' + touchDuration + 'ms)' : 'Distance too far (' + distance.toFixed(2) + 'px)',
+          window.addDebugLog('❌ TOUCHEND: Lenient criteria NOT met', {
+            reason: touchDuration >= maxDuration ? 'Duration too long (' + touchDuration + 'ms >= ' + maxDuration + 'ms)' : 'Distance too far (' + distance.toFixed(2) + 'px >= ' + maxDistance + 'px)',
             touchHandled: touchHandled,
             willTryClick: true
           });
@@ -599,17 +625,30 @@ $(document).ready(function(){
         });
       }
       
-      // If touch was just handled, ignore click
-      if (touchHandled && timeSinceLast < 600) {
+      // If touch was just handled, ignore click - REDUCED timeout from 600ms to 300ms
+      const clickBlockTimeout = 300; // Reduced from 600ms
+      if (touchHandled && timeSinceLast < clickBlockTimeout) {
         if (window.addDebugLog) {
           window.addDebugLog('🚫 CLICK blocked - touch was just handled', {
             touchHandled: touchHandled,
-            timeSinceLast: timeSinceLast + 'ms'
+            timeSinceLast: timeSinceLast + 'ms',
+            timeout: clickBlockTimeout + 'ms'
           });
         }
         if (e.preventDefault) e.preventDefault();
         if (e.stopPropagation) e.stopPropagation();
         return;
+      }
+      
+      // FALLBACK: If touchend never fired (Firefox issue), allow click to work
+      if (!touchendCalled && timeSinceTouchStart > 100 && timeSinceTouchStart < 2000) {
+        if (window.addDebugLog) {
+          window.addDebugLog('🔄 CLICK fallback - touchend never fired, allowing click', {
+            touchendCalled: touchendCalled,
+            timeSinceTouchStart: timeSinceTouchStart + 'ms'
+          });
+        }
+        // Don't block, let it proceed
       }
       
       if (window.addDebugLog) {
