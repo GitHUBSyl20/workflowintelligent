@@ -383,7 +383,14 @@ $(document).ready(function(){
     }
     
     if (window.addDebugLog) {
-      window.addDebugLog('Elements found! Initializing menu...');
+      window.addDebugLog('✅ Elements found! Initializing menu...', {
+        hamburgerElement: hamburger,
+        navLinksElement: navLinks,
+        userAgent: navigator.userAgent,
+        isMobile: /Mobile|Android|iPhone|iPad/.test(navigator.userAgent),
+        isFirefox: /Firefox/.test(navigator.userAgent),
+        isChrome: /Chrome/.test(navigator.userAgent)
+      });
     }
     
     // Track state
@@ -392,6 +399,9 @@ $(document).ready(function(){
     let touchStartTime = 0;
     let touchStartPos = { x: 0, y: 0 };
     let touchHandled = false;
+    
+    // Track if touchend was ever called
+    let touchendCalled = false;
     
     // Simple toggle function
     function toggleMenu(source) {
@@ -453,49 +463,102 @@ $(document).ready(function(){
       toggleMenu(source);
     }
     
-    // Touch events
+    // Touch events - ENHANCED LOGGING
+    let touchStartTimeout = null;
+    
     hamburger.addEventListener('touchstart', function(e) {
+      touchendCalled = false; // Reset flag for this touch sequence
       touchStartTime = Date.now();
       const touch = e.touches[0];
       touchStartPos = { x: touch.clientX, y: touch.clientY };
       touchHandled = false;
       
+      // Clear any existing timeout
+      if (touchStartTimeout) {
+        clearTimeout(touchStartTimeout);
+      }
+      
+      // Set timeout to check if touchend was called (for Firefox mobile detection)
+      touchStartTimeout = setTimeout(function() {
+        if (!touchendCalled && window.addDebugLog) {
+          window.addDebugLog('⚠️ WARNING: touchstart fired but touchend never called!', {
+            timeSinceTouchStart: Date.now() - touchStartTime + 'ms',
+            touchHandled: touchHandled,
+            'This may indicate Firefox mobile issue - click should work as fallback'
+          });
+        }
+        touchendCalled = false; // Reset for next time
+      }, 1000);
+      
       if (window.addDebugLog) {
-        window.addDebugLog('TOUCHSTART', {
+        window.addDebugLog('🔵 TOUCHSTART', {
           pos: touchStartPos,
-          timestamp: touchStartTime
+          timestamp: touchStartTime,
+          touchesCount: e.touches.length,
+          passive: 'true (cannot preventDefault)',
+          userAgent: navigator.userAgent.substring(0, 50)
         });
       }
     }, { passive: true, capture: true });
     
+    // Add touchcancel handler to detect when touch is cancelled
+    hamburger.addEventListener('touchcancel', function(e) {
+      if (window.addDebugLog) {
+        window.addDebugLog('⚠️ TOUCHCANCEL - Touch was cancelled!', {
+          timestamp: Date.now(),
+          timeSinceStart: Date.now() - touchStartTime + 'ms'
+        });
+      }
+      touchHandled = false; // Reset so click can work
+    }, { passive: true, capture: true });
+    
     hamburger.addEventListener('touchend', function(e) {
+      touchendCalled = true;
       const touchDuration = Date.now() - touchStartTime;
       const touch = e.changedTouches[0];
+      if (!touch) {
+        if (window.addDebugLog) {
+          window.addDebugLog('❌ TOUCHEND - No touch data!', {
+            changedTouchesCount: e.changedTouches.length
+          });
+        }
+        return;
+      }
+      
       const touchEndPos = { x: touch.clientX, y: touch.clientY };
       const distance = Math.sqrt(
         Math.pow(touchEndPos.x - touchStartPos.x, 2) + 
         Math.pow(touchEndPos.y - touchStartPos.y, 2)
       );
       
+      const meetsDuration = touchDuration < 500;
+      const meetsDistance = distance < 20;
+      const meetsCriteria = meetsDuration && meetsDistance;
+      
       if (window.addDebugLog) {
-        window.addDebugLog('TOUCHEND', {
+        window.addDebugLog('🟢 TOUCHEND', {
           duration: touchDuration + 'ms',
           distance: distance.toFixed(2) + 'px',
-          meetsCriteria: touchDuration < 500 && distance < 20
+          meetsDuration: meetsDuration + ' (< 500ms)',
+          meetsDistance: meetsDistance + ' (< 20px)',
+          meetsCriteria: meetsCriteria,
+          startPos: touchStartPos,
+          endPos: touchEndPos,
+          userAgent: navigator.userAgent.substring(0, 50)
         });
       }
       
       // More lenient criteria for Firefox Focus
       if (touchDuration < 500 && distance < 20) {
         if (window.addDebugLog) {
-          window.addDebugLog('TOUCHEND: Criteria met, toggling menu');
+          window.addDebugLog('✅ TOUCHEND: Criteria met, toggling menu');
         }
         try {
           if (e.preventDefault) e.preventDefault();
           if (e.stopPropagation) e.stopPropagation();
         } catch (err) {
           if (window.addDebugLog) {
-            window.addDebugLog('TOUCHEND: Error preventing default', err.message);
+            window.addDebugLog('❌ TOUCHEND: Error preventing default', err.message);
           }
         }
         touchHandled = true;
@@ -504,27 +567,53 @@ $(document).ready(function(){
         // Block click event for a short time
         setTimeout(function() {
           touchHandled = false;
+          if (window.addDebugLog) {
+            window.addDebugLog('🔄 touchHandled reset to false');
+          }
         }, 500);
+      } else {
+        if (window.addDebugLog) {
+          window.addDebugLog('❌ TOUCHEND: Criteria NOT met', {
+            reason: !meetsDuration ? 'Duration too long (' + touchDuration + 'ms)' : 'Distance too far (' + distance.toFixed(2) + 'px)',
+            touchHandled: touchHandled,
+            willTryClick: true
+          });
+        }
+        // Don't set touchHandled, let click event handle it
       }
     }, { passive: false, capture: true });
     
     // Click event (with protection against double-trigger)
     hamburger.addEventListener('click', function(e) {
+      const timeSinceLast = Date.now() - lastInteraction;
+      const timeSinceTouchStart = Date.now() - touchStartTime;
+      
       if (window.addDebugLog) {
-        window.addDebugLog('CLICK event', {
+        window.addDebugLog('🖱️ CLICK event', {
           touchHandled: touchHandled,
-          timeSinceLast: Date.now() - lastInteraction + 'ms'
+          touchendCalled: touchendCalled,
+          timeSinceLast: timeSinceLast + 'ms',
+          timeSinceTouchStart: timeSinceTouchStart + 'ms',
+          willBeBlocked: touchHandled && timeSinceLast < 600,
+          userAgent: navigator.userAgent.substring(0, 50)
         });
       }
       
       // If touch was just handled, ignore click
-      if (touchHandled && (Date.now() - lastInteraction) < 600) {
+      if (touchHandled && timeSinceLast < 600) {
         if (window.addDebugLog) {
-          window.addDebugLog('CLICK blocked - touch was just handled');
+          window.addDebugLog('🚫 CLICK blocked - touch was just handled', {
+            touchHandled: touchHandled,
+            timeSinceLast: timeSinceLast + 'ms'
+          });
         }
         if (e.preventDefault) e.preventDefault();
         if (e.stopPropagation) e.stopPropagation();
         return;
+      }
+      
+      if (window.addDebugLog) {
+        window.addDebugLog('✅ CLICK proceeding to handleInteraction');
       }
       
       handleInteraction(e, 'CLICK');
@@ -542,7 +631,10 @@ $(document).ready(function(){
     if (hamburger.addEventListener) {
       hamburger.addEventListener('pointerdown', function(e) {
         if (window.addDebugLog) {
-          window.addDebugLog('POINTERDOWN event', { pointerType: e.pointerType });
+          window.addDebugLog('👆 POINTERDOWN event', { 
+            pointerType: e.pointerType,
+            willHandle: e.pointerType === 'touch'
+          });
         }
         if (e.pointerType === 'touch') {
           handleInteraction(e, 'POINTERDOWN-TOUCH');
@@ -590,7 +682,16 @@ $(document).ready(function(){
     });
     
     if (window.addDebugLog) {
-      window.addDebugLog('All event listeners attached successfully!');
+      window.addDebugLog('✅ All event listeners attached successfully!', {
+        touchstartListener: 'attached',
+        touchendListener: 'attached',
+        touchcancelListener: 'attached',
+        clickListener: 'attached',
+        pointerdownListener: 'attached',
+        mousedownListener: 'attached',
+        hamburgerElement: hamburger,
+        navLinksElement: navLinks
+      });
     }
   }
   
