@@ -275,91 +275,6 @@ $(document).ready(function(){
 });
 
 // ============================================
-// DEBUGGING: Visual Debug Panel - IMMEDIATE
-// ============================================
-(function() {
-  // Create debug panel immediately (before DOMContentLoaded)
-  const debugPanel = document.createElement('div');
-  debugPanel.id = 'menu-debug-panel';
-  debugPanel.style.cssText = 'position: fixed; bottom: 10px; left: 10px; right: 10px; ' +
-    'background: rgba(0, 0, 0, 0.95); color: #0f0; ' +
-    'font-family: monospace; font-size: 11px; ' +
-    'padding: 10px; border-radius: 5px; ' +
-    'z-index: 99999; max-height: 300px; overflow-y: auto; ' +
-    'border: 2px solid #0f0; box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);';
-  
-  debugPanel.innerHTML = `
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-      <strong style="color: #0f0;">🔍 MENU DEBUG</strong>
-      <button id="debug-toggle" style="background: #0f0; color: #000; border: none; 
-              padding: 5px 10px; border-radius: 3px; cursor: pointer; font-weight: bold;">
-        Masquer
-      </button>
-    </div>
-    <div id="debug-content" style="max-height: 250px; overflow-y: auto;"></div>
-  `;
-  
-  // Append immediately if body exists, otherwise wait
-  if (document.body) {
-    document.body.appendChild(debugPanel);
-  } else {
-    document.addEventListener('DOMContentLoaded', function() {
-      document.body.appendChild(debugPanel);
-    });
-  }
-  
-  let debugLogs = [];
-  const MAX_LOGS = 30;
-  
-  function addDebugLog(message, data) {
-    const timestamp = new Date().toLocaleTimeString();
-    let logText = `[${timestamp}] ${message}`;
-    
-    if (data) {
-      try {
-        logText += '\n' + JSON.stringify(data, null, 2);
-      } catch (e) {
-        logText += '\n' + String(data);
-      }
-    }
-    
-    console.log('[MENU DEBUG]', message, data || '');
-    
-    debugLogs.push(logText);
-    if (debugLogs.length > MAX_LOGS) {
-      debugLogs.shift();
-    }
-    
-    const content = document.getElementById('debug-content');
-    if (content) {
-      content.innerHTML = debugLogs.map(log => 
-        `<div style="margin-bottom: 5px; padding: 3px; border-bottom: 1px solid #333; white-space: pre-wrap; word-break: break-word;">${log}</div>`
-      ).join('');
-      content.scrollTop = content.scrollHeight;
-    }
-  }
-  
-  // Make addDebugLog globally available
-  window.addDebugLog = addDebugLog;
-  
-  // Toggle button
-  setTimeout(function() {
-    const toggleBtn = document.getElementById('debug-toggle');
-    const content = document.getElementById('debug-content');
-    if (toggleBtn && content) {
-      let isVisible = true;
-      toggleBtn.addEventListener('click', function() {
-        isVisible = !isVisible;
-        content.style.display = isVisible ? 'block' : 'none';
-        toggleBtn.textContent = isVisible ? 'Masquer' : 'Afficher';
-      });
-    }
-  }, 100);
-  
-  addDebugLog('Debug panel created');
-})();
-
-// ============================================
 // Hamburger menu - SIMPLE & RELIABLE VERSION
 // Strategy: Use ONLY click event (works on both mobile and desktop)
 // Let the browser handle touch → click conversion naturally
@@ -376,14 +291,6 @@ $(document).ready(function(){
       return;
     }
     
-    console.log('[SIMPLE MENU] Initializing...');
-    if (window.addDebugLog) {
-      window.addDebugLog('✅ SIMPLE MENU: Elements found', {
-        hamburger: !!hamburger,
-        navLinks: !!navLinks
-      });
-    }
-    
     let isOpen = false;
     let lastToggle = 0;
     
@@ -392,14 +299,11 @@ $(document).ready(function(){
       
       // Debounce: 250ms between toggles
       if (now - lastToggle < 250) {
-        console.log('[SIMPLE MENU] Debounced');
         return;
       }
       
       lastToggle = now;
       isOpen = !isOpen;
-      
-      console.log('[SIMPLE MENU] Toggle:', isOpen ? 'OPEN' : 'CLOSED');
       
       hamburger.classList.toggle('active', isOpen);
       navLinks.classList.toggle('open', isOpen);
@@ -408,34 +312,18 @@ $(document).ready(function(){
       if (hamburger.hasAttribute('aria-expanded')) {
         hamburger.setAttribute('aria-expanded', isOpen);
       }
-      
-      if (window.addDebugLog) {
-        window.addDebugLog('🎯 SIMPLE MENU: Toggled', {
-          newState: isOpen ? 'OPEN' : 'CLOSED',
-          hamburgerActive: hamburger.classList.contains('active'),
-          navLinksOpen: navLinks.classList.contains('open')
-        });
-      }
     }
     
     // Strategy: Use ONLY click event (works on both mobile and desktop)
     // Let the browser handle touch → click conversion naturally
     // NO preventDefault(), NO complex touch logic
     hamburger.addEventListener('click', function(e) {
-      console.log('[SIMPLE MENU] Click detected');
-      if (window.addDebugLog) {
-        window.addDebugLog('👆 SIMPLE MENU: Click event', {
-          type: e.type,
-          isTrusted: e.isTrusted
-        });
-      }
       toggle();
     });
     
     // Close menu when clicking links
     navLinks.querySelectorAll('.main-nav-link').forEach(function(link) {
       link.addEventListener('click', function() {
-        console.log('[SIMPLE MENU] Link clicked, closing menu');
         isOpen = false;
         hamburger.classList.remove('active');
         navLinks.classList.remove('open');
@@ -446,22 +334,12 @@ $(document).ready(function(){
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
       if (isOpen && !hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-        console.log('[SIMPLE MENU] Outside click, closing menu');
         isOpen = false;
         hamburger.classList.remove('active');
         navLinks.classList.remove('open');
         document.body.classList.remove('menu-open');
       }
     });
-    
-    console.log('[SIMPLE MENU] Initialized successfully!');
-    if (window.addDebugLog) {
-      window.addDebugLog('✅ SIMPLE MENU: Initialization complete', {
-        strategy: 'Click event only (browser handles touch→click)',
-        debounce: '250ms',
-        handlers: ['click', 'outside click', 'link click']
-      });
-    }
   }
   
   if (document.readyState === 'loading') {
