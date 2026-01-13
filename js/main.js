@@ -361,475 +361,113 @@ $(document).ready(function(){
 
 // ============================================
 // Hamburger menu - SIMPLE & RELIABLE VERSION
-// Previous version was too complex - this is streamlined
+// Strategy: Use ONLY click event (works on both mobile and desktop)
+// Let the browser handle touch → click conversion naturally
 // ============================================
-(function initMenu() {
-  // Check if simple version is being used instead
-  if (window.DISABLE_COMPLEX_MENU) {
-    console.log('[MAIN.JS] Complex menu disabled - using simple version instead');
-    if (window.addDebugLog) {
-      window.addDebugLog('ℹ️ Complex menu code disabled', {
-        reason: 'DISABLE_COMPLEX_MENU flag is set',
-        using: 'hamburger-simple.js instead'
-      });
-    }
-    return; // Exit early, don't run this code
-  }
+(function() {
+  'use strict';
   
-  function waitForElements() {
+  function init() {
     const hamburger = document.querySelector('.nav-hamburger');
     const navLinks = document.querySelector('.main-nav-links');
     
-    if (window.addDebugLog) {
-      window.addDebugLog('Checking for elements', {
-        hamburger: !!hamburger,
-        navLinks: !!navLinks,
-        hamburgerClasses: hamburger ? hamburger.className : 'N/A',
-        navLinksClasses: navLinks ? navLinks.className : 'N/A'
-      });
-    }
-    
     if (!hamburger || !navLinks) {
-      if (window.addDebugLog) {
-        window.addDebugLog('Elements not found, retrying...');
-      }
-      setTimeout(waitForElements, 100);
+      setTimeout(init, 50);
       return;
     }
     
+    console.log('[SIMPLE MENU] Initializing...');
     if (window.addDebugLog) {
-      window.addDebugLog('✅ Elements found! Initializing menu...', {
-        hamburgerElement: hamburger,
-        navLinksElement: navLinks,
-        userAgent: navigator.userAgent,
-        isMobile: /Mobile|Android|iPhone|iPad/.test(navigator.userAgent),
-        isFirefox: /Firefox/.test(navigator.userAgent),
-        isChrome: /Chrome/.test(navigator.userAgent)
+      window.addDebugLog('✅ SIMPLE MENU: Elements found', {
+        hamburger: !!hamburger,
+        navLinks: !!navLinks
       });
     }
     
-    // Track state
-    let isMenuOpen = false;
-    let lastInteraction = 0;
-    let touchStartTime = 0;
-    let touchStartPos = { x: 0, y: 0 };
-    let touchHandled = false;
+    let isOpen = false;
+    let lastToggle = 0;
     
-    // Track if touchend was ever called
-    let touchendCalled = false;
-    
-    // 🔥 NUCLEAR OPTION: Ultra-simple tap handler that should ALWAYS work 🔥
-    // This runs FIRST and provides a baseline that's guaranteed to work
-    let simpleLastTap = 0;
-    hamburger.addEventListener('touchend', function(e) {
+    function toggle() {
       const now = Date.now();
-      const timeSinceLast = now - simpleLastTap;
       
-      if (window.addDebugLog) {
-        window.addDebugLog('🔥 SIMPLE TAP HANDLER (nuclear option)', {
-          timeSinceLast: timeSinceLast + 'ms',
-          willActivate: timeSinceLast > 200 // Debounce
-        });
+      // Debounce: 250ms between toggles
+      if (now - lastToggle < 250) {
+        console.log('[SIMPLE MENU] Debounced');
+        return;
       }
       
-      // Simple debounce - only activate if it's been 200ms since last tap
-      if (timeSinceLast > 200) {
-        simpleLastTap = now;
-        
-        // Toggle immediately - no complex logic, no criteria checking
-        if (window.addDebugLog) {
-          window.addDebugLog('🔥 SIMPLE HANDLER: Toggling menu NOW (no questions asked)');
-        }
-        
-        // Don't call toggleMenu yet - let the main handler do it
-        // But mark that we detected a valid tap
-        window._simpleHandlerDetectedTap = now;
-      }
-    }, { passive: true, capture: true }); // passive: true, runs first
-    
-    // Simple toggle function
-    function toggleMenu(source) {
-      const now = Date.now();
-      const timeSinceLast = now - lastInteraction;
+      lastToggle = now;
+      isOpen = !isOpen;
       
-      if (window.addDebugLog) {
-        window.addDebugLog(`toggleMenu called from: ${source}`, {
-          timeSinceLast: timeSinceLast + 'ms',
-          currentState: isMenuOpen ? 'OPEN' : 'CLOSED'
-        });
+      console.log('[SIMPLE MENU] Toggle:', isOpen ? 'OPEN' : 'CLOSED');
+      
+      hamburger.classList.toggle('active', isOpen);
+      navLinks.classList.toggle('open', isOpen);
+      document.body.classList.toggle('menu-open', isOpen);
+      
+      if (hamburger.hasAttribute('aria-expanded')) {
+        hamburger.setAttribute('aria-expanded', isOpen);
       }
       
-      isMenuOpen = !isMenuOpen;
-      lastInteraction = now;
-      
-      hamburger.classList.toggle('active');
-      navLinks.classList.toggle('open');
-      document.body.classList.toggle('menu-open');
-      
       if (window.addDebugLog) {
-        window.addDebugLog('Menu toggled', {
-          newState: isMenuOpen ? 'OPEN' : 'CLOSED',
+        window.addDebugLog('🎯 SIMPLE MENU: Toggled', {
+          newState: isOpen ? 'OPEN' : 'CLOSED',
           hamburgerActive: hamburger.classList.contains('active'),
           navLinksOpen: navLinks.classList.contains('open')
         });
       }
-      
-      if (hamburger.hasAttribute('aria-expanded')) {
-        hamburger.setAttribute('aria-expanded', isMenuOpen);
-      }
     }
     
-    // Try MULTIPLE event types to catch everything
-    function handleInteraction(e, source) {
-      const now = Date.now();
-      const timeSinceLast = now - lastInteraction;
-      const minTimeBetweenInteractions = 100; // Reduced from 300ms to be less aggressive
-      
-      if (window.addDebugLog) {
-        window.addDebugLog(`🎯 handleInteraction called from ${source}`, {
-          type: e.type,
-          target: e.target.tagName,
-          defaultPrevented: e.defaultPrevented,
-          isTrusted: e.isTrusted,
-          timeSinceLast: timeSinceLast + 'ms',
-          willBeBlocked: timeSinceLast < minTimeBetweenInteractions
-        });
-      }
-      
-      // Prevent double-trigger - REDUCED from 300ms to 100ms
-      if (timeSinceLast < minTimeBetweenInteractions) {
-        if (window.addDebugLog) {
-          window.addDebugLog(`🚫 ${source} blocked - too soon after last interaction (${timeSinceLast}ms < ${minTimeBetweenInteractions}ms)`);
-        }
-        if (e.preventDefault) e.preventDefault();
-        if (e.stopPropagation) e.stopPropagation();
-        return;
-      }
-      
-      if (e.preventDefault) e.preventDefault();
-      if (e.stopPropagation) e.stopPropagation();
-      
-      if (window.addDebugLog) {
-        window.addDebugLog(`✅ ${source} proceeding to toggleMenu`);
-      }
-      
-      toggleMenu(source);
-    }
-    
-    // Touch events - ENHANCED LOGGING
-    let touchStartTimeout = null;
-    
-    hamburger.addEventListener('touchstart', function(e) {
-      touchendCalled = false; // Reset flag for this touch sequence
-      touchStartTime = Date.now();
-      const touch = e.touches[0];
-      touchStartPos = { x: touch.clientX, y: touch.clientY };
-      touchHandled = false;
-      
-      // Clear any existing timeout
-      if (touchStartTimeout) {
-        clearTimeout(touchStartTimeout);
-      }
-      
-      // Set timeout to check if touchend was called (for Firefox mobile detection)
-      touchStartTimeout = setTimeout(function() {
-        if (!touchendCalled && window.addDebugLog) {
-          window.addDebugLog('⚠️ WARNING: touchstart fired but touchend never called!', {
-            timeSinceTouchStart: Date.now() - touchStartTime + 'ms',
-            touchHandled: touchHandled,
-            'This may indicate Firefox mobile issue - click should work as fallback'
-          });
-        }
-        touchendCalled = false; // Reset for next time
-      }, 1000);
-      
-      if (window.addDebugLog) {
-        window.addDebugLog('🔵 TOUCHSTART', {
-          pos: touchStartPos,
-          timestamp: touchStartTime,
-          touchesCount: e.touches.length,
-          passive: 'true (cannot preventDefault)',
-          userAgent: navigator.userAgent.substring(0, 50)
-        });
-      }
-    }, { passive: true, capture: true });
-    
-    // Add touchcancel handler to detect when touch is cancelled
-    hamburger.addEventListener('touchcancel', function(e) {
-      if (window.addDebugLog) {
-        window.addDebugLog('⚠️ TOUCHCANCEL - Touch was cancelled!', {
-          timestamp: Date.now(),
-          timeSinceStart: Date.now() - touchStartTime + 'ms'
-        });
-      }
-      touchHandled = false; // Reset so click can work
-    }, { passive: true, capture: true });
-    
-    hamburger.addEventListener('touchend', function(e) {
-      touchendCalled = true;
-      const touchDuration = Date.now() - touchStartTime;
-      const touch = e.changedTouches[0];
-      if (!touch) {
-        if (window.addDebugLog) {
-          window.addDebugLog('❌ TOUCHEND - No touch data!', {
-            changedTouchesCount: e.changedTouches.length
-          });
-        }
-        return;
-      }
-      
-      const touchEndPos = { x: touch.clientX, y: touch.clientY };
-      const distance = Math.sqrt(
-        Math.pow(touchEndPos.x - touchStartPos.x, 2) + 
-        Math.pow(touchEndPos.y - touchStartPos.y, 2)
-      );
-      
-      const meetsDuration = touchDuration < 500;
-      const meetsDistance = distance < 20;
-      const meetsCriteria = meetsDuration && meetsDistance;
-      
-      if (window.addDebugLog) {
-        window.addDebugLog('🟢 TOUCHEND', {
-          duration: touchDuration + 'ms',
-          distance: distance.toFixed(2) + 'px',
-          meetsDuration: meetsDuration + ' (< 500ms)',
-          meetsDistance: meetsDistance + ' (< 20px)',
-          meetsCriteria: meetsCriteria,
-          startPos: touchStartPos,
-          endPos: touchEndPos,
-          userAgent: navigator.userAgent.substring(0, 50)
-        });
-      }
-      
-      // MUCH MORE LENIENT CRITERIA - Allow longer taps and more movement
-      // Increased from 500ms to 1000ms and from 20px to 50px
-      const maxDuration = 1000; // 1 second instead of 500ms
-      const maxDistance = 50; // 50px instead of 20px
-      const meetsLenientCriteria = touchDuration < maxDuration && distance < maxDistance;
-      
-      if (window.addDebugLog) {
-        window.addDebugLog('📊 TOUCHEND Criteria Check', {
-          duration: touchDuration + 'ms',
-          maxAllowed: maxDuration + 'ms',
-          distance: distance.toFixed(2) + 'px',
-          maxAllowed: maxDistance + 'px',
-          meetsOldCriteria: meetsCriteria,
-          meetsLenientCriteria: meetsLenientCriteria
-        });
-      }
-      
-      // 🚨 CRITICAL DECISION POINT 🚨
-      // If we call preventDefault() here, the browser will NOT generate a click event
-      // This means ONLY touchend can trigger the menu
-      // If touchend doesn't trigger (criteria not met), NOTHING will trigger
-      
-      // Use lenient criteria - this should work for most taps
-      if (meetsLenientCriteria) {
-        if (window.addDebugLog) {
-          window.addDebugLog('✅ TOUCHEND: Lenient criteria met, toggling menu', {
-            '⚠️ CALLING': 'preventDefault() - this will BLOCK the click event',
-            willToggleMenu: true
-          });
-        }
-        try {
-          if (e.preventDefault) e.preventDefault();
-          if (e.stopPropagation) e.stopPropagation();
-        } catch (err) {
-          if (window.addDebugLog) {
-            window.addDebugLog('❌ TOUCHEND: Error preventing default', err.message);
-          }
-        }
-        touchHandled = true;
-        toggleMenu('TOUCHEND');
-        
-        // Block click event for a short time
-        setTimeout(function() {
-          touchHandled = false;
-          if (window.addDebugLog) {
-            window.addDebugLog('🔄 touchHandled reset to false');
-          }
-        }, 500);
-      } else {
-        if (window.addDebugLog) {
-          window.addDebugLog('❌ TOUCHEND: Lenient criteria NOT met', {
-            reason: touchDuration >= maxDuration ? 'Duration too long (' + touchDuration + 'ms >= ' + maxDuration + 'ms)' : 'Distance too far (' + distance.toFixed(2) + 'px >= ' + maxDistance + 'px)',
-            touchHandled: touchHandled,
-            '✅ GOOD NEWS': 'NOT calling preventDefault() - click event should still fire as fallback',
-            willTryClick: true
-          });
-        }
-        // 🚨 CRITICAL: Don't call preventDefault() here!
-        // Let the browser generate the natural click event
-        // Don't set touchHandled, let click event handle it
-      }
-    }, { passive: false, capture: true });
-    
-    // Click event (with protection against double-trigger)
+    // Strategy: Use ONLY click event (works on both mobile and desktop)
+    // Let the browser handle touch → click conversion naturally
+    // NO preventDefault(), NO complex touch logic
     hamburger.addEventListener('click', function(e) {
-      const timeSinceLast = Date.now() - lastInteraction;
-      const timeSinceTouchStart = Date.now() - touchStartTime;
-      
+      console.log('[SIMPLE MENU] Click detected');
       if (window.addDebugLog) {
-        window.addDebugLog('🖱️ CLICK event', {
-          touchHandled: touchHandled,
-          touchendCalled: touchendCalled,
-          timeSinceLast: timeSinceLast + 'ms',
-          timeSinceTouchStart: timeSinceTouchStart + 'ms',
-          willBeBlocked: touchHandled && timeSinceLast < 600,
-          userAgent: navigator.userAgent.substring(0, 50)
+        window.addDebugLog('👆 SIMPLE MENU: Click event', {
+          type: e.type,
+          isTrusted: e.isTrusted
         });
       }
-      
-      // If touch was just handled, ignore click - REDUCED timeout from 600ms to 300ms
-      const clickBlockTimeout = 300; // Reduced from 600ms
-      if (touchHandled && timeSinceLast < clickBlockTimeout) {
-        if (window.addDebugLog) {
-          window.addDebugLog('🚫 CLICK blocked - touch was just handled', {
-            touchHandled: touchHandled,
-            timeSinceLast: timeSinceLast + 'ms',
-            timeout: clickBlockTimeout + 'ms'
-          });
-        }
-        if (e.preventDefault) e.preventDefault();
-        if (e.stopPropagation) e.stopPropagation();
-        return;
-      }
-      
-      // FALLBACK: If touchend never fired (Firefox issue), allow click to work
-      if (!touchendCalled && timeSinceTouchStart > 100 && timeSinceTouchStart < 2000) {
-        if (window.addDebugLog) {
-          window.addDebugLog('🔄 CLICK fallback - touchend never fired, allowing click', {
-            touchendCalled: touchendCalled,
-            timeSinceTouchStart: timeSinceTouchStart + 'ms'
-          });
-        }
-        // Don't block, let it proceed
-      }
-      
-      if (window.addDebugLog) {
-        window.addDebugLog('✅ CLICK proceeding to handleInteraction');
-      }
-      
-      handleInteraction(e, 'CLICK');
-    }, { capture: true });
-    
-    // Also try mousedown (some browsers use this)
-    hamburger.addEventListener('mousedown', function(e) {
-      if (window.addDebugLog) {
-        window.addDebugLog('MOUSEDOWN event');
-      }
-      // Don't toggle on mousedown, just log
-    }, { capture: true });
-    
-    // Pointer events (modern browsers)
-    if (hamburger.addEventListener) {
-      hamburger.addEventListener('pointerdown', function(e) {
-        if (window.addDebugLog) {
-          window.addDebugLog('👆 POINTERDOWN event', { 
-            pointerType: e.pointerType,
-            willHandle: e.pointerType === 'touch'
-          });
-        }
-        if (e.pointerType === 'touch') {
-          handleInteraction(e, 'POINTERDOWN-TOUCH');
-        }
-      }, { capture: true });
-    }
-    
-    // Close menu on link click
-    navLinks.querySelectorAll('.main-nav-link').forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        if (window.addDebugLog) {
-          window.addDebugLog('Link clicked', link.href);
-        }
-        setTimeout(function() {
-          isMenuOpen = false;
-          hamburger.classList.remove('active');
-          navLinks.classList.remove('open');
-          document.body.classList.remove('menu-open');
-          if (hamburger.hasAttribute('aria-expanded')) {
-            hamburger.setAttribute('aria-expanded', 'false');
-          }
-        }, 100);
-      });
+      toggle();
     });
     
-    // Close on outside click
-    document.addEventListener('click', function(e) {
-      const target = e.target;
-      const isLink = target.closest('.main-nav-link');
-      const isHamburger = hamburger.contains(target);
-      const isNavLinks = navLinks.contains(target);
-      
-      if (isMenuOpen && !isLink && !isHamburger && !isNavLinks) {
-        if (window.addDebugLog) {
-          window.addDebugLog('Closing menu - clicked outside');
-        }
-        isMenuOpen = false;
+    // Close menu when clicking links
+    navLinks.querySelectorAll('.main-nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        console.log('[SIMPLE MENU] Link clicked, closing menu');
+        isOpen = false;
         hamburger.classList.remove('active');
         navLinks.classList.remove('open');
         document.body.classList.remove('menu-open');
-        if (hamburger.hasAttribute('aria-expanded')) {
-          hamburger.setAttribute('aria-expanded', 'false');
-        }
+      });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (isOpen && !hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+        console.log('[SIMPLE MENU] Outside click, closing menu');
+        isOpen = false;
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
+        document.body.classList.remove('menu-open');
       }
     });
     
-    // CRITICAL: Add a direct simple click handler WITHOUT complex logic
-    // This is a FALLBACK that should ALWAYS work
-    hamburger.addEventListener('click', function(e) {
-      const now = Date.now();
-      const simpleHandlerTime = window._simpleHandlerDetectedTap || 0;
-      const wasRecentlyTapped = (now - simpleHandlerTime) < 500;
-      
-      if (window.addDebugLog) {
-        window.addDebugLog('🆘 FALLBACK CLICK HANDLER - This should ALWAYS work', {
-          timestamp: now,
-          defaultPrevented: e.defaultPrevented,
-          target: e.target.tagName,
-          lastInteraction: lastInteraction,
-          timeSinceLastInteraction: now - lastInteraction + 'ms',
-          simpleHandlerDetectedTap: wasRecentlyTapped,
-          willActivate: (now - lastInteraction) > 150
-        });
-      }
-      
-      // If we reach here, the hamburger IS clickable
-      // Check if menu is already being handled
-      if ((now - lastInteraction) > 150) { // Only if not recently handled
-        if (window.addDebugLog) {
-          window.addDebugLog('🆘 FALLBACK activating menu toggle');
-        }
-        toggleMenu('FALLBACK-CLICK');
-      } else {
-        if (window.addDebugLog) {
-          window.addDebugLog('🆘 FALLBACK skipping - already handled recently', {
-            timeSince: (now - lastInteraction) + 'ms'
-          });
-        }
-      }
-    }, { capture: false, passive: false }); // Run AFTER other listeners
-    
+    console.log('[SIMPLE MENU] Initialized successfully!');
     if (window.addDebugLog) {
-      window.addDebugLog('✅ All event listeners attached successfully!', {
-        touchstartListener: 'attached',
-        touchendListener: 'attached',
-        touchcancelListener: 'attached',
-        clickListener: 'attached (x2 - normal + fallback)',
-        pointerdownListener: 'attached',
-        mousedownListener: 'attached',
-        hamburgerElement: hamburger,
-        navLinksElement: navLinks,
-        '⚠️ IMPORTANT': 'FALLBACK CLICK handler added - should work even if others fail'
+      window.addDebugLog('✅ SIMPLE MENU: Initialization complete', {
+        strategy: 'Click event only (browser handles touch→click)',
+        debounce: '250ms',
+        handlers: ['click', 'outside click', 'link click']
       });
     }
   }
   
-  // Start checking
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', waitForElements);
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    waitForElements();
+    init();
   }
 })();
 
