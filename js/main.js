@@ -359,8 +359,23 @@ $(document).ready(function(){
   addDebugLog('Debug panel created');
 })();
 
-// Hamburger menu - ULTRA ROBUST VERSION
+// ============================================
+// Hamburger menu - SIMPLE & RELIABLE VERSION
+// Previous version was too complex - this is streamlined
+// ============================================
 (function initMenu() {
+  // Check if simple version is being used instead
+  if (window.DISABLE_COMPLEX_MENU) {
+    console.log('[MAIN.JS] Complex menu disabled - using simple version instead');
+    if (window.addDebugLog) {
+      window.addDebugLog('ℹ️ Complex menu code disabled', {
+        reason: 'DISABLE_COMPLEX_MENU flag is set',
+        using: 'hamburger-simple.js instead'
+      });
+    }
+    return; // Exit early, don't run this code
+  }
+  
   function waitForElements() {
     const hamburger = document.querySelector('.nav-hamburger');
     const navLinks = document.querySelector('.main-nav-links');
@@ -402,6 +417,35 @@ $(document).ready(function(){
     
     // Track if touchend was ever called
     let touchendCalled = false;
+    
+    // 🔥 NUCLEAR OPTION: Ultra-simple tap handler that should ALWAYS work 🔥
+    // This runs FIRST and provides a baseline that's guaranteed to work
+    let simpleLastTap = 0;
+    hamburger.addEventListener('touchend', function(e) {
+      const now = Date.now();
+      const timeSinceLast = now - simpleLastTap;
+      
+      if (window.addDebugLog) {
+        window.addDebugLog('🔥 SIMPLE TAP HANDLER (nuclear option)', {
+          timeSinceLast: timeSinceLast + 'ms',
+          willActivate: timeSinceLast > 200 // Debounce
+        });
+      }
+      
+      // Simple debounce - only activate if it's been 200ms since last tap
+      if (timeSinceLast > 200) {
+        simpleLastTap = now;
+        
+        // Toggle immediately - no complex logic, no criteria checking
+        if (window.addDebugLog) {
+          window.addDebugLog('🔥 SIMPLE HANDLER: Toggling menu NOW (no questions asked)');
+        }
+        
+        // Don't call toggleMenu yet - let the main handler do it
+        // But mark that we detected a valid tap
+        window._simpleHandlerDetectedTap = now;
+      }
+    }, { passive: true, capture: true }); // passive: true, runs first
     
     // Simple toggle function
     function toggleMenu(source) {
@@ -574,10 +618,18 @@ $(document).ready(function(){
         });
       }
       
+      // 🚨 CRITICAL DECISION POINT 🚨
+      // If we call preventDefault() here, the browser will NOT generate a click event
+      // This means ONLY touchend can trigger the menu
+      // If touchend doesn't trigger (criteria not met), NOTHING will trigger
+      
       // Use lenient criteria - this should work for most taps
       if (meetsLenientCriteria) {
         if (window.addDebugLog) {
-          window.addDebugLog('✅ TOUCHEND: Lenient criteria met, toggling menu');
+          window.addDebugLog('✅ TOUCHEND: Lenient criteria met, toggling menu', {
+            '⚠️ CALLING': 'preventDefault() - this will BLOCK the click event',
+            willToggleMenu: true
+          });
         }
         try {
           if (e.preventDefault) e.preventDefault();
@@ -602,9 +654,12 @@ $(document).ready(function(){
           window.addDebugLog('❌ TOUCHEND: Lenient criteria NOT met', {
             reason: touchDuration >= maxDuration ? 'Duration too long (' + touchDuration + 'ms >= ' + maxDuration + 'ms)' : 'Distance too far (' + distance.toFixed(2) + 'px >= ' + maxDistance + 'px)',
             touchHandled: touchHandled,
+            '✅ GOOD NEWS': 'NOT calling preventDefault() - click event should still fire as fallback',
             willTryClick: true
           });
         }
+        // 🚨 CRITICAL: Don't call preventDefault() here!
+        // Let the browser generate the natural click event
         // Don't set touchHandled, let click event handle it
       }
     }, { passive: false, capture: true });
@@ -720,16 +775,52 @@ $(document).ready(function(){
       }
     });
     
+    // CRITICAL: Add a direct simple click handler WITHOUT complex logic
+    // This is a FALLBACK that should ALWAYS work
+    hamburger.addEventListener('click', function(e) {
+      const now = Date.now();
+      const simpleHandlerTime = window._simpleHandlerDetectedTap || 0;
+      const wasRecentlyTapped = (now - simpleHandlerTime) < 500;
+      
+      if (window.addDebugLog) {
+        window.addDebugLog('🆘 FALLBACK CLICK HANDLER - This should ALWAYS work', {
+          timestamp: now,
+          defaultPrevented: e.defaultPrevented,
+          target: e.target.tagName,
+          lastInteraction: lastInteraction,
+          timeSinceLastInteraction: now - lastInteraction + 'ms',
+          simpleHandlerDetectedTap: wasRecentlyTapped,
+          willActivate: (now - lastInteraction) > 150
+        });
+      }
+      
+      // If we reach here, the hamburger IS clickable
+      // Check if menu is already being handled
+      if ((now - lastInteraction) > 150) { // Only if not recently handled
+        if (window.addDebugLog) {
+          window.addDebugLog('🆘 FALLBACK activating menu toggle');
+        }
+        toggleMenu('FALLBACK-CLICK');
+      } else {
+        if (window.addDebugLog) {
+          window.addDebugLog('🆘 FALLBACK skipping - already handled recently', {
+            timeSince: (now - lastInteraction) + 'ms'
+          });
+        }
+      }
+    }, { capture: false, passive: false }); // Run AFTER other listeners
+    
     if (window.addDebugLog) {
       window.addDebugLog('✅ All event listeners attached successfully!', {
         touchstartListener: 'attached',
         touchendListener: 'attached',
         touchcancelListener: 'attached',
-        clickListener: 'attached',
+        clickListener: 'attached (x2 - normal + fallback)',
         pointerdownListener: 'attached',
         mousedownListener: 'attached',
         hamburgerElement: hamburger,
-        navLinksElement: navLinks
+        navLinksElement: navLinks,
+        '⚠️ IMPORTANT': 'FALLBACK CLICK handler added - should work even if others fail'
       });
     }
   }

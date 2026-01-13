@@ -217,38 +217,97 @@
 })();
   </script>
   
+  <!-- TEMPORARILY LOAD SIMPLE VERSION FOR TESTING -->
+  <script>
+    // Disable complex hamburger menu in main.js by setting a flag
+    window.DISABLE_COMPLEX_MENU = true;
+  </script>
+  <script src="js/hamburger-simple.js"></script>
+  
   <script src="js/main.js"></script>
   <script src="js/custom.js"></script>
   <script src="js/url-handler.js"></script>
   <script src="js/language-switcher.js" defer></script>
   
-  <!-- Test direct du hamburger menu -->
+  <!-- ULTRA DIAGNOSTIC SCRIPT - Find the root cause -->
   <script>
-  // Test direct pour vérifier si le hamburger fonctionne
+  // CRITICAL: This diagnostic script runs AFTER main.js to detect issues
   document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
       const hamburger = document.querySelector('.nav-hamburger');
-      if (hamburger && window.addDebugLog) {
-        window.addDebugLog('TEST DIRECT: Hamburger element found', {
-          element: hamburger,
-          classes: hamburger.className,
-          computedStyle: window.getComputedStyle(hamburger).display
-        });
-        
-        // Test simple d'événement
-        hamburger.addEventListener('click', function(e) {
-          if (window.addDebugLog) {
-            window.addDebugLog('TEST DIRECT: Click event received!', {
-              target: e.target,
-              currentTarget: e.currentTarget
-            });
-          }
-          alert('Hamburger clicked! (Test direct)');
-        });
-      } else if (!hamburger && window.addDebugLog) {
-        window.addDebugLog('TEST DIRECT: Hamburger NOT found!');
+      
+      if (!hamburger) {
+        if (window.addDebugLog) {
+          window.addDebugLog('🚨 DIAGNOSTIC: Hamburger element NOT FOUND in DOM!');
+        }
+        return;
       }
-    }, 1000);
+      
+      // Check if hamburger is visible and clickable
+      const rect = hamburger.getBoundingClientRect();
+      const computedStyle = window.getComputedStyle(hamburger);
+      
+      if (window.addDebugLog) {
+        window.addDebugLog('🔍 DIAGNOSTIC: Hamburger Element Analysis', {
+          exists: true,
+          visible: computedStyle.display !== 'none' && computedStyle.visibility !== 'hidden',
+          pointerEvents: computedStyle.pointerEvents,
+          zIndex: computedStyle.zIndex,
+          position: {
+            top: rect.top,
+            left: rect.left,
+            width: rect.width,
+            height: rect.height
+          },
+          classes: hamburger.className,
+          hasEventListeners: 'Check if events fire below'
+        });
+      }
+      
+      // Count how many event listeners are attached (indirectly)
+      let touchstartCount = 0;
+      let touchendCount = 0;
+      let clickCount = 0;
+      
+      // Add test listeners that run LAST (after main.js listeners)
+      hamburger.addEventListener('touchstart', function(e) {
+        touchstartCount++;
+        if (window.addDebugLog) {
+          window.addDebugLog('🧪 DIAGNOSTIC touchstart #' + touchstartCount, {
+            timestamp: Date.now(),
+            touches: e.touches.length,
+            target: e.target.tagName
+          });
+        }
+      }, { passive: true, capture: false }); // capture: false = runs AFTER capture: true
+      
+      hamburger.addEventListener('touchend', function(e) {
+        touchendCount++;
+        if (window.addDebugLog) {
+          window.addDebugLog('🧪 DIAGNOSTIC touchend #' + touchendCount, {
+            timestamp: Date.now(),
+            changedTouches: e.changedTouches.length,
+            defaultPrevented: e.defaultPrevented,
+            '⚠️ NOTE': e.defaultPrevented ? 'preventDefault was called - click will NOT fire!' : 'preventDefault NOT called - click should fire'
+          });
+        }
+      }, { passive: true, capture: false });
+      
+      hamburger.addEventListener('click', function(e) {
+        clickCount++;
+        if (window.addDebugLog) {
+          window.addDebugLog('🧪 DIAGNOSTIC click #' + clickCount, {
+            timestamp: Date.now(),
+            defaultPrevented: e.defaultPrevented,
+            '✅ SUCCESS': 'Click event DID fire! Hamburger is clickable.'
+          });
+        }
+      }, { capture: false });
+      
+      if (window.addDebugLog) {
+        window.addDebugLog('✅ DIAGNOSTIC: Test listeners attached. Try tapping the hamburger now!');
+      }
+    }, 1500); // Wait for main.js to fully initialize
   });
   </script>
 
