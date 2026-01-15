@@ -159,6 +159,9 @@ function initContactForm() {
             if (isPdfRequest) {
                 e.preventDefault();
                 
+                // DEBUG LOG 1: Confirm we're in PDF request path
+                console.log('[PDF-DEBUG] Intercepted PDF request');
+                
                 // Show loading state
                 submitBtn.disabled = true;
                 submitBtn.value = 'Envoi en cours...';
@@ -179,6 +182,9 @@ function initContactForm() {
                     formDataObj[key] = value;
                 });
 
+                // DEBUG LOG 2: Show what data we're sending
+                console.log('[PDF-DEBUG] Sending data:', JSON.stringify(formDataObj, null, 2));
+
                 // Send to API route
                 fetch('/api/send-pdf-programme', {
                     method: 'POST',
@@ -188,8 +194,13 @@ function initContactForm() {
                     body: JSON.stringify(formDataObj)
                 })
                 .then(response => {
+                    // DEBUG LOG 3: Response status
+                    console.log('[PDF-DEBUG] Response status:', response.status, response.statusText);
                     if (!response.ok) {
-                        return response.json().then(err => Promise.reject(err));
+                        return response.json().then(err => {
+                            console.error('[PDF-DEBUG] Error response:', err);
+                            return Promise.reject(err);
+                        });
                     }
                     return response.json();
                 })
@@ -222,8 +233,11 @@ function initContactForm() {
                     }
                 })
                 .catch(error => {
-                    console.error('Error sending PDF:', error);
-                    const errorMessage = error.details || error.message || 'Erreur inconnue';
+                    // DEBUG LOG 4: Catch error details
+                    console.error('[PDF-DEBUG] Catch error:', error);
+                    console.error('[PDF-DEBUG] Error type:', typeof error);
+                    console.error('[PDF-DEBUG] Error keys:', error ? Object.keys(error) : 'null');
+                    const errorMessage = error.details || error.message || error.error || 'Erreur inconnue';
                     showStatus('❌ Erreur lors de l\'envoi du PDF : ' + errorMessage + '. Veuillez réessayer ou me contacter directement.', 'error');
                     submitBtn.disabled = false;
                     submitBtn.value = 'Envoyez';
