@@ -2,23 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/send-pdf-programme.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "!(api)/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.txt",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.xml",
+      "src": "**",
       "use": "@vercel/static"
     }
   ],

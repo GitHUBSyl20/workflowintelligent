@@ -2,8 +2,10 @@
   "name": "workflowintelligent",
   "version": "1.0.0",
   "description": "Site web Workflow Intelligent - Formations et solutions IA",
+  "type": "module",
   "scripts": {
     "dev": "vercel dev",
+    "build": "echo 'No build step required'",
     "start": "vercel dev"
   },
   "dependencies": {
@@ -11,6 +13,6 @@
   },
   "devDependencies": {},
   "engines": {
-    "node": "20.x"
+    "node": ">=18.0.0"
   }
 }
