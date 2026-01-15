@@ -151,6 +151,90 @@ function initContactForm() {
                 return;
             }
 
+            // Check if this is a PDF request
+            const ressourceInput = document.getElementById('ressource');
+            const isPdfRequest = ressourceInput && ressourceInput.value === 'ProgrammePDF';
+
+            // If PDF request, handle via API route
+            if (isPdfRequest) {
+                e.preventDefault();
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                submitBtn.value = 'Envoi en cours...';
+                submitBtn.style.backgroundColor = '#ccc';
+                statusDiv.style.display = 'none';
+
+                // Track submission
+                submissionCount++;
+                lastSubmissionTime = Date.now();
+
+                // Show status message
+                showStatus('Envoi du PDF en cours...', 'info');
+
+                // Prepare form data
+                const formData = new FormData(form);
+                const formDataObj = {};
+                formData.forEach((value, key) => {
+                    formDataObj[key] = value;
+                });
+
+                // Send to API route
+                fetch('/api/send-pdf-programme', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formDataObj)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => Promise.reject(err));
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        showStatus('✅ PDF envoyé avec succès ! Vérifiez votre email (et le dossier spam).', 'success');
+                        
+                        // Reset form and re-enable button
+                        submitBtn.disabled = true;
+                        submitBtn.value = 'Envoyez';
+                        submitBtn.style.backgroundColor = '#ccc';
+                        submitBtn.style.cursor = 'not-allowed';
+                        
+                        // Clear form after successful submission
+                        form.reset();
+                        formToken.value = generateSecureToken();
+                        if (ressourceInput) ressourceInput.value = '';
+                        
+                        // Reset reCAPTCHA (only if available and not in development)
+                        if (!isDevelopment && typeof grecaptcha !== 'undefined' && grecaptcha.reset) {
+                            grecaptcha.reset();
+                        }
+                        
+                        // Re-check form validation after reset
+                        setTimeout(() => {
+                            checkFormValidation();
+                        }, 100);
+                    } else {
+                        throw new Error(data.error || 'Erreur lors de l\'envoi');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error sending PDF:', error);
+                    const errorMessage = error.details || error.message || 'Erreur inconnue';
+                    showStatus('❌ Erreur lors de l\'envoi du PDF : ' + errorMessage + '. Veuillez réessayer ou me contacter directement.', 'error');
+                    submitBtn.disabled = false;
+                    submitBtn.value = 'Envoyez';
+                    submitBtn.style.backgroundColor = '#FF4B1F';
+                    submitBtn.style.cursor = 'pointer';
+                });
+                
+                return;
+            }
+
+            // Default Formspree submission for other cases
             // Show loading state
             submitBtn.disabled = true;
             submitBtn.value = 'Envoi en cours...';
