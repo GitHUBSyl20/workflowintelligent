@@ -228,6 +228,9 @@
                 <input type="hidden" name="_subject" value="Nouveau message depuis le site web">
                 <input type="hidden" name="_next" value="https://workflowintelligent.fr/contact-devis.html?success=1">
               
+                <!-- Champ caché pour ressource (PDF programme) -->
+                <input type="hidden" id="ressource" name="ressource" value="">
+              
                 <!-- Rate limiting token (will be set by JavaScript) -->
                 <input type="hidden" id="form-token" name="_form_token" value="">
               
@@ -348,6 +351,15 @@
       const urlParams = new URLSearchParams(window.location.search);
       const demandeParam = urlParams.get('demande');
       const typeStructureParam = urlParams.get('type_structure');
+      const ressourceParam = urlParams.get('ressource');
+      
+      // Si ressource=ProgrammePDF, remplir le champ caché
+      if (ressourceParam === 'ProgrammePDF') {
+        const ressourceInput = document.getElementById('ressource');
+        if (ressourceInput) {
+          ressourceInput.value = 'ProgrammePDF';
+        }
+      }
       
       // Fonction pour pré-remplir le type de structure
       function fillTypeStructure() {
