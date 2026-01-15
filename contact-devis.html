@@ -162,6 +162,59 @@
                 <label for="email">Adresse email*</label>
                 <input type="email" id="email" name="_replyto" required maxlength="100">
               
+                <label for="demande">Demande*</label>
+                <select id="demande" name="demande" required>
+                  <option value="">Sélectionnez...</option>
+                  <option value="Formation">Formation</option>
+                  <option value="Développement">Développement</option>
+                </select>
+              
+                <!-- Champs de formation (affichage conditionnel) -->
+                <div id="formation-fields" class="formation-fields-container" style="display: none; opacity: 0; transition: opacity 0.3s ease-in-out;">
+                  <label for="type-structure">Type de structure*</label>
+                <select id="type-structure" name="type_structure">
+                  <option value="">Sélectionnez...</option>
+                  <option value="Entreprise">Entreprise</option>
+                  <option value="École">École</option>
+                  <option value="Organisme">Organisme</option>
+                </select>
+              
+                <label for="format">Format*</label>
+                <select id="format" name="format">
+                  <option value="">Sélectionnez...</option>
+                  <option value="3h30">3h30</option>
+                  <option value="7h">7h</option>
+                </select>
+              
+                <label for="effectif">Effectif*</label>
+                <select id="effectif" name="effectif">
+                  <option value="">Sélectionnez...</option>
+                  <option value="5-8">5–8</option>
+                  <option value="10-15">10–15</option>
+                  <option value="15+">15+</option>
+                </select>
+              
+                <label for="secteur-metier">Secteur + métier des participants*</label>
+                <input type="text" id="secteur-metier" name="secteur_metier" maxlength="200" placeholder="Ex: Commerce, Responsable marketing">
+              
+                <label for="cas-usage-choix">Cas d'usage (choix)</label>
+                <select id="cas-usage-choix" name="cas_usage_choix">
+                  <option value="">Sélectionnez un cas d'usage...</option>
+                  <option value="Emails & réponses clients">Emails & réponses clients</option>
+                  <option value="Compte-rendu → plan d'action">Compte-rendu → plan d'action</option>
+                  <option value="Prospection">Prospection</option>
+                  <option value="Rédaction de documents">Rédaction de documents</option>
+                  <option value="Autre">Autre</option>
+                </select>
+              
+                <label for="cas-usage-libre">Cas d'usage (détails libres)</label>
+                <textarea id="cas-usage-libre" name="cas_usage_libre" rows="3" maxlength="500" placeholder="Décrivez 1-2 cas d'usage spécifiques à votre contexte"></textarea>
+              
+                <label for="echeance">Échéance (date souhaitée)*</label>
+                <input type="date" id="echeance" name="echeance">
+                </div>
+                <!-- Fin des champs de formation -->
+              
                 <label for="Commentaires">Commentaires</label>
                 <textarea id="Commentaires" name="message" rows="4" maxlength="1000"></textarea>
               
@@ -239,5 +292,119 @@
       <div class="divider utility-margin-top-1rem"></div>
     </div>
   </footer>
+  
+  <script>
+    // Gestion de l'affichage conditionnel des champs de formation
+    document.addEventListener('DOMContentLoaded', function() {
+      const demandeSelect = document.getElementById('demande');
+      const formationFields = document.getElementById('formation-fields');
+      const formationInputs = formationFields.querySelectorAll('input, select, textarea');
+      
+      // Fonction pour afficher les champs avec animation fade-in
+      function showFormationFields(callback) {
+        formationFields.style.display = 'block';
+        // Petit délai pour permettre au navigateur de calculer le display
+        setTimeout(() => {
+          formationFields.style.opacity = '1';
+          
+          // Rendre les champs requis
+          formationInputs.forEach(input => {
+            if (input.type !== 'radio' && input.type !== 'checkbox') {
+              input.setAttribute('required', 'required');
+            }
+          });
+          
+          // Exécuter le callback si fourni, avec un délai supplémentaire pour s'assurer que le DOM est prêt
+          if (callback && typeof callback === 'function') {
+            // Utiliser requestAnimationFrame pour s'assurer que le rendu est terminé
+            requestAnimationFrame(() => {
+              setTimeout(callback, 50);
+            });
+          }
+        }, 10);
+      }
+      
+      // Fonction pour masquer les champs avec animation fade-out
+      function hideFormationFields() {
+        formationFields.style.opacity = '0';
+        setTimeout(() => {
+          formationFields.style.display = 'none';
+        }, 300); // Attendre la fin de l'animation (0.3s)
+        
+        // Retirer l'attribut required et vider les valeurs
+        formationInputs.forEach(input => {
+          input.removeAttribute('required');
+          if (input.type === 'radio' || input.type === 'checkbox') {
+            input.checked = false;
+          } else if (input.tagName === 'SELECT') {
+            input.selectedIndex = 0;
+          } else {
+            input.value = '';
+          }
+        });
+      }
+      
+      // Gestion des paramètres d'URL pour pré-remplir le formulaire
+      const urlParams = new URLSearchParams(window.location.search);
+      const demandeParam = urlParams.get('demande');
+      const typeStructureParam = urlParams.get('type_structure');
+      
+      // Fonction pour pré-remplir le type de structure
+      function fillTypeStructure() {
+        if (typeStructureParam) {
+          const typeStructureSelect = document.getElementById('type-structure');
+          if (typeStructureSelect) {
+            typeStructureSelect.value = typeStructureParam;
+            // Vérifier que la valeur a bien été définie (au cas où il y aurait un problème)
+            if (typeStructureSelect.value !== typeStructureParam) {
+              console.warn('Impossible de définir type-structure à', typeStructureParam);
+            }
+          }
+        }
+      }
+      
+      // Écouter les changements sur le champ "Demande"
+      demandeSelect.addEventListener('change', function() {
+        if (this.value === 'Formation') {
+          showFormationFields(() => {
+            // Si un paramètre URL type_structure est présent, le remplir après l'affichage
+            if (typeStructureParam) {
+              fillTypeStructure();
+            }
+          });
+        } else if (this.value === 'Développement') {
+          hideFormationFields();
+        } else {
+          // Si aucune sélection, masquer les champs
+          hideFormationFields();
+        }
+      });
+      
+      // Initialiser l'état au chargement de la page
+      if (demandeParam) {
+        // Si un paramètre URL est présent, l'utiliser en priorité
+        demandeSelect.value = demandeParam;
+        // Déclencher l'événement change pour que les listeners soient notifiés
+        demandeSelect.dispatchEvent(new Event('change', { bubbles: true }));
+      } else {
+        // Sinon, utiliser la valeur par défaut du formulaire
+        if (demandeSelect.value === 'Formation') {
+          showFormationFields();
+        } else {
+          hideFormationFields();
+        }
+      }
+      
+      // Scroller vers le formulaire si l'ancre #contact-form est présente
+      if (window.location.hash === '#contact-form') {
+        setTimeout(() => {
+          const contactForm = document.getElementById('contact-form');
+          if (contactForm) {
+            contactForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 200); // Délai plus long pour s'assurer que les champs sont affichés
+      }
+    });
+  </script>
 </body>
 </html>
