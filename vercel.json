@@ -1,5 +1,11 @@
 {
-  "public": true,
+  "version": 2,
+  "builds": [
+    {
+      "src": "**",
+      "use": "@vercel/static"
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
