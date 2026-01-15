@@ -3,25 +3,20 @@
  * Utilise Resend pour l'envoi d'email avec pièce jointe
  */
 
-import { Resend } from 'resend';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const { Resend } = require('resend');
+const fs = require('fs');
+const path = require('path');
 
 // Pour Vercel, le chemin doit être relatif à la racine du projet
 const getPdfPath = () => {
   // En production Vercel, les fichiers sont dans la racine
-  // En développement local, on peut utiliser __dirname
   if (process.env.VERCEL) {
     return path.join(process.cwd(), 'assets', 'programme-formation.pdf');
   }
   return path.join(__dirname, '..', 'assets', 'programme-formation.pdf');
 };
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // DEBUG LOG: API Route hit
   console.log('[API-DEBUG] ====== send-pdf-programme called ======');
   console.log('[API-DEBUG] Method:', req.method);
@@ -55,7 +50,7 @@ export default async function handler(req, res) {
 
     // Vérifier les variables d'environnement
     const resendApiKey = process.env.RESEND_API_KEY;
-    const resendFromEmail = process.env.RESEND_FROM_EMAIL || 'noreply@workflowintelligent.fr';
+    const resendFromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
 
     console.log('[API-DEBUG] Using from email:', resendFromEmail);
 
@@ -88,12 +83,12 @@ export default async function handler(req, res) {
     const pdfBuffer = fs.readFileSync(pdfPath);
     const pdfBase64 = pdfBuffer.toString('base64');
 
+    console.log('[API-DEBUG] PDF loaded, size:', pdfBuffer.length, 'bytes');
+    console.log('[API-DEBUG] Sending email to:', email);
+
     // Préparer le contenu de l'email
     const nomComplet = nom && prenom ? `${prenom} ${nom}` : (nom || prenom || 'Cher/Chère utilisateur/trice');
     const emailSubject = 'Programme de formation IA - Workflow Intelligent';
-
-    console.log('[API-DEBUG] PDF loaded, size:', pdfBuffer.length, 'bytes');
-    console.log('[API-DEBUG] Sending email to:', email);
 
     // Envoyer l'email avec le PDF en pièce jointe
     const emailResult = await resend.emails.send({
@@ -161,4 +156,4 @@ export default async function handler(req, res) {
       details: error.message
     });
   }
-}
+};
