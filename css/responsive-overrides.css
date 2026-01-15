@@ -430,6 +430,82 @@ html, body, .section, .container, .scroll-cards-container {
   padding: 20px;
 }
 
+/* === General Form Field Styling (Desktop & Mobile) === */
+header#contact-form form#email-form input[type="text"],
+header#contact-form form#email-form input[type="email"],
+header#contact-form form#email-form input[type="date"],
+header#contact-form form#email-form select,
+header#contact-form form#email-form textarea {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: var(--font-main, 'Lato', sans-serif);
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+header#contact-form form#email-form input[type="text"]:focus,
+header#contact-form form#email-form input[type="email"]:focus,
+header#contact-form form#email-form input[type="date"]:focus,
+header#contact-form form#email-form select:focus,
+header#contact-form form#email-form textarea:focus {
+  outline: none;
+  border-color: #FF4B1F;
+  box-shadow: 0 0 0 3px rgba(255, 75, 31, 0.1);
+}
+
+header#contact-form form#email-form select {
+  background-color: white;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  padding-right: 40px;
+}
+
+header#contact-form form#email-form input[type="date"] {
+  cursor: pointer;
+}
+
+/* Radio button styling */
+header#contact-form form#email-form input[type="radio"] {
+  width: auto;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  accent-color: #FF4B1F;
+}
+
+/* Radio button label container */
+header#contact-form form#email-form label[style*="display: flex"] {
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+/* Form labels */
+header#contact-form form#email-form label:not([style*="display: flex"]) {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-top: 0.5rem;
+}
+
+/* Formation fields container with fade animation */
+.formation-fields-container {
+  overflow: hidden;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.formation-fields-container[style*="display: none"] {
+  opacity: 0 !important;
+}
+
 /* === Contact Form Submit Button Styling === */
 .contact-submit-btn {
   display: block;
@@ -546,6 +622,8 @@ html, body, .section, .container, .scroll-cards-container {
   /* More assertive style for input fields and textarea to ensure full width */
   header#contact-form form#email-form input[type="text"],
   header#contact-form form#email-form input[type="email"],
+  header#contact-form form#email-form input[type="date"],
+  header#contact-form form#email-form select,
   header#contact-form form#email-form textarea {
     display: block !important; /* Force block display */
     width: 100% !important; /* Force full width */
@@ -557,6 +635,22 @@ html, body, .section, .container, .scroll-cards-container {
     font-size: 16px !important; /* Readable font size */
     margin-left: 0 !important; /* Remove horizontal margins */
     margin-right: 0 !important; /* Remove horizontal margins */
+    font-family: var(--font-main, 'Lato', sans-serif) !important;
+  }
+  
+  /* Radio button styling */
+  header#contact-form form#email-form input[type="radio"] {
+    width: auto !important;
+    margin-right: 0.5rem;
+    cursor: pointer;
+  }
+  
+  /* Radio button label container */
+  header#contact-form form#email-form label[style*="display: flex"] {
+    display: flex !important;
+    align-items: center;
+    font-weight: normal;
+    margin-bottom: 0;
   }
 
   /* Style for the submit button */
