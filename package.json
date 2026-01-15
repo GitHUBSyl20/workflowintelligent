@@ -1,0 +1,11 @@
+{
+  "name": "workflowintelligent",
+  "version": "1.0.0",
+  "description": "Site web Workflow Intelligent - Formations et solutions IA",
+  "dependencies": {
+    "resend": "^3.2.0"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}
