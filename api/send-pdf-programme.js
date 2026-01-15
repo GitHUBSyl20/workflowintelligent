@@ -22,22 +22,34 @@ const getPdfPath = () => {
 };
 
 export default async function handler(req, res) {
+  // DEBUG LOG: API Route hit
+  console.log('[API-DEBUG] ====== send-pdf-programme called ======');
+  console.log('[API-DEBUG] Method:', req.method);
+  console.log('[API-DEBUG] Body:', JSON.stringify(req.body, null, 2));
+  console.log('[API-DEBUG] VERCEL env:', process.env.VERCEL ? 'true' : 'false');
+  console.log('[API-DEBUG] RESEND_API_KEY set:', !!process.env.RESEND_API_KEY);
+  console.log('[API-DEBUG] RESEND_FROM_EMAIL:', process.env.RESEND_FROM_EMAIL || 'not set');
+
   // Seulement accepter les requêtes POST
   if (req.method !== 'POST') {
+    console.log('[API-DEBUG] Rejected: method not POST');
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
     // Récupérer les données du formulaire
     const { nom, prenom, _replyto: email, ressource } = req.body;
+    console.log('[API-DEBUG] Extracted - email:', email, 'ressource:', ressource);
 
     // Vérifier que c'est bien une demande de PDF
     if (ressource !== 'ProgrammePDF') {
-      return res.status(400).json({ error: 'Invalid resource parameter' });
+      console.log('[API-DEBUG] Rejected: ressource is not ProgrammePDF, got:', ressource);
+      return res.status(400).json({ error: 'Invalid resource parameter', received: ressource });
     }
 
     // Vérifier que l'email est présent
     if (!email) {
+      console.log('[API-DEBUG] Rejected: email is empty');
       return res.status(400).json({ error: 'Email is required' });
     }
 
@@ -45,9 +57,11 @@ export default async function handler(req, res) {
     const resendApiKey = process.env.RESEND_API_KEY;
     const resendFromEmail = process.env.RESEND_FROM_EMAIL || 'noreply@workflowintelligent.fr';
 
+    console.log('[API-DEBUG] Using from email:', resendFromEmail);
+
     if (!resendApiKey) {
-      console.error('RESEND_API_KEY is not set');
-      return res.status(500).json({ error: 'Email service configuration error' });
+      console.error('[API-DEBUG] RESEND_API_KEY is not set!');
+      return res.status(500).json({ error: 'Email service configuration error', details: 'RESEND_API_KEY not configured' });
     }
 
     // Initialiser Resend
@@ -55,10 +69,20 @@ export default async function handler(req, res) {
 
     // Lire le PDF depuis le dossier assets
     const pdfPath = getPdfPath();
+    console.log('[API-DEBUG] PDF path:', pdfPath);
+    console.log('[API-DEBUG] PDF exists:', fs.existsSync(pdfPath));
     
     if (!fs.existsSync(pdfPath)) {
-      console.error('PDF file not found at:', pdfPath);
-      return res.status(500).json({ error: 'PDF file not found' });
+      console.error('[API-DEBUG] PDF file not found at:', pdfPath);
+      // List files in assets to debug
+      try {
+        const assetsPath = process.env.VERCEL ? path.join(process.cwd(), 'assets') : path.join(__dirname, '..', 'assets');
+        const files = fs.readdirSync(assetsPath);
+        console.log('[API-DEBUG] Files in assets:', files);
+      } catch (e) {
+        console.log('[API-DEBUG] Cannot list assets dir:', e.message);
+      }
+      return res.status(500).json({ error: 'PDF file not found', path: pdfPath });
     }
 
     const pdfBuffer = fs.readFileSync(pdfPath);
@@ -67,6 +91,9 @@ export default async function handler(req, res) {
     // Préparer le contenu de l'email
     const nomComplet = nom && prenom ? `${prenom} ${nom}` : (nom || prenom || 'Cher/Chère utilisateur/trice');
     const emailSubject = 'Programme de formation IA - Workflow Intelligent';
+
+    console.log('[API-DEBUG] PDF loaded, size:', pdfBuffer.length, 'bytes');
+    console.log('[API-DEBUG] Sending email to:', email);
 
     // Envoyer l'email avec le PDF en pièce jointe
     const emailResult = await resend.emails.send({
@@ -108,15 +135,18 @@ export default async function handler(req, res) {
       ],
     });
 
+    console.log('[API-DEBUG] Resend response:', JSON.stringify(emailResult, null, 2));
+
     if (emailResult.error) {
-      console.error('Resend API error:', emailResult.error);
+      console.error('[API-DEBUG] Resend API error:', emailResult.error);
       return res.status(500).json({ 
         error: 'Failed to send email',
-        details: emailResult.error.message || 'Unknown error'
+        details: emailResult.error.message || JSON.stringify(emailResult.error)
       });
     }
 
     // Succès
+    console.log('[API-DEBUG] SUCCESS! Email sent, ID:', emailResult.data?.id);
     return res.status(200).json({ 
       success: true,
       message: 'PDF envoyé avec succès',
@@ -124,10 +154,11 @@ export default async function handler(req, res) {
     });
 
   } catch (error) {
-    console.error('Error in send-pdf-programme API:', error);
+    console.error('[API-DEBUG] CATCH ERROR:', error.message);
+    console.error('[API-DEBUG] Error stack:', error.stack);
     return res.status(500).json({ 
       error: 'Internal server error',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+      details: error.message
     });
   }
 }
