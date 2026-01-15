@@ -4,7 +4,6 @@
   "description": "Site web Workflow Intelligent - Formations et solutions IA",
   "scripts": {
     "dev": "vercel dev",
-    "build": "echo 'No build step required'",
     "start": "vercel dev"
   },
   "dependencies": {
