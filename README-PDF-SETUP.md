@@ -20,7 +20,6 @@ npm install
 1. Créer un compte sur https://resend.com
 2. Obtenir votre clé API depuis le dashboard Resend
 3. Vérifier votre domaine d'envoi (ou utiliser le domaine de test fourni par Resend)
-
 ### 3. Configurer les variables d'environnement dans Vercel
 
 Dans le dashboard Vercel de votre projet :
