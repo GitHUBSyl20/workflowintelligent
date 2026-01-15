@@ -146,78 +146,51 @@
       <div class="container">
         <div class="utility-max-width-lg utility-element-align-center utility-text-align-center" style="margin-bottom: 1.4rem;">
           <h2 class="h2-heading">Choisissez votre profil</h2>
-          <p class="paragraph-3">
-            Des formations adaptées à chaque contexte et à chaque besoin.
-          </p>
         </div>
 
-        <div class="w-layout-grid grid-layout desktop-3-column tablet-2-column mobile-landscape-1-column grid-gap-md">
-          <!-- Carte 1: Entreprises -->
-          <div class="card flex-vertical">
-            <div class="card-body flex-vertical" style="padding: 1rem;">
-              <h3 class="h4-heading" style="margin-top: 0; margin-bottom: 0.7rem; font-size: 1.1rem;">Entreprises</h3>
-              
-              <div style="margin-bottom: 0.7rem;">
-                <p class="paragraph-3" style="margin-bottom: 0.35rem; font-size: 0.9rem;"><strong>Problème :</strong></p>
-                <p class="paragraph-3" style="margin-bottom: 0; font-size: 0.9rem; line-height: 1.4;">
-                  Usage dispersé, risques data, résultats inégaux
-                </p>
-              </div>
-
-              <div style="margin-bottom: 1rem;">
-                <p class="paragraph-3" style="margin-bottom: 0.35rem; font-size: 0.9rem;"><strong>Promesse :</strong></p>
-                <p class="paragraph-3" style="margin-bottom: 0; font-size: 0.9rem; line-height: 1.4;">
-                  Gain de temps + standards + règles internes
-                </p>
-              </div>
-
-              <a href="contact-devis.html?demande=Formation&type_structure=Entreprise#contact-form" class="button w-button" style="margin-top: 0.5rem; padding: 0.6rem 1.2rem; font-size: 0.9rem;">Planifier un pilote (15 min)</a>
-            </div>
+        <div data-duration-out="100" data-current="Tab 1" data-easing="ease" data-duration-in="300"
+          class="grid-layout desktop-5-column grid-gap-md w-tabs" style="max-width: 800px; margin: 0 auto;">
+          <div class="grid-layout desktop-3-column mobile-portrait-1-column grid-gap-xs w-tab-menu" style="margin-bottom: 1.5rem;">
+            <a data-w-tab="Tab 1" class="tab-menu-link-transparent w-tab-link accordion-title-mobile-margin w--current">
+              <h4 class="bold-text utility-text-align-center utility-margin-bottom-0">
+                Entreprises
+              </h4>
+            </a>
+            <a data-w-tab="Tab 2" class="tab-menu-link-transparent w-tab-link accordion-title-mobile-margin">
+              <h4 class="bold-text utility-text-align-center utility-margin-bottom-0">
+                Grandes écoles
+              </h4>
+            </a>
+            <a data-w-tab="Tab 3" class="tab-menu-link-transparent w-tab-link accordion-title-mobile-margin">
+              <h4 class="bold-text utility-text-align-center utility-margin-bottom-0">
+                Centres de formation
+              </h4>
+            </a>
           </div>
-
-          <!-- Carte 2: Grandes écoles -->
-          <div class="card flex-vertical">
-            <div class="card-body flex-vertical" style="padding: 1rem;">
-              <h3 class="h4-heading" style="margin-top: 0; margin-bottom: 0.7rem; font-size: 1.1rem;">Grandes écoles</h3>
-              
-              <div style="margin-bottom: 0.7rem;">
-                <p class="paragraph-3" style="margin-bottom: 0.35rem; font-size: 0.9rem;"><strong>Problème :</strong></p>
-                <p class="paragraph-3" style="margin-bottom: 0; font-size: 0.9rem; line-height: 1.4;">
-                  Contenus à actualiser + besoin d'intervenant praticien
+          <div class="tabs-content w-tab-content" style="grid-column: 1 / -1;">
+            <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
+              <div class="utility-max-width-md utility-element-align-center" style="text-align: center; padding: 1.5rem;">
+                <p class="paragraph-3" style="margin-bottom: 1rem; font-size: 1rem; line-height: 1.6;">
+                  Usage dispersé + risques data + résultats instables. Vos équipes bricolent sans méthode, perdent du temps, et exposent l'organisation à des erreurs coûteuses.
                 </p>
+                <a href="contact-devis.html?demande=Formation&type_structure=Entreprise#contact-form" class="button w-button">Planifier un pilote (15 min)</a>
               </div>
-
-              <div style="margin-bottom: 1rem;">
-                <p class="paragraph-3" style="margin-bottom: 0.35rem; font-size: 0.9rem;"><strong>Promesse :</strong></p>
-                <p class="paragraph-3" style="margin-bottom: 0; font-size: 0.9rem; line-height: 1.4;">
-                  Atelier cas réels + livrables + grille d'évaluation / bonnes pratiques
-                </p>
-              </div>
-
-              <a href="contact-devis.html?demande=Formation&type_structure=École#contact-form" class="button w-button" style="margin-top: 0.5rem; padding: 0.6rem 1.2rem; font-size: 0.9rem;">Recevoir une proposition d'intervention</a>
             </div>
-          </div>
-
-          <!-- Carte 3: Centres de formation / organismes -->
-          <div class="card flex-vertical">
-            <div class="card-body flex-vertical" style="padding: 1rem;">
-              <h3 class="h4-heading" style="margin-top: 0; margin-bottom: 0.7rem; font-size: 1.1rem;">Centres de formation</h3>
-              
-              <div style="margin-bottom: 0.7rem;">
-                <p class="paragraph-3" style="margin-bottom: 0.35rem; font-size: 0.9rem;"><strong>Problème :</strong></p>
-                <p class="paragraph-3" style="margin-bottom: 0; font-size: 0.9rem; line-height: 1.4;">
-                  Catalogue à vendre + différenciation + supports duplicables
+            <div data-w-tab="Tab 2" class="w-tab-pane">
+              <div class="utility-max-width-md utility-element-align-center" style="text-align: center; padding: 1.5rem;">
+                <p class="paragraph-3" style="margin-bottom: 1rem; font-size: 1rem; line-height: 1.6;">
+                  Contenus à actualiser + intervenant praticien. Vous avez besoin d'un atelier concret avec cas réels, livrables exploitables et grille d'évaluation pour vos étudiants.
                 </p>
+                <a href="contact-devis.html?demande=Formation&type_structure=École#contact-form" class="button w-button">Recevoir une proposition</a>
               </div>
-
-              <div style="margin-bottom: 1rem;">
-                <p class="paragraph-3" style="margin-bottom: 0.35rem; font-size: 0.9rem;"><strong>Promesse :</strong></p>
-                <p class="paragraph-3" style="margin-bottom: 0; font-size: 0.9rem; line-height: 1.4;">
-                  Module packagé + co-animation / marque blanche + kit pédagogique
+            </div>
+            <div data-w-tab="Tab 3" class="w-tab-pane">
+              <div class="utility-max-width-md utility-element-align-center" style="text-align: center; padding: 1.5rem;">
+                <p class="paragraph-3" style="margin-bottom: 1rem; font-size: 1rem; line-height: 1.6;">
+                  Catalogue à vendre + différenciation + supports duplicables. Vous cherchez un module packagé, prêt à l'emploi, avec kit pédagogique complet pour vos clients.
                 </p>
+                <a href="contact-devis.html?demande=Formation&type_structure=Organisme#contact-form" class="button w-button">Demander la fiche partenaire</a>
               </div>
-
-              <a href="contact-devis.html?demande=Formation&type_structure=Organisme#contact-form" class="button w-button" style="margin-top: 0.5rem; padding: 0.6rem 1.2rem; font-size: 0.9rem;">Demander la fiche programme (partenaire)</a>
             </div>
           </div>
         </div>
