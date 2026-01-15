@@ -171,7 +171,7 @@
               
                 <!-- Champs de formation (affichage conditionnel) -->
                 <div id="formation-fields" class="formation-fields-container" style="display: none; opacity: 0; transition: opacity 0.3s ease-in-out;">
-                  <label for="type-structure">Type de structure*</label>
+                  <label for="type-structure">Type de structure</label>
                 <select id="type-structure" name="type_structure">
                   <option value="">Sélectionnez...</option>
                   <option value="Entreprise">Entreprise</option>
@@ -179,14 +179,14 @@
                   <option value="Organisme">Organisme</option>
                 </select>
               
-                <label for="format">Format*</label>
+                <label for="format">Format</label>
                 <select id="format" name="format">
                   <option value="">Sélectionnez...</option>
                   <option value="3h30">3h30</option>
                   <option value="7h">7h</option>
                 </select>
               
-                <label for="effectif">Effectif*</label>
+                <label for="effectif">Effectif</label>
                 <select id="effectif" name="effectif">
                   <option value="">Sélectionnez...</option>
                   <option value="5-8">5–8</option>
@@ -194,7 +194,7 @@
                   <option value="15+">15+</option>
                 </select>
               
-                <label for="secteur-metier">Secteur + métier des participants*</label>
+                <label for="secteur-metier">Secteur + métier des participants</label>
                 <input type="text" id="secteur-metier" name="secteur_metier" maxlength="200" placeholder="Ex: Commerce, Responsable marketing">
               
                 <label for="cas-usage-choix">Cas d'usage (choix)</label>
@@ -210,7 +210,7 @@
                 <label for="cas-usage-libre">Cas d'usage (détails libres)</label>
                 <textarea id="cas-usage-libre" name="cas_usage_libre" rows="3" maxlength="500" placeholder="Décrivez 1-2 cas d'usage spécifiques à votre contexte"></textarea>
               
-                <label for="echeance">Échéance (date souhaitée)*</label>
+                <label for="echeance">Échéance (date souhaitée)</label>
                 <input type="date" id="echeance" name="echeance">
                 </div>
                 <!-- Fin des champs de formation -->
@@ -310,12 +310,8 @@
         setTimeout(() => {
           formationFields.style.opacity = '1';
           
-          // Rendre les champs requis
-          formationInputs.forEach(input => {
-            if (input.type !== 'radio' && input.type !== 'checkbox') {
-              input.setAttribute('required', 'required');
-            }
-          });
+          // Les champs de formation sont optionnels pour limiter la friction
+          // Seuls nom, prénom, email et demande restent obligatoires
           
           // Exécuter le callback si fourni, avec un délai supplémentaire pour s'assurer que le DOM est prêt
           if (callback && typeof callback === 'function') {
