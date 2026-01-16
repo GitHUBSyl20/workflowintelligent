@@ -155,8 +155,9 @@ function initContactForm() {
             const ressourceInput = document.getElementById('ressource');
             const isPdfRequest = ressourceInput && ressourceInput.value === 'ProgrammePDF';
 
+            // Temporairement désactivé - en attente de vérification du domaine Resend
             // If PDF request, handle via API route
-            if (isPdfRequest) {
+            if (false && isPdfRequest) {
                 e.preventDefault();
                 
                 // DEBUG LOG 1: Confirm we're in PDF request path
