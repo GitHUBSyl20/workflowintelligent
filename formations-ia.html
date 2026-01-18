@@ -239,11 +239,6 @@
       cursor: help;
     }
     
-    .stat-popover-wrapper {
-      position: relative;
-      display: inline-block;
-    }
-    
     .stat-popover-trigger {
       border-bottom: 1px dashed #FF4B1F;
       color: #FF4B1F;
@@ -256,9 +251,14 @@
       color: #d63c13;
     }
     
+    .stat-popover-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+    
     .stat-popover-content {
       position: absolute !important;
-      bottom: 100% !important;
+      bottom: calc(100% + 0.5rem) !important;
       left: 50% !important;
       transform: translateX(-50%) translateY(-10px) !important;
       background: white !important;
@@ -273,10 +273,8 @@
       visibility: hidden !important;
       pointer-events: none !important;
       transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease !important;
-      margin-bottom: 0.5rem !important;
       font-size: 0.9rem !important;
       line-height: 1.5 !important;
-      display: block !important;
       white-space: normal !important;
     }
     
