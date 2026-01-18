@@ -260,7 +260,7 @@
       position: absolute;
       bottom: 100%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) translateY(-10px);
       background: white;
       border: 1px solid #ddd;
       border-radius: 8px;
@@ -268,16 +268,23 @@
       padding: 1rem;
       min-width: 280px;
       max-width: 400px;
-      z-index: 1000;
+      z-index: 10000 !important;
       opacity: 0;
       visibility: hidden;
+      pointer-events: none;
       transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-      transform: translateX(-50%) translateY(-10px);
       margin-bottom: 0.5rem;
       font-size: 0.9rem;
       line-height: 1.5;
       display: block;
       white-space: normal;
+    }
+    
+    .stat-popover.active .stat-popover-content {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0) !important;
     }
     
     .stat-popover-content::after {
@@ -972,9 +979,9 @@
           return;
         }
         
-        // Ouvrir/fermer au clic
-        trigger.addEventListener('click', function(e) {
-          console.log(`[POPOVER-DEBUG] Click detected on popover ${index + 1}`);
+        // Ouvrir/fermer au clic - utiliser le popover entier comme zone cliquable
+        popover.addEventListener('click', function(e) {
+          console.log(`[POPOVER-DEBUG] Click detected on popover ${index + 1}`, e.target);
           e.preventDefault();
           e.stopPropagation();
           
@@ -994,14 +1001,25 @@
           // Vérifier le contenu
           const content = popover.querySelector('.stat-popover-content');
           if (content) {
+            const styles = window.getComputedStyle(content);
             console.log(`[POPOVER-DEBUG] Content element found, computed styles:`, {
-              display: window.getComputedStyle(content).display,
-              visibility: window.getComputedStyle(content).visibility,
-              opacity: window.getComputedStyle(content).opacity
+              display: styles.display,
+              visibility: styles.visibility,
+              opacity: styles.opacity,
+              position: styles.position,
+              zIndex: styles.zIndex
             });
           } else {
             console.error(`[POPOVER-DEBUG] No content element found in popover ${index + 1}`);
           }
+        });
+        
+        // Aussi sur le trigger directement
+        trigger.addEventListener('click', function(e) {
+          console.log(`[POPOVER-DEBUG] Click detected on trigger ${index + 1}`);
+          e.preventDefault();
+          e.stopPropagation();
+          popover.dispatchEvent(new Event('click'));
         });
       });
       
