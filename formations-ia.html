@@ -172,6 +172,7 @@
       padding: 2rem;
       background: #f9f9f9;
       border-radius: 12px;
+      overflow-x: hidden;
     }
     
     .employability-section h3 {
@@ -182,6 +183,17 @@
     .employability-section p {
       text-align: left;
       line-height: 1.7;
+    }
+    
+    /* Permettre le retour à la ligne dans la section employabilité */
+    .employability-section .stat-popover {
+      white-space: normal;
+      display: inline;
+    }
+    
+    .employability-section .stat-line {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
     
     .formation-details-section {
@@ -237,6 +249,10 @@
       position: relative;
       display: inline-block;
       cursor: help;
+    }
+    
+    /* Forcer une seule ligne uniquement pour la section formations-intro */
+    .formations-intro .stat-popover {
       white-space: nowrap;
     }
     
@@ -401,6 +417,13 @@
       .employability-section {
         padding: 1.5rem 1rem;
         margin: 1.5rem auto;
+        overflow-x: hidden;
+      }
+      
+      .employability-section .stat-line {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
       }
       
       .transformation-grid {
@@ -478,7 +501,7 @@
 
   <main>
     <!-- Section intro avec les stats -->
-    <section class="section" style="padding-top: 2rem; padding-bottom: 1rem;">
+    <section class="section" style="padding-top: 4rem; padding-bottom: 1rem;">
       <div class="container">
         <div class="formations-intro">
           <div class="stat-line">
