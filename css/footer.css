@@ -87,6 +87,18 @@ body .inverse-footer a:hover {
 }
 
 @media (max-width: 767px) { /* Mobile */
+  /* Réduire le padding du footer lui-même */
+  .footer,
+  .footer.inverse-footer {
+    padding-top: 0.75rem !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  /* Cacher le logo vide qui prend de l'espace */
+  .footer-grid > a.logo {
+    display: none !important;
+  }
+  
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 0.5rem;
