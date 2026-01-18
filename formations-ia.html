@@ -241,7 +241,7 @@
     
     .stat-popover-wrapper {
       position: relative;
-      display: inline;
+      display: inline-block;
     }
     
     .stat-popover-trigger {
@@ -280,8 +280,8 @@
       white-space: normal !important;
     }
     
-    .stat-popover.active .stat-popover-content,
-    .stat-popover.active > .stat-popover-content {
+    .stat-popover-wrapper .stat-popover.active ~ .stat-popover-content,
+    .stat-popover.active + .stat-popover-content {
       opacity: 1 !important;
       visibility: visible !important;
       pointer-events: auto !important;
@@ -473,39 +473,39 @@
             <span class="stat-popover-wrapper">
               <span class="stat-popover">
                 <strong class="stat-popover-trigger">Seulement 10%</strong> des entreprises (10+ salariés) utilisent l'IA : écarts, perte de temps, bricolage.
-                <span class="stat-popover-content">
-                  <h4>10% seulement utilisent l'IA</h4>
-                  <p>En France, seulement 10% des entreprises de 10 salariés ou plus déclarent utiliser l'IA en 2024. Cet écart se creuse entre ceux qui maîtrisent l'IA et ceux qui subissent la transformation.</p>
-                  <p><strong>Conséquences :</strong> perte de temps, essais au hasard, équipes qui bricolent sans méthode structurée.</p>
-                  <a href="https://www.insee.fr/fr/statistiques" target="_blank" rel="noopener">Source : INSEE</a>
-                </span>
               </span>
+              <div class="stat-popover-content">
+                <h4>10% seulement utilisent l'IA</h4>
+                <p>En France, seulement 10% des entreprises de 10 salariés ou plus déclarent utiliser l'IA en 2024. Cet écart se creuse entre ceux qui maîtrisent l'IA et ceux qui subissent la transformation.</p>
+                <p><strong>Conséquences :</strong> perte de temps, essais au hasard, équipes qui bricolent sans méthode structurée.</p>
+                <a href="https://www.insee.fr/fr/statistiques" target="_blank" rel="noopener">Source : INSEE</a>
+              </div>
             </span>
           </p>
           <p>
             <span class="stat-popover-wrapper">
               <span class="stat-popover">
                 <strong class="stat-popover-trigger">78% BYOAI</strong> (Bring Your Own AI) : sans cadre, erreurs, fuites et livrables instables.
-                <span class="stat-popover-content">
-                  <h4>78% BYOAI - Bring Your Own AI</h4>
-                  <p>78% des utilisateurs d'IA amènent leurs propres outils au travail (BYOAI). Sans cadre organisationnel, c'est la porte ouverte aux erreurs, fuites d'informations et livrables de qualité instable.</p>
-                  <p><strong>Risques :</strong> hallucinations, données sensibles exposées, résultats inexploitables.</p>
-                  <a href="https://www.gartner.com" target="_blank" rel="noopener">Source : Gartner</a>
-                </span>
               </span>
+              <div class="stat-popover-content">
+                <h4>78% BYOAI - Bring Your Own AI</h4>
+                <p>78% des utilisateurs d'IA amènent leurs propres outils au travail (BYOAI). Sans cadre organisationnel, c'est la porte ouverte aux erreurs, fuites d'informations et livrables de qualité instable.</p>
+                <p><strong>Risques :</strong> hallucinations, données sensibles exposées, résultats inexploitables.</p>
+                <a href="https://www.gartner.com" target="_blank" rel="noopener">Source : Gartner</a>
+              </div>
             </span>
           </p>
           <p>
             <span class="stat-popover-wrapper">
               <span class="stat-popover">
                 <strong class="stat-popover-trigger">AI Act</strong> : former, standardiser, sécuriser — avant que l'IA ne s'impose.
-                <span class="stat-popover-content">
-                  <h4>AI Act - Règlement européen</h4>
-                  <p>Le règlement européen sur l'IA (AI Act) impose aux organisations de garantir un niveau suffisant d'« AI literacy » des équipes.</p>
-                  <p><strong>Obligations :</strong> former, standardiser les pratiques, sécuriser les usages — avant que l'IA ne s'impose de façon désordonnée.</p>
-                  <a href="https://digital-strategy.ec.europa.eu/fr/policies/regulatory-framework-ai" target="_blank" rel="noopener">Source : Commission européenne</a>
-                </span>
               </span>
+              <div class="stat-popover-content">
+                <h4>AI Act - Règlement européen</h4>
+                <p>Le règlement européen sur l'IA (AI Act) impose aux organisations de garantir un niveau suffisant d'« AI literacy » des équipes.</p>
+                <p><strong>Obligations :</strong> former, standardiser les pratiques, sécuriser les usages — avant que l'IA ne s'impose de façon désordonnée.</p>
+                <a href="https://digital-strategy.ec.europa.eu/fr/policies/regulatory-framework-ai" target="_blank" rel="noopener">Source : Commission européenne</a>
+              </div>
             </span>
           </p>
         </div>
@@ -977,6 +977,11 @@
           return;
         }
         
+        // Trouver le wrapper parent et le contenu (frère du popover)
+        const wrapper = popover.closest('.stat-popover-wrapper');
+        const content = wrapper ? wrapper.querySelector('.stat-popover-content') : null;
+        console.log(`[POPOVER-DEBUG] Content found for popover ${index + 1}:`, !!content);
+        
         // Ouvrir/fermer au clic - utiliser le popover entier comme zone cliquable
         popover.addEventListener('click', function(e) {
           console.log(`[POPOVER-DEBUG] Click detected on popover ${index + 1}`, e.target);
@@ -997,7 +1002,6 @@
           console.log(`[POPOVER-DEBUG] Popover ${index + 1} toggled: ${wasActive} -> ${isActive}`);
           
           // Vérifier le contenu
-          const content = popover.querySelector('.stat-popover-content');
           if (content) {
             const styles = window.getComputedStyle(content);
             console.log(`[POPOVER-DEBUG] Content element found, computed styles:`, {
@@ -1008,7 +1012,7 @@
               zIndex: styles.zIndex
             });
           } else {
-            console.error(`[POPOVER-DEBUG] No content element found in popover ${index + 1}`);
+            console.error(`[POPOVER-DEBUG] No content element found for popover ${index + 1}`);
           }
         });
         
