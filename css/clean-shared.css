@@ -380,6 +380,23 @@ input, textarea, select {
     display: none;
   }
   
+  /* Centrer le logo et ajuster l'icône sur mobile */
+  .main-navbar {
+    position: relative;
+  }
+  
+  .main-navbar .nav-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .main-navbar .nav-logo .logo-image {
+    transform: translateY(0.15rem);
+  }
+  
   .main-navbar .main-nav-links {
     display: none;
     position: fixed;
