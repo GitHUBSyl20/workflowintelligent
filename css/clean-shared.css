@@ -233,6 +233,16 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
   background: #b32a00; /* Dark orange color for active bars */
 }
 
+/* Hamburger menu becomes white when over orange hero section */
+.nav-hamburger.on-orange-hero span {
+  background: #ffffff !important; /* White color for bars */
+}
+
+.nav-hamburger.on-orange-hero.active span:nth-child(1),
+.nav-hamburger.on-orange-hero.active span:nth-child(3) {
+  background: #ffffff !important; /* White color for active X bars */
+}
+
 /* Language Switcher */
 .language-switcher {
   display: flex;
@@ -530,6 +540,16 @@ input, textarea, select {
   .main-navbar .nav-hamburger.active span:nth-child(3) {
     transform: translateY(-9px) rotate(-45deg);
     background: #b32a00; /* Dark orange color for active bars */
+  }
+  
+  /* Hamburger menu becomes white when over orange hero section - Mobile */
+  .main-navbar .nav-hamburger.on-orange-hero span {
+    background: #ffffff !important; /* White color for bars */
+  }
+
+  .main-navbar .nav-hamburger.on-orange-hero.active span:nth-child(1),
+  .main-navbar .nav-hamburger.on-orange-hero.active span:nth-child(3) {
+    background: #ffffff !important; /* White color for active X bars */
   }
   
   /* Prevent body scroll when mobile menu is open */

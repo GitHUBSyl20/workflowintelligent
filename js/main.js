@@ -349,6 +349,87 @@ $(document).ready(function(){
   }
 })();
 
+// Hamburger menu color change on scroll over orange hero section
+(function() {
+  'use strict';
+  
+  function init() {
+    const hamburger = document.querySelector('.nav-hamburger');
+    const heroSection = document.querySelector('.accent-primary-section');
+    
+    console.log('[HAMBURGER COLOR DEBUG] Initializing...');
+    console.log('[HAMBURGER COLOR DEBUG] Hamburger found:', !!hamburger);
+    console.log('[HAMBURGER COLOR DEBUG] Hero section found:', !!heroSection);
+    
+    if (!hamburger || !heroSection) {
+      console.warn('[HAMBURGER COLOR DEBUG] Missing elements - hamburger:', !!hamburger, 'hero:', !!heroSection);
+      return; // Exit if elements don't exist
+    }
+    
+    function checkScrollPosition() {
+      // Get hero section position relative to viewport
+      const heroRect = heroSection.getBoundingClientRect();
+      const hamburgerRect = hamburger.getBoundingClientRect();
+      
+      // Hero section position relative to viewport
+      const heroTop = heroRect.top; // Distance from top of viewport (negative if scrolled past)
+      const heroBottom = heroRect.bottom; // Distance from top of viewport
+      
+      // Hamburger is fixed at top-right, typically around top: 1.2rem (~19px)
+      const hamburgerTop = hamburgerRect.top; // Usually around 19px from top
+      const hamburgerBottom = hamburgerRect.bottom; // Bottom of hamburger (~19px + height)
+      
+      console.log('[HAMBURGER COLOR DEBUG] Hero rect:', {
+        heroTop: heroTop,
+        heroBottom: heroBottom,
+        hamburgerTop: hamburgerTop,
+        hamburgerBottom: hamburgerBottom
+      });
+      
+      // Hamburger becomes white ONLY when:
+      // 1. Hero section top is at or above the hamburger position (covers the hamburger from above)
+      // 2. Hero section bottom is below the top of viewport (still visible)
+      // This means we're scrolled into or over the orange hero section
+      const isHeroCoveringHamburger = heroTop <= hamburgerBottom && heroBottom > hamburgerTop;
+      const isHeroVisibleInViewport = heroBottom >= 0; // Hero section is still in viewport
+      
+      const isOverOrangeHero = isHeroCoveringHamburger && isHeroVisibleInViewport;
+      
+      console.log('[HAMBURGER COLOR DEBUG] Detection:', {
+        isHeroCoveringHamburger,
+        isHeroVisibleInViewport,
+        isOverOrangeHero,
+        heroTop,
+        heroBottom,
+        hamburgerTop,
+        hamburgerBottom
+      });
+      
+      // Add class if hamburger is visually over orange hero section
+      if (isOverOrangeHero) {
+        console.log('[HAMBURGER COLOR DEBUG] Adding on-orange-hero class - hamburger is over orange');
+        hamburger.classList.add('on-orange-hero');
+      } else {
+        console.log('[HAMBURGER COLOR DEBUG] Removing on-orange-hero class - hamburger is over white');
+        hamburger.classList.remove('on-orange-hero');
+      }
+    }
+    
+    // Check on scroll and resize
+    window.addEventListener('scroll', checkScrollPosition, { passive: true });
+    window.addEventListener('resize', checkScrollPosition, { passive: true });
+    
+    // Initial check
+    checkScrollPosition();
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
 // Active link highlighting
 document.addEventListener('DOMContentLoaded', function() {
   const links = document.querySelectorAll('.main-nav-link');
