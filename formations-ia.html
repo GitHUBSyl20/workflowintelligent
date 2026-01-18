@@ -251,13 +251,14 @@
       color: #d63c13;
     }
     
-    .stat-popover-wrapper {
-      position: relative;
-      display: inline-block;
+    .stat-line {
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
     }
     
-    .formations-intro p {
+    .stat-popover-wrapper {
       position: relative;
+      display: inline;
     }
     
     .stat-popover-content {
@@ -324,16 +325,13 @@
     
     @media (max-width: 767px) {
       .stat-popover-content {
-        left: 0;
-        transform: translateX(0);
+        left: 0 !important;
+        transform: translateX(0) translateY(-10px) !important;
         min-width: calc(100vw - 2rem);
         max-width: calc(100vw - 2rem);
       }
       
-      .stat-popover.active .stat-popover-content {
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
+      .stat-popover-content.active {
         transform: translateX(0) translateY(0) !important;
       }
       
@@ -471,45 +469,45 @@
     <section class="section" style="padding-top: 2rem; padding-bottom: 1rem;">
       <div class="container">
         <div class="formations-intro">
-          <p>
+          <div class="stat-line">
             <span class="stat-popover-wrapper">
               <span class="stat-popover" data-popover-id="stat-1">
                 <strong class="stat-popover-trigger">Seulement 10%</strong> des entreprises (10+ salariés) utilisent l'IA : écarts, perte de temps, bricolage.
               </span>
+              <div class="stat-popover-content" data-popover-target="stat-1">
+                <h4>10% seulement utilisent l'IA</h4>
+                <p>En France, seulement 10% des entreprises de 10 salariés ou plus déclarent utiliser l'IA en 2024. Cet écart se creuse entre ceux qui maîtrisent l'IA et ceux qui subissent la transformation.</p>
+                <p><strong>Conséquences :</strong> perte de temps, essais au hasard, équipes qui bricolent sans méthode structurée.</p>
+                <a href="https://www.insee.fr/fr/statistiques" target="_blank" rel="noopener">Source : INSEE</a>
+              </div>
             </span>
-            <div class="stat-popover-content" data-popover-target="stat-1">
-              <h4>10% seulement utilisent l'IA</h4>
-              <p>En France, seulement 10% des entreprises de 10 salariés ou plus déclarent utiliser l'IA en 2024. Cet écart se creuse entre ceux qui maîtrisent l'IA et ceux qui subissent la transformation.</p>
-              <p><strong>Conséquences :</strong> perte de temps, essais au hasard, équipes qui bricolent sans méthode structurée.</p>
-              <a href="https://www.insee.fr/fr/statistiques" target="_blank" rel="noopener">Source : INSEE</a>
-            </div>
-          </p>
-          <p>
+          </div>
+          <div class="stat-line">
             <span class="stat-popover-wrapper">
               <span class="stat-popover" data-popover-id="stat-2">
                 <strong class="stat-popover-trigger">78% BYOAI</strong> (Bring Your Own AI) : sans cadre, erreurs, fuites et livrables instables.
               </span>
+              <div class="stat-popover-content" data-popover-target="stat-2">
+                <h4>78% BYOAI - Bring Your Own AI</h4>
+                <p>78% des utilisateurs d'IA amènent leurs propres outils au travail (BYOAI). Sans cadre organisationnel, c'est la porte ouverte aux erreurs, fuites d'informations et livrables de qualité instable.</p>
+                <p><strong>Risques :</strong> hallucinations, données sensibles exposées, résultats inexploitables.</p>
+                <a href="https://www.gartner.com" target="_blank" rel="noopener">Source : Gartner</a>
+              </div>
             </span>
-            <div class="stat-popover-content" data-popover-target="stat-2">
-              <h4>78% BYOAI - Bring Your Own AI</h4>
-              <p>78% des utilisateurs d'IA amènent leurs propres outils au travail (BYOAI). Sans cadre organisationnel, c'est la porte ouverte aux erreurs, fuites d'informations et livrables de qualité instable.</p>
-              <p><strong>Risques :</strong> hallucinations, données sensibles exposées, résultats inexploitables.</p>
-              <a href="https://www.gartner.com" target="_blank" rel="noopener">Source : Gartner</a>
-            </div>
-          </p>
-          <p>
+          </div>
+          <div class="stat-line">
             <span class="stat-popover-wrapper">
               <span class="stat-popover" data-popover-id="stat-3">
                 <strong class="stat-popover-trigger">AI Act</strong> : former, standardiser, sécuriser — avant que l'IA ne s'impose.
               </span>
+              <div class="stat-popover-content" data-popover-target="stat-3">
+                <h4>AI Act - Règlement européen</h4>
+                <p>Le règlement européen sur l'IA (AI Act) impose aux organisations de garantir un niveau suffisant d'« AI literacy » des équipes.</p>
+                <p><strong>Obligations :</strong> former, standardiser les pratiques, sécuriser les usages — avant que l'IA ne s'impose de façon désordonnée.</p>
+                <a href="https://digital-strategy.ec.europa.eu/fr/policies/regulatory-framework-ai" target="_blank" rel="noopener">Source : Commission européenne</a>
+              </div>
             </span>
-            <div class="stat-popover-content" data-popover-target="stat-3">
-              <h4>AI Act - Règlement européen</h4>
-              <p>Le règlement européen sur l'IA (AI Act) impose aux organisations de garantir un niveau suffisant d'« AI literacy » des équipes.</p>
-              <p><strong>Obligations :</strong> former, standardiser les pratiques, sécuriser les usages — avant que l'IA ne s'impose de façon désordonnée.</p>
-              <a href="https://digital-strategy.ec.europa.eu/fr/policies/regulatory-framework-ai" target="_blank" rel="noopener">Source : Commission européenne</a>
-            </div>
-          </p>
+          </div>
         </div>
       </div>
     </section>
@@ -957,161 +955,51 @@
       console.log('[POPOVER-DEBUG] Script loaded, searching for popovers...');
       
       const popovers = document.querySelectorAll('.stat-popover');
-      console.log('[POPOVER-DEBUG] Found popovers:', popovers.length);
       
-      if (popovers.length === 0) {
-        console.error('[POPOVER-DEBUG] No popovers found! Checking HTML structure...');
-        const introSection = document.querySelector('.formations-intro');
-        console.log('[POPOVER-DEBUG] Intro section found:', !!introSection);
-        if (introSection) {
-          console.log('[POPOVER-DEBUG] Intro section HTML:', introSection.innerHTML.substring(0, 200));
-        }
-        return;
-      }
-      
-      popovers.forEach((popover, index) => {
-        console.log(`[POPOVER-DEBUG] Processing popover ${index + 1}`);
-        const trigger = popover.querySelector('.stat-popover-trigger');
-        console.log(`[POPOVER-DEBUG] Trigger found for popover ${index + 1}:`, !!trigger);
+      popovers.forEach((popover) => {
+        const wrapper = popover.closest('.stat-popover-wrapper');
+        const content = wrapper ? wrapper.querySelector('.stat-popover-content') : null;
         
-        if (!trigger) {
-          console.error(`[POPOVER-DEBUG] No trigger found in popover ${index + 1}`);
+        if (!content) {
+          console.error('[POPOVER] Content not found for popover:', popover);
           return;
         }
         
-        // Trouver le wrapper parent et le contenu (frère du popover)
-        const wrapper = popover.closest('.stat-popover-wrapper');
-        console.log(`[POPOVER-DEBUG] Wrapper found for popover ${index + 1}:`, !!wrapper);
-        if (wrapper) {
-          console.log(`[POPOVER-DEBUG] Wrapper children count:`, wrapper.children.length);
-          console.log(`[POPOVER-DEBUG] Wrapper children:`, Array.from(wrapper.children).map(c => c.tagName + '.' + c.className));
-        }
-        
-        // Chercher le contenu de plusieurs façons
-        let content = null;
-        if (wrapper) {
-          // Méthode 1: querySelector dans le wrapper
-          content = wrapper.querySelector('.stat-popover-content');
-          console.log(`[POPOVER-DEBUG] Content via wrapper.querySelector:`, !!content);
-          
-          // Méthode 2: Parcourir les enfants du wrapper
-          if (!content) {
-            Array.from(wrapper.children).forEach((child, i) => {
-              console.log(`[POPOVER-DEBUG] Wrapper child ${i}:`, child.tagName, child.className);
-              if (child.classList.contains('stat-popover-content')) {
-                content = child;
-                console.log(`[POPOVER-DEBUG] Found content as child ${i}`);
-              }
-            });
-          }
-        }
-        
-        // Si pas trouvé, chercher comme frère
-        if (!content) {
-          content = popover.nextElementSibling;
-          console.log(`[POPOVER-DEBUG] Content via nextElementSibling:`, !!content, content?.tagName, content?.className);
-        }
-        
-        // Si toujours pas trouvé, chercher dans le parent
-        if (!content && popover.parentElement) {
-          content = popover.parentElement.querySelector('.stat-popover-content');
-          console.log(`[POPOVER-DEBUG] Content via parent.querySelector:`, !!content);
-        }
-        
-        console.log(`[POPOVER-DEBUG] Final content found for popover ${index + 1}:`, !!content, content?.tagName);
-        
-        if (!content) {
-          console.error(`[POPOVER-DEBUG] CRITICAL: No content element found for popover ${index + 1}. DOM structure:`, {
-            popover: popover.outerHTML.substring(0, 150),
-            parent: popover.parentElement?.tagName + '.' + popover.parentElement?.className,
-            nextSibling: popover.nextElementSibling?.tagName + '.' + popover.nextElementSibling?.className,
-            wrapper: wrapper ? (wrapper.tagName + '.' + wrapper.className + ' - children: ' + wrapper.children.length) : 'NOT FOUND'
-          });
-        }
-        
-        // Ouvrir/fermer au clic - utiliser le popover entier comme zone cliquable
+        // Ouvrir/fermer au clic
         popover.addEventListener('click', function(e) {
-          console.log(`[POPOVER-DEBUG] Click detected on popover ${index + 1}`, e.target);
           e.preventDefault();
           e.stopPropagation();
-          
-          // Re-chercher le contenu au moment du clic via data-popover-target
-          const popoverIdAtClick = popover.getAttribute('data-popover-id');
-          let contentAtClick = null;
-          
-          if (popoverIdAtClick) {
-            contentAtClick = document.querySelector(`.stat-popover-content[data-popover-target="${popoverIdAtClick}"]`);
-            console.log(`[POPOVER-DEBUG] Content at click via data-popover-target:`, !!contentAtClick);
-          }
-          
-          // Fallback: chercher dans le parent <p>
-          if (!contentAtClick && popover.parentElement && popover.parentElement.parentElement) {
-            const parentP = popover.parentElement.parentElement;
-            contentAtClick = parentP.querySelector('.stat-popover-content');
-            console.log(`[POPOVER-DEBUG] Content at click in parent <p>:`, !!contentAtClick);
-          }
-          
-          console.log(`[POPOVER-DEBUG] Content at click time:`, !!contentAtClick, contentAtClick?.tagName);
           
           // Fermer les autres pop-overs
           popovers.forEach(p => {
             if (p !== popover) {
               p.classList.remove('active');
-              const otherId = p.getAttribute('data-popover-id');
-              if (otherId) {
-                const otherContent = document.querySelector(`.stat-popover-content[data-popover-target="${otherId}"]`);
-                if (otherContent) {
-                  otherContent.classList.remove('active');
-                }
+              const otherWrapper = p.closest('.stat-popover-wrapper');
+              const otherContent = otherWrapper ? otherWrapper.querySelector('.stat-popover-content') : null;
+              if (otherContent) {
+                otherContent.classList.remove('active');
               }
             }
           });
           
           // Toggle le pop-over actuel
-          const wasActive = popover.classList.contains('active');
-          popover.classList.toggle('active');
-          const isActive = popover.classList.contains('active');
-          console.log(`[POPOVER-DEBUG] Popover ${index + 1} toggled: ${wasActive} -> ${isActive}`);
-          
-          // Toggle aussi la classe active sur le contenu
-          if (contentAtClick) {
-            if (isActive) {
-              contentAtClick.classList.add('active');
-            } else {
-              contentAtClick.classList.remove('active');
-            }
-            
-            const styles = window.getComputedStyle(contentAtClick);
-            console.log(`[POPOVER-DEBUG] Content element found, computed styles:`, {
-              display: styles.display,
-              visibility: styles.visibility,
-              opacity: styles.opacity,
-              position: styles.position,
-              zIndex: styles.zIndex,
-              hasActiveClass: contentAtClick.classList.contains('active')
-            });
+          const isActive = popover.classList.toggle('active');
+          if (isActive) {
+            content.classList.add('active');
           } else {
-            console.error(`[POPOVER-DEBUG] No content element found for popover ${index + 1} at click time`);
+            content.classList.remove('active');
           }
-        });
-        
-        // Aussi sur le trigger directement
-        trigger.addEventListener('click', function(e) {
-          console.log(`[POPOVER-DEBUG] Click detected on trigger ${index + 1}`);
-          e.preventDefault();
-          e.stopPropagation();
-          popover.dispatchEvent(new Event('click'));
         });
       });
       
       // Fermer au clic en dehors
       document.addEventListener('click', function(e) {
-        if (!e.target.closest('.stat-popover')) {
+        if (!e.target.closest('.stat-popover-wrapper')) {
           popovers.forEach(p => {
-            if (p.classList.contains('active')) {
-              console.log('[POPOVER-DEBUG] Closing popover due to outside click');
-              p.classList.remove('active');
-            }
+            p.classList.remove('active');
+            const wrapper = p.closest('.stat-popover-wrapper');
+            const content = wrapper ? wrapper.querySelector('.stat-popover-content') : null;
+            if (content) content.classList.remove('active');
           });
         }
       });
@@ -1119,12 +1007,14 @@
       // Fermer avec Escape
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
-          console.log('[POPOVER-DEBUG] Closing popovers due to Escape key');
-          popovers.forEach(p => p.classList.remove('active'));
+          popovers.forEach(p => {
+            p.classList.remove('active');
+            const wrapper = p.closest('.stat-popover-wrapper');
+            const content = wrapper ? wrapper.querySelector('.stat-popover-content') : null;
+            if (content) content.classList.remove('active');
+          });
         }
       });
-      
-      console.log('[POPOVER-DEBUG] Initialization complete');
     });
   </script>
 </body>
