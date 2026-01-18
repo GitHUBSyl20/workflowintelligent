@@ -810,6 +810,67 @@ p.intro-stat-text {
   }
 }
 
+/* Accordéon - Mêmes marges horizontales que les textes d'intro */
+.portfolio-section .accordion {
+  margin-left: 15% !important;
+  margin-right: 15% !important;
+  width: auto !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 768px) {
+  /* Tous les accordéons du site - Marges identiques des deux côtés sur mobile */
+  .accordion {
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+    width: auto !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+  }
+  
+  .portfolio-section .accordion {
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+}
+
+/* Page À propos - Reproduire les mêmes marges que la page Financement */
+/* PROBLÈME IDENTIFIÉ : La classe .section ajoute des paddings (3vw sur mobile) */
+/* SOLUTION : Supprimer les paddings de .section quand il est dans .portfolio-section */
+
+/* Enlever les paddings de .section.portfolio-section (la page À propos utilise cette combinaison) */
+.section.portfolio-section {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Enlever tous les paddings des conteneurs pour que les marges de l'accordéon soient identiques */
+.portfolio-section .container.small-container,
+.portfolio-section .small-container,
+.portfolio-section .small-container > div {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+@media (max-width: 768px) {
+  /* Sur mobile, supprimer les paddings de .section dans .portfolio-section */
+  .section.portfolio-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  /* Sur mobile, s'assurer que tous les conteneurs n'ont pas de padding */
+  .portfolio-section .container.small-container,
+  .portfolio-section .small-container,
+  .portfolio-section .small-container > div {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
 /* Hero section - Contenu centré verticalement */
 .accent-primary-section .grid-layout {
   align-items: center;
