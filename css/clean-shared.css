@@ -386,7 +386,7 @@ input, textarea, select {
     justify-content: space-between;
     align-items: center;
     padding: 0.6rem 1rem;
-    min-height: 50px;
+    min-height: 83px;
   }
   
   .main-navbar .nav-logo {
@@ -398,8 +398,8 @@ input, textarea, select {
   }
   
   .main-navbar .nav-logo .logo-image {
-    width: 32px !important;
-    height: 32px !important;
+    width: 42px !important;
+    height: 42px !important;
     vertical-align: middle;
   }
   
