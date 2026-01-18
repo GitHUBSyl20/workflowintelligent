@@ -505,6 +505,34 @@ header#contact-form form#email-form label:not([style*="display: flex"]) {
   margin-top: 0.5rem;
 }
 
+/* === Réduction des espaces verticaux du formulaire sur mobile === */
+@media (max-width: 767px) {
+  /* Réduire l'espace entre les champs inputs (margin-bottom réduit de 40%) */
+  header#contact-form form#email-form input[type="text"],
+  header#contact-form form#email-form input[type="email"],
+  header#contact-form form#email-form input[type="date"],
+  header#contact-form form#email-form select,
+  header#contact-form form#email-form textarea {
+    margin-bottom: 0.6rem !important; /* Réduction de 40% (1rem * 0.6) */
+  }
+  
+  /* Réduire l'espace entre le label et le champ input (margin-bottom réduit de 40%) */
+  header#contact-form form#email-form label:not([style*="display: flex"]) {
+    margin-bottom: 3px !important; /* Réduction de 40% (5px * 0.6) */
+    margin-top: 0.3rem !important; /* Réduction de 40% (0.5rem * 0.6) */
+  }
+  
+  /* Réduire le gap entre les éléments du formulaire */
+  form#email-form {
+    gap: 9px !important; /* Réduction de 40% (15px * 0.6) */
+  }
+  
+  /* Réduire aussi l'espace pour les labels dans form#email-form */
+  form#email-form label {
+    margin-bottom: 3px !important; /* Réduction de 40% (5px * 0.6) */
+  }
+}
+
 /* Formation fields container with fade animation */
 .formation-fields-container {
   overflow: hidden;
@@ -613,17 +641,17 @@ header#contact-form form#email-form label:not([style*="display: flex"]) {
   form#email-form {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Space between form elements */
+    gap: 9px !important; /* Réduction de 40% (15px * 0.6) - Space between form elements */
     padding: 0 15px; /* Add some padding to the form itself to prevent edge-to-edge */
     width: 100%; /* Ensure form takes full width */
     box-sizing: border-box; /* Include padding in width */
   }
 
-  /* Style for labels */
+  /* Style for labels - Réduction de 40% de l'espace */
   form#email-form label {
     display: block; /* Ensure labels are block elements */
     font-weight: bold;
-    margin-bottom: 5px; /* Space between label and input */
+    margin-bottom: 3px !important; /* Réduction de 40% (5px * 0.6) - Space between label and input */
     width: 100%; /* Ensure labels take full width */
     box-sizing: border-box; /* Include padding in width */
   }
@@ -644,6 +672,7 @@ header#contact-form form#email-form label:not([style*="display: flex"]) {
     font-size: 16px !important; /* Readable font size */
     margin-left: 0 !important; /* Remove horizontal margins */
     margin-right: 0 !important; /* Remove horizontal margins */
+    margin-bottom: 0.6rem !important; /* Réduction de 40% (1rem * 0.6) - Space below inputs */
     font-family: var(--font-main, 'Lato', sans-serif) !important;
   }
   
@@ -1017,7 +1046,6 @@ p.intro-stat-text {
   
   /* 5. Éléments spécifiques - Réduction des espaces verticaux */
   .feature-cards-section {
-    padding-top: 0.9rem !important; /* 3rem * 0.3 */
     padding-bottom: 0.9rem !important; /* 3rem * 0.3 */
   }
   
