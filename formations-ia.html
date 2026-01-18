@@ -979,20 +979,33 @@
         const wrapper = popover.closest('.stat-popover-wrapper');
         console.log(`[POPOVER-DEBUG] Wrapper found for popover ${index + 1}:`, !!wrapper);
         if (wrapper) {
-          console.log(`[POPOVER-DEBUG] Wrapper HTML structure:`, wrapper.innerHTML.substring(0, 150));
+          console.log(`[POPOVER-DEBUG] Wrapper children count:`, wrapper.children.length);
+          console.log(`[POPOVER-DEBUG] Wrapper children:`, Array.from(wrapper.children).map(c => c.tagName + '.' + c.className));
         }
         
         // Chercher le contenu de plusieurs façons
         let content = null;
         if (wrapper) {
+          // Méthode 1: querySelector dans le wrapper
           content = wrapper.querySelector('.stat-popover-content');
           console.log(`[POPOVER-DEBUG] Content via wrapper.querySelector:`, !!content);
+          
+          // Méthode 2: Parcourir les enfants du wrapper
+          if (!content) {
+            Array.from(wrapper.children).forEach((child, i) => {
+              console.log(`[POPOVER-DEBUG] Wrapper child ${i}:`, child.tagName, child.className);
+              if (child.classList.contains('stat-popover-content')) {
+                content = child;
+                console.log(`[POPOVER-DEBUG] Found content as child ${i}`);
+              }
+            });
+          }
         }
         
         // Si pas trouvé, chercher comme frère
         if (!content) {
           content = popover.nextElementSibling;
-          console.log(`[POPOVER-DEBUG] Content via nextElementSibling:`, !!content, content?.className);
+          console.log(`[POPOVER-DEBUG] Content via nextElementSibling:`, !!content, content?.tagName, content?.className);
         }
         
         // Si toujours pas trouvé, chercher dans le parent
@@ -1001,14 +1014,14 @@
           console.log(`[POPOVER-DEBUG] Content via parent.querySelector:`, !!content);
         }
         
-        console.log(`[POPOVER-DEBUG] Final content found for popover ${index + 1}:`, !!content);
+        console.log(`[POPOVER-DEBUG] Final content found for popover ${index + 1}:`, !!content, content?.tagName);
         
         if (!content) {
           console.error(`[POPOVER-DEBUG] CRITICAL: No content element found for popover ${index + 1}. DOM structure:`, {
-            popover: popover.outerHTML.substring(0, 100),
-            parent: popover.parentElement?.tagName,
-            nextSibling: popover.nextElementSibling?.tagName,
-            wrapper: wrapper?.outerHTML.substring(0, 100)
+            popover: popover.outerHTML.substring(0, 150),
+            parent: popover.parentElement?.tagName + '.' + popover.parentElement?.className,
+            nextSibling: popover.nextElementSibling?.tagName + '.' + popover.nextElementSibling?.className,
+            wrapper: wrapper ? (wrapper.tagName + '.' + wrapper.className + ' - children: ' + wrapper.children.length) : 'NOT FOUND'
           });
         }
         
@@ -1020,15 +1033,38 @@
           
           // Re-chercher le contenu au moment du clic (au cas où le DOM aurait changé)
           const wrapperAtClick = popover.closest('.stat-popover-wrapper');
-          let contentAtClick = wrapperAtClick ? wrapperAtClick.querySelector('.stat-popover-content') : null;
-          if (!contentAtClick) {
-            contentAtClick = popover.nextElementSibling;
-          }
-          if (!contentAtClick && popover.parentElement) {
-            contentAtClick = popover.parentElement.querySelector('.stat-popover-content');
+          console.log(`[POPOVER-DEBUG] Wrapper at click:`, !!wrapperAtClick);
+          let contentAtClick = null;
+          
+          if (wrapperAtClick) {
+            // Méthode 1: querySelector
+            contentAtClick = wrapperAtClick.querySelector('.stat-popover-content');
+            console.log(`[POPOVER-DEBUG] Content via wrapper.querySelector at click:`, !!contentAtClick);
+            
+            // Méthode 2: Parcourir les enfants
+            if (!contentAtClick) {
+              Array.from(wrapperAtClick.children).forEach((child, i) => {
+                if (child.classList.contains('stat-popover-content')) {
+                  contentAtClick = child;
+                  console.log(`[POPOVER-DEBUG] Found content as wrapper child ${i} at click`);
+                }
+              });
+            }
           }
           
-          console.log(`[POPOVER-DEBUG] Content at click time:`, !!contentAtClick);
+          // Méthode 3: nextElementSibling
+          if (!contentAtClick) {
+            contentAtClick = popover.nextElementSibling;
+            console.log(`[POPOVER-DEBUG] Content via nextElementSibling at click:`, !!contentAtClick, contentAtClick?.tagName);
+          }
+          
+          // Méthode 4: parent querySelector
+          if (!contentAtClick && popover.parentElement) {
+            contentAtClick = popover.parentElement.querySelector('.stat-popover-content');
+            console.log(`[POPOVER-DEBUG] Content via parent.querySelector at click:`, !!contentAtClick);
+          }
+          
+          console.log(`[POPOVER-DEBUG] Content at click time:`, !!contentAtClick, contentAtClick?.tagName);
           
           // Fermer les autres pop-overs
           popovers.forEach(p => {
