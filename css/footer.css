@@ -128,4 +128,21 @@ body .inverse-footer a:hover {
     padding-top: 0;
     margin-bottom: 0.5rem;
   }
+  
+  /* Afficher les liens en 2 colonnes dans chaque section */
+  .footer-column .w-list-unstyled {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.25rem 1rem;
+  }
+  
+  .footer-column .w-list-unstyled li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .footer-link {
+    padding: 0.15rem 0;
+    font-size: 0.9rem;
+  }
 } 
