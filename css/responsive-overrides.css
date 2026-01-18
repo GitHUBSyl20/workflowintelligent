@@ -797,12 +797,16 @@ p.intro-stat-text {
   font-size: 1.15rem !important;
   line-height: 1.6 !important;
   color: #333;
+  margin-left: 15% !important;
+  margin-right: 15% !important;
 }
 
 @media (max-width: 768px) {
   p.intro-stat-text {
     font-size: 0.95rem !important;
     line-height: 1.5 !important;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
   }
 }
 
