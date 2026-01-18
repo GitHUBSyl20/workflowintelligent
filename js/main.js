@@ -355,14 +355,13 @@ $(document).ready(function(){
   
   function init() {
     const hamburger = document.querySelector('.nav-hamburger');
-    const heroSection = document.querySelector('.accent-primary-section');
-    
-    console.log('[HAMBURGER COLOR DEBUG] Initializing...');
-    console.log('[HAMBURGER COLOR DEBUG] Hamburger found:', !!hamburger);
-    console.log('[HAMBURGER COLOR DEBUG] Hero section found:', !!heroSection);
+    // Try to find hero section with either class (.accent-primary-section or .about-header)
+    let heroSection = document.querySelector('.accent-primary-section');
+    if (!heroSection) {
+      heroSection = document.querySelector('.about-header');
+    }
     
     if (!hamburger || !heroSection) {
-      console.warn('[HAMBURGER COLOR DEBUG] Missing elements - hamburger:', !!hamburger, 'hero:', !!heroSection);
       return; // Exit if elements don't exist
     }
     
@@ -379,13 +378,6 @@ $(document).ready(function(){
       const hamburgerTop = hamburgerRect.top; // Usually around 19px from top
       const hamburgerBottom = hamburgerRect.bottom; // Bottom of hamburger (~19px + height)
       
-      console.log('[HAMBURGER COLOR DEBUG] Hero rect:', {
-        heroTop: heroTop,
-        heroBottom: heroBottom,
-        hamburgerTop: hamburgerTop,
-        hamburgerBottom: hamburgerBottom
-      });
-      
       // Hamburger becomes white ONLY when:
       // 1. Hero section top is at or above the hamburger position (covers the hamburger from above)
       // 2. Hero section bottom is below the top of viewport (still visible)
@@ -395,22 +387,10 @@ $(document).ready(function(){
       
       const isOverOrangeHero = isHeroCoveringHamburger && isHeroVisibleInViewport;
       
-      console.log('[HAMBURGER COLOR DEBUG] Detection:', {
-        isHeroCoveringHamburger,
-        isHeroVisibleInViewport,
-        isOverOrangeHero,
-        heroTop,
-        heroBottom,
-        hamburgerTop,
-        hamburgerBottom
-      });
-      
       // Add class if hamburger is visually over orange hero section
       if (isOverOrangeHero) {
-        console.log('[HAMBURGER COLOR DEBUG] Adding on-orange-hero class - hamburger is over orange');
         hamburger.classList.add('on-orange-hero');
       } else {
-        console.log('[HAMBURGER COLOR DEBUG] Removing on-orange-hero class - hamburger is over white');
         hamburger.classList.remove('on-orange-hero');
       }
     }
