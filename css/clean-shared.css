@@ -383,18 +383,32 @@ input, textarea, select {
   /* Centrer le logo et ajuster l'icône sur mobile */
   .main-navbar {
     position: relative;
+    justify-content: center;
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
   
   .main-navbar .nav-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    position: static;
+    display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    gap: 0.5rem;
   }
   
   .main-navbar .nav-logo .logo-image {
-    transform: translateY(0.15rem);
+    width: 36px !important;
+    height: 36px !important;
+    flex-shrink: 0;
+  }
+  
+  .main-navbar .nav-hamburger {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
   }
   
   .main-navbar .main-nav-links {
