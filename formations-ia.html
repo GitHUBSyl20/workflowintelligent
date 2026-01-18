@@ -977,14 +977,58 @@
         
         // Trouver le wrapper parent et le contenu (frère du popover)
         const wrapper = popover.closest('.stat-popover-wrapper');
-        const content = wrapper ? wrapper.querySelector('.stat-popover-content') : null;
-        console.log(`[POPOVER-DEBUG] Content found for popover ${index + 1}:`, !!content);
+        console.log(`[POPOVER-DEBUG] Wrapper found for popover ${index + 1}:`, !!wrapper);
+        if (wrapper) {
+          console.log(`[POPOVER-DEBUG] Wrapper HTML structure:`, wrapper.innerHTML.substring(0, 150));
+        }
+        
+        // Chercher le contenu de plusieurs façons
+        let content = null;
+        if (wrapper) {
+          content = wrapper.querySelector('.stat-popover-content');
+          console.log(`[POPOVER-DEBUG] Content via wrapper.querySelector:`, !!content);
+        }
+        
+        // Si pas trouvé, chercher comme frère
+        if (!content) {
+          content = popover.nextElementSibling;
+          console.log(`[POPOVER-DEBUG] Content via nextElementSibling:`, !!content, content?.className);
+        }
+        
+        // Si toujours pas trouvé, chercher dans le parent
+        if (!content && popover.parentElement) {
+          content = popover.parentElement.querySelector('.stat-popover-content');
+          console.log(`[POPOVER-DEBUG] Content via parent.querySelector:`, !!content);
+        }
+        
+        console.log(`[POPOVER-DEBUG] Final content found for popover ${index + 1}:`, !!content);
+        
+        if (!content) {
+          console.error(`[POPOVER-DEBUG] CRITICAL: No content element found for popover ${index + 1}. DOM structure:`, {
+            popover: popover.outerHTML.substring(0, 100),
+            parent: popover.parentElement?.tagName,
+            nextSibling: popover.nextElementSibling?.tagName,
+            wrapper: wrapper?.outerHTML.substring(0, 100)
+          });
+        }
         
         // Ouvrir/fermer au clic - utiliser le popover entier comme zone cliquable
         popover.addEventListener('click', function(e) {
           console.log(`[POPOVER-DEBUG] Click detected on popover ${index + 1}`, e.target);
           e.preventDefault();
           e.stopPropagation();
+          
+          // Re-chercher le contenu au moment du clic (au cas où le DOM aurait changé)
+          const wrapperAtClick = popover.closest('.stat-popover-wrapper');
+          let contentAtClick = wrapperAtClick ? wrapperAtClick.querySelector('.stat-popover-content') : null;
+          if (!contentAtClick) {
+            contentAtClick = popover.nextElementSibling;
+          }
+          if (!contentAtClick && popover.parentElement) {
+            contentAtClick = popover.parentElement.querySelector('.stat-popover-content');
+          }
+          
+          console.log(`[POPOVER-DEBUG] Content at click time:`, !!contentAtClick);
           
           // Fermer les autres pop-overs
           popovers.forEach(p => {
@@ -1000,8 +1044,8 @@
           console.log(`[POPOVER-DEBUG] Popover ${index + 1} toggled: ${wasActive} -> ${isActive}`);
           
           // Vérifier le contenu
-          if (content) {
-            const styles = window.getComputedStyle(content);
+          if (contentAtClick) {
+            const styles = window.getComputedStyle(contentAtClick);
             console.log(`[POPOVER-DEBUG] Content element found, computed styles:`, {
               display: styles.display,
               visibility: styles.visibility,
@@ -1010,7 +1054,7 @@
               zIndex: styles.zIndex
             });
           } else {
-            console.error(`[POPOVER-DEBUG] No content element found for popover ${index + 1}`);
+            console.error(`[POPOVER-DEBUG] No content element found for popover ${index + 1} at click time`);
           }
         });
         
