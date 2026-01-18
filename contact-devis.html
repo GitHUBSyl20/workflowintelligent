@@ -33,6 +33,10 @@
   <script src="js/language-manager.js"></script>
   <script src="js/main.js"></script>
   <script src="js/custom.js"></script>
+  <script>
+    console.log('[FORM DEBUG] 🟡 Inline script in HTML - Script should be loaded!');
+    console.log('[FORM DEBUG] Current page URL:', window.location.href);
+  </script>
   
   <!-- Schema.org LocalBusiness markup -->
   <script type="application/ld+json">
@@ -217,12 +221,6 @@
               
                 <label for="Commentaires">Commentaires</label>
                 <textarea id="Commentaires" name="message" rows="4" maxlength="1000"></textarea>
-              
-                <!-- Honeypot -->
-                <div style="position:absolute;left:-5000px;opacity:0;pointer-events:none;" aria-hidden="true">
-                  <label for="website">Ne pas remplir ce champ</label>
-                  <input type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off">
-                </div>
               
                 <!-- Divers -->
                 <input type="hidden" name="_subject" value="Nouveau message depuis le site web">

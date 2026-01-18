@@ -1122,4 +1122,16 @@ p.intro-stat-text {
   .utility-margin-bottom-0 {
     margin-bottom: 0 !important; /* Reste à 0 */
   }
+}
+
+/* Hide Google reCAPTCHA response textarea that appears as visible input field */
+#g-recaptcha-response,
+textarea[name="g-recaptcha-response"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
 } 
