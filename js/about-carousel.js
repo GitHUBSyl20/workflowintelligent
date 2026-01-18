@@ -14,10 +14,32 @@ document.addEventListener('DOMContentLoaded', function() {
   // Check if we're on mobile
   const isMobile = window.innerWidth < 768;
   
-  
-  
-  // Exit early on mobile
+  // MOBILE: Effet de zoom progressif sur l'image CarréCarré
   if (isMobile) {
+    const mepro2Image = document.querySelector('.img-mepro2');
+    
+    if (mepro2Image && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Animation de zoom progressif au scroll
+      gsap.fromTo(mepro2Image, 
+        { 
+          scale: 2.5,
+          rotation: 0
+        }, 
+        { 
+          scale: 3.2,
+          rotation: 3,
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: carousel,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1
+          }
+        }
+      );
+    }
     return;
   }
   
