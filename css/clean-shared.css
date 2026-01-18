@@ -380,32 +380,31 @@ input, textarea, select {
     display: none;
   }
   
-  /* Centrer le logo sur mobile */
+  /* Navigation mobile : logo à gauche, hamburger à droite, équilibre visuel */
   .main-navbar {
-    position: relative;
-    justify-content: center;
-    padding: 0.6rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
   }
   
   .main-navbar .nav-logo {
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 1rem;
-    white-space: nowrap;
-    gap: 0.4rem;
+    font-size: 1.1rem;
+    gap: 0.5rem;
   }
   
   .main-navbar .nav-logo .logo-image {
-    width: 32px !important;
-    height: 32px !important;
+    width: 36px !important;
+    height: 36px !important;
   }
   
   .main-navbar .nav-hamburger {
-    position: absolute;
-    right: 0.8rem;
-    top: 50%;
-    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   
   .main-navbar .main-nav-links {
