@@ -287,8 +287,10 @@
     }
     
     /* Quand la pop-over est active, mettre le wrapper au-dessus de tout */
+    .stat-popover-wrapper.wrapper-active,
     .stat-popover-wrapper:has(.stat-popover-content.active) {
       z-index: 999999;
+      position: relative;
     }
     
     .stat-popover-content {
@@ -1044,14 +1046,17 @@
           e.preventDefault();
           e.stopPropagation();
           
-          // Fermer les autres pop-overs
+          // Fermer les autres pop-overs et retirer la classe active des wrappers
           popovers.forEach(p => {
             if (p !== popover) {
               p.classList.remove('active');
               const otherWrapper = p.closest('.stat-popover-wrapper');
-              const otherContent = otherWrapper ? otherWrapper.querySelector('.stat-popover-content') : null;
-              if (otherContent) {
-                otherContent.classList.remove('active');
+              if (otherWrapper) {
+                otherWrapper.classList.remove('wrapper-active');
+                const otherContent = otherWrapper.querySelector('.stat-popover-content');
+                if (otherContent) {
+                  otherContent.classList.remove('active');
+                }
               }
             }
           });
@@ -1060,8 +1065,10 @@
           const isActive = popover.classList.toggle('active');
           if (isActive) {
             content.classList.add('active');
+            wrapper.classList.add('wrapper-active');
           } else {
             content.classList.remove('active');
+            wrapper.classList.remove('wrapper-active');
           }
         });
       });
@@ -1072,8 +1079,11 @@
           popovers.forEach(p => {
             p.classList.remove('active');
             const wrapper = p.closest('.stat-popover-wrapper');
-            const content = wrapper ? wrapper.querySelector('.stat-popover-content') : null;
-            if (content) content.classList.remove('active');
+            if (wrapper) {
+              wrapper.classList.remove('wrapper-active');
+              const content = wrapper.querySelector('.stat-popover-content');
+              if (content) content.classList.remove('active');
+            }
           });
         }
       });
@@ -1084,8 +1094,11 @@
           popovers.forEach(p => {
             p.classList.remove('active');
             const wrapper = p.closest('.stat-popover-wrapper');
-            const content = wrapper ? wrapper.querySelector('.stat-popover-content') : null;
-            if (content) content.classList.remove('active');
+            if (wrapper) {
+              wrapper.classList.remove('wrapper-active');
+              const content = wrapper.querySelector('.stat-popover-content');
+              if (content) content.classList.remove('active');
+            }
           });
         }
       });
