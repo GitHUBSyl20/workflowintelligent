@@ -237,6 +237,7 @@
       position: relative;
       display: inline-block;
       cursor: help;
+      white-space: nowrap;
     }
     
     .stat-popover-trigger {
@@ -331,6 +332,10 @@
     }
     
     @media (max-width: 767px) {
+      .stat-popover {
+        white-space: normal;
+      }
+      
       .stat-popover-content {
         left: 0 !important;
         transform: translateX(0) translateY(-10px) !important;
@@ -479,7 +484,7 @@
           <div class="stat-line">
             <span class="stat-popover-wrapper">
               <span class="stat-popover" data-popover-id="stat-1">
-                <strong class="stat-popover-trigger">Seulement 10%</strong> des entreprises (10+ salariés) utilisent l'IA : écarts, perte de temps, bricolage.
+                <span class="highlight-text"><strong class="stat-popover-trigger">Seulement 10%</strong> des entreprises (>10 salariés) utilisent l'IA : écarts, perte de temps, bricolage</span>.
               </span>
               <div class="stat-popover-content" data-popover-target="stat-1">
                 <h4>10% seulement utilisent l'IA</h4>
@@ -492,7 +497,7 @@
           <div class="stat-line">
             <span class="stat-popover-wrapper">
               <span class="stat-popover" data-popover-id="stat-2">
-                <strong class="stat-popover-trigger">78% BYOAI</strong> (Bring Your Own AI) : sans cadre, erreurs, fuites et livrables instables.
+                <span class="highlight-text"><strong class="stat-popover-trigger">78% BYOAI</strong> (Bring Your Own AI) : sans cadre, erreurs, fuites et livrables instables</span>.
               </span>
               <div class="stat-popover-content" data-popover-target="stat-2">
                 <h4>78% BYOAI - Bring Your Own AI</h4>
@@ -505,7 +510,7 @@
           <div class="stat-line">
             <span class="stat-popover-wrapper">
               <span class="stat-popover" data-popover-id="stat-3">
-                <strong class="stat-popover-trigger">AI Act</strong> : former, standardiser, sécuriser — <span class="highlight-text">avant que l'IA ne s'impose</span>.
+                <span class="highlight-text"><strong class="stat-popover-trigger">AI Act</strong> : former, standardiser, sécuriser — avant que l'IA ne s'impose</span>.
               </span>
               <div class="stat-popover-content" data-popover-target="stat-3">
                 <h4>AI Act - Règlement européen</h4>
