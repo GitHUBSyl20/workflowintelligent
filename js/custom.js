@@ -151,13 +151,8 @@ function initContactForm() {
                 return;
             }
 
-            // Check if this is a PDF request
-            const ressourceInput = document.getElementById('ressource');
-            const isPdfRequest = ressourceInput && ressourceInput.value === 'ProgrammePDF';
-
-            // Temporairement désactivé - en attente de vérification du domaine Resend
-            // If PDF request, handle via API route
-            if (false && isPdfRequest) {
+            // PDF download is now handled directly via link, no API needed
+            // Removed PDF request handling code
                 e.preventDefault();
                 
                 // DEBUG LOG 1: Confirm we're in PDF request path
