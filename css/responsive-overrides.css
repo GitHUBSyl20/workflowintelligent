@@ -791,6 +791,20 @@ header#contact-form form#email-form label:not([style*="display: flex"]) {
   text-align: left;
 }
 
+/* Texte d'introduction - Même taille que les stats formations */
+.intro-stat-text {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .intro-stat-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+}
+
 /* Hero section - Contenu centré verticalement */
 .accent-primary-section .grid-layout {
   align-items: center;
