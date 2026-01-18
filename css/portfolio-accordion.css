@@ -136,6 +136,47 @@
     font-size: 1.1rem !important;
     font-weight: 500 !important;
   }
+  
+  /* 4. Accordéons - Réduction des espaces verticaux de 70% */
+  .accordion {
+    margin-top: 0.6rem !important; /* 2rem * 0.3 */
+    margin-bottom: 0.6rem !important; /* 2rem * 0.3 */
+  }
+  
+  .accordion-item {
+    margin-bottom: 0.3rem !important; /* 1rem * 0.3 */
+  }
+  
+  .accordion-item.open {
+    margin-bottom: 0.3rem !important; /* 1rem * 0.3 */
+  }
+  
+  .accordion-trigger {
+    padding-top: 0.45rem !important; /* 1.5rem * 0.3 */
+    padding-bottom: 0.45rem !important; /* 1.5rem * 0.3 */
+    /* Conserver le padding horizontal */
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .content {
+    padding-top: 0 !important;
+    padding-bottom: 0.45rem !important; /* 1.5rem * 0.3 */
+    /* Conserver le padding horizontal */
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .portfolio-content-grid {
+    gap: 0.45rem !important; /* 1.5rem * 0.3 */
+    padding-top: 0.15rem !important; /* 0.5rem * 0.3 */
+  }
+  
+  .portfolio-image {
+    padding-top: 0.3rem !important; /* 1rem * 0.3 */
+    padding-bottom: 0.3rem !important; /* 1rem * 0.3 */
+    /* Conserver le padding horizontal si nécessaire */
+  }
 }
 
 /* Override h4 styles in small mobile breakpoint */
