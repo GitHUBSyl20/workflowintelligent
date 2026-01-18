@@ -249,6 +249,7 @@
       position: relative;
       display: inline-block;
       cursor: help;
+      z-index: 1;
     }
     
     /* Forcer une seule ligne uniquement pour la section formations-intro */
@@ -285,9 +286,9 @@
       display: inline;
     }
     
-    .stat-popover-trigger {
-      position: relative;
-      z-index: 0;
+    /* Quand la pop-over est active, mettre le wrapper au-dessus de tout */
+    .stat-popover-wrapper:has(.stat-popover-content.active) {
+      z-index: 999999;
     }
     
     .stat-popover-content {
@@ -298,7 +299,7 @@
       background: white !important;
       border: 1px solid #ddd !important;
       border-radius: 8px !important;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
       padding: 1rem !important;
       min-width: 450px !important;
       max-width: 600px !important;
