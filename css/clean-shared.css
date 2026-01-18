@@ -403,6 +403,11 @@ input, textarea, select {
     vertical-align: middle;
   }
   
+  /* Adjustable horizontal offset for nav-logo text on mobile */
+  .main-navbar .nav-logo .nav-logo-text {
+    margin-left: 2vw; /* Adjust this value: increase = right, decrease/negative = left */
+  }
+  
   .main-navbar .nav-hamburger {
     display: flex;
     flex-direction: column;

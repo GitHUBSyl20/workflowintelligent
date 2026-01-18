@@ -375,6 +375,15 @@ html, body, .section, .container, .scroll-cards-container {
   }
 }
 
+/* Adjustable horizontal offset for nav-logo text on mobile */
+@media (max-width: 767px) {
+  .main-navbar .nav-logo .nav-logo-text {
+    --nav-logo-text-offset: 0px; /* Adjust: negative = left, positive = right (e.g., 20px, -15px) */
+    display: inline-block;
+    transform: translateX(var(--nav-logo-text-offset));
+    margin-left: 34px;
+  }
+}
 /* Remove any legacy or unused font-family rules below this point */
 
 /* Accordion Trigger Full Width */
