@@ -335,7 +335,10 @@
       }
       
       .stat-popover.active .stat-popover-content {
-        transform: translateX(0) translateY(0);
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateX(0) translateY(0) !important;
       }
       
       .stat-popover-content::after {
