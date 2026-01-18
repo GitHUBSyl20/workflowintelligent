@@ -232,6 +232,103 @@
       max-width: 200px;
     }
     
+    /* Pop-over pour les statistiques */
+    .stat-popover {
+      position: relative;
+      display: inline-block;
+      cursor: help;
+    }
+    
+    .stat-popover-trigger {
+      border-bottom: 1px dashed #FF4B1F;
+      color: #FF4B1F;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+    
+    .stat-popover-trigger:hover {
+      border-bottom-color: #d63c13;
+      color: #d63c13;
+    }
+    
+    .stat-popover-content {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      padding: 1rem;
+      min-width: 280px;
+      max-width: 400px;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+      transform: translateX(-50%) translateY(-10px);
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    
+    .stat-popover-content::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: white;
+    }
+    
+    .stat-popover.active .stat-popover-content {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    
+    .stat-popover-content h4 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+      color: #2c3e50;
+      font-weight: 600;
+    }
+    
+    .stat-popover-content p {
+      margin: 0 0 0.75rem 0;
+      color: #555;
+    }
+    
+    .stat-popover-content a {
+      color: #FF4B1F;
+      text-decoration: underline;
+      font-size: 0.85rem;
+    }
+    
+    .stat-popover-content a:hover {
+      color: #d63c13;
+    }
+    
+    @media (max-width: 767px) {
+      .stat-popover-content {
+        left: 0;
+        transform: translateX(0);
+        min-width: calc(100vw - 2rem);
+        max-width: calc(100vw - 2rem);
+      }
+      
+      .stat-popover.active .stat-popover-content {
+        transform: translateX(0) translateY(0);
+      }
+      
+      .stat-popover-content::after {
+        left: 2rem;
+        transform: translateX(0);
+      }
+    }
+    
     /* Amélioration de la visibilité des boutons dans la section hero */
     .accent-primary-section .button {
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -360,9 +457,39 @@
     <section class="section" style="padding-top: 2rem; padding-bottom: 1rem;">
       <div class="container">
         <div class="formations-intro">
-          <p><strong>Seulement 10%</strong> des entreprises (10+ salariés) utilisent l'IA : écarts, perte de temps, bricolage.</p>
-          <p><strong>78% BYOAI</strong> (Bring Your Own AI) : sans cadre, erreurs, fuites et livrables instables.</p>
-          <p><strong>AI Act</strong> : former, standardiser, sécuriser — avant que l'IA ne s'impose.</p>
+          <p>
+            <span class="stat-popover">
+              <strong class="stat-popover-trigger">Seulement 10%</strong> des entreprises (10+ salariés) utilisent l'IA : écarts, perte de temps, bricolage.
+              <div class="stat-popover-content">
+                <h4>10% seulement utilisent l'IA</h4>
+                <p>En France, seulement 10% des entreprises de 10 salariés ou plus déclarent utiliser l'IA en 2024. Cet écart se creuse entre ceux qui maîtrisent l'IA et ceux qui subissent la transformation.</p>
+                <p><strong>Conséquences :</strong> perte de temps, essais au hasard, équipes qui bricolent sans méthode structurée.</p>
+                <a href="https://www.insee.fr/fr/statistiques" target="_blank" rel="noopener">Source : INSEE</a>
+              </div>
+            </span>
+          </p>
+          <p>
+            <span class="stat-popover">
+              <strong class="stat-popover-trigger">78% BYOAI</strong> (Bring Your Own AI) : sans cadre, erreurs, fuites et livrables instables.
+              <div class="stat-popover-content">
+                <h4>78% BYOAI - Bring Your Own AI</h4>
+                <p>78% des utilisateurs d'IA amènent leurs propres outils au travail (BYOAI). Sans cadre organisationnel, c'est la porte ouverte aux erreurs, fuites d'informations et livrables de qualité instable.</p>
+                <p><strong>Risques :</strong> hallucinations, données sensibles exposées, résultats inexploitables.</p>
+                <a href="https://www.gartner.com" target="_blank" rel="noopener">Source : Gartner</a>
+              </div>
+            </span>
+          </p>
+          <p>
+            <span class="stat-popover">
+              <strong class="stat-popover-trigger">AI Act</strong> : former, standardiser, sécuriser — avant que l'IA ne s'impose.
+              <div class="stat-popover-content">
+                <h4>AI Act - Règlement européen</h4>
+                <p>Le règlement européen sur l'IA (AI Act) impose aux organisations de garantir un niveau suffisant d'« AI literacy » des équipes.</p>
+                <p><strong>Obligations :</strong> former, standardiser les pratiques, sécuriser les usages — avant que l'IA ne s'impose de façon désordonnée.</p>
+                <a href="https://digital-strategy.ec.europa.eu/fr/policies/regulatory-framework-ai" target="_blank" rel="noopener">Source : Commission européenne</a>
+              </div>
+            </span>
+          </p>
         </div>
       </div>
     </section>
@@ -803,6 +930,47 @@
     style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 1000;">
     Demander un devis
   </a>
+
+  <script>
+    // Gestion des pop-overs pour les statistiques
+    document.addEventListener('DOMContentLoaded', function() {
+      const popovers = document.querySelectorAll('.stat-popover');
+      
+      popovers.forEach(popover => {
+        const trigger = popover.querySelector('.stat-popover-trigger');
+        
+        // Ouvrir/fermer au clic
+        trigger.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          // Fermer les autres pop-overs
+          popovers.forEach(p => {
+            if (p !== popover) {
+              p.classList.remove('active');
+            }
+          });
+          
+          // Toggle le pop-over actuel
+          popover.classList.toggle('active');
+        });
+      });
+      
+      // Fermer au clic en dehors
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.stat-popover')) {
+          popovers.forEach(p => p.classList.remove('active'));
+        }
+      });
+      
+      // Fermer avec Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          popovers.forEach(p => p.classList.remove('active'));
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
