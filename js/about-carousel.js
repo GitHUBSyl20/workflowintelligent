@@ -14,22 +14,42 @@ document.addEventListener('DOMContentLoaded', function() {
   // Check if we're on mobile
   const isMobile = window.innerWidth < 768;
   
-  // MOBILE: Effet de zoom progressif sur l'image CarréCarré
-  if (isMobile) {
-    const mepro2Image = document.querySelector('.img-mepro2');
+  // Effet de zoom progressif sur l'image CarréCarré
+  const mepro2Image = document.querySelector('.img-mepro2');
+  
+  if (mepro2Image && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
     
-    if (mepro2Image && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
-      
-      // Animation de zoom progressif au scroll
+    if (isMobile) {
+      // MOBILE: Zoom de 1.8 à 2.5
       gsap.fromTo(mepro2Image, 
         { 
-          scale: 2.5,
+          scale: 1.8,
           rotation: 0
         }, 
         { 
-          scale: 3.2,
-          rotation: 3,
+          scale: 2.5,
+          rotation: 2,
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: carousel,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1
+          }
+        }
+      );
+      return;
+    } else {
+      // DESKTOP: Zoom de 1.0 à 1.3
+      gsap.fromTo(mepro2Image, 
+        { 
+          scale: 1.0,
+          rotation: 0
+        }, 
+        { 
+          scale: 1.3,
+          rotation: 1,
           ease: "power1.out",
           scrollTrigger: {
             trigger: carousel,
@@ -40,6 +60,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       );
     }
+  }
+  
+  // Exit if mobile (carousel scroll handled by swipe on mobile)
+  if (isMobile) {
     return;
   }
   

@@ -791,7 +791,23 @@ header#contact-form form#email-form label:not([style*="display: flex"]) {
   text-align: left;
 }
 
-/* Image CarréCarré - Agrandissement mobile */
+/* Hero section - Contenu centré verticalement */
+.accent-primary-section .grid-layout {
+  align-items: center;
+}
+
+.accent-primary-section .container {
+  display: flex;
+  align-items: center;
+  min-height: 50vh;
+}
+
+/* Image CarréCarré - Zoom initial réduit */
+.carousel-item .img-mepro2 {
+  transform: scale(1.0);
+  transition: transform 0.4s ease-out;
+}
+
 @media (max-width: 768px) {
   .carousel-item .img-mepro2 {
     transform: scale(2.5);
