@@ -256,6 +256,10 @@
       display: inline-block;
     }
     
+    .formations-intro p {
+      position: relative;
+    }
+    
     .stat-popover-content {
       position: absolute !important;
       bottom: calc(100% + 0.5rem) !important;
@@ -278,16 +282,7 @@
       white-space: normal !important;
     }
     
-    /* Positionner le contenu par rapport au wrapper du popover correspondant */
-    .stat-popover-wrapper:has(.stat-popover.active) ~ .stat-popover-content,
-    p:has(.stat-popover.active) .stat-popover-content {
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-      transform: translateX(-50%) translateY(0) !important;
-    }
-    
-    /* Alternative avec JavaScript qui ajoute une classe */
+    /* Afficher le contenu quand il a la classe active */
     .stat-popover-content.active {
       opacity: 1 !important;
       visibility: visible !important;
