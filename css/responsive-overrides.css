@@ -603,7 +603,7 @@ header#contact-form form#email-form label:not([style*="display: flex"]) {
 /* === Reduce gap above contact form on business-informations.html for mobile === */
 @media (max-width: 767px) {
   .calendly-inline-widget {
-    height: 600px !important;
+    height: 400px !important;
   }
 }
 
