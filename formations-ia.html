@@ -361,6 +361,24 @@
         white-space: normal;
       }
       
+      /* Réduire la taille du texte des statistiques sur mobile */
+      .stat-line {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+      
+      .stat-line .highlight-text {
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+      
+      /* Permettre les retours à la ligne pour les popovers */
+      .formations-intro .stat-popover {
+        white-space: normal;
+      }
+      
       .stat-popover-content {
         width: calc(100% - 2rem);
         max-width: none;
