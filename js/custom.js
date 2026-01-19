@@ -89,12 +89,10 @@ function isInViewport(element) {
 
 // Initialize contact form with comprehensive security
 function initContactForm() {
-    console.log('[FORM DEBUG] ⚡ initContactForm() called!');
     const form = document.getElementById('email-form');
     const submitBtn = document.getElementById('submit-btn');
     const statusDiv = document.getElementById('form-status');
     const formToken = document.getElementById('form-token');
-    console.log('[FORM DEBUG] Form element found:', !!form, 'Form ID:', form ? form.id : 'NOT FOUND');
     
     // Security variables
     let submissionCount = 0;
@@ -102,149 +100,6 @@ function initContactForm() {
     const MAX_SUBMISSIONS = 3;
     const TIME_WINDOW = 60000; // 1 minute
     const MIN_TIME_BETWEEN_SUBMISSIONS = 3000; // 3 seconds
-
-    // Store initial input IDs/names for comparison later (accessible to all blocks)
-    let initialInputIds = [];
-
-    // #region agent log - HYPOTHESIS A: Check all inputs at initialization
-    if (form) {
-        console.log('[FORM DEBUG] Form found, analyzing inputs...', { formId: form.id });
-        fetch('http://127.0.0.1:7245/ingest/a8b6cf51-41c9-4dd9-85b5-5267a6ed7967',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'custom.js:105',message:'Form found, analyzing inputs',data:{formId:form.id},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-        const allInputs = form.querySelectorAll('input, textarea, select');
-        console.log('[FORM DEBUG] Total inputs found:', allInputs.length);
-        // Store initial input IDs/names for comparison later
-        initialInputIds = Array.from(allInputs).map(input => (input.id || input.name || input.type || 'unknown') + '|' + (input.tagName || ''));
-        console.log('[FORM DEBUG] Initial input IDs stored:', initialInputIds.length, initialInputIds);
-        fetch('http://127.0.0.1:7245/ingest/a8b6cf51-41c9-4dd9-85b5-5267a6ed7967',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'custom.js:107',message:'Total inputs found',data:{count:allInputs.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-        allInputs.forEach((input, index) => {
-            const rect = input.getBoundingClientRect();
-            const styles = window.getComputedStyle(input);
-            const isVisible = styles.display !== 'none' && styles.visibility !== 'hidden' && styles.opacity !== '0' && rect.width > 0 && rect.height > 0;
-            const inputInfo = { id: input.id, name: input.name, type: input.type, tagName: input.tagName, isVisible: isVisible, display: styles.display, opacity: styles.opacity, position: styles.position, width: rect.width, height: rect.height, top: rect.top, bottom: rect.bottom, hasHoneypotName: input.name === '_gotcha' || input.name === 'website', outerHTML: input.outerHTML.substring(0, 150) };
-            if (isVisible || input.name === '_gotcha' || input.name === 'website' || input.id === 'website') {
-                console.log(`[FORM DEBUG] Input #${index + 1}:`, inputInfo);
-            }
-            fetch('http://127.0.0.1:7245/ingest/a8b6cf51-41c9-4dd9-85b5-5267a6ed7967',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'custom.js:110',message:`Input #${index+1} details`,data:inputInfo,timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-        });
-        const recaptcha = form.querySelector('.g-recaptcha');
-        const submit = form.querySelector('input[type="submit"]');
-        if (recaptcha && submit) {
-            console.log('[FORM DEBUG] Checking elements between reCAPTCHA and submit...');
-            fetch('http://127.0.0.1:7245/ingest/a8b6cf51-41c9-4dd9-85b5-5267a6ed7967',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'custom.js:142',message:'Checking elements between reCAPTCHA and submit',data:{recaptchaFound:!!recaptcha,submitFound:!!submit},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-            let element = recaptcha.nextElementSibling;
-            let betweenCount = 0;
-            while (element && element !== submit) {
-                betweenCount++;
-                const rect = element.getBoundingClientRect();
-                const styles = window.getComputedStyle(element);
-                const isVisible = styles.display !== 'none' && styles.visibility !== 'hidden' && styles.opacity !== '0' && rect.width > 0 && rect.height > 0;
-                const elemInfo = { 
-                    tagName: element.tagName, 
-                    id: element.id, 
-                    className: element.className, 
-                    hasInput: element.tagName === 'INPUT', 
-                    inputType: element.tagName === 'INPUT' ? element.type : null,
-                    isVisible: isVisible,
-                    display: styles.display,
-                    opacity: styles.opacity,
-                    visibility: styles.visibility,
-                    width: rect.width,
-                    height: rect.height,
-                    top: rect.top,
-                    bottom: rect.bottom,
-                    outerHTML: element.outerHTML ? element.outerHTML.substring(0, 300) : 'empty' 
-                };
-                console.log(`[FORM DEBUG] Element #${betweenCount} between reCAPTCHA and submit:`, elemInfo);
-                if (isVisible && element.tagName === 'INPUT') {
-                    console.error(`[FORM DEBUG] ⚠️ VISIBLE INPUT FOUND between reCAPTCHA and submit!`, elemInfo);
-                }
-                fetch('http://127.0.0.1:7245/ingest/a8b6cf51-41c9-4dd9-85b5-5267a6ed7967',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'custom.js:145',message:`Element #${betweenCount} between reCAPTCHA and submit`,data:elemInfo,timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-                element = element.nextElementSibling;
-            }
-        }
-    }
-    // #endregion
-
-    // #region agent log - HYPOTHESIS C: Monitor for dynamically added inputs after init
-    if (form) {
-        setTimeout(() => {
-            const delayedInputs = form.querySelectorAll('input, textarea, select');
-            console.log('[FORM DEBUG] Checking inputs after 2s delay (Formspree may inject). Count:', delayedInputs.length);
-            fetch('http://127.0.0.1:7245/ingest/a8b6cf51-41c9-4dd9-85b5-5267a6ed7967',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'custom.js:130',message:'Checking inputs after 2s delay (Formspree may inject)',data:{inputCount:delayedInputs.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-            // Find the NEW input that wasn't there initially
-            console.log('[FORM DEBUG] Comparing: initialInputIds length =', initialInputIds ? initialInputIds.length : 'UNDEFINED');
-            const delayedInputIds = Array.from(delayedInputs).map(input => (input.id || input.name || input.type || 'unknown') + '|' + (input.tagName || ''));
-            console.log('[FORM DEBUG] Delayed input IDs:', delayedInputIds.length, delayedInputIds);
-            const newInputs = Array.from(delayedInputs).filter(input => {
-                const inputId = (input.id || input.name || input.type || 'unknown') + '|' + (input.tagName || '');
-                const isNew = !initialInputIds || !initialInputIds.includes(inputId);
-                if (isNew) console.log('[FORM DEBUG] Found new input:', inputId);
-                return isNew;
-            });
-            
-            if (newInputs.length > 0) {
-                console.error('[FORM DEBUG] ⚠️ NEW INPUT(S) DETECTED AFTER DELAY:', newInputs.length);
-                newInputs.forEach((input, index) => {
-                    const rect = input.getBoundingClientRect();
-                    const styles = window.getComputedStyle(input);
-                    const isVisible = styles.display !== 'none' && styles.visibility !== 'hidden' && styles.opacity !== '0' && rect.width > 0 && rect.height > 0;
-                    const newInputInfo = {
-                        id: input.id,
-                        name: input.name,
-                        type: input.type,
-                        tagName: input.tagName,
-                        isVisible: isVisible,
-                        display: styles.display,
-                        opacity: styles.opacity,
-                        visibility: styles.visibility,
-                        position: styles.position,
-                        width: rect.width,
-                        height: rect.height,
-                        top: rect.top,
-                        bottom: rect.bottom,
-                        outerHTML: input.outerHTML.substring(0, 300),
-                        parentHTML: input.parentElement ? input.parentElement.outerHTML.substring(0, 200) : 'no parent',
-                        className: input.className,
-                        style: input.getAttribute('style')
-                    };
-                    console.error(`[FORM DEBUG] ⚠️ NEW INPUT #${index + 1}:`, newInputInfo);
-                });
-            } else {
-                console.log('[FORM DEBUG] No new inputs detected after delay');
-            }
-            
-            // Also list ALL visible inputs for visibility check
-            console.log('[FORM DEBUG] Listing ALL VISIBLE inputs after 2s delay:');
-            delayedInputs.forEach((input, index) => {
-                const rect = input.getBoundingClientRect();
-                const styles = window.getComputedStyle(input);
-                const isVisible = styles.display !== 'none' && styles.visibility !== 'hidden' && styles.opacity !== '0' && rect.width > 0 && rect.height > 0;
-                if (isVisible) {
-                    const inputInfo = { id: input.id, name: input.name, type: input.type, tagName: input.tagName, display: styles.display, opacity: styles.opacity, position: styles.position, width: rect.width, height: rect.height };
-                    console.log(`[FORM DEBUG] VISIBLE Input #${index + 1}:`, inputInfo);
-                }
-            });
-        }, 2000);
-        
-        // Monitor DOM mutations for dynamically added inputs
-        if (typeof MutationObserver !== 'undefined') {
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    mutation.addedNodes.forEach((node) => {
-                        if (node.nodeType === 1 && (node.tagName === 'INPUT' || node.tagName === 'TEXTAREA' || node.tagName === 'SELECT')) {
-                            const dynInfo = { tagName: node.tagName, id: node.id, name: node.name, type: node.type, outerHTML: node.outerHTML.substring(0, 200) };
-                            console.log('[FORM DEBUG] ⚠️ Dynamic input added to DOM!', dynInfo);
-                            fetch('http://127.0.0.1:7245/ingest/a8b6cf51-41c9-4dd9-85b5-5267a6ed7967',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'custom.js:140',message:'Dynamic input added to DOM!',data:dynInfo,timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-                        }
-                    });
-                });
-            });
-            observer.observe(form, { childList: true, subtree: true });
-            console.log('[FORM DEBUG] MutationObserver started to watch for dynamic inputs');
-            fetch('http://127.0.0.1:7245/ingest/a8b6cf51-41c9-4dd9-85b5-5267a6ed7967',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'custom.js:146',message:'MutationObserver started to watch for dynamic inputs',data:{formId:form.id},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-        }
-    }
-    // #endregion
 
     if (form && formToken) {
         // Check if we're in development mode (no reCAPTCHA)
