@@ -68,6 +68,61 @@ onReady(function() {
     // Initial call
     hideWebflowBadge();
   })();
+
+  // #region agent log — diagnostic approfondi texte "Workflow Intelligent" (différences visuelles entre pages)
+  (function logoTextDeepDiagnostic() {
+    function logLogoText() {
+      var logo = document.querySelector('.main-navbar .nav-logo');
+      if (!logo) return;
+      var textEl = logo.querySelector('.nav-logo-text') || logo;
+      var s = window.getComputedStyle(textEl);
+      var r = textEl.getBoundingClientRect();
+      var logoStyle = window.getComputedStyle(logo);
+      var data = {
+        page: (window.location.pathname || '/').replace(/^\//, '') || 'index',
+        viewportWidth: window.innerWidth,
+        fontSize: s.fontSize,
+        fontWeight: s.fontWeight,
+        fontFamily: s.fontFamily,
+        fontStyle: s.fontStyle,
+        fontVariant: s.fontVariant,
+        lineHeight: s.lineHeight,
+        letterSpacing: s.letterSpacing,
+        wordSpacing: s.wordSpacing,
+        textTransform: s.textTransform,
+        textDecoration: s.textDecoration,
+        textRendering: s.textRendering,
+        webkitFontSmoothing: s.webkitFontSmoothing || s.getPropertyValue('-webkit-font-smoothing'),
+        webkitTextSizeAdjust: s.webkitTextSizeAdjust || s.getPropertyValue('-webkit-text-size-adjust'),
+        paddingTop: s.paddingTop,
+        paddingBottom: s.paddingBottom,
+        paddingLeft: s.paddingLeft,
+        paddingRight: s.paddingRight,
+        marginTop: s.marginTop,
+        marginBottom: s.marginBottom,
+        marginLeft: s.marginLeft,
+        marginRight: s.marginRight,
+        width: Math.round(r.width),
+        height: Math.round(r.height),
+        left: Math.round(r.left),
+        top: Math.round(r.top),
+        transform: s.transform,
+        willChange: s.willChange,
+        display: s.display,
+        position: s.position,
+        parentDisplay: logoStyle.display,
+        parentFlexDirection: logoStyle.flexDirection,
+        parentAlignItems: logoStyle.alignItems,
+        parentGap: logoStyle.gap,
+        hasNavLogoText: !!logo.querySelector('.nav-logo-text')
+      };
+      fetch('http://127.0.0.1:7245/ingest/a8b6cf51-41c9-4dd9-85b5-5267a6ed7967', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ location: 'main.js:logoTextDeepDiagnostic', message: 'logo text deep diagnostic', data: data, timestamp: Date.now(), sessionId: 'debug-session', runId: 'logo-deep', hypothesisId: 'A' }) }).catch(function() {});
+    }
+    setTimeout(logLogoText, 200);
+    setTimeout(logLogoText, 800);
+  })();
+  // #endregion
+
 });
 
 // Minimal, robust tab switching for all pages

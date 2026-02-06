@@ -16,50 +16,65 @@
     const langManager = window.LanguageManager;
     const currentLang = langManager.getCurrentLanguage();
 
-    // Create language switcher element
-    const switcher = document.createElement('a');
-    switcher.className = 'language-switcher';
+    // Use existing switcher if present (to avoid layout shift), otherwise create it
+    let switcher = document.querySelector('.language-switcher');
+    const isNew = !switcher;
+
+    if (!switcher) {
+      switcher = document.createElement('a');
+      switcher.className = 'language-switcher';
+    }
+
     switcher.href = langManager.getAlternatePageUrl();
     switcher.setAttribute('aria-label', currentLang === 'fr' ? 'Switch to English' : 'Passer en français');
-    
-    // Add flag emoji
-    const flag = document.createElement('span');
-    flag.className = 'language-switcher-flag';
+
+    // Ensure flag element
+    let flag = switcher.querySelector('.language-switcher-flag');
+    if (!flag) {
+      flag = document.createElement('span');
+      flag.className = 'language-switcher-flag';
+      switcher.appendChild(flag);
+    }
     flag.textContent = currentLang === 'fr' ? '🇬🇧' : '🇫🇷';
-    
-    // Add language code text
-    const text = document.createElement('span');
-    text.className = 'language-switcher-text';
+
+    // Ensure text element
+    let text = switcher.querySelector('.language-switcher-text');
+    if (!text) {
+      text = document.createElement('span');
+      text.className = 'language-switcher-text';
+      switcher.appendChild(text);
+    }
     text.textContent = currentLang === 'fr' ? 'EN' : 'FR';
-    
-    switcher.appendChild(flag);
-    switcher.appendChild(text);
 
-    // Add click handler
-    switcher.addEventListener('click', function(e) {
-      e.preventDefault();
-      langManager.switchLanguage();
-    });
+    // Add click handler once
+    if (!switcher.dataset.langSwitcherBound) {
+      switcher.addEventListener('click', function(e) {
+        e.preventDefault();
+        langManager.switchLanguage();
+      });
+      switcher.dataset.langSwitcherBound = '1';
+    }
 
-    // Insert into navigation
-    const navLinks = document.querySelector('.main-nav-links');
-    if (navLinks) {
-      navLinks.appendChild(switcher);
-    } else {
-      // Fallback: add after logo if nav-links not found
-      const navbar = document.querySelector('.main-navbar');
-      if (navbar) {
-        // Create a container for the switcher
-        const switcherContainer = document.createElement('div');
-        switcherContainer.style.marginLeft = 'auto';
-        switcherContainer.appendChild(switcher);
-        
-        // Insert before hamburger menu
-        const hamburger = navbar.querySelector('.nav-hamburger');
-        if (hamburger) {
-          navbar.insertBefore(switcherContainer, hamburger);
-        } else {
-          navbar.appendChild(switcherContainer);
+    // Insert into navigation only if newly created
+    if (isNew) {
+      const navLinks = document.querySelector('.main-nav-links');
+      if (navLinks) {
+        navLinks.appendChild(switcher);
+      } else {
+        // Fallback: add after logo if nav-links not found
+        const navbar = document.querySelector('.main-navbar');
+        if (navbar) {
+          const switcherContainer = document.createElement('div');
+          switcherContainer.style.marginLeft = 'auto';
+          switcherContainer.appendChild(switcher);
+          
+          // Insert before hamburger menu
+          const hamburger = navbar.querySelector('.nav-hamburger');
+          if (hamburger) {
+            navbar.insertBefore(switcherContainer, hamburger);
+          } else {
+            navbar.appendChild(switcherContainer);
+          }
         }
       }
     }
@@ -72,4 +87,3 @@
     initLanguageSwitcher();
   }
 })();
-

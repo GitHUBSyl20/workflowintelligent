@@ -1134,4 +1134,27 @@ textarea[name="g-recaptcha-response"] {
   left: -9999px !important;
   width: 0 !important;
   height: 0 !important;
+}
+
+/* Texte "Workflow Intelligent" + onglets nav homogènes (même graisse 500) */
+.main-navbar .nav-logo,
+nav.main-navbar a.nav-logo {
+  font-size: 21px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.03em !important;
+  white-space: nowrap !important;
+}
+.main-navbar .nav-logo .nav-logo-text {
+  font-size: 21px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.03em !important;
+  white-space: nowrap !important;
+  display: inline-block !important;
+  width: 255px !important;
+  min-width: 255px !important;
+}
+.main-navbar .main-nav-link {
+  font-weight: 500 !important;
 } 

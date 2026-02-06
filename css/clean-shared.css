@@ -402,9 +402,15 @@ input, textarea, select {
   .main-navbar .nav-logo {
     display: flex;
     align-items: center;
-    font-size: 1.1rem;
+    font-size: 18px !important;
     gap: 0.5rem;
-    line-height: 1;
+    line-height: 1.2 !important;
+  }
+  .main-navbar .nav-logo .nav-logo-text {
+    font-size: 18px !important;
+    line-height: 1.2 !important;
+    width: auto !important;
+    min-width: 0 !important;
   }
   
   .main-navbar .nav-logo .logo-image {
@@ -1640,21 +1646,35 @@ ul li.paragraph-3 {
 }
 
 /* ============================================
-   FINAL OVERRIDE: Ensure nav-logo consistency
-   This rule must be at the end to override all other styles
+   FINAL OVERRIDE: Nav logo identical on every page
+   Use px (not rem) so root/extra CSS cannot change size; lock line-height/letter-spacing.
    ============================================ */
 .main-navbar .nav-logo,
 nav.main-navbar a.nav-logo,
 .main-navbar > a.nav-logo {
   font-family: 'Lato', sans-serif !important;
-  font-weight: 700 !important;
-  font-size: 1.3rem !important;
+  font-weight: 500 !important;
+  font-size: 21px !important;
   color: #FF4B1F !important;
   letter-spacing: 0.03em !important;
   line-height: 1.2 !important;
   text-transform: none !important;
   font-style: normal !important;
   text-decoration: none !important;
+  white-space: nowrap !important;
+}
+.main-navbar .nav-logo .nav-logo-text {
+  font-family: inherit !important;
+  font-size: 21px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.03em !important;
+  color: inherit !important;
+  white-space: nowrap !important;
+  display: inline-block !important;
+  width: 255px !important;
+  min-width: 255px !important;
+  box-sizing: border-box !important;
 }
 
 /* Improved mobile header responsiveness */
