@@ -57,6 +57,17 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
   margin-right: auto;
 }
 
+/* Contact direct block (page Contact) */
+.contact-direct a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-direct a:hover {
+  text-decoration: underline;
+  color: var(--color-primary-dark);
+}
+
 /* 3. Layout */
 .container, .section {
   width: 100%;
