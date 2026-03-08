@@ -2,6 +2,80 @@
    Styles spécifiques à la page formations
    ========================= */
 
+/* Bloc bénéfices immédiats (hero) */
+.hero-benefits-block {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+}
+
+.hero-benefits-block strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.hero-benefits-block ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.hero-benefits-block li {
+  margin-bottom: 0.25rem;
+}
+
+/* Bloc infos clés (hero) */
+.hero-infos-block {
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+}
+
+.hero-infos-block strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.hero-infos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.hero-infos-grid span {
+  white-space: nowrap;
+}
+
+/* Cas d'usage PME */
+.cas-usage-pme-block {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border-left: 4px solid #FF4B1F;
+}
+
+.cas-usage-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.cas-usage-list li {
+  margin-bottom: 0.35rem;
+}
+
 /* Retirer les soulignements de tous les liens */
 a {
   text-decoration: none;
@@ -291,6 +365,52 @@ a:visited {
 }
 
 @media (max-width: 767px) {
+  /* Bloc bénéfices — plus compact sur mobile */
+  .hero-benefits-block {
+    padding: 0.85rem 1rem;
+    margin-top: 1rem;
+  }
+
+  .hero-benefits-block ul {
+    padding-left: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .hero-benefits-block li {
+    margin-bottom: 0.2rem;
+  }
+
+  /* Bloc infos clés — colonne unique, compact */
+  .hero-infos-block {
+    padding: 0.75rem 1rem;
+    margin-top: 0.85rem;
+  }
+
+  .hero-infos-block strong {
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+  }
+
+  .hero-infos-grid {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0.25rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .hero-infos-grid span {
+    white-space: normal;
+    display: block;
+  }
+
+  /* Label et valeur sur une seule ligne par item */
+  .hero-infos-grid span strong {
+    display: inline;
+  }
+
   .stat-popover {
     white-space: normal;
   }
