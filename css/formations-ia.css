@@ -1,0 +1,424 @@
+/* =========================
+   Styles spécifiques à la page formations
+   ========================= */
+
+/* Retirer les soulignements de tous les liens */
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:focus {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+.formations-intro {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.formations-intro p {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.7;
+  margin-bottom: 0.8rem;
+}
+
+.profile-tabs-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.format-section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.format-table-wrapper {
+  overflow-x: auto;
+  margin: 2rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.format-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  min-width: 800px;
+}
+
+.format-table th,
+.format-table td {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.format-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+.format-table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.badge-recommended {
+  display: inline-block;
+  background-color: #4a90e2;
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+.method-note {
+  text-align: center;
+  color: #666;
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
+.method-note-lg {
+  text-align: center;
+  color: #666;
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+.cta-centered {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.employability-section {
+  max-width: 900px;
+  margin: 2.5rem auto;
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 12px;
+  overflow-x: hidden;
+}
+
+.employability-section h3 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.employability-section p {
+  text-align: left;
+  line-height: 1.7;
+}
+
+/* Permettre le retour à la ligne dans la section employabilité */
+.employability-section .stat-popover {
+  white-space: normal;
+  display: inline;
+}
+
+.employability-section .stat-line {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.formation-details-section {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.transformation-grid {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  max-width: 700px;
+  margin: 1rem auto;
+}
+
+.transformation-column {
+  flex: 1;
+  max-width: 300px;
+}
+
+.security-box {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  border-left: 4px solid #4a90e2;
+}
+
+.final-cta-section {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.final-cta-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.final-cta-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 200px;
+}
+
+/* Pop-over pour les statistiques */
+.stat-popover {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+  z-index: 1;
+}
+
+/* Forcer une seule ligne uniquement pour la section formations-intro */
+.formations-intro .stat-popover {
+  white-space: nowrap;
+}
+
+.stat-popover-trigger {
+  border-bottom: 1px dashed #FF4B1F;
+  color: #FF4B1F;
+  cursor: help;
+  transition: all 0.2s ease;
+}
+
+.stat-popover-trigger:hover {
+  border-bottom-color: #d63c13;
+  color: #d63c13;
+}
+
+.stat-line {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  font-size: 1.15rem;
+  color: #333;
+}
+
+.stat-line .highlight-text {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.stat-popover-wrapper {
+  display: inline;
+}
+
+/* Pop-over centrée sur l'écran en position fixed */
+.stat-popover-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 500px;
+  z-index: 1000000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Afficher la pop-over quand active */
+.stat-popover-content.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Overlay sombre derrière la pop-over */
+.popover-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.popover-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.stat-popover-content h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.stat-popover-content p {
+  margin: 0 0 0.75rem 0;
+  color: #555;
+}
+
+.stat-popover-content a {
+  color: #FF4B1F;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+.stat-popover-content a:hover {
+  color: #d63c13;
+}
+
+@media (max-width: 767px) {
+  .stat-popover {
+    white-space: normal;
+  }
+
+  /* Réduire la taille du texte des statistiques sur mobile */
+  .stat-line {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .stat-line .highlight-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  /* Permettre les retours à la ligne pour les popovers */
+  .formations-intro .stat-popover {
+    white-space: normal;
+  }
+
+  .stat-popover-content {
+    width: calc(100% - 2rem);
+    max-width: none;
+    padding: 1.25rem;
+  }
+
+  /* Centrer les boutons sur mobile */
+  .flex-horizontal.flex-gap-sm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* Réduire l'espace au-dessus de "Navigation" dans le footer */
+  .footer-grid {
+    gap: 0.5rem !important;
+    row-gap: 0.5rem !important;
+  }
+
+  .footer-links-container {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .footer-column:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .footer-column h2.h6-heading {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    margin-bottom: 0.5rem !important;
+  }
+}
+
+/* Amélioration de la visibilité des boutons dans la section hero */
+.accent-primary-section .button {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.accent-primary-section .button:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.accent-primary-section .button.secondary-button-on-accent-primary {
+  background-color: #ffffff;
+  color: #333;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+}
+
+.accent-primary-section .button.secondary-button-on-accent-primary:hover {
+  background-color: #f8f8f8;
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #000;
+}
+
+.accent-primary-section .button:not(.secondary-button-on-accent-primary) {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.accent-primary-section .button:not(.secondary-button-on-accent-primary):hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 767px) {
+  .format-table {
+    font-size: 0.9rem;
+  }
+
+  .format-table th,
+  .format-table td {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .employability-section {
+    padding: 1.5rem 1rem;
+    margin: 1.5rem auto;
+    overflow-x: hidden;
+  }
+
+  .employability-section .stat-line {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .transformation-grid {
+    gap: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    .transformation-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .transformation-column {
+      max-width: 100%;
+    }
+  }
+}

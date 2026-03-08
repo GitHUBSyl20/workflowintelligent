@@ -20,6 +20,7 @@
   <link href="css/footer.css" rel="stylesheet" type="text/css" />
   <link href="css/tabs.css" rel="stylesheet" type="text/css" />
   <link href="css/portfolio-accordion.css" rel="stylesheet" type="text/css" />
+  <link href="css/formations-ia.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js"></script>
@@ -72,424 +73,6 @@
     ]
   }
   </script>
-  
-  <style>
-    /* Styles spécifiques à la page formations */
-    /* Retirer les soulignements de tous les liens */
-    a {
-      text-decoration: none;
-    }
-    
-    a:hover {
-      text-decoration: none;
-    }
-    
-    a:focus {
-      text-decoration: none;
-    }
-    
-    a:visited {
-      text-decoration: none;
-    }
-    
-    .formations-intro {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    
-    .formations-intro p {
-      font-size: clamp(1rem, 2vw, 1.15rem);
-      line-height: 1.7;
-      margin-bottom: 0.8rem;
-    }
-    
-    .profile-tabs-container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    
-    .format-section {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .format-table-wrapper {
-      overflow-x: auto;
-      margin: 2rem 0;
-      -webkit-overflow-scrolling: touch;
-    }
-    
-    .format-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 1rem;
-      min-width: 800px;
-    }
-    
-    .format-table th,
-    .format-table td {
-      padding: 1rem;
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-    
-    .format-table th {
-      background-color: #f5f5f5;
-      font-weight: 600;
-    }
-    
-    .format-table tbody tr:nth-child(even) {
-      background-color: #fafafa;
-    }
-    
-    .badge-recommended {
-      display: inline-block;
-      background-color: #4a90e2;
-      color: white;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      margin-left: 0.5rem;
-    }
-    
-    .method-note {
-      text-align: center;
-      color: #666;
-      font-size: 1rem;
-      margin: 1rem 0;
-    }
-    
-    .cta-centered {
-      text-align: center;
-      margin: 1.5rem 0;
-    }
-    
-    .employability-section {
-      max-width: 900px;
-      margin: 2.5rem auto;
-      padding: 2rem;
-      background: #f9f9f9;
-      border-radius: 12px;
-      overflow-x: hidden;
-    }
-    
-    .employability-section h3 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-    
-    .employability-section p {
-      text-align: left;
-      line-height: 1.7;
-    }
-    
-    /* Permettre le retour à la ligne dans la section employabilité */
-    .employability-section .stat-popover {
-      white-space: normal;
-      display: inline;
-    }
-    
-    .employability-section .stat-line {
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
-    
-    .formation-details-section {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    
-    .transformation-grid {
-      display: flex;
-      gap: 3rem;
-      justify-content: center;
-      max-width: 700px;
-      margin: 1rem auto;
-    }
-    
-    .transformation-column {
-      flex: 1;
-      max-width: 300px;
-    }
-    
-    .security-box {
-      background-color: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin: 1.5rem 0;
-      border-left: 4px solid #4a90e2;
-    }
-    
-    .final-cta-section {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .final-cta-grid {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-top: 1.5rem;
-    }
-    
-    .final-cta-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      max-width: 200px;
-    }
-    
-    /* Pop-over pour les statistiques */
-    .stat-popover {
-      position: relative;
-      display: inline-block;
-      cursor: help;
-      z-index: 1;
-    }
-    
-    /* Forcer une seule ligne uniquement pour la section formations-intro */
-    .formations-intro .stat-popover {
-      white-space: nowrap;
-    }
-    
-    .stat-popover-trigger {
-      border-bottom: 1px dashed #FF4B1F;
-      color: #FF4B1F;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-    
-    .stat-popover-trigger:hover {
-      border-bottom-color: #d63c13;
-      color: #d63c13;
-    }
-    
-    .stat-line {
-      margin-bottom: 0.75rem;
-      line-height: 1.6;
-      font-size: 1.15rem;
-      color: #333;
-    }
-    
-    .stat-line .highlight-text {
-      font-size: 1.5rem;
-      font-weight: 500;
-    }
-    
-    .stat-popover-wrapper {
-      display: inline;
-    }
-    
-    /* Pop-over centrée sur l'écran en position fixed */
-    .stat-popover-content {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.95);
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      padding: 1.5rem;
-      width: 90%;
-      max-width: 500px;
-      z-index: 1000000;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-    
-    /* Afficher la pop-over quand active */
-    .stat-popover-content.active {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      transform: translate(-50%, -50%) scale(1);
-    }
-    
-    /* Overlay sombre derrière la pop-over */
-    .popover-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 999999;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.25s ease, visibility 0.25s ease;
-    }
-    
-    .popover-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    .stat-popover-content h4 {
-      margin: 0 0 0.75rem 0;
-      font-size: 1.1rem;
-      color: #2c3e50;
-      font-weight: 600;
-    }
-    
-    .stat-popover-content p {
-      margin: 0 0 0.75rem 0;
-      color: #555;
-    }
-    
-    .stat-popover-content a {
-      color: #FF4B1F;
-      text-decoration: underline;
-      font-size: 0.9rem;
-    }
-    
-    .stat-popover-content a:hover {
-      color: #d63c13;
-    }
-    
-    @media (max-width: 767px) {
-      .stat-popover {
-        white-space: normal;
-      }
-      
-      /* Réduire la taille du texte des statistiques sur mobile */
-      .stat-line {
-        font-size: 0.95rem;
-        line-height: 1.5;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-      }
-      
-      .stat-line .highlight-text {
-        font-size: 1.1rem;
-        font-weight: 500;
-      }
-      
-      /* Permettre les retours à la ligne pour les popovers */
-      .formations-intro .stat-popover {
-        white-space: normal;
-      }
-      
-      .stat-popover-content {
-        width: calc(100% - 2rem);
-        max-width: none;
-        padding: 1.25rem;
-      }
-      
-      /* Centrer les boutons sur mobile */
-      .flex-horizontal.flex-gap-sm {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-      
-      /* Réduire l'espace au-dessus de "Navigation" dans le footer */
-      .footer-grid {
-        gap: 0.5rem !important;
-        row-gap: 0.5rem !important;
-      }
-      
-      .footer-links-container {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-      }
-      
-      .footer-column:first-child {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-      }
-      
-      .footer-column h2.h6-heading {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-        margin-bottom: 0.5rem !important;
-      }
-      
-    }
-    
-    /* Amélioration de la visibilité des boutons dans la section hero */
-    .accent-primary-section .button {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      transition: all 0.3s ease;
-    }
-    
-    .accent-primary-section .button:hover {
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-      transform: translateY(-2px);
-    }
-    
-    .accent-primary-section .button.secondary-button-on-accent-primary {
-      background-color: #ffffff;
-      color: #333;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      font-weight: 600;
-    }
-    
-    .accent-primary-section .button.secondary-button-on-accent-primary:hover {
-      background-color: #f8f8f8;
-      border-color: rgba(255, 255, 255, 0.5);
-      color: #000;
-    }
-    
-    .accent-primary-section .button:not(.secondary-button-on-accent-primary) {
-      background-color: rgba(0, 0, 0, 0.2);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(10px);
-    }
-    
-    .accent-primary-section .button:not(.secondary-button-on-accent-primary):hover {
-      background-color: rgba(0, 0, 0, 0.3);
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-    
-    @media (max-width: 767px) {
-      .format-table {
-        font-size: 0.9rem;
-      }
-      
-      .format-table th,
-      .format-table td {
-        padding: 0.75rem 0.5rem;
-      }
-      
-      .employability-section {
-        padding: 1.5rem 1rem;
-        margin: 1.5rem auto;
-        overflow-x: hidden;
-      }
-      
-      .employability-section .stat-line {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        hyphens: auto;
-      }
-      
-      .transformation-grid {
-        gap: 2rem;
-      }
-      
-      @media (max-width: 480px) {
-        .transformation-grid {
-          flex-direction: column;
-          align-items: center;
-        }
-        
-        .transformation-column {
-          max-width: 100%;
-        }
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -526,6 +109,7 @@
           <p class="h3-heading" style="margin-top: 1.5rem !important">
             Former vos équipes à l'IA générative — avec garde-fous — en 3h30 ou 1 jour
           </p>
+          <p>Ces formations peuvent être prises en charge par les OPCO via un organisme de formation partenaire.</p>
           <p class="utility-margin-bottom-0" style="margin-top: 2rem">
            Ateliers basés sur vos cas réels. Vous repartez avec : bibliothèque de prompts métier, checklists, et plan d'adoption.
           </p>
@@ -687,11 +271,12 @@
               </tbody>
             </table>
           </div>
-          
+
+          <p class="method-note-lg">Formation pouvant être financée par votre OPCO selon votre situation</p>
           <p class="method-note">Méthode applicable à ChatGPT, Claude, Gemini, Copilot…</p>
           
           <div class="cta-centered">
-            <a href="contact-devis.html?demande=Formation#contact-form" class="button w-button">Demander un devis</a>
+            <a href="contact-devis.html?demande=Formation#contact-form" class="button w-button">Demander un devis (financement possible)</a>
           </div>
         </div>
 
@@ -892,6 +477,22 @@
 
           <div class="accordion-item">
             <button type="button" class="accordion-trigger">
+              <h4 class="utility-margin-bottom-0">La formation peut-elle être financée ?</h4>
+            </button>
+            <div class="content">
+              <div class="portfolio-content-grid">
+                <div class="portfolio-text">
+                  <p><strong>Oui.</strong></p>
+                  <p>Les formations peuvent être prises en charge par les dispositifs de financement de la formation professionnelle (OPCO) via un organisme de formation partenaire.</p>
+                  <p>Selon votre secteur et votre budget formation, tout ou partie de la formation peut être financé.</p>
+                  <p>Je peux vous orienter vers les démarches nécessaires lors de la prise de contact.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger">
               <h4 class="utility-margin-bottom-0">Pourquoi se former maintenant ?</h4>
             </button>
             <div class="content">
@@ -1083,88 +684,10 @@
   <a href="contact-devis.html?demande=Formation#contact-form"
     class="button w-button"
     style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 1000;">
-    Demander un devis
+    Demander un devis (financement possible)
   </a>
 
-  <script>
-    // Gestion des pop-overs pour les statistiques
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('[POPOVER-DEBUG] Script loaded, searching for popovers...');
-      
-      const popovers = document.querySelectorAll('.stat-popover');
-      
-      popovers.forEach((popover) => {
-        const wrapper = popover.closest('.stat-popover-wrapper');
-        const content = wrapper ? wrapper.querySelector('.stat-popover-content') : null;
-        
-        if (!content) {
-          console.error('[POPOVER] Content not found for popover:', popover);
-          return;
-        }
-        
-        // Ouvrir/fermer au clic
-        popover.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          
-          // Fermer les autres pop-overs et retirer la classe active des wrappers
-          popovers.forEach(p => {
-            if (p !== popover) {
-              p.classList.remove('active');
-              const otherWrapper = p.closest('.stat-popover-wrapper');
-              if (otherWrapper) {
-                otherWrapper.classList.remove('wrapper-active');
-                const otherContent = otherWrapper.querySelector('.stat-popover-content');
-                if (otherContent) {
-                  otherContent.classList.remove('active');
-                }
-              }
-            }
-          });
-          
-          // Toggle le pop-over actuel
-          const isActive = popover.classList.toggle('active');
-          if (isActive) {
-            content.classList.add('active');
-            wrapper.classList.add('wrapper-active');
-          } else {
-            content.classList.remove('active');
-            wrapper.classList.remove('wrapper-active');
-          }
-        });
-      });
-      
-      // Fermer au clic en dehors
-      document.addEventListener('click', function(e) {
-        if (!e.target.closest('.stat-popover-wrapper')) {
-          popovers.forEach(p => {
-            p.classList.remove('active');
-            const wrapper = p.closest('.stat-popover-wrapper');
-            if (wrapper) {
-              wrapper.classList.remove('wrapper-active');
-              const content = wrapper.querySelector('.stat-popover-content');
-              if (content) content.classList.remove('active');
-            }
-          });
-        }
-      });
-      
-      // Fermer avec Escape
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          popovers.forEach(p => {
-            p.classList.remove('active');
-            const wrapper = p.closest('.stat-popover-wrapper');
-            if (wrapper) {
-              wrapper.classList.remove('wrapper-active');
-              const content = wrapper.querySelector('.stat-popover-content');
-              if (content) content.classList.remove('active');
-            }
-          });
-        }
-      });
-    });
-  </script>
+  <script src="js/formations-popover.js" defer></script>
 </body>
 
 </html>
