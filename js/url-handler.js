@@ -25,7 +25,10 @@
         'a-propos.html': 'a-propos',
         'mentions-legales.html': 'mentions-legales',
         'conditions-generales.html': 'conditions-generales',
-        'formations-ia.html': 'formations-ia',
+        'formations.html': 'formations',
+        'formation-prompting-ia.html': 'formation-prompting-ia',
+        'formations-en.html': 'formations-en',
+        'formation-prompting-ia-en.html': 'formation-prompting-ia-en',
         'index.html': '',
         // English versions
         'solutions-ia-entreprise-en.html': 'solutions-ia-entreprise-en',

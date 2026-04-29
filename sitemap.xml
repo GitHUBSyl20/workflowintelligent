@@ -40,8 +40,15 @@
   </url>
 
   <url>
-    <loc>https://workflowintelligent.com/formations-ia</loc>
-    <lastmod>2025-12-09</lastmod>
+    <loc>https://workflowintelligent.com/formations</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://workflowintelligent.com/formation-prompting-ia</loc>
+    <lastmod>2026-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -132,6 +139,20 @@
     <lastmod>2025-11-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://workflowintelligent.com/formations-en</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://workflowintelligent.com/formation-prompting-ia-en</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   
 </urlset> 

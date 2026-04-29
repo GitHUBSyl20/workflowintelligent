@@ -66,6 +66,16 @@
       "source": "/index.html",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/formations-ia",
+      "destination": "/formations",
+      "permanent": true
+    },
+    {
+      "source": "/formations-ia.html",
+      "destination": "/formations",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -102,8 +112,20 @@
       "destination": "/conditions-generales.html"
     },
     {
-      "source": "/formations-ia",
-      "destination": "/formations-ia.html"
+      "source": "/formations",
+      "destination": "/formations.html"
+    },
+    {
+      "source": "/formation-prompting-ia",
+      "destination": "/formation-prompting-ia.html"
+    },
+    {
+      "source": "/formations-en",
+      "destination": "/formations-en.html"
+    },
+    {
+      "source": "/formation-prompting-ia-en",
+      "destination": "/formation-prompting-ia-en.html"
     }
   ]
 }

@@ -2,6 +2,44 @@
    Styles spécifiques à la page formations
    ========================= */
 
+/* Hub catalogue (formations.html) */
+.formations-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.formation-catalog-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.5rem 1.5rem 1.25rem;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.formation-catalog-card .button {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+ul.formation-catalog-meta {
+  list-style: none;
+  margin: 0 0 0.5rem 0;
+  padding: 0;
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  line-height: 1.6;
+  color: #444;
+}
+
+ul.formation-catalog-meta li {
+  margin-bottom: 0.35rem;
+}
+
 /* Bloc bénéfices immédiats (hero) */
 .hero-benefits-block {
   margin-top: 1.25rem;
