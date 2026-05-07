@@ -16,8 +16,36 @@
 }
 
 .footer-column {
-  flex: 1;
-  min-width: 150px;
+  /* min-width: 0 évite le débordement du texte (ex. email) sur la colonne voisine (LinkedIn) en flex row */
+  flex: 1 1 150px;
+  min-width: 0;
+}
+
+/* Colonne réservée au lien LinkedIn : largeur naturelle, pas 50 % du rang */
+.footer-links-container .footer-column:has(> a > img.footer-icon) {
+  flex: 0 0 auto;
+  align-self: flex-start;
+}
+
+.footer-links-container .footer-column:has(> a > img.footer-icon) > a.footer-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.35rem 0;
+}
+
+.footer-icon,
+.footer-links-container img.footer-icon {
+  width: 40px;
+  height: 40px;
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.footer-column .footer-link[href^="mailto:"] {
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .footer-column .w-list-unstyled {
@@ -113,7 +141,7 @@ body .inverse-footer a:hover {
   }
   
   .footer-column {
-    min-width: auto;
+    min-width: 0;
     margin-top: 0;
     padding-top: 0;
   }
@@ -139,6 +167,7 @@ body .inverse-footer a:hover {
   .footer-column .w-list-unstyled li {
     margin: 0;
     padding: 0;
+    min-width: 0;
   }
   
   .footer-link {
