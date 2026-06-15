@@ -128,6 +128,10 @@ a:visited {
   min-width: 800px;
 }
 
+.formats-table {
+  min-width: 980px;
+}
+
 .format-table th,
 .format-table td {
   padding: 1rem;
@@ -142,6 +146,30 @@ a:visited {
 
 .format-table tbody tr:nth-child(even) {
   background-color: #fafafa;
+}
+
+.formats-table th:last-child,
+.formats-table td:last-child {
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+.formats-table th:last-child {
+  background: #1d4ed8;
+  color: #fff;
+}
+
+.formats-table .row-recommended {
+  background: #f0fdf4;
+}
+
+.formats-table-note {
+  text-align: center;
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 1rem 0;
 }
 
 .badge-recommended {
@@ -167,6 +195,50 @@ a:visited {
   color: #666;
   font-size: 1.2rem;
   margin: 1rem 0;
+}
+
+.tarif-explainer {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 1.5rem 1.75rem;
+  margin: 1.5rem auto 2rem auto;
+  max-width: 860px;
+}
+
+.tarif-explainer h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.65rem;
+  color: #1d4ed8;
+}
+
+.tarif-explainer p {
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.tarif-explainer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tarif-explainer ul li {
+  padding: 0.25rem 0 0.25rem 1.4rem;
+  position: relative;
+  font-size: 0.9rem;
+  color: #1d4ed8;
+}
+
+.tarif-explainer ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #2563eb;
+  font-size: 0.85rem;
 }
 
 .cta-centered {
@@ -228,6 +300,152 @@ a:visited {
   border-radius: 8px;
   margin: 1.5rem 0;
   border-left: 4px solid #4a90e2;
+}
+
+.fiche-tarif {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.fiche-tarif-surmesure {
+  display: inline-block;
+  margin-left: 0.5rem;
+  color: #1d4ed8;
+  font-size: 0.95rem;
+}
+
+/* Formation-action sur mesure */
+.formation-action-band {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.formation-action-section {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem;
+  background: #f9f9fb;
+  border-left: 4px solid #FF4B1F;
+  border-radius: 8px;
+}
+
+.formation-action-section h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+.formation-action-section h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.formation-action-section p {
+  line-height: 1.7;
+}
+
+.formation-action-tagline {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 1.75rem;
+}
+
+.formation-action-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.formation-action-list li {
+  padding: 0.4rem 0 0.4rem 1.75rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.formation-action-list--cross li::before,
+.formation-action-list--check li::before {
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+}
+
+.formation-action-list--cross li::before {
+  content: "✗";
+  color: #d93c2f;
+}
+
+.formation-action-list--check li::before {
+  content: "✔";
+  color: #2f8f4e;
+}
+
+.formation-action-steps {
+  padding-left: 1.25rem;
+  margin: 0 0 1.5rem 0;
+}
+
+.formation-action-steps li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.formation-action-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1rem 0 0.5rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.formation-action-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.formation-action-table th {
+  background: #FF4B1F;
+  color: #fff;
+  padding: 0.65rem 0.9rem;
+  text-align: left;
+}
+
+.formation-action-table td {
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.formation-action-table tr:last-child td {
+  border-bottom: none;
+}
+
+.formation-action-note {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0.5rem 0 1.75rem 0;
+}
+
+.formation-action-cta {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.formation-action-reassurance {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+}
+
+.formation-sticky-cta {
+  max-width: min(360px, calc(100vw - 3rem));
+  white-space: normal;
+  text-align: center;
+  line-height: 1.35;
 }
 
 .final-cta-section {
@@ -519,6 +737,22 @@ a:visited {
     padding: 1.5rem 1rem;
     margin: 1.5rem auto;
     overflow-x: hidden;
+  }
+
+  .formation-action-section {
+    padding: 2rem 1.25rem;
+  }
+
+  .formation-action-section h2 {
+    font-size: 1.35rem;
+  }
+
+  .formation-action-section h3 {
+    font-size: 1rem;
+  }
+
+  .formation-action-cta .button {
+    white-space: normal;
   }
 
   .employability-section .stat-line {
