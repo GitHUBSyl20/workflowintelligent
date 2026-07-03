@@ -164,7 +164,7 @@ function initContactForm() {
 
             // Show status message
             setTimeout(() => {
-                showStatus('Envoi en cours vers sylvainmagana@ymail.com...', 'info');
+                showStatus('Envoi en cours vers contact@workflowintelligent.fr...', 'info');
             }, 100);
 
             // Handle form submission result
