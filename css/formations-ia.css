@@ -583,6 +583,46 @@ a:visited {
 }
 
 @media (max-width: 767px) {
+  .section.accent-primary-section {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    overflow-x: hidden !important;
+  }
+
+  .accent-primary-section .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    justify-content: center;
+  }
+
+  .accent-primary-section .grid-layout {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .accent-primary-section .grid-layout > *,
+  .accent-primary-section .flex-horizontal,
+  .hero-benefits-block,
+  .hero-infos-block {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .accent-primary-section .h1-heading,
+  .accent-primary-section .h3-heading,
+  .accent-primary-section p,
+  .hero-benefits-block,
+  .hero-infos-block {
+    text-align: center;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
   /* Bloc bénéfices — plus compact sur mobile */
   .hero-benefits-block {
     padding: 0.85rem 1rem;
@@ -593,6 +633,7 @@ a:visited {
     padding-left: 1rem;
     font-size: 0.9rem;
     line-height: 1.5;
+    text-align: left;
   }
 
   .hero-benefits-block li {
@@ -622,6 +663,7 @@ a:visited {
   .hero-infos-grid span {
     white-space: normal;
     display: block;
+    overflow-wrap: anywhere;
   }
 
   /* Label et valeur sur une seule ligne par item */
@@ -663,6 +705,19 @@ a:visited {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .accent-primary-section .flex-horizontal.flex-gap-sm .button {
+    width: 100%;
+    max-width: 24rem;
+    min-height: 48px;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.25;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   /* Réduire l'espace au-dessus de "Navigation" dans le footer */
@@ -752,7 +807,31 @@ a:visited {
   }
 
   .formation-action-cta .button {
+    width: 100%;
+    max-width: calc(100vw - 2rem);
     white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.25;
+  }
+
+  .cta-centered .button,
+  .final-cta-section .button,
+  .grid-layout .button.contactbutton {
+    width: 100%;
+    max-width: calc(100vw - 2rem);
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.25;
+  }
+
+  .grid-layout .button.contactbutton {
+    display: inline-flex;
+  }
+
+  .grid-layout li:has(.button.contactbutton),
+  .grid-layout li.flex-horizontal.flex-vertical {
+    min-width: 0;
+    max-width: 100%;
   }
 
   .employability-section .stat-line {
