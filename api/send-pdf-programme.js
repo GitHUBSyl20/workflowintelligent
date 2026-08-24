@@ -78,8 +78,8 @@ module.exports = async function handler(req, res) {
           
           <p>Nos formations sont disponibles en deux formats :</p>
           <ul>
-            <li><strong>Formation demi-journée (3h30)</strong> - 400€ HT par groupe</li>
-            <li><strong>Formation journée (7h)</strong> - 900€ HT par groupe (recommandé)</li>
+            <li><strong>Formation-action 3h30</strong> - à partir de 590 € HT</li>
+            <li><strong>Formation-action 1 journée (7h)</strong> - à partir de 1 090 € HT</li>
           </ul>
           
           <p>Pour toute question ou pour planifier une formation, n'hésitez pas à me contacter.</p>
