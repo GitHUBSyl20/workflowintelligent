@@ -3,7 +3,7 @@
   
   <!-- Homepage - Highest priority -->
   <url>
-    <loc>https://workflowintelligent.fr/</loc>
+    <loc>https://www.workflowintelligent.fr/</loc>
     <lastmod>2025-01-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -11,21 +11,21 @@
   
   <!-- Main service pages - High priority -->
   <url>
-    <loc>https://workflowintelligent.fr/solutions-ia-entreprise</loc>
+    <loc>https://www.workflowintelligent.fr/solutions-ia-entreprise</loc>
     <lastmod>2025-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://workflowintelligent.fr/automatisation-entreprise</loc>
+    <loc>https://www.workflowintelligent.fr/automatisation-entreprise</loc>
     <lastmod>2025-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://workflowintelligent.fr/aides-financement-numerique</loc>
+    <loc>https://www.workflowintelligent.fr/aides-financement-numerique</loc>
     <lastmod>2025-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -33,21 +33,21 @@
   
   <!-- Business pages - Medium-high priority -->
   <url>
-    <loc>https://workflowintelligent.fr/tarifs-prestations</loc>
+    <loc>https://www.workflowintelligent.fr/tarifs-prestations</loc>
     <lastmod>2025-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://workflowintelligent.fr/formations-ia</loc>
+    <loc>https://www.workflowintelligent.fr/formations-ia</loc>
     <lastmod>2026-08-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://workflowintelligent.fr/contact-devis</loc>
+    <loc>https://www.workflowintelligent.fr/contact-devis</loc>
     <lastmod>2025-01-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -55,7 +55,7 @@
   
   <!-- Info pages - Medium priority -->
   <url>
-    <loc>https://workflowintelligent.fr/a-propos</loc>
+    <loc>https://www.workflowintelligent.fr/a-propos</loc>
     <lastmod>2025-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -63,14 +63,14 @@
   
   <!-- Legal pages - Low priority -->
   <url>
-    <loc>https://workflowintelligent.fr/mentions-legales</loc>
+    <loc>https://www.workflowintelligent.fr/mentions-legales</loc>
     <lastmod>2025-01-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   
   <url>
-    <loc>https://workflowintelligent.fr/conditions-generales</loc>
+    <loc>https://www.workflowintelligent.fr/conditions-generales</loc>
     <lastmod>2025-01-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
@@ -78,21 +78,21 @@
   
   <!-- English Version Pages -->
   <url>
-    <loc>https://workflowintelligent.fr/index-en</loc>
+    <loc>https://www.workflowintelligent.fr/index-en</loc>
     <lastmod>2025-11-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
-    <loc>https://workflowintelligent.fr/solutions-ia-entreprise-en</loc>
+    <loc>https://www.workflowintelligent.fr/solutions-ia-entreprise-en</loc>
     <lastmod>2025-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://workflowintelligent.fr/automatisation-entreprise-en</loc>
+    <loc>https://www.workflowintelligent.fr/automatisation-entreprise-en</loc>
     <lastmod>2025-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -100,35 +100,42 @@
   
   
   <url>
-    <loc>https://workflowintelligent.fr/tarifs-prestations-en</loc>
+    <loc>https://www.workflowintelligent.fr/tarifs-prestations-en</loc>
     <lastmod>2025-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://workflowintelligent.fr/contact-devis-en</loc>
+    <loc>https://www.workflowintelligent.fr/contact-devis-en</loc>
     <lastmod>2025-11-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://workflowintelligent.fr/a-propos-en</loc>
+    <loc>https://www.workflowintelligent.fr/aides-financement-numerique-en</loc>
     <lastmod>2025-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://workflowintelligent.fr/mentions-legales-en</loc>
+    <loc>https://www.workflowintelligent.fr/a-propos-en</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.workflowintelligent.fr/mentions-legales-en</loc>
     <lastmod>2025-11-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   
   <url>
-    <loc>https://workflowintelligent.fr/conditions-generales-en</loc>
+    <loc>https://www.workflowintelligent.fr/conditions-generales-en</loc>
     <lastmod>2025-11-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

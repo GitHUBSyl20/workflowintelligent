@@ -103,6 +103,42 @@
     {
       "source": "/formations-ia",
       "destination": "/formations-ia.html"
+    },
+    {
+      "source": "/index-en",
+      "destination": "/index-en.html"
+    },
+    {
+      "source": "/solutions-ia-entreprise-en",
+      "destination": "/solutions-ia-entreprise-en.html"
+    },
+    {
+      "source": "/automatisation-entreprise-en",
+      "destination": "/automatisation-entreprise-en.html"
+    },
+    {
+      "source": "/aides-financement-numerique-en",
+      "destination": "/aides-financement-numerique-en.html"
+    },
+    {
+      "source": "/tarifs-prestations-en",
+      "destination": "/tarifs-prestations-en.html"
+    },
+    {
+      "source": "/contact-devis-en",
+      "destination": "/contact-devis-en.html"
+    },
+    {
+      "source": "/a-propos-en",
+      "destination": "/a-propos-en.html"
+    },
+    {
+      "source": "/mentions-legales-en",
+      "destination": "/mentions-legales-en.html"
+    },
+    {
+      "source": "/conditions-generales-en",
+      "destination": "/conditions-generales-en.html"
     }
   ]
 }
