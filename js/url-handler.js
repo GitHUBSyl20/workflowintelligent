@@ -8,7 +8,8 @@
     'use strict';
     
     // Détection de l'environnement
-    const isProduction = window.location.hostname === 'workflowintelligent.com' || 
+    const isProduction = window.location.hostname === 'workflowintelligent.fr' ||
+                        window.location.hostname === 'www.workflowintelligent.fr' ||
                         window.location.hostname.includes('vercel.app');
     
     const isLocal = window.location.hostname === 'localhost' || 
