@@ -534,6 +534,22 @@ a:visited {
   margin: 1.75rem 0 0 0;
 }
 
+.formats-download {
+  margin: 0.9rem 0 0 0;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.formats-download a {
+  color: #FF4B1F;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.formats-download a:hover {
+  color: #192a56;
+}
+
 /* =========================
    9. Bloc mis en avant (10 participants)
    ========================= */
