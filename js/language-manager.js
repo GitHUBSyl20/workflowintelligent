@@ -22,29 +22,31 @@ class LanguageManager {
   }
 
   /**
+   * Extract the current page filename from the URL
+   * The site is served with clean URLs in production (a-propos-en) and with
+   * the .html extension locally (a-propos-en.html): both forms must be handled.
+   * @returns {string} Filename, with or without extension
+   */
+  getCurrentFilename() {
+    const filename = window.location.pathname.split('/').pop();
+
+    // Root path: the French homepage, whose filename is implicit
+    return filename || 'index';
+  }
+
+  /**
    * Detect language from current URL filename
-   * Example: index-en.html -> 'en', index.html -> 'fr'
+   * Example: index-en.html -> 'en', index-en -> 'en', a-propos -> 'fr'
    */
   detectLanguageFromUrl() {
-    const path = window.location.pathname;
-    let filename = path.split('/').pop();
-    
-    if (!filename || filename === '/') {
-      // Normalize root path to homepage filename
-      filename = 'index.html';
-      console.debug('[LanguageManager] Empty path detected, defaulting to index.html');
-    }
-    
-    // Check if filename contains -en
-    if (filename.includes('-en.html')) {
-      this.currentLanguage = 'en';
-    } else {
-      this.currentLanguage = 'fr';
-    }
-    
+    const filename = this.getCurrentFilename();
+
+    // The -en suffix may or may not be followed by the .html extension
+    this.currentLanguage = /-en(\.html)?$/.test(filename) ? 'en' : 'fr';
+
     // Store preference
     this.saveLanguagePreference(this.currentLanguage);
-    
+
     return this.currentLanguage;
   }
 
@@ -140,27 +142,26 @@ class LanguageManager {
    */
   getAlternatePageUrl() {
     const path = window.location.pathname;
-    const filenameFromPath = path.split('/').pop();
-    const filename = (!filenameFromPath || filenameFromPath === '/')
-      ? (this.currentLanguage === 'en' ? 'index-en.html' : 'index.html')
-      : filenameFromPath;
     const search = window.location.search;
     const hash = window.location.hash;
 
-    let alternateFilename;
+    const filename = this.getCurrentFilename();
+    const extension = filename.endsWith('.html') ? '.html' : '';
+    const base = extension ? filename.slice(0, -extension.length) : filename;
 
-    if (this.currentLanguage === 'en') {
-      // Switch from English to French: remove -en suffix
-      alternateFilename = filename.replace('-en.html', '.html');
-    } else {
-      // Switch from French to English: add -en suffix
-      alternateFilename = filename.replace('.html', '-en.html');
+    const alternateBase = this.currentLanguage === 'en'
+      ? base.replace(/-en$/, '')   // English to French: drop the suffix
+      : base + '-en';              // French to English: add it
+
+    // In production the French homepage is served at the root, never at /index
+    if (alternateBase === 'index' && !extension) {
+      return '/' + search + hash;
     }
 
     // Reconstruct the URL
     const pathParts = path.split('/');
-    pathParts[pathParts.length - 1] = alternateFilename;
-    
+    pathParts[pathParts.length - 1] = alternateBase + extension;
+
     return pathParts.join('/') + search + hash;
   }
 

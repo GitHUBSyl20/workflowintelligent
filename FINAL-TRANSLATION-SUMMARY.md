@@ -73,7 +73,7 @@ Your local server is running at: **http://localhost:8000**
 ### Infrastructure:
 - `translations/translations.json` - All translations
 - `js/language-manager.js` - Language detection & switching
-- `js/language-switcher.js` - UI component
+- ~~`js/language-switcher.js`~~ - supprime le 25/08/2026, la bascule FR | EN est du HTML statique
 - `TRANSLATION-GUIDE.md` - Translation reference
 - `ENGLISH-VERSION-IMPLEMENTATION.md` - Technical documentation
 - `TRANSLATION-STATUS.md` - Progress tracking

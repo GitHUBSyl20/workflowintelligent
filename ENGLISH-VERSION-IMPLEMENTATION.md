@@ -19,9 +19,12 @@ The English version infrastructure for your website has been successfully implem
   - Provides utility functions for language switching
   - Stores language preference in localStorage
 
-- **`js/language-switcher.js`** - UI component for language switching
-  - Adds a language toggle button to navigation
-  - Shows flag emoji (🇬🇧 for English, 🇫🇷 for French)
+- **`js/language-switcher.js`** - SUPPRIME le 25/08/2026.
+  - Ce script reconstruisait le badge cote client a partir de l'URL. Depuis le
+    passage aux URL sans `.html`, il se trompait de langue et faisait pointer le
+    badge vers la page courante. La bascule FR | EN est desormais du HTML statique,
+    ecrit en dur dans chaque page : une seule source de verite, pas de drapeau emoji
+    (Windows n'en possede aucun glyphe et le remplace par deux lettres).
   - Smoothly switches between language versions
 
 ### 3. Styling ✅
@@ -143,7 +146,6 @@ To test the implementation:
 │   └── translations.json          # All translations
 ├── js/
 │   ├── language-manager.js        # Core language management
-│   ├── language-switcher.js       # UI component
 │   └── cookie-consent.js          # Enhanced with translations
 ├── css/
 │   └── clean-shared.css           # Added language switcher styles

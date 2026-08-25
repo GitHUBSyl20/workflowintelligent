@@ -132,6 +132,9 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
   flex-wrap: nowrap;
   min-width: 0; /* Allow shrinking */
 }
+/* Le logo est un element flex de la barre : sans cette ligne, il se fait
+   comprimer des que la navigation deborde, et le lettrage se resserre. */
+.main-navbar .nav-logo { flex-shrink: 0 !important; }
 .main-navbar .main-nav-link {
   font-size: 1.2rem; color: var(--color-text); text-decoration: none; font-weight: 500;
   padding: 0.4em 0.9em; border-radius: 0.4em; transition: background 0.2s, color 0.2s, box-shadow 0.2s;
@@ -254,40 +257,60 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
   background: #ffffff !important; /* White color for active X bars */
 }
 
-/* Language Switcher */
+/* Language Switcher : bascule FR | EN.
+   Pas de drapeau : Windows ne dispose d'aucun glyphe pour les emojis de
+   drapeau et les remplace par les deux lettres indicatrices, dans une police
+   de substitution. Deux segments de texte, la langue courante en retrait. */
 .language-switcher {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.8rem;
+  display: inline-flex;
+  /* Ne jamais servir de variable d'ajustement : les liens de navigation
+     portent deja flex-shrink: 0, la bascule absorbait donc a elle seule tout
+     le debordement de la barre, et son overflow: hidden masquait la moitie
+     EN sans le moindre signe visible. */
+  flex-shrink: 0;
+  align-items: stretch;
   background: rgba(255, 75, 31, 0.08);
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
   border: 2px solid transparent;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--color-text);
-  text-decoration: none;
-}
-
-.language-switcher:hover {
-  background: rgba(255, 75, 31, 0.15);
-  border-color: var(--color-primary);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(255, 75, 31, 0.15);
-  text-decoration: none;
-}
-
-.language-switcher-flag {
-  font-size: 1.3rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  font-size: 0.9rem;
+  font-weight: 600;
   line-height: 1;
 }
 
-.language-switcher-text {
-  font-size: 0.9rem;
+.language-switcher-option {
+  padding: 0.45rem 0.7rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.language-switcher-option + .language-switcher-option {
+  border-left: 1px solid rgba(255, 75, 31, 0.25);
+}
+
+/* Langue affichee : inerte */
+.language-switcher-option[aria-current="true"] {
+  color: #6b6b6b;
+  cursor: default;
+}
+
+/* Langue disponible : le lien */
+a.language-switcher-option {
+  color: var(--color-primary);
+}
+
+a.language-switcher-option:hover,
+a.language-switcher-option:focus-visible {
+  background: var(--color-primary);
+  color: var(--color-background);
+  text-decoration: none;
+}
+
+a.language-switcher-option:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 /* Add language switcher to navbar layout */
@@ -297,42 +320,72 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
   align-items: center;
 }
 
-/* Mobile positioning for language switcher */
-@media (max-width: 991px) {
+/* Bascule flottante tant que la navigation est repliee (meme seuil que le
+   hamburger, sans quoi elle resterait dans une barre de liens masquee). */
+@media (max-width: 1199.98px) {
   .language-switcher {
     position: fixed;
     top: 1.2rem;
-    right: 4.5rem;
+    /* Le hamburger occupe 44px de cible tactile a 1.2rem du bord :
+       la bascule se cale au-dela pour garder un ecart franc. */
+    right: 5.5rem;
     z-index: 2100;
-    padding: 0.5rem 0.7rem;
-    gap: 0.3rem;
-  }
-  
-  .language-switcher-text {
     font-size: 0.85rem;
+    background: var(--color-background);
+    border-color: rgba(255, 75, 31, 0.25);
+  }
+
+  /* Segments elargis : seul l'un des deux est cliquable, il lui faut
+     une cible tactile comparable a l'ancien badge d'un seul tenant. */
+  .language-switcher-option {
+    padding: 0.6rem 0.8rem;
   }
 }
 
-/* Desktop positioning - part of nav links */
-/* Medium screens - prevent navigation overflow */
-@media (min-width: 900px) and (max-width: 1300px) {
+/* Plage ou la barre en ligne tient, mais tout juste : au format d'origine
+   elle reclame 1468px de largeur fixe (logo 306 + liens 1063 + bascule 91
+   + marge 8) auxquels s'ajoutent des marges laterales de 5vw : le format
+   d'origine ne tient donc qu'a partir de 1631px. En dessous, gouttieres,
+   liens et marges laterales sont resserres ; au-dela, la barre reprend sa
+   taille pleine. */
+@media (min-width: 1200px) and (max-width: 1679.98px) {
+  .main-navbar {
+    padding-left: 3vw;
+    padding-right: 3vw;
+  }
+
   .main-navbar .main-nav-links {
-    gap: 1.2rem !important;
+    gap: 0.5rem !important;
   }
-  
+
   .main-navbar .main-nav-link {
-    font-size: 1.1rem !important;
-    padding: 0.35em 0.7em !important;
+    font-size: 1rem !important;
+    padding: 0.35em 0.5em !important;
+  }
+
+  .language-switcher {
+    font-size: 0.8rem;
+  }
+
+  .language-switcher-option {
+    padding: 0.4rem 0.5rem;
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .main-navbar .main-nav-links {
     display: flex;
     gap: 1.5rem;
     align-items: center;
   }
-  
+
+  /* La bascule est desormais soeur des liens, pas leur enfant : sans cette
+     marge automatique sur le logo, justify-content: space-between ecarterait
+     les liens de la bascule au lieu de les garder groupes a droite. */
+  .main-navbar .nav-logo {
+    margin-right: auto;
+  }
+
   .language-switcher {
     margin-left: 0.5rem;
   }
@@ -397,6 +450,14 @@ input, textarea, select {
   .w-row, .w-col, .card, .button-group, .sg-selector-wrapper-x {
     flex-direction: column; width: 100%; max-width: 100%; margin-left: 0; margin-right: 0;
   }
+}
+
+/* Navigation repliee sur le menu hamburger.
+   Le logo, huit liens et la bascule de langue reclament environ 1410px : en
+   dessous de 1200px la barre en ligne deborde, et ce debordement ecrasait
+   silencieusement la bascule FR/EN. Le menu plein ecran, qui existait deja
+   pour le mobile, couvre desormais toute cette plage. */
+@media (max-width: 1199.98px) {
   .nav.accent-primary-nav {
     display: none;
   }
@@ -579,7 +640,7 @@ input, textarea, select {
 @media (max-width: 479px) {
   .container, .section:not([class*="utility-margin-top"]) { padding-left: 2vw; padding-right: 2vw; margin-top: 1rem; }
 }
-@media (min-width: 701px) {
+@media (min-width: 1200px) {
   .main-navbar .nav-hamburger {
     display: none !important;
   }

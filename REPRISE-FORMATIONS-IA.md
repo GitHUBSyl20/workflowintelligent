@@ -65,7 +65,7 @@ La page **n'affirme pas** que la formation rend l'entreprise « conforme à l'AI
 | `js/custom.js` | Modifié puis **reverté** — état d'origine conservé |
 
 ### Scripts / assets retirés de `formations-ia.html`
-- `js/language-switcher.js` (pas de version EN de cette page — voir §5)
+- `js/language-switcher.js` (pas de version EN de cette page — voir §5). Le fichier lui-même a depuis été supprimé du projet, le 25/08/2026.
 - `css/tabs.css`
 - `js/formations-popover.js`
 
@@ -145,7 +145,7 @@ Deux précisions importantes :
 - [ ] Trancher `www` vs apex côté Vercel et s'y tenir.
 - [ ] Aucune balise analytics n'est présente sur la page.
 - [ ] Les autres pages du site **n'ont pas de canonical** (voir §3, passe d'hygiène dédiée).
-- [ ] Pas de version anglaise de `formations-ia` : la page vide a été supprimée et le sélecteur de langue retiré. Si une version EN est créée un jour, il faudra remettre `js/language-switcher.js` et les `hreflang`.
+- [ ] Pas de version anglaise de `formations-ia` : la page vide a été supprimée et le sélecteur de langue retiré. Si une version EN est créée un jour, il faudra ajouter à la main le bloc `<div class="language-switcher">` (voir n'importe quelle autre page FR) et les `hreflang` — le script `js/language-switcher.js` n'existe plus.
 
 ---
 
