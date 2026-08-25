@@ -342,6 +342,44 @@ a.language-switcher-option:focus-visible {
   }
 }
 
+/* Telephones : la bascule rejoint le menu.
+   Sous 480px la barre ne peut pas loger a la fois la signature (182px a
+   21px), la bascule (95px) et le hamburger (44px) : il manque une
+   cinquantaine de pixels, et la bascule flottante recouvrait le lettrage
+   du logo. Elle disparait donc de la barre et reapparait dans le menu
+   ouvert, au-dessus du premier lien, avec une vraie cible tactile. */
+@media (max-width: 479.98px) {
+  .language-switcher {
+    display: none;
+  }
+
+  /* body.menu-open est pose par js/main.js a l'ouverture du hamburger. */
+  body.menu-open .language-switcher {
+    display: inline-flex;
+    top: 5rem;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+  }
+
+  body.menu-open .language-switcher-option {
+    padding: 0.9rem 1.5rem;
+  }
+
+  /* Le menu est centre verticalement et, sur un ecran court (320x568 par
+     exemple), la pile de huit liens occupe 520px : elle passerait sous la
+     bascule. On reserve donc sa zone en haut du tiroir et on autorise le
+     defilement plutot que le chevauchement. */
+  body.menu-open .main-navbar .main-nav-links {
+    justify-content: flex-start;
+    padding-top: 9rem;
+    padding-bottom: 2rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 /* Plage ou la barre en ligne tient, mais tout juste : au format d'origine
    elle reclame 1468px de largeur fixe (logo 306 + liens 1063 + bascule 91
    + marge 8) auxquels s'ajoutent des marges laterales de 5vw : le format
