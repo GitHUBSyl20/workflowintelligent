@@ -65,6 +65,11 @@
       "source": "/index.html",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/solutions-intelligence-artificielle-en.html",
+      "destination": "/solutions-ia-entreprise-en",
+      "permanent": true
     }
   ],
   "rewrites": [
