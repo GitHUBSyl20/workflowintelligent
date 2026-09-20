@@ -31,6 +31,7 @@
   <link href="css/clean-shared.css" rel="stylesheet" type="text/css" />
   <link href="css/footer.css" rel="stylesheet" type="text/css" />
   <link href="css/portfolio-accordion.css" rel="stylesheet" type="text/css" />
+  <link href="css/refonte-2026.css" rel="stylesheet" type="text/css" />
   <link href="css/tabs.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
@@ -276,66 +277,10 @@
         </p>
 
         <div class="accordion">
-          <!-- Accordion Item 1: Application made using Cursor -->
-          <div class="accordion-item">
-            <button type="button" class="accordion-trigger">
-              <h4 class="utility-margin-bottom-0 title-orange">Développement assisté</h4>
-            </button>
-            <div class="content">
-              <div class="portfolio-content-grid">
-                <div class="portfolio-text utility-text-align-justify">
-                  <h4 class="paragraph-3 utility-text-align-justify">
-                    Problématique
-                  </h4>
-                  <p>
-                    De l'élève au professionnel, chaque trompettiste mérite un accès instantané et centralisé à la richesse des
-                    enregistrements.
-                    J'ai créé l'application sur mesure qui comble précisément ce manque.
-                  </p>
-                  <h4 class="paragraph-3 utility-text-align-justify">
-                    Solution proposée
-                  </h4>
-                  <p>
-                    Avec l'assistance de Cursor, j'ai transformé une idée complexe en application fluide et fonctionnelle… en un
-                    temps record.
-                    IA intégrée au développement, code propre, résultats tangibles.
-                    <br>
-                    <br>
-                    <b>L'application, en cours de développement, sera disponible prochainement.</b>
-                  </p>
-                  <a href="https://trumpet-trove-explorer.vercel.app/" target="_blank">
-                    <p class="paragraph-3 utility-text-align-center">Testez l'application !</p>
-                  </a>
-                  <p>Stack technique utilisée :</p>
-                  <ul>
-                    <li>Cursor – développement assisté par IA</li>
-                    <li>React + Vite – front-end moderne et performant</li>
-                    <li>Tailwind CSS – design propre et rapide à mettre en place</li>
-                    <li>Supabase – base de données et authentification</li>
-                    <!--     <li>API IA OpenAI – pour les enrichissements automatiques et suggestions sémantiques</li> -->
-                  </ul>
-                  <h4 class="paragraph-3 utility-text-align-justify">
-                    Résultats tangibles
-                  </h4>
-                  <!-- YEAH I know it's ugly css./ html -->
-                    <li>Rechercher un enregistrement par œuvre, interprète ou format, filtres multiples</li>
-                    <li>Consulter la liste des morceaux, mouvements, artistes et chefs d'orchestre</li>
-                    <li>Offrir un outil pédagogique aux étudiants et professeurs pour leur étude du répertoire</li>
-                    <li>Profiter d'une interface claire et intuitive, même avec une grande quantité de données</li>
-                    <li>Dashboard de création/edition des enregistrements, textes, images, musique, etc...</li>
-                  <br>
-                  <p>
-                    Ce projet illustre la transformation de besoins métier spécifiques en solutions
-                    applicatives sur mesure, robustes et automatisées.
-                    Il est également fonctionnel sous la forme d'une application mobile (pas encore disponible sur google play/apple store).
-                    Je peux reproduire cette approche pour d'autres secteurs, avec le même souci de qualité et
-                      d'impact.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
+          <!--
+            La carte "Développement assisté" (application musicale) a été déplacée vers la page
+            /produits-experimentations : c'est un produit personnel, pas un démonstrateur B2B.
+          -->
           <!--       <Accordion Item 2: AI Tool Placeholder 
           <div class="accordion-item">
             <button type="button" class="accordion-trigger">
@@ -391,7 +336,8 @@
                   </h4>
                   
                     <li>
-                    Un assistant autonome qui répond aux questions fréquentes sans mobiliser le personnel
+                    Un assistant qui traite les questions fréquentes sans mobiliser le personnel, avec passage de relais
+                    à un humain dès que la demande sort de son périmètre
                   </li>
                   <li>
                     Collecte automatique d'e-mails pour les relances marketing
@@ -420,14 +366,20 @@
           <!-- Accordion Item 4: Agents vocaux -->
           <div class="accordion-item">
             <button type="button" class="accordion-trigger">
-              <h4 class="utility-margin-bottom-0 title-orange">Agents vocaux pour cliniques</h4>
+              <h4 class="utility-margin-bottom-0 title-orange">Agents vocaux pour cliniques <span
+                  class="demo-badge">Démonstrateur</span></h4>
             </button>
             <div class="content">
               <div class="portfolio-content-grid">
                 <div class="portfolio-text utility-text-align-justify">
+                  <p class="demo-badge">Démonstrateur</p>
                   <h4 class="paragraph-3 utility-text-align-justify">
-                    Agents vocaux pour cliniques : disponibilité 24/7, zéro appel manqué
+                    Agents vocaux pour cliniques : prise de rendez-vous en dehors des heures d’accueil
                   </h4>
+                  <p>
+                    Ce projet est un <strong>démonstrateur</strong> : il montre ce qu’un agent vocal cadré sait faire
+                    et jusqu’où va son périmètre. Il ne s’agit pas d’une mission client.
+                  </p>
                   <p>
                     Dans les cliniques (esthétique, dentaire, médicale, paramédicale), les patients posent toujours les mêmes questions :
                     <em>Quels créneaux sont disponibles cette semaine ? Quels soins proposez-vous ? Quel est le tarif ? Comment reporter un rendez-vous ?</em>
@@ -438,11 +390,30 @@
                     Solution : l’agent vocal de prise de rendez-vous
                   </h4>
                   <p>
-                    Pour répondre à cette situation, j’ai développé un <strong>agent vocal autonome</strong>, connecté à votre agenda en ligne (Calendly, HubSpot Meetings ou Google Calendar).
-                    Il décroche automatiquement, comprend le patient, répond aux questions courantes et peut <strong>réserver ou modifier un rendez-vous en temps réel</strong>, 24h/24.
-                    L’agent repose sur une IA optimisée pour les conversations naturelles : compréhension du langage courant, gestion des accents, clarifications automatiques,
-                    et orientation intelligente (prise de RDV, informations, urgences, redirection humaine).
+                    Pour répondre à cette situation, j’ai développé un <strong>agent vocal cadré</strong>, connecté à
+                    un agenda en ligne (Calendly, HubSpot Meetings ou Google Calendar).
                   </p>
+                  <p class="paragraph-3 utility-text-align-justify">
+                    Ce que fait l’agent
+                  </p>
+                  <ul>
+                    <li>Il décroche et comprend la demande du patient en langage courant.</li>
+                    <li>Il répond aux questions d’information : horaires, soins proposés, modalités de rendez-vous.</li>
+                    <li>Il consulte les créneaux disponibles dans l’agenda connecté et propose une prise ou une
+                      modification de rendez-vous.</li>
+                    <li>Il consigne les coordonnées de l’appelant pour la confirmation et le suivi.</li>
+                  </ul>
+                  <p class="paragraph-3 utility-text-align-justify">
+                    Où s’arrête son périmètre
+                  </p>
+                  <ul>
+                    <li>Il ne donne aucun conseil médical et ne pose aucun diagnostic.</li>
+                    <li>Toute demande urgente, sensible ou hors de son périmètre est transférée à une personne de
+                      l’équipe.</li>
+                    <li>Il n’accède qu’aux outils qu’on lui connecte explicitement — agenda et téléphonie, rien d’autre.</li>
+                    <li>Les règles de comportement, les créneaux ouverts et les cas de transfert humain sont définis
+                      avec la clinique avant mise en service.</li>
+                  </ul>
                   <div class="video-embed" style="display: flex; justify-content: center; margin: 1rem 0;">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/fG74xNNjyfc" title="Agent vocal pour cliniques"
                       frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -460,23 +431,24 @@
                     <li><strong>OpenAI API</strong> pour la compréhension des demandes et le routage intelligent</li>
                   </ul>
                   <h4 class="paragraph-3 utility-text-align-justify">
-                    Résultats attendus
+                    Ce que ça change pour l’équipe d’accueil
                   </h4>
                   <ul>
-                    <li><strong>Réduction jusqu’à 60 %</strong> du volume d’appels simples (disponibilités, horaires, prix)</li>
-                    <li><strong>+25 % de rendez-vous captés</strong> grâce à la disponibilité 24/7</li>
-                    <li><strong>Temps d’accueil économisé</strong> : 1 à 2 h par jour selon la taille de la clinique</li>
-                    <li><strong>Zéro opportunité manquée</strong> : l’agent répond immédiatement, même en dehors des heures ouvrées</li>
-                    <li><strong>Collecte automatique des coordonnées</strong> pour les relances et confirmations</li>
-                    <li><strong>Expérience patient fluide</strong>, sans mise en attente</li>
-<!--                     <li><strong>Connexion possible au dossier patient</strong>, à un CRM ou à un logiciel métier (si API disponible)</li>
-                    <li><strong>Agent vocal spécialisé</strong> avec vocabulaire adapté au secteur médical (sans diagnostic)</li> -->
+                    <li>Les appels d’information courants (horaires, soins, modalités) ne remontent plus
+                      systématiquement au comptoir.</li>
+                    <li>Les demandes reçues hors des heures d’accueil trouvent une réponse et sont consignées.</li>
+                    <li>Les coordonnées de l’appelant sont collectées pour la confirmation et le suivi.</li>
+                    <li>Le patient n’attend pas en ligne pour une question simple.</li>
                   </ul>
+                  <p>
+                    Aucun chiffre de gain n’est affiché ici : l’impact dépend du volume d’appels et de
+                    l’organisation de chaque structure, et se mesure sur une installation réelle.
+                  </p>
                   <h4 class="paragraph-3 utility-text-align-justify">
-                    Un démonstrateur déjà fonctionnel et duplicable
+                    Un démonstrateur fonctionnel et duplicable
                   </h4>
                   <p>
-                    Cet agent vocal fonctionne déjà dans un cadre réel et peut être déployé sur <strong>toute clinique, cabinet ou établissement de santé recevant du public</strong>.
+                    Ce démonstrateur est opérationnel et transposable à <strong>toute clinique, cabinet ou établissement de santé recevant du public</strong>.
                     Si vous souhaitez tester l’impact concret d’un agent IA sur la gestion de vos appels et votre prise de rendez-vous,
                     je peux vous accompagner dans la mise en place rapide d’un <strong>prototype fonctionnel</strong>, entièrement connecté à vos outils.
                   </p>
@@ -485,6 +457,11 @@
             </div>
           </div>
         </div>
+        <p class="bridge-note">
+          Ces démonstrateurs sont des projets d'entreprise. Les produits que je conçois pour mon propre compte
+          sont regroupés sur la page
+          <a href="produits-experimentations.html">Produits &amp; expérimentations</a>.
+        </p>
       </div> <!-- End .accordion -->
       </div> <!-- End .container -->
     </section>

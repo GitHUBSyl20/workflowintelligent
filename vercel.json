@@ -110,6 +110,10 @@
       "destination": "/formations-ia.html"
     },
     {
+      "source": "/produits-experimentations",
+      "destination": "/produits-experimentations.html"
+    },
+    {
       "source": "/index-en",
       "destination": "/index-en.html"
     },
