@@ -32,8 +32,8 @@ html, body {
 }
 
 /* 3. Typography */
-h1, .h1-heading { font-size: clamp(2rem, 5vw, 3.5rem); }
-h2, .h2-heading { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+h1, .h1-heading { font-size: clamp(1.95rem, 3.6vw, 3rem); }
+h2, .h2-heading { font-size: clamp(1.4rem, 2.8vw, 2.125rem); }
 h3, .h3-heading { font-size: clamp(1.2rem, 3vw, 2rem); }
 h4, .h4-heading { font-size: clamp(1rem, 2.5vw, 1.5rem); }
 p, .paragraph-lg, .paragraph-xl, .paragraph-sm, .paragraph-xxl {
