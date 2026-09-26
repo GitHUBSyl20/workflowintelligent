@@ -34,10 +34,10 @@ html, body {
 /* 3. Typography */
 h1, .h1-heading { font-size: clamp(1.95rem, 3.6vw, 3rem); }
 h2, .h2-heading { font-size: clamp(1.4rem, 2.8vw, 2.125rem); }
-h3, .h3-heading { font-size: clamp(1.2rem, 3vw, 2rem); }
-h4, .h4-heading { font-size: clamp(1rem, 2.5vw, 1.5rem); }
+h3, .h3-heading { font-size: clamp(1.15rem, 2.2vw, 1.6rem); }
+h4, .h4-heading { font-size: clamp(1rem, 1.6vw, 1.25rem); }
 p, .paragraph-lg, .paragraph-xl, .paragraph-sm, .paragraph-xxl {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(1rem, 1.3vw, 1.0625rem);
   line-height: 1.6;
 }
 .detail-text-bold { font-weight: 700 !important; }

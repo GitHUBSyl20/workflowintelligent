@@ -76,7 +76,7 @@
    2. En-têtes de section
    ========================= */
 .section-head {
-  max-width: 46rem;
+  max-width: 42rem;
   margin: 0 auto 2rem auto;
   text-align: center;
 }
@@ -140,7 +140,7 @@
 }
 
 .proof-note {
-  max-width: 52rem;
+  max-width: 46rem;
   margin: 1.25rem auto 0 auto;
   text-align: center;
   font-size: 0.98rem;
@@ -218,7 +218,7 @@
 }
 
 .case-inline {
-  max-width: 60rem;
+  max-width: 52rem;
   margin: 2rem auto 0 auto;
   padding: 1.5rem 1.75rem;
   background: #f8f9fa;
@@ -303,7 +303,7 @@
    6. Listes à puces marquées (problèmes, cas d'usage)
    ========================= */
 .marked-list {
-  max-width: 52rem;
+  max-width: 44rem;
   margin: 0 auto;
   padding: 1.5rem 1.75rem;
   list-style: none;
@@ -348,7 +348,7 @@
 
 .offer-grid-1 {
   grid-template-columns: 1fr;
-  max-width: 44rem;
+  max-width: 40rem;
 }
 
 .offer-grid-3 {
@@ -375,6 +375,12 @@
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
+}
+
+.offer-card p {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  margin-bottom: 0.7rem;
 }
 
 .offer-promise {
@@ -460,7 +466,7 @@
 }
 
 .formats-note {
-  max-width: 52rem;
+  max-width: 46rem;
   margin: 1.5rem auto 0 auto;
   text-align: center;
   font-size: 0.95rem;
@@ -477,7 +483,7 @@
    8. Bloc mis en avant
    ========================= */
 .highlight-block {
-  max-width: 52rem;
+  max-width: 46rem;
   margin: 0 auto;
   padding: 2rem 2.25rem;
   background: #f8f9fa;
@@ -501,7 +507,7 @@
 }
 
 .bridge-note {
-  max-width: 52rem;
+  max-width: 46rem;
   margin: 1.25rem auto 0 auto;
   text-align: center;
   font-size: 0.95rem;
@@ -518,7 +524,7 @@
    9. Bandeau récapitulatif des offres
    ========================= */
 .offer-summary {
-  max-width: 60rem;
+  max-width: 52rem;
   margin: 0 auto;
   padding: 1.25rem 1.5rem;
   text-align: center;
@@ -593,7 +599,7 @@
 }
 
 .final-cta-block {
-  max-width: 44rem;
+  max-width: 40rem;
   margin: 0 auto;
   text-align: center;
 }

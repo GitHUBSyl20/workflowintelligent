@@ -31,14 +31,29 @@ html, body {
 img { max-width: 100%; height: auto; display: block; }
 
 /* 2. Typography */
-h1, .h1-heading { font-size: clamp(1.95rem, 3.6vw, 3rem); margin: 0.7em 0 0.4em 0; }
-h2, .h2-heading { font-size: clamp(1.4rem, 2.8vw, 2.125rem); margin: 0.6em 0 0.3em 0; }
-h3, .h3-heading { font-size: clamp(1.2rem, 3vw, 2rem); margin: 0.5em 0 0.2em 0; }
-h4, .h4-heading { font-size: clamp(1rem, 2.5vw, 1.5rem); margin: 0.4em 0 0.2em 0; }
+h1, .h1-heading { font-size: clamp(1.95rem, 3.6vw, 3rem); margin: 0.6em 0 0.35em 0; }
+h2, .h2-heading { font-size: clamp(1.4rem, 2.8vw, 2.125rem); margin: 0.5em 0 0.28em 0; }
+h3, .h3-heading { font-size: clamp(1.15rem, 2.2vw, 1.6rem); margin: 0.45em 0 0.2em 0; }
+h4, .h4-heading { font-size: clamp(1rem, 1.6vw, 1.25rem); margin: 0.4em 0 0.2em 0; }
 p, .paragraph-lg, .paragraph-xl, .paragraph-sm, .paragraph-xxl {
-  font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.6; margin: 0 0 1em 0;
+  font-size: clamp(1rem, 1.3vw, 1.0625rem); line-height: 1.6; margin: 0 0 0.9em 0;
 }
 ul, ol { margin: 0 0 1em 1.5em; }
+
+/* Mesure de lecture : les paragraphes de corps s'etiraient sur 105 a 138
+   caracteres par ligne en 1280px. Le selecteur vise l'element <p> pour ne pas
+   toucher les <h4 class="paragraph-3"> utilises comme sous-titres. */
+p.paragraph-3 {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p.paragraph-3.utility-text-align-left,
+p.paragraph-3.utility-text-align-justify {
+  margin-left: 0;
+  margin-right: 0;
+}
 li { margin-bottom: 0.5em; }
 a { color: var(--color-primary); text-decoration: none; transition: color 0.2s; }
 a:hover, a:focus { text-decoration: underline; color: #d63c13; }
@@ -69,6 +84,12 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
 }
 
 /* 3. Layout */
+/* Rythme vertical resserre : shared.css place 2rem via une variable Webflow,
+   ce qui donnait des sections tres aerees une fois cumulees. */
+.section {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
 .container, .section {
   width: 100%;
   max-width: 1500px;
@@ -79,7 +100,7 @@ a:hover, a:focus { text-decoration: underline; color: #d63c13; }
 }
 .grid-layout { 
   display: grid; 
-  gap: 2rem; 
+  gap: 1.5rem; 
   margin: 0 auto; /* Add margin auto to center the grid */
 }
 .flex-horizontal, .flex-vertical { display: flex; flex-wrap: wrap; gap: 1rem; }
