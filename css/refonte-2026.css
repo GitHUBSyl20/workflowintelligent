@@ -353,7 +353,7 @@
 
 .offer-grid-3 {
   grid-template-columns: repeat(3, 1fr);
-  max-width: 72rem;
+  max-width: 78rem;
 }
 
 .offer-card {
@@ -568,7 +568,7 @@
 }
 
 .demo-claim {
-  font-size: 1.05rem !important;
+  font-size: 1.2rem !important;
   font-weight: 600;
   color: #192a56;
   margin: 0 0 1.25rem 0;

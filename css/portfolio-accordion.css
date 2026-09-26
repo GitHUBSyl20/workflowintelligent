@@ -33,8 +33,8 @@
   text-align: left;
   padding: 1.5rem 1rem;
   cursor: pointer;
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-size: 1.3rem;
+  font-weight: 600;
   display: flex;
   justify-content: space-between !important; /* Force space-between alignment */
   align-items: center;
@@ -57,8 +57,8 @@
   transition: color 0.3s ease;
   margin: 0;
   /* Override all h4 global styles to match .accordion-trigger */
-  font-size: 1.1rem !important; /* Match .accordion-trigger font-size */
-  font-weight: 500 !important; /* Match .accordion-trigger font-weight */
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
   font-family: inherit !important; /* Inherit from .accordion-trigger, not h4 variables */
   line-height: 1.2 !important; /* Consistent line-height */
   letter-spacing: normal !important; /* Reset letter-spacing from h4 variables */
@@ -117,24 +117,24 @@
   
   /* Ensure accordion titles remain consistent on desktop */
   .accordion-trigger h4 {
-    font-size: 1.1rem !important;
-    font-weight: 500 !important;
+    font-size: 1.3rem !important;
+    font-weight: 600 !important;
   }
 }
 
 /* Override h4 styles in tablet breakpoint */
 @media screen and (max-width: 991px) {
   .accordion-trigger h4 {
-    font-size: 1.1rem !important;
-    font-weight: 500 !important;
+    font-size: 1.3rem !important;
+    font-weight: 600 !important;
   }
 }
 
 /* Override h4 styles in mobile breakpoint */
 @media screen and (max-width: 767px) {
   .accordion-trigger h4 {
-    font-size: 1.1rem !important;
-    font-weight: 500 !important;
+    font-size: 1.3rem !important;
+    font-weight: 600 !important;
   }
   
   /* 4. Accordéons - Réduction des espaces verticaux de 70% */
@@ -182,8 +182,8 @@
 /* Override h4 styles in small mobile breakpoint */
 @media screen and (max-width: 479px) {
   .accordion-trigger h4 {
-    font-size: 1.1rem !important;
-    font-weight: 500 !important;
+    font-size: 1.3rem !important;
+    font-weight: 600 !important;
   }
 }
 
@@ -332,3 +332,14 @@
   padding-left: 0;
 }
 
+
+/* Hierarchie interne des accordeons : le titre de l'accordeon etait fixe a
+   1.1rem alors que les sous-titres de son propre contenu heritaient du h4
+   global (1.25rem), donc plus gros que lui. Le titre passe a 1.3rem et les
+   sous-titres deviennent des intertitres, distingues du corps par la graisse. */
+.accordion-item .content h4.paragraph-3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 1.1rem 0 0.35rem 0;
+}
