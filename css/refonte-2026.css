@@ -547,6 +547,45 @@
 }
 
 /* =========================
+   10 bis. Démonstrateurs : mention de données fictives, promesse, vidéo
+   ========================= */
+.demo-disclaimer {
+  display: inline-block;
+  padding: 0.35rem 0.8rem;
+  border-radius: 8px;
+  background: #f8f9fa;
+  border-left: 3px solid #192a56;
+  font-size: 0.88rem !important;
+  font-weight: 600;
+  color: #444;
+  margin: 0 0 1rem 0;
+}
+
+.demo-claim {
+  font-size: 1.05rem !important;
+  font-weight: 600;
+  color: #192a56;
+  margin: 0 0 1.25rem 0;
+}
+
+/* Vidéo verticale 9:16, largeur bornée pour ne pas écraser la colonne de texte */
+.demo-video {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.demo-video video {
+  width: 100%;
+  max-width: 20rem;
+  aspect-ratio: 9 / 16;
+  height: auto;
+  background: #000;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================
    11. CTA final
    ========================= */
 .final-cta-section {
@@ -711,6 +750,10 @@
 
   .offer-levels tbody th {
     white-space: normal;
+  }
+
+  .demo-video video {
+    max-width: 100%;
   }
 
   .cta-centered .button,

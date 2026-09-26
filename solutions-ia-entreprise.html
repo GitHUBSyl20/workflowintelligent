@@ -268,12 +268,12 @@
     <!-- START: Portfolio Accordion Section for AI Tools -->
     <section id="ai-tools-portfolio" class="portfolio-section utility-margin-top-0rem">
       <div class="container">
-          <h3 class="bold-text utility-margin-bottom-2rem">Prototypes IA en action</h3>
+          <h3 class="bold-text utility-margin-bottom-2rem">Démonstrateurs IA</h3>
         <p class="paragraph-3 utility-text-align-center utility-max-width-600 utility-padding-x-2rem">
-          L'essor fulgurant de l'intelligence artificielle offre aujourd'hui aux entreprises une capacité
-          inédite à concevoir des solutions puissantes et sur mesure.
+          Deux démonstrateurs que j'ai construits pour montrer ce qu'une IA cadrée sait faire — et où s'arrête
+          son périmètre.
           <br><br>
-         Découvrez un cas d'usage concret de ces technologies :
+          Ce sont des démonstrateurs, pas des missions clients : ils tournent sur des données de démonstration.
         </p>
 
         <div class="accordion">
@@ -295,78 +295,179 @@
             </div>
           </div> -->
 
-          <!-- Accordion Item 3: AI Tool Placeholder -->
+          <!-- Accordion Item 1: Assistant commercial documentaire -->
           <div class="accordion-item">
             <button type="button" class="accordion-trigger">
-              <h4 class="utility-margin-bottom-0 title-orange">Chatbot clients</h4>
+              <h4 class="utility-margin-bottom-0 title-orange">Assistant commercial documentaire <span
+                  class="demo-badge">Démonstrateur</span></h4>
             </button>
             <div class="content">
               <div class="portfolio-content-grid">
                 <div class="portfolio-text utility-text-align-justify">
+                  <p class="demo-disclaimer">Données de démonstration — Menuiseries Démo (fictif)</p>
+                  <p class="demo-claim">Vos documents. Vos équipes. L'IA en appui, pas aux commandes.</p>
+
                   <h4 class="paragraph-3 utility-text-align-justify">
                     Problématique
                   </h4>
                   <p>
-                    En animalerie, les clients ont souvent des questions simples mais essentielles : quel aliment pour
-                    quel âge ? Le produit est-il disponible ? À quelle heure est-ce ouvert dimanche ?
-                    Le souci ? Ces demandes surviennent aussi le soir, le week-end ou en dehors des heures d'ouverture.
-                    Résultat : opportunités manquées, perte de temps en magasin et clients frustrés.</p>
+                    Dans une équipe commerciale, plusieurs personnes répondent aux mêmes questions à partir de la
+                    même documentation : fiches produits, conditions de garantie, références chantier. Les documents
+                    évoluent, les réponses divergent d'une personne à l'autre, et une erreur sur une garantie ou une
+                    option technique coûte cher.
+                  </p>
+
                   <h4 class="paragraph-3 utility-text-align-justify">
-                    Solution développé:
+                    Ce que fait l'assistant
                   </h4>
-                  <p>
-                    Pour répondre à ce besoin, j'ai conçu un Chatbot, capable d'être intégré au
-                    site web ou à GoogleMyBusiness, pour traiter automatiquement les demandes simples 24h/24, 7j/7.
-                    Il repose sur une IA légère, conçue pour comprendre le langage courant et orienter les clients vers
-                    les bonnes infos (stock, conseils, produits…).
-                  </p>
-                  <a href="https://moncompagnon-joyeux-animaux.vercel.app/" target="_blank">
-                    <p class="paragraph-3  utility-text-align-center"> Testez le Chatbot !</p>
-                  </a>
-                  <p >
-                    Stack technique utilisée :
-                  </p>
                   <ul>
-                    <li>Make pour les automatisations (prise de contact, FAQ dynamique, envoi de mail)</li>
-                    <li>Widget web embarqué à intégrer sur n'importe quel site vitrine</li>
-                    <li>OpenAI API + vector embeddings Supabase pour l'analyse des intentions</li>
+                    <li>Il répond à partir de vos propres documents, pas d'informations génériques.</li>
+                    <li>Il cite la référence du document utilisé, pour que la réponse soit vérifiable.</li>
+                    <li>Il dit qu'il n'a pas l'information plutôt que d'inventer.</li>
+                    <li>Il applique les mêmes règles pour toute l'équipe.</li>
                   </ul>
+
                   <h4 class="paragraph-3 utility-text-align-justify">
-                    Résultats attendus :
+                    Où s'arrête son périmètre
                   </h4>
-                  
-                    <li>
-                    Un assistant qui traite les questions fréquentes sans mobiliser le personnel, avec passage de relais
-                    à un humain dès que la demande sort de son périmètre
-                  </li>
-                  <li>
-                    Collecte automatique d'e-mails pour les relances marketing
-                  </li>
-                  <li>
-                    Redirection vers les bons produits ou rayons du site
-                  </li>
-                  <li>
-                    Réduction des appels téléphoniques inutiles
-                  </li>
-                  <li>
-                    Expérience client améliorée, même hors horaires d'ouverture
-                  </li>
-                    <li>Connexion possible à un CRM ou système de réservation</li>
-                    <li>Agent IA avec base d'intentions adaptées au vocabulaire du secteur animalier</li>
+                  <ul>
+                    <li>Il ne donne aucun prix : toute demande chiffrée est renvoyée au service devis.</li>
+                    <li>Il ne sort pas des documents qu'on lui a confiés.</li>
+                    <li>Il ne décide rien : il prépare la réponse, la personne valide.</li>
+                  </ul>
+
+                  <!--
+                    VIDÉO DE DÉMONSTRATION — à activer quand le MP4 est déposé.
+                    1. Déposer le fichier dans assets/ sous le nom demo-assistant-documentaire.mp4
+                       (format vertical 9:16, muet, < 90 s) et, si possible, une image d'attente
+                       assets/demo-assistant-documentaire-poster.webp
+                    2. Décommenter le bloc ci-dessous.
+                    Variante hébergement YouTube « non répertoriée » : remplacer <video> par une iframe.
+                    À éviter si possible — une iframe YouTube dépose des traceurs tiers avant le
+                    consentement géré par la modale cookies du site.
+
+                  <div class="demo-video">
+                    <video controls muted playsinline preload="metadata"
+                      poster="/assets/demo-assistant-documentaire-poster.webp">
+                      <source src="/assets/demo-assistant-documentaire.mp4" type="video/mp4" />
+                      Votre navigateur ne peut pas lire cette vidéo.
+                    </video>
+                  </div>
+                  -->
+
+                  <h4 class="paragraph-3 utility-text-align-justify">
+                    Le scénario de la démonstration
+                  </h4>
                   <p>
-                    Ce démonstrateur est fonctionnel et réplicable sur tout type de commerce de proximité.
-                    Si vous gérez un point de vente et souhaitez tester l'impact d'un assistant IA, je peux vous 
-                    accompagner dans l'intégration rapide d'un prototype fonctionnel.
-                  </p>            
-                </div>            
-              </div>            
+                    Un commercial interne prépare une réponse pour un établissement recevant du public. Il demande
+                    quelles options de sécurité sont disponibles sur une gamme : l'assistant les liste et cite la
+                    fiche produit correspondante. Il demande ensuite un prix pour quarante fenêtres : l'assistant
+                    refuse de chiffrer et le renvoie au service devis. Il cherche enfin une référence chantier avec
+                    vitrage acoustique : l'assistant répond et cite le document source.
+                  </p>
+                  <p>
+                    Ce que cette démonstration montre, c'est la <strong>fiabilité documentaire</strong> de
+                    l'assistant — pas une expertise du secteur de la menuiserie ni des marchés publics. Le savoir
+                    métier reste celui de votre entreprise.
+                  </p>
+
+                  <h4 class="paragraph-3 utility-text-align-justify">
+                    Pourquoi pas simplement ChatGPT avec vos PDF ?
+                  </h4>
+                  <p>
+                    Pour une personne seule avec quelques documents, un projet ChatGPT suffit — et je forme
+                    justement les équipes à s'en servir. Un assistant métier devient utile quand toute une équipe
+                    doit donner <strong>la même réponse</strong>, à partir des <strong>mêmes documents à jour</strong>,
+                    avec des <strong>règles identiques</strong> — pas de prix, citation obligatoire — et qu'on veut
+                    pouvoir repérer les questions qui restent sans réponse.
+                  </p>
+                  <p>
+                    C'est pertinent quand plusieurs personnes répondent à partir de la même documentation, quand une
+                    erreur de réponse coûte cher (prix, garantie, conformité), ou quand la documentation change
+                    souvent.
+                  </p>
+
+                  <h4 class="paragraph-3 utility-text-align-justify">
+                    Ce que j'apporte
+                  </h4>
+                  <p>
+                    Rendre l'IA fiable sur vos documents : lecture exhaustive, réponse sourcée et vérifiable, refus
+                    d'inventer, mêmes règles pour toute l'équipe — et la formation de vos équipes pour qu'elles
+                    restent autonomes.
+                  </p>
+                  <p>
+                    Ce démonstrateur tourne sur un corpus fictif et n'est pas accessible en libre-service. Je le fais
+                    tourner en direct lors d'un échange, sur vos propres documents si vous le souhaitez.
+                  </p>
+                  <p class="utility-text-align-center">
+                    <a href="contact-devis.html?demande=Audit%20IA#contact-form" class="button w-button">Voir la
+                      démonstration en direct</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 2: Assistant de premier niveau (demandes entrantes) -->
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger">
+              <h4 class="utility-margin-bottom-0 title-orange">Assistant de premier niveau, disponible hors horaires
+                <span class="demo-badge">Démonstrateur</span></h4>
+            </button>
+            <div class="content">
+              <div class="portfolio-content-grid">
+                <div class="portfolio-text utility-text-align-justify">
+                  <p class="demo-disclaimer">Démonstration — commerce de proximité (animalerie)</p>
+
+                  <h4 class="paragraph-3 utility-text-align-justify">
+                    Problématique
+                  </h4>
+                  <p>
+                    Les clients posent souvent des questions simples mais essentielles : quel produit pour quel
+                    besoin, est-il disponible, à quelle heure êtes-vous ouvert le dimanche. Ces demandes arrivent
+                    surtout le soir, le week-end ou en dehors des heures d'ouverture. Résultat : des occasions
+                    manquées, du temps perdu en magasin et des clients qui restent sans réponse.
+                  </p>
+
+                  <h4 class="paragraph-3 utility-text-align-justify">
+                    Ce que fait l'assistant
+                  </h4>
+                  <ul>
+                    <li>Il traite les demandes courantes à toute heure, à partir des informations que vous lui
+                      confiez.</li>
+                    <li>Il oriente vers le bon produit, le bon rayon ou la bonne information pratique.</li>
+                    <li>Il recueille les coordonnées de la personne pour que vous puissiez la rappeler.</li>
+                    <li>Il s'intègre à un site vitrine ou à une fiche d'établissement en ligne.</li>
+                  </ul>
+
+                  <h4 class="paragraph-3 utility-text-align-justify">
+                    Où s'arrête son périmètre
+                  </h4>
+                  <ul>
+                    <li>Il passe la main à une personne de l'équipe dès que la demande sort de son périmètre.</li>
+                    <li>Il ne s'engage sur rien à votre place : ni prix négocié, ni promesse de délai.</li>
+                    <li>Il ne répond qu'à partir des informations qu'on lui a données sur votre activité.</li>
+                  </ul>
+
+                  <p class="utility-text-align-center">
+                    <a href="https://moncompagnon-joyeux-animaux.vercel.app/" target="_blank" rel="noopener">Tester ce
+                      démonstrateur</a>
+                  </p>
+
+                  <p>
+                    Ce démonstrateur est fonctionnel et transposable à tout commerce ou établissement recevant du
+                    public. Si vous voulez mesurer ce qu'un assistant de premier niveau absorberait chez vous, on peut
+                    partir de vos demandes réelles.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
         </div>
         <p class="bridge-note">
-          Ce démonstrateur est un projet d'entreprise. Les produits que je conçois pour mon propre compte
-          sont regroupés sur la page
+          Ces démonstrateurs sont orientés entreprise. Les produits que je conçois pour mon propre compte sont
+          regroupés sur la page
           <a href="produits-experimentations.html">Produits &amp; expérimentations</a>.
         </p>
       </div> <!-- End .accordion -->
