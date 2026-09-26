@@ -5,7 +5,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Contact - Consultation Gratuite IA & Automatisation | Sylvain Magana</title>
+  <title>Contact et demande de diagnostic | Sylvain Magana</title>
   <link rel="canonical" href="https://www.workflowintelligent.fr/contact-devis" />
   <!-- Hreflang tags -->
   <link rel="alternate" hreflang="fr" href="https://www.workflowintelligent.fr/contact-devis" />
@@ -14,11 +14,11 @@
   <meta
     content="Contactez Sylvain Magana pour une consultation gratuite en IA et automatisation. Rendez-vous en ligne, accompagnement personnalisé, devis sur mesure. Expert freelance à Lyon."
     name="description" />
-  <meta content="Contact - Consultation Gratuite IA &amp; Automatisation | Sylvain Magana" property="og:title" />
+  <meta content="Contact et demande de diagnostic | Sylvain Magana" property="og:title" />
   <meta
     content="Contactez Sylvain Magana pour une consultation gratuite en IA et automatisation. Rendez-vous en ligne, accompagnement personnalisé, devis sur mesure. Expert freelance à Lyon."
     property="og:description" />
-  <meta content="Contact - Consultation Gratuite IA &amp; Automatisation | Sylvain Magana" property="twitter:title" />
+  <meta content="Contact et demande de diagnostic | Sylvain Magana" property="twitter:title" />
   <meta
     content="Contactez Sylvain Magana pour une consultation gratuite en IA et automatisation. Rendez-vous en ligne, accompagnement personnalisé, devis sur mesure. Expert freelance à Lyon."
     property="twitter:description" />
@@ -133,12 +133,15 @@
   <section class="section" style="padding-bottom: 0.9rem; padding-top: 0.9rem; margin-top: 0;">
       <h2 class="h3-heading" style="margin-top: 1.5rem;">Un premier échange pour préciser votre besoin</h2>
       <p class="paragraph-3">
-        Vous pouvez réserver un premier échange dans le calendrier ci-dessous. Il est gratuit et sans engagement :
-        il sert à préciser votre besoin et à vérifier que je peux vous aider.
+        Vous pouvez réserver un premier échange gratuit pour présenter votre situation et vérifier quel
+        accompagnement serait pertinent.
       </p>
       <p class="paragraph-3">
-        Le <a href="/tarifs-prestations#audit-ia">diagnostic de vos processus</a> (690&nbsp;€ HT) est une prestation
-        payante, distincte de cet échange. Vous pouvez aussi me contacter par email ou téléphone.
+        Le <a href="/tarifs-prestations#audit-ia">diagnostic IA et automatisation</a> est une prestation distincte,
+        proposée à 690&nbsp;€ HT sur un périmètre convenu. Il fait l'objet d'une confirmation avant le démarrage.
+      </p>
+      <p class="paragraph-3">
+        Vous pouvez également me contacter par email ou téléphone.
       </p>
     <div class="contact-direct" style="margin-top: 1rem; margin-bottom: 1.5rem;">
       <p class="paragraph-3" style="margin-bottom: 0.5rem; font-weight: 600;">Me joindre directement</p>
@@ -156,6 +159,24 @@
           style="min-width: 220px; height: 700px"></div>
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         <!-- Calendly inline widget end --> 
+        <!-- Repli si le service externe ne se charge pas : le parcours reste possible. -->
+        <p id="calendrier-repli" class="paragraph-3" hidden>
+          Le calendrier de réservation ne s'est pas chargé. Vous pouvez utiliser
+          <a href="#contact-form">le formulaire ci-dessous</a>, m'écrire à
+          <a href="mailto:contact@workflowintelligent.fr">contact@workflowintelligent.fr</a>
+          ou appeler le <a href="tel:+33670092941">06 70 09 29 41</a>.
+        </p>
+        <script>
+          // Le widget Calendly injecte une iframe. Si rien n'est apparu au bout de
+          // 5 s, on affiche le repli plutot que de laisser un cadre vide.
+          setTimeout(function () {
+            var widget = document.querySelector('.calendly-inline-widget');
+            var repli = document.getElementById('calendrier-repli');
+            if (repli && (!widget || !widget.querySelector('iframe'))) {
+              repli.hidden = false;
+            }
+          }, 5000);
+        </script>
       </div>
     </div>
   </section>
@@ -168,6 +189,14 @@
             class="utility-container-cqw w-node-e228b28e-8584-af10-3c53-f84da41c3d89-b3732151">
             <div class="ix-hero-intro-slide-up step-1-hero-intro-slide-up">
               <h2 class="heading-2">Contactez moi</h2>
+            </div>
+            <!-- Affiche uniquement pour une arrivee depuis un CTA diagnostic (demande=Audit IA). -->
+            <div id="intro-diagnostic" class="utility-margin-bottom-1rem" hidden>
+              <h3 class="h3-heading">Votre demande de diagnostic</h3>
+              <p class="paragraph-3">
+                Décrivez en quelques mots une tâche ou un processus qui vous prend du temps. Si le besoin est
+                encore flou, indiquez simplement ce qui vous pose problème.
+              </p>
             </div>
             <div class="ix-hero-intro-slide-up step-3-hero-intro-slide-up">
               <form id="email-form" action="https://formspree.io/f/xwpnyplp" method="POST">
@@ -264,7 +293,7 @@
                 <!-- <div style="display:none;">reCAPTCHA disabled for local testing</div> -->
               
                 <!-- Submit button with proper styling -->
-                <input type="submit" id="submit-btn" value="Envoyez" class="contact-submit-btn" disabled>
+                <input type="submit" id="submit-btn" value="Envoyer ma demande" class="contact-submit-btn" disabled>
                 <div id="form-status" style="margin-top: 10px; padding: 10px; border-radius: 4px; display: none;"></div>
               </form>
               
@@ -366,6 +395,15 @@
         });
       }
       
+      // Le bloc "Votre demande de diagnostic" n'apparait que pour une demande de diagnostic.
+      // Une arrivee Formation conserve sa propre presentation.
+      const introDiagnostic = document.getElementById('intro-diagnostic');
+      function majIntroDiagnostic() {
+        if (introDiagnostic) {
+          introDiagnostic.hidden = demandeSelect.value !== 'Audit IA';
+        }
+      }
+
       // Gestion des paramètres d'URL pour pré-remplir le formulaire
       const urlParams = new URLSearchParams(window.location.search);
       const demandeParam = urlParams.get('demande');
@@ -396,6 +434,7 @@
       
       // Écouter les changements sur le champ "Demande"
       demandeSelect.addEventListener('change', function() {
+        majIntroDiagnostic();
         if (this.value === 'Formation') {
           showFormationFields(() => {
             // Si un paramètre URL type_structure est présent, le remplir après l'affichage
@@ -426,6 +465,8 @@
         }
       }
       
+      majIntroDiagnostic();
+
       // Scroller vers le formulaire si l'ancre #contact-form est présente
       if (window.location.hash === '#contact-form') {
         setTimeout(() => {

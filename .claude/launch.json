@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "workflowintelligent",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "3001"],
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", ".", "-p", "3001"],
       "port": 3001
     }
   ]

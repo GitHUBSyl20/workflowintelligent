@@ -91,6 +91,9 @@ function isInViewport(element) {
 function initContactForm() {
     const form = document.getElementById('email-form');
     const submitBtn = document.getElementById('submit-btn');
+    // Libelle d'origine du bouton : evite de le figer en dur lors du reset
+    // (la page FR et la page EN n'ont pas le meme libelle).
+    const submitBtnLabel = submitBtn ? submitBtn.value : '';
     const statusDiv = document.getElementById('form-status');
     const formToken = document.getElementById('form-token');
     
@@ -173,7 +176,7 @@ function initContactForm() {
                 
                 // Reset form and re-enable button
                 submitBtn.disabled = true; // Keep disabled until reCAPTCHA is completed again
-                submitBtn.value = 'Envoyez';
+                submitBtn.value = submitBtnLabel;
                 submitBtn.style.backgroundColor = '#ccc';
                 submitBtn.style.cursor = 'not-allowed';
                 

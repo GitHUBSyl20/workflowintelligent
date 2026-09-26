@@ -154,6 +154,10 @@ $(document).ready(function(){
   // Portfolio Accordion Script
   // Selects accordion links within sections having an ID starting with "automatisation-portfolio" or "ai-tools-portfolio"
   // This makes it reusable if you add a similar accordion to the AI tools page.
+  $(".portfolio-section .accordion .accordion-trigger").each(function() {
+    $(this).attr('aria-expanded', $(this).hasClass('active') ? 'true' : 'false');
+  });
+
   $(".portfolio-section .accordion .accordion-trigger").on("click", function(e){
     const $this = $(this);
     const $content = $this.siblings(".content");
@@ -192,9 +196,13 @@ $(document).ready(function(){
       }
     });
 
+    // Etat annonce aux technologies d'assistance : tous fermes, puis celui-ci si on l'ouvre.
+    $accordion.find('.accordion-trigger').attr('aria-expanded', 'false');
+
     if (!wasActive) {
       $this.addClass("active");
       $item.addClass("open");
+      $this.attr('aria-expanded', 'true');
       
       // Instead of simple slideDown, create a more elegant animation
       $content.css({
@@ -309,17 +317,29 @@ $(document).ready(function(){
       hamburger.classList.toggle('active', isOpen);
       navLinks.classList.toggle('open', isOpen);
       document.body.classList.toggle('menu-open', isOpen);
-      
-      if (hamburger.hasAttribute('aria-expanded')) {
-        hamburger.setAttribute('aria-expanded', isOpen);
-      }
+
+      // Toujours renseigne : le bouton est un <div role="button">, rien d'autre
+      // n'annonce l'etat ouvert/ferme.
+      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     }
+
+    // Etat initial annonce des le chargement.
+    hamburger.setAttribute('aria-expanded', 'false');
     
     // Strategy: Use ONLY click event (works on both mobile and desktop)
     // Let the browser handle touch → click conversion naturally
     // NO preventDefault(), NO complex touch logic
     hamburger.addEventListener('click', function(e) {
       toggle();
+    });
+
+    // Un <div role="button"> ne convertit pas Entree / Espace en clic :
+    // sans ceci le menu est inaccessible au clavier.
+    hamburger.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        toggle();
+      }
     });
     
     // Close menu when clicking links
