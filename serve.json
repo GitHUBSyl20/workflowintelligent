@@ -1,0 +1,143 @@
+{
+  "cleanUrls": false,
+  "directoryListing": false,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/solutions-ia-entreprise",
+      "destination": "/solutions-ia-entreprise.html"
+    },
+    {
+      "source": "/automatisation-entreprise",
+      "destination": "/automatisation-entreprise.html"
+    },
+    {
+      "source": "/aides-financement-numerique",
+      "destination": "/aides-financement-numerique.html"
+    },
+    {
+      "source": "/tarifs-prestations",
+      "destination": "/tarifs-prestations.html"
+    },
+    {
+      "source": "/contact-devis",
+      "destination": "/contact-devis.html"
+    },
+    {
+      "source": "/a-propos",
+      "destination": "/a-propos.html"
+    },
+    {
+      "source": "/mentions-legales",
+      "destination": "/mentions-legales.html"
+    },
+    {
+      "source": "/conditions-generales",
+      "destination": "/conditions-generales.html"
+    },
+    {
+      "source": "/formations-ia",
+      "destination": "/formations-ia.html"
+    },
+    {
+      "source": "/produits-experimentations",
+      "destination": "/produits-experimentations.html"
+    },
+    {
+      "source": "/index-en",
+      "destination": "/index-en.html"
+    },
+    {
+      "source": "/solutions-ia-entreprise-en",
+      "destination": "/solutions-ia-entreprise-en.html"
+    },
+    {
+      "source": "/automatisation-entreprise-en",
+      "destination": "/automatisation-entreprise-en.html"
+    },
+    {
+      "source": "/aides-financement-numerique-en",
+      "destination": "/aides-financement-numerique-en.html"
+    },
+    {
+      "source": "/tarifs-prestations-en",
+      "destination": "/tarifs-prestations-en.html"
+    },
+    {
+      "source": "/contact-devis-en",
+      "destination": "/contact-devis-en.html"
+    },
+    {
+      "source": "/a-propos-en",
+      "destination": "/a-propos-en.html"
+    },
+    {
+      "source": "/mentions-legales-en",
+      "destination": "/mentions-legales-en.html"
+    },
+    {
+      "source": "/conditions-generales-en",
+      "destination": "/conditions-generales-en.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/ai-tools.html",
+      "destination": "/solutions-ia-entreprise",
+      "type": 308
+    },
+    {
+      "source": "/solutions-intelligence-artificielle.html",
+      "destination": "/solutions-ia-entreprise",
+      "type": 308
+    },
+    {
+      "source": "/automatisations.html",
+      "destination": "/automatisation-entreprise",
+      "type": 308
+    },
+    {
+      "source": "/automatisation-processus-metier.html",
+      "destination": "/automatisation-entreprise",
+      "type": 308
+    },
+    {
+      "source": "/subventions-aides-numeriques.html",
+      "destination": "/aides-financement-numerique",
+      "type": 308
+    },
+    {
+      "source": "/offres.html",
+      "destination": "/tarifs-prestations",
+      "type": 308
+    },
+    {
+      "source": "/business-informations.html",
+      "destination": "/contact-devis",
+      "type": 308
+    },
+    {
+      "source": "/about.html",
+      "destination": "/a-propos",
+      "type": 308
+    },
+    {
+      "source": "/aides.html",
+      "destination": "/aides-financement-numerique",
+      "type": 308
+    },
+    {
+      "source": "/cgu-cgv.html",
+      "destination": "/conditions-generales",
+      "type": 308
+    },
+    {
+      "source": "/solutions-intelligence-artificielle-en.html",
+      "destination": "/solutions-ia-entreprise-en",
+      "type": 308
+    }
+  ]
+}

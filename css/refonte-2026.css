@@ -18,6 +18,25 @@
   margin: 0 0 1rem 0;
 }
 
+/* Signature au-dessus du H1 : discrete, ne doit pas concurrencer le titre. */
+.hero-eyebrow {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  margin: 0 0 0.6rem 0;
+  opacity: 0.9;
+}
+
+/* Phrase de reassurance sous les boutons du hero. */
+.hero-reassurance {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  max-width: 42rem;
+  margin: 0.9rem 0 0 0;
+  opacity: 0.9;
+}
+
 .hero-lede {
   font-size: clamp(1rem, 1.8vw, 1.1rem);
   line-height: 1.65;

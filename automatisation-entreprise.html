@@ -31,6 +31,7 @@
   <link href="css/clean-shared.css" rel="stylesheet" type="text/css" />
   <link href="css/footer.css" rel="stylesheet" type="text/css" />
   <link href="css/portfolio-accordion.css" rel="stylesheet" type="text/css" />
+  <link href="css/refonte-2026.css" rel="stylesheet" type="text/css" />
   <link href="css/tabs.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
@@ -41,7 +42,6 @@
   <!-- Custom Scripts -->
   <script src="js/main.js"></script>
   <script src="js/custom.js"></script>
-  <script src="js/portfolio-accordion.js"></script>
   
   <!-- Schema.org Service markup for Automation services -->
   <script type="application/ld+json">
@@ -96,7 +96,7 @@
       <a href="tarifs-prestations.html" class="main-nav-link">Offres</a>
       <a href="formations-ia.html" class="main-nav-link">Formations</a>
       <a href="aides-financement-numerique.html" class="main-nav-link">Financement</a>
-      <a href="contact-devis.html" class="main-nav-link">Contact</a>
+      <a href="/contact-devis" class="main-nav-link">Contact</a>
       <a href="a-propos.html" class="main-nav-link">À propos</a>
     </div>
     <div class="language-switcher" role="group" aria-label="Choix de la langue">
@@ -149,6 +149,13 @@
         </p>
         <p class="paragraph-3">
           Libérez le potentiel de vos collaborateurs, augmentez votre agilité et développez votre activité.
+        </p>
+        <div class="hero-actions utility-margin-top-2rem">
+          <a href="/contact-devis?demande=Audit%20IA#contact-form" class="button w-button">Demander un diagnostic</a>
+        </div>
+        <p class="hero-reassurance">
+          Vous n'avez pas besoin d'avoir identifié la tâche à automatiser. Le diagnostic permet de déterminer où
+          commencer.
         </p>
       </div>
     </section>
@@ -425,46 +432,58 @@
       </blockquote>
     </section>
 
-    <section class="section">
+    <!-- Conversion principale : diagnostic (offre Etape 1 de /tarifs-prestations, 690 EUR HT) -->
+    <section class="section" id="diagnostic">
       <div class="container">
-        <div>
-          <h2 class="h3-heading titlecontact mobiletitlemeet">
-            Envie d'en savoir plus ?
-          </h2>
-          <ul role="list"
-            class="grid-layout desktop-4-column tablet-2-column mobile-landscape-1-column grid-gap-lg utility-margin-bottom-0 mobile-1-column w-list-unstyled">
-            <li class="flex-horizontal flex-vertical x-left y-space-between utility-margin-bottom-0">
-              <div class="utility-margin-bottom-1rem">
-                <div>
-                  <img alt="Prendre rendez-vous" 
-                    src="/assets/ContactMe.webp"
-                    loading="lazy"
-                    class="image-contact-card"
-                    />
-                </div>
-              </div>
-              <a href="contact-devis.html" class="button contactbutton w-button">Contactez-moi</a>
-            </li>
-            <li class="flex-horizontal flex-vertical x-left y-space-between utility-margin-bottom-0">
-              <div class="utility-margin-bottom-1rem">
-                <div>
-                  <img alt="En savoir plus sur moi"
-                    src="/assets/About.webp"
-                    loading="lazy"  
-                    class="image-contact-card" />
-                </div>
-              </div>
-              <a href="a-propos.html" class="button contactbutton w-button">Qui suis-je ?</a>
-            </li>
-          </ul>
+        <div class="section-head">
+          <h2 class="h2-heading">Commencez par savoir ce qui mérite d'être amélioré</h2>
+          <p>
+            Vous pensez que l'IA ou l'automatisation pourrait vous aider, sans savoir où commencer ?
+            Le diagnostic part de vos tâches, de vos outils et de vos informations pour identifier un premier
+            chantier utile.
+          </p>
         </div>
+
+        <div class="offer-grid offer-grid-1">
+          <article class="offer-card offer-card-featured">
+            <h3>Diagnostic de vos processus — IA et automatisation</h3>
+            <p class="offer-price"><strong>690&nbsp;€ HT</strong></p>
+            <p class="offer-promise">Sur un périmètre de deux à trois processus :</p>
+            <ul>
+              <li>un entretien de 1&nbsp;h&nbsp;30 pour comprendre votre fonctionnement et vos priorités ;</li>
+              <li>une analyse des étapes, des outils et des difficultés rencontrées ;</li>
+              <li>une priorisation selon l'impact attendu et la complexité ;</li>
+              <li>des recommandations écrites de deux à trois pages et une feuille de route à trois mois ;</li>
+              <li>une restitution de 30 à 45 minutes pour discuter des choix.</li>
+            </ul>
+            <p>
+              <strong>Ce que vous en retirez :</strong> une vision claire de ce qu'il est pertinent de tester, de ce
+              qu'il faut préparer et de ce qu'il vaut mieux laisser de côté.
+            </p>
+            <div class="cta-centered utility-margin-bottom-1rem">
+              <a href="/contact-devis?demande=Audit%20IA#contact-form" class="button w-button">Demander un
+                diagnostic</a>
+            </div>
+            <p class="offer-meta">
+              1 à 1,5 jour de travail, avec une livraison prévue sous 5 à 7 jours calendaires. Le périmètre et le
+              calendrier sont confirmés avant le démarrage.
+            </p>
+          </article>
+        </div>
+
+        <p class="formats-note">
+          Un premier échange permet de vérifier que ce format correspond à votre situation. Le diagnostic est une
+          prestation payante distincte de cet échange. Il ne vous engage pas à commander un développement.
+          <br>
+          <a href="/a-propos">Qui suis-je ?</a>
+        </p>
       </div>
     </section>
   </main>
   <footer class="footer inverse-footer">
     <div class="container">
       <div class="w-layout-grid grid-layout footer-grid">
-        <a id="w-node-bcffb4d2-7c0e-989b-281f-8a6433463903-8b169251" href="contact-devis.html"
+        <a id="w-node-bcffb4d2-7c0e-989b-281f-8a6433463903-8b169251" href="/contact-devis"
           class="logo w-node-cfbb695e-9fcb-7692-100d-985e7bae9698-7bae9695 w-inline-block">
         </a>
 
@@ -482,7 +501,7 @@
           <div class="footer-column">
             <h2 class="h6-heading utility-text-secondary">Ressources</h2>
             <ul role="list" class="w-list-unstyled">
-              <li><a href="contact-devis.html" class="footer-link footer-link-on-inverse">Contact</a></li>
+              <li><a href="/contact-devis" class="footer-link footer-link-on-inverse">Contact</a></li>
               <li><a href="a-propos.html" class="footer-link footer-link-on-inverse">À propos</a></li>
               <li><a href="aides-financement-numerique.html" class="footer-link footer-link-on-inverse">Financement</a></li>
               <li><a href="mentions-legales.html" class="footer-link footer-link-on-inverse">Mentions Légales</a></li>
