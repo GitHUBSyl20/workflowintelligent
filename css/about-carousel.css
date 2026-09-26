@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden; /* Hide overflow to prevent horizontal scrollbars */
-  min-height: 440px; /* Ensure minimum height for desktop */
+  min-height: 264px; /* Ensure minimum height for desktop */
   z-index: 1; /* Ensure carousel is above other elements */
 }
 
@@ -35,7 +35,7 @@
 /* 4. Carousel images: responsive sizing */
 .carousel-track img {
   width: auto;
-  height: 440px; /* Fixed height for desktop */
+  height: 264px; /* Fixed height for desktop */
   object-fit: cover;
   border-radius: 1rem;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
@@ -56,7 +56,7 @@
 @media (max-width: 767px) {
   .carousel-outer {
     height: auto;
-    min-height: 150px;
+    min-height: 90px;
     padding: 1rem 0;
     width: 100%;
     box-sizing: border-box;
@@ -74,9 +74,9 @@
   
   .carousel-track img {
     height: auto;
-    max-height: 150px;
+    max-height: 90px;
     width: auto;
-    max-width: 150px;
+    max-width: 90px;
     min-width: 70px;
     border-radius: 0.7rem;
   }
@@ -84,12 +84,12 @@
 
 @media (max-width: 479px) {
   .carousel-outer {
-    min-height: 120px;
+    min-height: 72px;
   }
   
   .carousel-track img {
-    max-height: 120px;
-    max-width: 120px;
+    max-height: 72px;
+    max-width: 72px;
     min-width: 50px;
     border-radius: 0.5rem;
   }
