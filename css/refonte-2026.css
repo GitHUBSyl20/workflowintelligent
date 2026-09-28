@@ -992,3 +992,19 @@
 @media (min-width: 768px) {
   .h2-nowrap { white-space: nowrap; }
 }
+
+/* === Section Parcours (a-propos) === */
+.parcours-section .section-head { max-width: 720px; }
+.parcours-grid { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+.parcours-item { border-top: 3px solid var(--color-primary, #FF4B1F); padding-top: 1.25rem; }
+.parcours-label { margin: 0 0 .5rem; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--color-primary-dark, #d63c13); }
+.parcours-item h3 { margin: 0 0 .5rem; font-size: 1.15rem; line-height: 1.3; color: var(--color-text, #222); }
+.parcours-item p:last-child { margin: 0; color: var(--color-text-light, #444); line-height: 1.6; }
+.parcours-bridge { max-width: 720px; margin: 2.5rem auto 0; padding-left: 1.25rem; border-left: 3px solid var(--color-complementary, #192a56); font-size: 1.125rem; line-height: 1.6; color: var(--color-text, #222); }
+.parcours-proof { margin: 2rem 0 .25rem; text-align: center; font-size: .9rem; font-weight: 700; color: var(--color-complementary, #192a56); }
+.parcours-tech { margin: 0; text-align: center; font-size: .85rem; color: var(--color-text-light, #444); }
+@media (max-width: 767px) {
+  .parcours-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .parcours-bridge { font-size: 1rem; }
+  .parcours-proof, .parcours-tech { text-align: left; }
+}
