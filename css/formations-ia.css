@@ -110,30 +110,6 @@ a:visited {
 
 /* Visuel du hero : la grille Webflow d'origine s'effondrait (colonne à 0px),
    on la neutralise pour que l'image s'affiche réellement */
-.formation-hero .flex-horizontal {
-  width: 100%;
-}
-
-.formation-hero .desktop-9-column {
-  display: block;
-  width: 100%;
-}
-
-.formation-hero .utility-aspect-4x3 {
-  width: 100%;
-  height: auto;
-  aspect-ratio: auto;
-}
-
-.formation-hero .cover-image {
-  width: 100%;
-  height: auto;
-  max-width: 32rem;
-  margin-left: auto;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
-}
-
 /* Ancres : compenser la navigation collante */
 #references,
 #methode,
@@ -780,11 +756,6 @@ a:visited {
     width: 100%;
   }
 
-  .formation-hero .cover-image {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   .hero-actions .button {
     width: 100%;
     max-width: 24rem;
@@ -872,4 +843,13 @@ a:visited {
     padding-top: 0 !important;
     margin-bottom: 0.5rem !important;
   }
+}
+
+/* Bandeau sans visuel : une seule colonne ; titre et badges sur une ligne dès que la largeur le permet */
+.formation-hero .grid-layout.hero-no-visual { grid-template-columns: minmax(0, 1fr); }
+.formation-hero .hero-no-visual .hero-lede { max-width: 48rem; }
+
+@media (min-width: 768px) {
+  .formation-hero .h1-nowrap { white-space: nowrap; }
+  .formation-hero .hero-facts { flex-wrap: nowrap; }
 }
