@@ -154,47 +154,108 @@ function initContactForm() {
                 return;
             }
 
-            // Default Formspree submission for all cases
+            // L'envoi est pris en charge ici : le formulaire ne quitte plus la page,
+            // ce qui permet de distinguer un succes reel d'un echec.
+            e.preventDefault();
+
             // Show loading state
             submitBtn.disabled = true;
             submitBtn.value = 'Envoi en cours...';
             submitBtn.style.backgroundColor = '#ccc';
             statusDiv.style.display = 'none';
+            hideFallback();
 
             // Track submission
             submissionCount++;
             lastSubmissionTime = Date.now();
 
-            // Show status message
-            setTimeout(() => {
-                showStatus('Envoi en cours vers contact@workflowintelligent.fr...', 'info');
-            }, 100);
+            showStatus('Envoi en cours...', 'info');
 
-            // Handle form submission result
-            setTimeout(() => {
-                showStatus('Formulaire envoyé ! Vérifiez votre dossier spam si vous ne recevez pas d\'email.', 'success');
-                
-                // Reset form and re-enable button
-                submitBtn.disabled = true; // Keep disabled until reCAPTCHA is completed again
-                submitBtn.value = submitBtnLabel;
-                submitBtn.style.backgroundColor = '#ccc';
-                submitBtn.style.cursor = 'not-allowed';
-                
-                // Clear form after successful submission
-                form.reset();
-                formToken.value = generateSecureToken();
-                
-                // Reset reCAPTCHA (only if available and not in development)
-                if (!isDevelopment && typeof grecaptcha !== 'undefined' && grecaptcha.reset) {
-                    grecaptcha.reset();
+            // Le service d'envoi reste celui d'origine (action du formulaire) ;
+            // seul l'en-tete Accept change, pour obtenir une reponse lisible
+            // au lieu d'une redirection.
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(function (response) {
+                if (!response.ok) {
+                    throw new Error('HTTP ' + response.status);
                 }
-                
-                // Re-check form validation after reset
-                setTimeout(() => {
-                    checkFormValidation();
-                }, 100);
-            }, 3000);
+                return response.json().catch(function () { return {}; });
+            }).then(function (data) {
+                if (data && data.ok === false) {
+                    throw new Error('rejet du service d\'envoi');
+                }
+                onSubmitSuccess();
+            }).catch(function (error) {
+                onSubmitError(error);
+            });
         });
+
+        // Confirmation : uniquement apres accuse de reception du service d'envoi.
+        function onSubmitSuccess() {
+            const demande = document.getElementById('demande');
+            const formationMessage = form.getAttribute('data-success-message-formation');
+            let message = form.getAttribute('data-success-message');
+
+            // Une demande de formation recoit un message adapte a la formation,
+            // sans lui imposer un diagnostic.
+            if (demande && demande.value === 'Formation' && formationMessage) {
+                message = formationMessage;
+            }
+
+            showStatus(message || 'Votre demande a bien été envoyée.', 'success', true);
+
+            // Keep disabled until reCAPTCHA is completed again
+            submitBtn.disabled = true;
+            submitBtn.value = submitBtnLabel;
+            submitBtn.style.backgroundColor = '#ccc';
+            submitBtn.style.cursor = 'not-allowed';
+
+            // Le formulaire n'est vide qu'en cas de succes.
+            form.reset();
+            formToken.value = generateSecureToken();
+
+            if (!isDevelopment && typeof grecaptcha !== 'undefined' && grecaptcha.reset) {
+                grecaptcha.reset();
+            }
+
+            setTimeout(function () {
+                checkFormValidation();
+            }, 100);
+        }
+
+        // Echec : les donnees saisies restent en place et les coordonnees
+        // existantes sont proposees comme alternative.
+        function onSubmitError(error) {
+            if (error) {
+                console.warn('[contact] envoi non abouti :', error.message || error);
+            }
+
+            showStatus(
+                form.getAttribute('data-error-message')
+                    || 'Votre demande n\'a pas pu être envoyée. Vos informations sont conservées : vous pouvez réessayer ou me joindre directement.',
+                'error', true);
+            showFallback();
+
+            submitBtn.value = submitBtnLabel;
+            checkFormValidation();
+        }
+
+        function showFallback() {
+            const fallback = document.getElementById('form-fallback');
+            if (fallback) {
+                fallback.hidden = false;
+            }
+        }
+
+        function hideFallback() {
+            const fallback = document.getElementById('form-fallback');
+            if (fallback) {
+                fallback.hidden = true;
+            }
+        }
     }
 
     function validateFormSecurity(e) {
@@ -358,9 +419,10 @@ function initContactForm() {
             submitBtn.style.backgroundColor = '#FF4B1F';
             submitBtn.style.cursor = 'pointer';
             
-            // Clear any previous status messages
+            // Clear any previous status messages, sauf un message persistant
+            // (confirmation d'envoi ou erreur) qui doit rester lisible.
             const statusDiv = document.getElementById('form-status');
-            if (statusDiv) {
+            if (statusDiv && statusDiv.dataset.persist !== '1') {
                 statusDiv.style.display = 'none';
             }
         } else {
@@ -368,9 +430,12 @@ function initContactForm() {
             submitBtn.style.backgroundColor = '#ccc';
             submitBtn.style.cursor = 'not-allowed';
             
-            // Show helpful message to user
+            // Show helpful message to user. Un message persistant (confirmation
+            // d'envoi ou erreur) n'est pas ecrase : apres un envoi reussi le
+            // formulaire est vide, et le rappel des champs obligatoires
+            // remplacait la confirmation.
             const statusDiv = document.getElementById('form-status');
-            if (statusDiv) {
+            if (statusDiv && statusDiv.dataset.persist !== '1') {
                 if (formValid && !recaptchaValid && !isDevelopment) {
                     statusDiv.textContent = '✅ Formulaire valide ! Veuillez cocher la case reCAPTCHA ci-dessus pour continuer.';
                     statusDiv.style.display = 'block';
@@ -424,7 +489,7 @@ function initContactForm() {
         return token + Date.now().toString(36);
     }
 
-    function showStatus(message, type) {
+    function showStatus(message, type, persist) {
         statusDiv.textContent = message;
         statusDiv.style.display = 'block';
         
@@ -446,6 +511,15 @@ function initContactForm() {
                 break;
         }
         
+        // Une confirmation d'envoi ou une erreur doit rester lisible : elle
+        // n'est pas effacee par la minuterie ci-dessous.
+        if (persist) {
+            statusDiv.dataset.persist = '1';
+            return;
+        }
+
+        delete statusDiv.dataset.persist;
+
         // Hide status after 5 seconds
         setTimeout(() => {
             statusDiv.style.display = 'none';

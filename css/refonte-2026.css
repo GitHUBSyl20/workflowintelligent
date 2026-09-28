@@ -790,3 +790,191 @@
     line-height: 1.25;
   }
 }
+
+/* ==========================================================================
+   P1 — Page commune Solutions, apercu du livrable, FAQ
+   Ajouts uniquement : formations-ia.html ne charge pas cette feuille, donc
+   aucune de ces regles ne peut atteindre la page Formation.
+   ========================================================================== */
+
+/* Les trois familles de solutions : du texte structure, pas des cartes
+   decoratives — la lecture doit rester lineaire sur mobile. */
+.solution-block {
+  padding: 1.6rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.solution-block:first-of-type {
+  border-top: 0;
+}
+
+.solution-block h3 {
+  font-size: 1.35rem;
+  line-height: 1.3;
+  margin: 0 0 0.7rem;
+}
+
+.solution-block p {
+  margin: 0 0 0.7rem;
+  line-height: 1.6;
+}
+
+.solution-objective {
+  font-weight: 600;
+  color: var(--color-primary, #FF4B1F);
+}
+
+/* Exemples : trois lignes de meme nature (aujourd'hui / intervention / mesure)
+   pour que la comparaison soit immediate. */
+.example-item {
+  padding: 1.3rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.example-item:first-of-type {
+  border-top: 0;
+}
+
+.example-item h3 {
+  font-size: 1.2rem;
+  line-height: 1.3;
+  margin: 0 0 0.8rem;
+}
+
+.example-facts {
+  margin: 0;
+}
+
+.example-facts dt {
+  font-weight: 600;
+  margin-top: 0.6rem;
+}
+
+.example-facts dd {
+  margin: 0.15rem 0 0;
+  line-height: 1.6;
+}
+
+/* FAQ : <details> native, donc utilisable au clavier sans script. */
+.faq-list {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.faq-item > summary {
+  cursor: pointer;
+  padding: 1rem 2rem 1rem 0;
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  position: relative;
+  list-style: none;
+}
+
+.faq-item > summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item > summary::after {
+  content: "+";
+  position: absolute;
+  right: 0.2rem;
+  top: 0.85rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-primary, #FF4B1F);
+}
+
+.faq-item[open] > summary::after {
+  content: "\2013";
+}
+
+.faq-item > summary:focus-visible {
+  outline: 2px solid var(--color-primary, #FF4B1F);
+  outline-offset: 2px;
+}
+
+.faq-item > div {
+  padding: 0 0 1.1rem;
+}
+
+.faq-item p {
+  margin: 0 0 0.6rem;
+  line-height: 1.6;
+}
+
+/* Apercu du livrable de diagnostic (page Offres). */
+.deliverable-preview {
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 10px;
+  padding: 1.6rem;
+  max-width: 48rem;
+  margin: 0 auto;
+  background: var(--color-background, #fff);
+}
+
+.deliverable-note {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #5d5d5d;
+  margin: 0 0 1.2rem;
+}
+
+.deliverable-part {
+  padding: 1rem 0;
+  border-top: 1px dashed rgba(0, 0, 0, 0.14);
+}
+
+.deliverable-part:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.deliverable-part h4 {
+  font-size: 1.05rem;
+  margin: 0 0 0.4rem;
+}
+
+.deliverable-part p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Ligne de priorisation : une liste de definitions plutot qu'un tableau,
+   pour ne pas deborder sous 375px. */
+.deliverable-row {
+  margin: 1.2rem 0 0;
+  padding: 1rem;
+  background: rgba(255, 75, 31, 0.05);
+  border-radius: 8px;
+}
+
+.deliverable-row dt {
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.deliverable-row dt:first-child {
+  margin-top: 0;
+}
+
+.deliverable-row dd {
+  margin: 0.1rem 0 0;
+}
+
+/* Retour à la ligne forcé dans un titre, sans <br> (l'espace qui suit reste pour les lecteurs d'écran) */
+.h1-line-break { display: block; }
+
+/* Bandeau sans visuel : le texte prend toute la largeur, les paragraphes restent lisibles */
+.accent-primary-section .grid-layout.hero-no-visual { grid-template-columns: minmax(0, 1fr); }
+.hero-no-visual .hero-lede,
+.hero-no-visual .hero-reassurance { max-width: 48rem; }
+
+/* Segment de titre à garder sur une ligne dès que la largeur le permet */
+@media (min-width: 768px) {
+  .h1-nowrap { white-space: nowrap; }
+}

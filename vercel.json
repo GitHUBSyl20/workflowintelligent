@@ -12,6 +12,106 @@
   ],
   "redirects": [
     {
+      "source": "/index-en",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/index-en.html",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/solutions-ia-entreprise-en",
+      "destination": "/solutions-ia-entreprise",
+      "permanent": false
+    },
+    {
+      "source": "/solutions-ia-entreprise-en.html",
+      "destination": "/solutions-ia-entreprise",
+      "permanent": false
+    },
+    {
+      "source": "/automatisation-entreprise-en",
+      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "permanent": false
+    },
+    {
+      "source": "/automatisation-entreprise-en.html",
+      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "permanent": false
+    },
+    {
+      "source": "/aides-financement-numerique-en",
+      "destination": "/aides-financement-numerique",
+      "permanent": false
+    },
+    {
+      "source": "/aides-financement-numerique-en.html",
+      "destination": "/aides-financement-numerique",
+      "permanent": false
+    },
+    {
+      "source": "/tarifs-prestations-en",
+      "destination": "/tarifs-prestations",
+      "permanent": false
+    },
+    {
+      "source": "/tarifs-prestations-en.html",
+      "destination": "/tarifs-prestations",
+      "permanent": false
+    },
+    {
+      "source": "/contact-devis-en",
+      "destination": "/contact-devis",
+      "permanent": false
+    },
+    {
+      "source": "/contact-devis-en.html",
+      "destination": "/contact-devis",
+      "permanent": false
+    },
+    {
+      "source": "/a-propos-en",
+      "destination": "/a-propos",
+      "permanent": false
+    },
+    {
+      "source": "/a-propos-en.html",
+      "destination": "/a-propos",
+      "permanent": false
+    },
+    {
+      "source": "/mentions-legales-en",
+      "destination": "/mentions-legales",
+      "permanent": false
+    },
+    {
+      "source": "/mentions-legales-en.html",
+      "destination": "/mentions-legales",
+      "permanent": false
+    },
+    {
+      "source": "/conditions-generales-en",
+      "destination": "/conditions-generales",
+      "permanent": false
+    },
+    {
+      "source": "/conditions-generales-en.html",
+      "destination": "/conditions-generales",
+      "permanent": false
+    },
+    {
+      "source": "/solutions-intelligence-artificielle-en",
+      "destination": "/solutions-ia-entreprise",
+      "permanent": false
+    },
+    {
+      "source": "/solutions-intelligence-artificielle-en.html",
+      "destination": "/solutions-ia-entreprise",
+      "permanent": false
+    },
+    {
       "source": "/ai-tools.html",
       "destination": "/solutions-ia-entreprise",
       "permanent": true
@@ -23,12 +123,12 @@
     },
     {
       "source": "/automatisations.html",
-      "destination": "/automatisation-entreprise",
+      "destination": "/solutions-ia-entreprise#reduire-saisies",
       "permanent": true
     },
     {
       "source": "/automatisation-processus-metier.html",
-      "destination": "/automatisation-entreprise",
+      "destination": "/solutions-ia-entreprise#reduire-saisies",
       "permanent": true
     },
     {
@@ -67,8 +167,13 @@
       "permanent": true
     },
     {
-      "source": "/solutions-intelligence-artificielle-en.html",
-      "destination": "/solutions-ia-entreprise-en",
+      "source": "/automatisation-entreprise",
+      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "permanent": true
+    },
+    {
+      "source": "/automatisation-entreprise.html",
+      "destination": "/solutions-ia-entreprise#reduire-saisies",
       "permanent": true
     }
   ],
@@ -76,10 +181,6 @@
     {
       "source": "/solutions-ia-entreprise",
       "destination": "/solutions-ia-entreprise.html"
-    },
-    {
-      "source": "/automatisation-entreprise",
-      "destination": "/automatisation-entreprise.html"
     },
     {
       "source": "/aides-financement-numerique",
