@@ -978,3 +978,17 @@
 @media (min-width: 768px) {
   .h1-nowrap { white-space: nowrap; }
 }
+
+/* Variante à trois étapes : trois colonnes centrées au lieu d'une grille de quatre à moitié vide */
+@media (min-width: 768px) {
+  .method-steps-4.method-steps-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 54rem;
+  }
+}
+
+/* Encadré élargi pour qu'un titre long tienne sur une ligne */
+.highlight-block.highlight-block-wide { max-width: 52rem; }
+@media (min-width: 768px) {
+  .h2-nowrap { white-space: nowrap; }
+}

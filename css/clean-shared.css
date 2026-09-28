@@ -1804,7 +1804,7 @@ nav.main-navbar a.nav-logo,
 .main-navbar .nav-logo .nav-logo-text {
   font-family: inherit !important;
   font-size: 21px !important;
-  font-weight: 500 !important;
+  font-weight: 700 !important; /* Lato n'existe pas en 500/600 : 700 est le cran au-dessus du 400 affiché avant */
   line-height: 1.2 !important;
   letter-spacing: 0.03em !important;
   color: inherit !important;
