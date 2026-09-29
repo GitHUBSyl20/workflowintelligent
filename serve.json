@@ -11,10 +11,6 @@
       "destination": "/solutions-ia-entreprise.html"
     },
     {
-      "source": "/aides-financement-numerique",
-      "destination": "/aides-financement-numerique.html"
-    },
-    {
       "source": "/tarifs-prestations",
       "destination": "/tarifs-prestations.html"
     },
@@ -53,10 +49,6 @@
     {
       "source": "/automatisation-entreprise-en",
       "destination": "/automatisation-entreprise-en.html"
-    },
-    {
-      "source": "/aides-financement-numerique-en",
-      "destination": "/aides-financement-numerique-en.html"
     },
     {
       "source": "/tarifs-prestations-en",
@@ -112,13 +104,13 @@
     },
     {
       "source": "/aides-financement-numerique-en",
-      "destination": "/aides-financement-numerique",
-      "type": 307
+      "destination": "/formations-ia#financement",
+      "type": 308
     },
     {
       "source": "/aides-financement-numerique-en.html",
-      "destination": "/aides-financement-numerique",
-      "type": 307
+      "destination": "/formations-ia#financement",
+      "type": 308
     },
     {
       "source": "/tarifs-prestations-en",
@@ -202,7 +194,7 @@
     },
     {
       "source": "/subventions-aides-numeriques.html",
-      "destination": "/aides-financement-numerique",
+      "destination": "/formations-ia#financement",
       "type": 308
     },
     {
@@ -222,7 +214,7 @@
     },
     {
       "source": "/aides.html",
-      "destination": "/aides-financement-numerique",
+      "destination": "/formations-ia#financement",
       "type": 308
     },
     {
@@ -238,6 +230,16 @@
     {
       "source": "/automatisation-entreprise.html",
       "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "type": 308
+    },
+    {
+      "source": "/aides-financement-numerique",
+      "destination": "/formations-ia#financement",
+      "type": 308
+    },
+    {
+      "source": "/aides-financement-numerique.html",
+      "destination": "/formations-ia#financement",
       "type": 308
     }
   ]

@@ -20,7 +20,6 @@
     const urlMappings = {
         'solutions-ia-entreprise.html': 'solutions-ia-entreprise',
         'automatisation-entreprise.html': 'automatisation-entreprise',
-        'aides-financement-numerique.html': 'aides-financement-numerique',
         'tarifs-prestations.html': 'tarifs-prestations',
         'contact-devis.html': 'contact-devis',
         'a-propos.html': 'a-propos',
@@ -31,7 +30,6 @@
         // English versions
         'solutions-ia-entreprise-en.html': 'solutions-ia-entreprise-en',
         'automatisation-entreprise-en.html': 'automatisation-entreprise-en',
-        'aides-financement-numerique-en.html': 'aides-financement-numerique-en',
         'tarifs-prestations-en.html': 'tarifs-prestations-en',
         'contact-devis-en.html': 'contact-devis-en',
         'a-propos-en.html': 'a-propos-en',
