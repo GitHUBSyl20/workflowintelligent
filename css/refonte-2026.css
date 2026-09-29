@@ -981,6 +981,11 @@
 /* Retour à la ligne forcé dans un titre, sans <br> (l'espace qui suit reste pour les lecteurs d'écran) */
 .h1-line-break { display: block; }
 
+/* Même principe, seulement sur ordinateur : en mobile la phrase suit le texte */
+@media (min-width: 992px) {
+  .desktop-line-break { display: block; }
+}
+
 /* Bandeau sans visuel : le texte prend toute la largeur, les paragraphes restent lisibles */
 .accent-primary-section .grid-layout.hero-no-visual { grid-template-columns: minmax(0, 1fr); }
 .hero-no-visual .hero-lede,
