@@ -1,0 +1,51 @@
+/* =========================
+   Page Solutions — alignement sur la page Formations
+   Chargée après refonte-2026.css, par solutions-ia-entreprise.html seulement.
+   Reprend les largeurs et le bandeau de css/formations-ia.css, que
+   refonte-2026.css définit plus étroits pour l'accueil.
+   ========================= */
+
+/* Bandeau : même rythme que .formation-hero */
+.solutions-hero {
+  padding-bottom: 2.5rem;
+}
+
+.solutions-hero .h1-heading {
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .solutions-hero .hero-facts {
+    flex-wrap: nowrap;
+  }
+}
+
+/* Largeurs de texte de la page Formations */
+.section-head {
+  max-width: 46rem;
+}
+
+.proof-note,
+.formats-note,
+.bridge-note {
+  max-width: 52rem;
+}
+
+.case-inline {
+  max-width: 60rem;
+}
+
+.final-cta-block {
+  max-width: 44rem;
+}
+
+/* Démonstrateurs sur fond gris : les en-têtes d'accordéon restent sur carte blanche */
+.methode-section .accordion-item {
+  background: #fff;
+}
+
+/* Ancres : compenser la navigation collante */
+main section[id],
+.case-card[id] {
+  scroll-margin-top: 80px;
+}

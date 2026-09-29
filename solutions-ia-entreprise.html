@@ -35,6 +35,7 @@
   <link href="css/footer.css" rel="stylesheet" type="text/css" />
   <link href="css/portfolio-accordion.css" rel="stylesheet" type="text/css" />
   <link href="css/refonte-2026.css" rel="stylesheet" type="text/css" />
+  <link href="css/solutions-ia-entreprise.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet" />
@@ -107,13 +108,14 @@
     </div>
   </nav>
 
-  <header class="section utility-overflow-clip accent-primary-section">
+  <!-- HERO -->
+  <header class="section utility-overflow-clip accent-primary-section solutions-hero">
     <div class="container">
       <div class="w-layout-grid grid-layout tablet-1-column grid-gap-lg hero-no-visual">
         <div id="w-node-cffaef48-2b4e-5eda-7d8d-768fd6d4b66f-d6d4b66c"
           class="w-node-_73829c4d-cafe-414e-5a5e-48334fdb3ae2-5231dd07">
           <h1 class="h1-heading"><span class="h1-line-break h1-nowrap">Moins de recherches et de ressaisies.</span> Plus de temps pour votre activité.</h1>
-          <p class="hero-lede">
+          <p class="hero-subtitle">
             Vos équipes cherchent des informations, recopient des données ou passent d'un outil à l'autre pour
             terminer une tâche ?
           </p>
@@ -121,16 +123,20 @@
             J'identifie avec vous ce qui peut être simplifié, puis je conçois et déploie la solution adaptée :
             mieux exploiter vos documents, automatiser certaines étapes ou créer un outil métier.
           </p>
+          <ul class="hero-facts" role="list">
+            <li>Diagnostic de 2 à 3 processus</li>
+            <li>Recommandations sous 5 à 7 jours</li>
+            <li>690&nbsp;€ HT</li>
+          </ul>
           <div class="hero-actions">
             <a href="/contact-devis?demande=Audit%20IA#contact-form" class="button w-button">Demander un diagnostic</a>
-            <a href="#exemples" class="button secondary-button-on-accent-primary w-button">Voir des exemples
-              concrets</a>
+            <a href="#exemples" class="button secondary-button-on-accent-primary w-button">Voir des exemples concrets</a>
           </div>
         </div>
       </div>
     </div>
   </header>
-  <main style="margin-bottom: 0rem">
+  <main>
     <!-- Section 2 — reconnaissance des problemes.
          id="explications" conserve : les anciens liens internes visaient cette ancre. -->
     <section id="explications" class="section">
@@ -156,63 +162,63 @@
     <!-- Section 3 — les trois familles. Les ancres sont stables : #reduire-saisies
          est la destination de la redirection de l'ancienne page Automatisation. -->
     <section id="solutions" class="section methode-section">
-      <div class="container small-container">
+      <div class="container">
         <div class="section-head">
           <h2 class="h2-heading">Trois façons d'améliorer votre fonctionnement</h2>
         </div>
 
-        <div class="solution-block" id="retrouver-informations">
-          <h3>Retrouver et exploiter vos informations</h3>
-          <p>
-            Vos procédures, documents commerciaux ou dossiers techniques contiennent déjà une partie des réponses
-            dont vos équipes ont besoin.
-          </p>
-          <p>
-            Je peux mettre en place un accès adapté à ces connaissances : recherche documentaire, réponses appuyées
-            sur des sources, extraction d'informations ou synthèses à vérifier.
-          </p>
-          <p class="solution-objective">
-            L'objectif : réduire le temps de recherche et faciliter l'utilisation d'informations aujourd'hui
-            dispersées.
-          </p>
-        </div>
-
-        <div class="solution-block" id="reduire-saisies">
-          <h3>Réduire les saisies et transferts manuels</h3>
-          <p>
-            Collecter des données, compléter une base, préparer un document ou transférer des informations entre
-            logiciels mobilise parfois les équipes sans nécessiter leur jugement à chaque étape.
-          </p>
-          <p>
-            Je peux relier vos outils et automatiser les opérations pour lesquelles des règles fiables peuvent être
-            définies, avec une validation humaine lorsque la situation le demande.
-          </p>
-          <p class="solution-objective">
-            L'objectif : limiter les manipulations répétées et réserver l'attention des équipes aux exceptions et aux
-            décisions.
-          </p>
-        </div>
-
-        <div class="solution-block" id="outil-metier">
-          <h3>Disposer d'un outil adapté à vos processus</h3>
-          <p>
-            Quand un fonctionnement repose sur plusieurs tableaux, des échanges d'emails et des manipulations
-            difficiles à suivre, une application métier peut réunir les étapes utiles dans une même interface.
-          </p>
-          <p>
-            Je conçois l'outil autour de votre fonctionnement réel, avec les connexions et les fonctions d'IA
-            pertinentes pour le besoin.
-          </p>
-          <p class="solution-objective">
-            L'objectif : rendre un processus plus simple à exécuter, à suivre et à transmettre.
-          </p>
+        <div class="case-grid">
+          <article class="case-card" id="retrouver-informations">
+            <h3>Retrouver et exploiter vos informations</h3>
+            <p>
+              Vos procédures, documents commerciaux ou dossiers techniques contiennent déjà une partie des réponses
+              dont vos équipes ont besoin.
+            </p>
+            <p>
+              Je peux mettre en place un accès adapté à ces connaissances : recherche documentaire, réponses appuyées
+              sur des sources, extraction d'informations ou synthèses à vérifier.
+            </p>
+            <p class="offer-meta">
+              L'objectif : réduire le temps de recherche et faciliter l'utilisation d'informations aujourd'hui
+              dispersées.
+            </p>
+          </article>
+          <article class="case-card" id="reduire-saisies">
+            <h3>Réduire les saisies et transferts manuels</h3>
+            <p>
+              Collecter des données, compléter une base, préparer un document ou transférer des informations entre
+              logiciels mobilise parfois les équipes sans nécessiter leur jugement à chaque étape.
+            </p>
+            <p>
+              Je peux relier vos outils et automatiser les opérations pour lesquelles des règles fiables peuvent être
+              définies, avec une validation humaine lorsque la situation le demande.
+            </p>
+            <p class="offer-meta">
+              L'objectif : limiter les manipulations répétées et réserver l'attention des équipes aux exceptions et aux
+              décisions.
+            </p>
+          </article>
+          <article class="case-card" id="outil-metier">
+            <h3>Disposer d'un outil adapté à vos processus</h3>
+            <p>
+              Quand un fonctionnement repose sur plusieurs tableaux, des échanges d'emails et des manipulations
+              difficiles à suivre, une application métier peut réunir les étapes utiles dans une même interface.
+            </p>
+            <p>
+              Je conçois l'outil autour de votre fonctionnement réel, avec les connexions et les fonctions d'IA
+              pertinentes pour le besoin.
+            </p>
+            <p class="offer-meta">
+              L'objectif : rendre un processus plus simple à exécuter, à suivre et à transmettre.
+            </p>
+          </article>
         </div>
       </div>
     </section>
 
     <!-- Section 4 — exemples. Scenarios illustratifs : aucun chiffre, aucun resultat client. -->
     <section id="exemples" class="section">
-      <div class="container small-container">
+      <div class="container">
         <div class="section-head">
           <h2 class="h2-heading">À quoi une amélioration peut-elle ressembler ?</h2>
           <p>
@@ -220,43 +226,43 @@
           </p>
         </div>
 
-        <div class="example-item">
-          <h3>Retrouver une réponse dans une documentation interne</h3>
-          <dl class="example-facts">
-            <dt>Aujourd'hui</dt>
-            <dd>Un collaborateur cherche une procédure ou une information produit dans plusieurs documents.</dd>
-            <dt>Intervention possible</dt>
-            <dd>Un point d'accès permettant de retrouver les passages utiles et de consulter les documents sources.</dd>
-            <dt>À mesurer</dt>
-            <dd>Le temps de recherche, la fiabilité des réponses et la capacité à reconnaître qu'une information
-              manque.</dd>
-          </dl>
-        </div>
-
-        <div class="example-item">
-          <h3>Préparer une base de prospects plus facilement</h3>
-          <dl class="example-facts">
-            <dt>Aujourd'hui</dt>
-            <dd>L'équipe commerciale recherche et complète manuellement des informations avant de travailler sa base.
-            </dd>
-            <dt>Intervention possible</dt>
-            <dd>Une collecte et un enrichissement selon des critères définis, avec contrôle des informations et
-              traitement des cas incomplets.</dd>
-            <dt>À mesurer</dt>
-            <dd>Le temps de préparation, la qualité des données et la part des fiches réellement utilisables.</dd>
-          </dl>
-        </div>
-
-        <div class="example-item">
-          <h3>Préparer un reporting sans refaire les mêmes manipulations</h3>
-          <dl class="example-facts">
-            <dt>Aujourd'hui</dt>
-            <dd>Une personne exporte, rassemble et remet en forme les données de plusieurs outils.</dd>
-            <dt>Intervention possible</dt>
-            <dd>Une préparation automatisée du reporting, avec des contrôles et une validation avant diffusion.</dd>
-            <dt>À mesurer</dt>
-            <dd>Le temps de préparation, les corrections nécessaires et la cohérence avec les données sources.</dd>
-          </dl>
+        <div class="skills-grid">
+          <article class="skill-card">
+            <h3>Retrouver une réponse dans une documentation interne</h3>
+            <dl class="example-facts">
+              <dt>Aujourd'hui</dt>
+              <dd>Un collaborateur cherche une procédure ou une information produit dans plusieurs documents.</dd>
+              <dt>Intervention possible</dt>
+              <dd>Un point d'accès permettant de retrouver les passages utiles et de consulter les documents sources.</dd>
+              <dt>À mesurer</dt>
+              <dd>Le temps de recherche, la fiabilité des réponses et la capacité à reconnaître qu'une information
+                manque.</dd>
+            </dl>
+          </article>
+          <article class="skill-card">
+            <h3>Préparer une base de prospects plus facilement</h3>
+            <dl class="example-facts">
+              <dt>Aujourd'hui</dt>
+              <dd>L'équipe commerciale recherche et complète manuellement des informations avant de travailler sa base.
+              </dd>
+              <dt>Intervention possible</dt>
+              <dd>Une collecte et un enrichissement selon des critères définis, avec contrôle des informations et
+                traitement des cas incomplets.</dd>
+              <dt>À mesurer</dt>
+              <dd>Le temps de préparation, la qualité des données et la part des fiches réellement utilisables.</dd>
+            </dl>
+          </article>
+          <article class="skill-card">
+            <h3>Préparer un reporting sans refaire les mêmes manipulations</h3>
+            <dl class="example-facts">
+              <dt>Aujourd'hui</dt>
+              <dd>Une personne exporte, rassemble et remet en forme les données de plusieurs outils.</dd>
+              <dt>Intervention possible</dt>
+              <dd>Une préparation automatisée du reporting, avec des contrôles et une validation avant diffusion.</dd>
+              <dt>À mesurer</dt>
+              <dd>Le temps de préparation, les corrections nécessaires et la cohérence avec les données sources.</dd>
+            </dl>
+          </article>
         </div>
       </div>
     </section>
@@ -341,18 +347,22 @@
           </article>
         </div>
 
-        <!-- La classe portfolio-section est requise : js/main.js lie les
-             accordeons via le selecteur .portfolio-section .accordion .accordion-trigger. -->
-        <div id="ai-tools-portfolio" class="portfolio-section utility-margin-top-2rem">
-          <h3 class="bold-text utility-margin-bottom-2rem">Démonstrateurs IA</h3>
-        <p class="paragraph-3 utility-text-align-center utility-max-width-600 utility-padding-x-2rem">
-          Deux démonstrateurs que j'ai construits pour montrer ce qu'une IA cadrée sait faire — et où s'arrête
-          son périmètre.
-        </p>
-        <p class="paragraph-3 utility-text-align-center utility-max-width-600 utility-padding-x-2rem">
-          Ce sont des démonstrateurs, pas des missions clients : ils tournent sur des données de démonstration.
-        </p>
-
+      </div>
+    </section>
+    <!-- Section 6 bis — démonstrateurs. La classe portfolio-section est requise : js/main.js lie les
+         accordeons via le selecteur .portfolio-section .accordion .accordion-trigger. -->
+    <section id="ai-tools-portfolio" class="section portfolio-section methode-section">
+      <div class="container small-container">
+        <div class="section-head">
+          <h2 class="h2-heading">Démonstrateurs IA</h2>
+          <p>
+            Deux démonstrateurs que j'ai construits pour montrer ce qu'une IA cadrée sait faire — et où s'arrête
+            son périmètre.
+          </p>
+          <p>
+            Ce sont des démonstrateurs, pas des missions clients : ils tournent sur des données de démonstration.
+          </p>
+        </div>
         <div class="accordion">
           <!--
             La carte "Développement assisté" (application musicale) a été déplacée vers la page
@@ -547,36 +557,36 @@
           regroupés sur la page
           <a href="produits-experimentations.html">Projets &amp; créations</a>.
         </p>
-        </div>
       </div>
     </section>
-
     <!-- Section 7 — Sylvain. -->
     <section id="sylvain" class="section">
-      <div class="container small-container">
+      <div class="container">
         <div class="section-head">
           <h2 class="h2-heading">Votre interlocuteur du diagnostic à la mise en service</h2>
         </div>
-        <p class="paragraph-3">Je suis Sylvain Magana, consultant senior et développeur.</p>
-        <p class="paragraph-3">
-          Mon travail consiste à comprendre comment vos équipes fonctionnent, à déterminer ce qui mérite d'être
-          amélioré, puis à réaliser la solution retenue.
-        </p>
-        <p class="paragraph-3">
-          Mon expérience des projets numériques depuis 2019 associe compréhension fonctionnelle, développement et
-          intégration. J'y ajoute la formation et l'accompagnement pour que les outils soient utilisables au
-          quotidien.
-        </p>
-        <p class="paragraph-3">
-          Je peux conduire le diagnostic, concevoir un prototype, automatiser un processus ou développer une
-          application métier, puis accompagner sa mise en service.
-        </p>
-        <p class="bridge-note"><a href="a-propos.html">En savoir plus sur Sylvain</a></p>
-      </div>
-    </section>
+        <div class="case-inline">
+          <p>Je suis Sylvain Magana, consultant senior et développeur.</p>
+          <p>
+            Mon travail consiste à comprendre comment vos équipes fonctionnent, à déterminer ce qui mérite d'être
+            amélioré, puis à réaliser la solution retenue.
+          </p>
+          <p>
+            Mon expérience des projets numériques depuis 2019 associe compréhension fonctionnelle, développement et
+            intégration. J'y ajoute la formation et l'accompagnement pour que les outils soient utilisables au
+            quotidien.
+          </p>
+          <p>
+            Je peux conduire le diagnostic, concevoir un prototype, automatiser un processus ou développer une
+            application métier, puis accompagner sa mise en service.
+          </p>
+          <p class="final-cta-secondary"><a href="a-propos.html">En savoir plus sur Sylvain</a></p>
+        </div>
+        </div>
+      </section>
 
     <!-- Section 8 — conversion principale : diagnostic (offre detaillee sur /tarifs-prestations). -->
-    <section class="section" id="diagnostic">
+    <section class="section methode-section" id="diagnostic">
       <div class="container">
         <div class="section-head">
           <h2 class="h2-heading">Commencez par savoir ce qui mérite d'être amélioré</h2>
@@ -640,81 +650,88 @@
       </div>
     </section>
 
-    <!-- Section 10 — FAQ. <details> native : utilisable au clavier sans script. -->
-    <section id="faq" class="section methode-section">
-      <div class="container">
+    <!-- Section 10 — FAQ : même accordéon que la page Formations (boutons, aria-expanded géré par js/main.js). -->
+    <section id="faq" class="section portfolio-section">
+      <div class="container small-container">
         <div class="section-head">
           <h2 class="h2-heading">Questions fréquentes</h2>
         </div>
-
-        <div class="faq-list">
-          <details class="faq-item">
-            <summary>Je n'ai pas de cas d'usage précis. Est-ce trop tôt ?</summary>
-            <div>
-              <p>
-                Non. Vous pouvez partir d'une tâche qui prend trop de temps, d'informations difficiles à retrouver ou
-                d'un processus qui vous semble trop manuel. Le diagnostic sert à préciser le problème et à évaluer
-                les pistes utiles.
-              </p>
+        <div class="accordion">
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger">
+              <h3 class="utility-margin-bottom-0">Je n'ai pas de cas d'usage précis. Est-ce trop tôt ?</h3>
+            </button>
+            <div class="content">
+              <div class="portfolio-content-grid">
+                <div class="portfolio-text">
+                  <p>Non. Vous pouvez partir d'une tâche qui prend trop de temps, d'informations difficiles à retrouver ou d'un processus qui vous semble trop manuel. Le diagnostic sert à préciser le problème et à évaluer les pistes utiles.</p>
+                </div>
+              </div>
             </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>Comment savoir si le gain sera réel ?</summary>
-            <div>
-              <p>
-                Nous définissons d'abord ce qu'il faut améliorer et comment le mesurer. Le pilote permet ensuite de
-                comparer la situation de départ avec les résultats obtenus, en tenant compte du temps de contrôle et
-                des coûts de fonctionnement.
-              </p>
+          </div>
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger">
+              <h3 class="utility-margin-bottom-0">Comment savoir si le gain sera réel ?</h3>
+            </button>
+            <div class="content">
+              <div class="portfolio-content-grid">
+                <div class="portfolio-text">
+                  <p>Nous définissons d'abord ce qu'il faut améliorer et comment le mesurer. Le pilote permet ensuite de comparer la situation de départ avec les résultats obtenus, en tenant compte du temps de contrôle et des coûts de fonctionnement.</p>
+                </div>
+              </div>
             </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>Mon entreprise est-elle trop petite ?</summary>
-            <div>
-              <p>
-                La taille ne suffit pas à décider de l'intérêt d'un projet. Un processus répété chaque semaine peut
-                mériter d'être étudié. À l'inverse, une tâche rare ou peu coûteuse peut ne pas justifier une solution
-                spécifique.
-              </p>
+          </div>
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger">
+              <h3 class="utility-margin-bottom-0">Mon entreprise est-elle trop petite ?</h3>
+            </button>
+            <div class="content">
+              <div class="portfolio-content-grid">
+                <div class="portfolio-text">
+                  <p>La taille ne suffit pas à décider de l'intérêt d'un projet. Un processus répété chaque semaine peut mériter d'être étudié. À l'inverse, une tâche rare ou peu coûteuse peut ne pas justifier une solution spécifique.</p>
+                </div>
+              </div>
             </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>Faut-il remplacer nos logiciels ?</summary>
-            <div>
-              <p>
-                Pas nécessairement. Nous examinons d'abord ce qui peut être amélioré avec vos outils actuels. Les
-                possibilités de connexion, les limites des logiciels et les coûts sont vérifiés avant de retenir une
-                solution.
-              </p>
+          </div>
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger">
+              <h3 class="utility-margin-bottom-0">Faut-il remplacer nos logiciels ?</h3>
+            </button>
+            <div class="content">
+              <div class="portfolio-content-grid">
+                <div class="portfolio-text">
+                  <p>Pas nécessairement. Nous examinons d'abord ce qui peut être amélioré avec vos outils actuels. Les possibilités de connexion, les limites des logiciels et les coûts sont vérifiés avant de retenir une solution.</p>
+                </div>
+              </div>
             </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>Comment sont traitées nos données ?</summary>
-            <div>
-              <p>
-                Le cadrage précise les données nécessaires, les personnes autorisées à y accéder et les outils
-                compatibles avec vos contraintes. Les choix techniques viennent ensuite.
-              </p>
+          </div>
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger">
+              <h3 class="utility-margin-bottom-0">Comment sont traitées nos données ?</h3>
+            </button>
+            <div class="content">
+              <div class="portfolio-content-grid">
+                <div class="portfolio-text">
+                  <p>Le cadrage précise les données nécessaires, les personnes autorisées à y accéder et les outils compatibles avec vos contraintes. Les choix techniques viennent ensuite.</p>
+                </div>
+              </div>
             </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>Peut-on vous solliciter avec un projet déjà défini ?</summary>
-            <div>
-              <p>
-                Oui. Si votre besoin et vos contraintes sont déjà documentés, nous vérifions le cadrage existant pour
-                déterminer la suite utile : complément d'analyse, pilote ou réalisation.
-              </p>
+          </div>
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger">
+              <h3 class="utility-margin-bottom-0">Peut-on vous solliciter avec un projet déjà défini ?</h3>
+            </button>
+            <div class="content">
+              <div class="portfolio-content-grid">
+                <div class="portfolio-text">
+                  <p>Oui. Si votre besoin et vos contraintes sont déjà documentés, nous vérifions le cadrage existant pour déterminer la suite utile : complément d'analyse, pilote ou réalisation.</p>
+                </div>
+              </div>
             </div>
-          </details>
+          </div>
         </div>
       </div>
     </section>
-
     <!-- Section 11 — conversion finale. -->
     <section id="conversion" class="section final-cta-section">
       <div class="container">

@@ -294,16 +294,19 @@ whenDomReady(function () {
 document.addEventListener('DOMContentLoaded', function() {
   const links = document.querySelectorAll('.main-nav-link');
   const currentPath = window.location.pathname;
-  const currentPage = currentPath.split('/').pop() || 'index.html';
+  // Compare sans l'extension .html : en production les URL sont propres (/formations-ia)
+  const pageName = path => (path.split(/[?#]/)[0].split('/').pop() || 'index').replace(/\.html$/, '');
+  const currentPage = pageName(currentPath);
   let matchFound = false;
 
   links.forEach(link => {
-    const linkPage = link.getAttribute('href').split('/').pop() || 'index.html';
-    if (linkPage === currentPage && !matchFound) {
+    if (!matchFound && !link.classList.contains('nav-cta') && pageName(link.getAttribute('href')) === currentPage) {
       link.classList.add('active');
+      link.setAttribute('aria-current', 'page');
       matchFound = true;
     } else {
       link.classList.remove('active');
+      link.removeAttribute('aria-current');
     }
   });
 });

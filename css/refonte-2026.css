@@ -792,119 +792,131 @@
 }
 
 /* ==========================================================================
-   P1 — Page commune Solutions, apercu du livrable, FAQ
-   Ajouts uniquement : formations-ia.html ne charge pas cette feuille, donc
-   aucune de ces regles ne peut atteindre la page Formation.
+   P1 — Composants de la page Formations réutilisés par la page Solutions
+   Valeurs recopiées à l'identique de css/formations-ia.css (qui ne charge pas
+   cette feuille) ; aucune autre page chargeant cette feuille n'emploie ces classes.
    ========================================================================== */
 
-/* Les trois familles de solutions : du texte structure, pas des cartes
-   decoratives — la lecture doit rester lineaire sur mobile. */
-.solution-block {
-  padding: 1.6rem 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+/* Pastilles d'informations du bandeau */
+.hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  list-style: none;
+  margin: 0 0 1.75rem 0;
+  padding: 0;
 }
 
-.solution-block:first-of-type {
-  border-top: 0;
+.hero-facts li {
+  margin: 0;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  white-space: nowrap;
 }
 
-.solution-block h3 {
-  font-size: 1.35rem;
-  line-height: 1.3;
-  margin: 0 0 0.7rem;
+/* Grille de cartes à titre souligné (compétences, exemples) */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  max-width: 72rem;
+  margin: 0 auto;
 }
 
-.solution-block p {
-  margin: 0 0 0.7rem;
-  line-height: 1.6;
+.skill-card {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 1.35rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.solution-objective {
-  font-weight: 600;
-  color: var(--color-primary, #FF4B1F);
+.skill-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0 0 0.75rem 0;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid #FF4B1F;
 }
 
-/* Exemples : trois lignes de meme nature (aujourd'hui / intervention / mesure)
-   pour que la comparaison soit immediate. */
-.example-item {
-  padding: 1.3rem 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.example-item:first-of-type {
-  border-top: 0;
-}
-
-.example-item h3 {
-  font-size: 1.2rem;
-  line-height: 1.3;
-  margin: 0 0 0.8rem;
-}
-
+/* Exemples : trois lignes de même nature (aujourd'hui / intervention / mesure).
+   Libellé au format de .funding-label (page Formations). */
 .example-facts {
   margin: 0;
 }
 
 .example-facts dt {
-  font-weight: 600;
-  margin-top: 0.6rem;
+  margin: 0.85rem 0 0.2rem 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d63c13;
+}
+
+.example-facts dt:first-child {
+  margin-top: 0;
 }
 
 .example-facts dd {
-  margin: 0.15rem 0 0;
+  margin: 0;
+  font-size: 0.95rem;
   line-height: 1.6;
 }
 
-/* FAQ : <details> native, donc utilisable au clavier sans script. */
-.faq-list {
-  max-width: 48rem;
-  margin: 0 auto;
+/* Titres h3 dans l'accordéon (FAQ) */
+.accordion-trigger h3 {
+  transition: color 0.3s ease;
+  margin: 0;
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
+  font-family: inherit !important;
+  line-height: 1.2 !important;
+  letter-spacing: normal !important;
 }
 
-.faq-item {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+.accordion-trigger.active h3 {
+  color: #fff;
 }
 
-.faq-item > summary {
-  cursor: pointer;
-  padding: 1rem 2rem 1rem 0;
-  font-weight: 600;
-  font-size: 1.05rem;
-  line-height: 1.4;
-  position: relative;
-  list-style: none;
-}
-
-.faq-item > summary::-webkit-details-marker {
-  display: none;
-}
-
-.faq-item > summary::after {
-  content: "+";
-  position: absolute;
-  right: 0.2rem;
-  top: 0.85rem;
-  font-size: 1.5rem;
-  line-height: 1;
-  color: var(--color-primary, #FF4B1F);
-}
-
-.faq-item[open] > summary::after {
-  content: "\2013";
-}
-
-.faq-item > summary:focus-visible {
-  outline: 2px solid var(--color-primary, #FF4B1F);
+/* Focus clavier lisible sur l'en-tête blanc comme sur l'en-tête orange ouvert */
+.accordion-trigger:focus-visible {
+  outline: 2px solid #192a56;
   outline-offset: 2px;
 }
 
-.faq-item > div {
-  padding: 0 0 1.1rem;
+.portfolio-text {
+  text-align: left;
 }
 
-.faq-item p {
-  margin: 0 0 0.6rem;
-  line-height: 1.6;
+@media (max-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-facts {
+    justify-content: center;
+  }
+
+  .hero-facts li {
+    white-space: normal;
+    font-size: 0.85rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-card {
+    padding: 1.25rem;
+  }
 }
 
 /* Apercu du livrable de diagnostic (page Offres). */
