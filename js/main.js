@@ -7,34 +7,44 @@
     (n.className += t + "touch");
 })(window, document);
 
-// Minimal, robust tab switching for all pages
-$(function() {
-  $('.w-tab-link').on('click', function(e) {
-    e.preventDefault();
-    var $clicked = $(this);
-    var tab = $clicked.attr('data-w-tab');
-    var $tabs = $clicked.closest('.w-tabs');
-    var $links = $tabs.find('.w-tab-link');
-    var $panes = $tabs.find('.w-tab-pane');
-    $links.removeClass('w--current');
-    $clicked.addClass('w--current');
-    $panes.removeClass('w--tab-active');
-    $panes.filter('[data-w-tab="' + tab + '"]').addClass('w--tab-active');
-  });
-  // On load, ensure only one tab is active
-  $('.w-tabs').each(function() {
-    var $tabs = $(this);
-    var $links = $tabs.find('.w-tab-link');
-    var $panes = $tabs.find('.w-tab-pane');
-    var $current = $links.filter('.w--current');
-    if ($current.length === 0) {
-      $links.first().addClass('w--current');
-      $panes.removeClass('w--tab-active');
-      $panes.first().addClass('w--tab-active');
+// main.js est charge sans defer sur la plupart des pages : attendre le DOM.
+function whenDomReady(fn) {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fn);
+  } else {
+    fn();
+  }
+}
+
+// Onglets (pages EN) : un seul panneau actif par groupe .w-tabs
+whenDomReady(function () {
+  document.querySelectorAll('.w-tabs').forEach(function (tabs) {
+    var links = tabs.querySelectorAll('.w-tab-link');
+    var panes = tabs.querySelectorAll('.w-tab-pane');
+    if (!links.length) return;
+
+    function activate(link) {
+      var tab = link.getAttribute('data-w-tab');
+      links.forEach(function (l) { l.classList.toggle('w--current', l === link); });
+      panes.forEach(function (p) {
+        p.classList.toggle('w--tab-active', p.getAttribute('data-w-tab') === tab);
+      });
+    }
+
+    links.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        activate(link);
+      });
+    });
+
+    // Au chargement, garantir un onglet actif
+    if (!tabs.querySelector('.w-tab-link.w--current')) {
+      links[0].classList.add('w--current');
+      panes.forEach(function (p, i) { p.classList.toggle('w--tab-active', i === 0); });
     }
   });
 });
-
 
   // GSAP horizontal scroll for about page orange section carousel
   if (window.gsap && window.ScrollTrigger && document.querySelector('.carousel-track')) {
@@ -57,98 +67,80 @@ $(function() {
   }
 
 
-$(document).ready(function(){
-  // Portfolio Accordion Script
-  // Selects accordion links within sections having an ID starting with "automatisation-portfolio" or "ai-tools-portfolio"
-  // This makes it reusable if you add a similar accordion to the AI tools page.
-  $(".portfolio-section .accordion .accordion-trigger").each(function() {
-    $(this).attr('aria-expanded', $(this).hasClass('active') ? 'true' : 'false');
-  });
+// Accordeon des sections .portfolio-section : un seul panneau ouvert a la fois.
+// Fermeture 1000 ms, ouverture 800 ms (courbes easeOutQuart / easeOutCubic).
+(function () {
+  var EASE_CLOSE = 'cubic-bezier(0.25, 1, 0.5, 1)';
+  var EASE_OPEN = 'cubic-bezier(0.33, 1, 0.68, 1)';
+  var reduceMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  $(".portfolio-section .accordion .accordion-trigger").on("click", function(e){
-    const $this = $(this);
-    const $content = $this.siblings(".content");
-    const $accordion = $this.closest('.accordion');
-    const $item = $this.closest('.accordion-item');
-
-    const wasActive = $this.hasClass("active");
-
-    // Remove .active and .open from all items in this accordion
-    $accordion.find('.accordion-trigger.active').removeClass("active");
-    $accordion.find('.accordion-item.open').removeClass("open");
-    
-    // Instead of simple slideUp, create a more elegant animation
-    $accordion.find('.content').each(function() {
-      const $thisContent = $(this);
-      if ($thisContent.is(':visible')) {
-        $thisContent.css('overflow', 'hidden')
-          .animate({
-            height: 0,
-            opacity: 0,
-            paddingTop: 0,
-            paddingBottom: 0
-          }, {
-            duration: 1000,
-            easing: 'easeOutQuart',
-            complete: function() {
-              $(this).hide().css({
-                height: '',
-                opacity: '',
-                paddingTop: '',
-                paddingBottom: '',
-                overflow: ''
-              });
-            }
-          });
-      }
-    });
-
-    // Etat annonce aux technologies d'assistance : tous fermes, puis celui-ci si on l'ouvre.
-    $accordion.find('.accordion-trigger').attr('aria-expanded', 'false');
-
-    if (!wasActive) {
-      $this.addClass("active");
-      $item.addClass("open");
-      $this.attr('aria-expanded', 'true');
-      
-      // Instead of simple slideDown, create a more elegant animation
-      $content.css({
-        display: 'block',
-        height: 0,
-        opacity: 0,
-        paddingTop: 0,
-        paddingBottom: 0,
-        overflow: 'hidden'
-      }).animate({
-        height: $content[0].scrollHeight,
-        opacity: 1,
-        paddingTop: '',
-        paddingBottom: ''
-      }, {
-        duration: 800,
-        easing: 'easeOutCubic',
-        complete: function() {
-          $(this).css({
-            height: '',
-            overflow: ''
-          });
-        }
-      });
-    }
-  });
-
-  // Add easing functions if not already included with jQuery
-  if (typeof $.easing.easeOutCubic !== 'function') {
-    $.extend($.easing, {
-      easeOutCubic: function (x, t, b, c, d) {
-        return c * ((t = t / d - 1) * t * t + 1) + b;
-      },
-      easeOutQuart: function (x, t, b, c, d) {
-        return -c * ((t = t / d - 1) * t * t * t - 1) + b;
-      }
-    });
+  function stopAnimations(el) {
+    if (el.getAnimations) el.getAnimations().forEach(function (a) { a.cancel(); });
   }
-});
+
+  function closePanel(content) {
+    stopAnimations(content);
+    if (getComputedStyle(content).display === 'none') return;
+    if (reduceMotion || !content.animate) {
+      content.removeAttribute('style');
+      return;
+    }
+    var cs = getComputedStyle(content);
+    var from = { height: cs.height, opacity: 1, paddingTop: cs.paddingTop, paddingBottom: cs.paddingBottom };
+    content.style.display = 'block';
+    content.style.overflow = 'hidden';
+    content.animate([from, { height: '0px', opacity: 0, paddingTop: '0px', paddingBottom: '0px' }],
+      { duration: 1000, easing: EASE_CLOSE })
+      .onfinish = function () { content.removeAttribute('style'); };
+  }
+
+  function openPanel(content) {
+    stopAnimations(content);
+    content.style.display = 'block';
+    if (reduceMotion || !content.animate) return;
+    var cs = getComputedStyle(content);
+    var to = { height: cs.height, opacity: 1, paddingTop: cs.paddingTop, paddingBottom: cs.paddingBottom };
+    content.style.overflow = 'hidden';
+    content.animate([{ height: '0px', opacity: 0, paddingTop: '0px', paddingBottom: '0px' }, to],
+      { duration: 800, easing: EASE_OPEN })
+      .onfinish = function () { content.style.overflow = ''; };
+  }
+
+  whenDomReady(function () {
+    document.querySelectorAll('.portfolio-section .accordion').forEach(function (accordion) {
+      var triggers = accordion.querySelectorAll('.accordion-trigger');
+
+      triggers.forEach(function (trigger) {
+        trigger.setAttribute('aria-expanded', trigger.classList.contains('active') ? 'true' : 'false');
+
+        trigger.addEventListener('click', function () {
+          var item = trigger.closest('.accordion-item');
+          var content = item && item.querySelector('.content');
+          var wasActive = trigger.classList.contains('active');
+
+          // Tout fermer, puis rouvrir celui-ci s'il etait ferme
+          triggers.forEach(function (t) {
+            t.classList.remove('active');
+            t.setAttribute('aria-expanded', 'false');
+            var it = t.closest('.accordion-item');
+            if (it) it.classList.remove('open');
+          });
+          accordion.querySelectorAll('.content').forEach(function (c) {
+            if (c !== content || wasActive) closePanel(c);
+          });
+
+          if (!wasActive && content) {
+            trigger.classList.add('active');
+            trigger.setAttribute('aria-expanded', 'true');
+            item.classList.add('open');
+            openPanel(content);
+          }
+        });
+      });
+    });
+  });
+})();
 
 // ============================================
 // Hamburger menu - SIMPLE & RELIABLE VERSION
