@@ -45,6 +45,7 @@ Pour harmoniser une autre page, réutiliser les classes ci-dessous. N'inventer n
 | Bouton centré | `div.cta-centered > a.button.w-button` | pleine largeur en mobile |
 | FAQ, démonstrateurs | `section.portfolio-section > .container.small-container > .accordion > .accordion-item > button.accordion-trigger` | bordure orange 2 px, en-tête orange quand il est ouvert ; `aria-expanded`, animation et réduction des animations gérées par `js/main.js` |
 | Badge | `span.demo-badge` | pastille bleu nuit en capitales |
+| Statut de mission | `p.case-status` (réalisé, plein) / `.case-status-ongoing` (en cours, contour), au-dessus du H3 d'une `.case-card` | valeurs de `.demo-badge` ; défini dans `solutions-ia-entreprise.css` |
 
 ## Réactif
 

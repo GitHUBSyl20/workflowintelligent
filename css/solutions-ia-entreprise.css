@@ -14,9 +14,18 @@
   margin-bottom: 0.75rem;
 }
 
-@media (min-width: 768px) {
-  .solutions-hero .hero-facts {
-    flex-wrap: nowrap;
+/* Mention du diagnostic sous les boutons : lien blanc souligné sur le fond orange */
+.solutions-hero .hero-reassurance a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .solutions-hero .hero-reassurance {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -39,13 +48,58 @@
   max-width: 44rem;
 }
 
-/* Démonstrateurs sur fond gris : les en-têtes d'accordéon restent sur carte blanche */
+/* Accordéon sur fond gris : en-têtes sur carte blanche.
+   Sans usage tant que les démonstrateurs sont retirés (docs/demonstrateurs/) ; conservé pour leur retour. */
 .methode-section .accordion-item {
   background: #fff;
 }
 
+/* Exemples intégrés aux cartes de solutions : calés en bas, séparés par le filet des pieds de carte */
+.case-card .example-facts {
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid #eee;
+}
+
+/* Statut des missions, affiché au-dessus du titre (valeurs de .demo-badge).
+   Plein : réalisé. Contour : en cours. */
+.case-card .case-status {
+  align-self: flex-start;
+  display: inline-block;
+  margin: 0 0 0.75rem 0 !important;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid #192a56;
+  border-radius: 999px;
+  background: #192a56;
+  color: #fff;
+  font-size: 0.78rem !important;
+  font-weight: 700;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.case-card .case-status-ongoing {
+  background: #fff;
+  color: #192a56;
+}
+
+/* Coordonnées sous le dernier bouton */
+.final-cta-note a {
+  color: #d63c13;
+  font-weight: 600;
+}
+
+/* Focus clavier visible sur les liens et boutons du contenu */
+main a:focus-visible,
+.solutions-hero a:focus-visible {
+  outline: 2px solid #192a56;
+  outline-offset: 2px;
+}
+
 /* Ancres : compenser la navigation collante */
 main section[id],
+.section-head[id],
 .case-card[id] {
   scroll-margin-top: 80px;
 }
