@@ -1908,3 +1908,13 @@ header .utility-aspect-4x3 {
 .main-navbar .nav-cta:after {
   display: none !important;
 }
+
+/* Typographie : pas de mot seul sur la dernière ligne d'un paragraphe ou d'un titre.
+   Navigateurs sans prise en charge : retour à la ligne habituel, sans autre effet. */
+p, li, dt, dd, blockquote, figcaption, label, td, th {
+  text-wrap: pretty;
+}
+
+h3, h4, h5, h6 {
+  text-wrap: balance;
+}
