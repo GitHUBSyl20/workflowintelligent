@@ -1,0 +1,6 @@
+# Restes de l'export Webflow et outils de debug : gardes dans le depot,
+# mais jamais publies sur le site.
+backup_webflow
+debug-assets.js
+temp_replace.py
+.cursor

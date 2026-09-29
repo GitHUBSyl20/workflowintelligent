@@ -1,14 +1,3 @@
-
-// WebFont Loader
-if (window.WebFont) {
-  WebFont.load({
-    google: {
-      families: [
-        "Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic",
-      ],
-    },
-  });
-}
 // Webflow Touch Detection
 (function (o, c) {
   var n = c.documentElement,
@@ -17,59 +6,6 @@ if (window.WebFont) {
   ("ontouchstart" in o || (o.DocumentTouch && c instanceof DocumentTouch)) &&
     (n.className += t + "touch");
 })(window, document);
-
-function onReady(fn) {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', fn);
-  } else {
-    fn();
-  }
-}
-
-onReady(function() {
-  var $tabLinks = $('.w-tab-link');
-  var $tabMenus = $('.w-tab-menu');
-  var $tabPanes = $('.w-tab-pane');
-  var $tabs = $('.w-tabs');
-
-  $tabLinks.each(function(i, el) {
-  });
-
-  $tabMenus.each(function(i, el) {
-  });
-
-  $tabPanes.each(function(i, el) {
-  });
-
-  $tabs.each(function(i, el) {
-  });
-
-  $tabLinks.on('click', function(e) {
-  });
-
-  // Hide Webflow "Made in Webflow" badge if present
-  (function () {
-    "use strict";
-    function hideWebflowBadge() {
-      const selectors = [
-        ".w-webflow-badge",
-        '[class*="webflow-badge"]',
-        '[class*="made-in-webflow"]',
-      ];
-      selectors.forEach((selector) => {
-        document.querySelectorAll(selector).forEach((el) => {
-          el.style.display = "none";
-        });
-      });
-    }
-    // Use MutationObserver to hide badge if it appears later
-    const observer = new MutationObserver(hideWebflowBadge);
-    observer.observe(document.body, { childList: true, subtree: true });
-    // Initial call
-    hideWebflowBadge();
-  })();
-
-});
 
 // Minimal, robust tab switching for all pages
 $(function() {
@@ -99,35 +35,6 @@ $(function() {
   });
 });
 
-
-
-  // GSAP animation for feature cards
-  if (window.gsap && document.querySelector('.feature-card')) {
-    // Register ScrollTrigger if available
-    if (window.gsap.registerPlugin && window.ScrollTrigger) {
-      window.gsap.registerPlugin(window.ScrollTrigger);
-    }
-    
-    // Build animation config
-    const animationConfig = {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      stagger: 0.18,
-      ease: 'power2.out'
-    };
-    
-    // Only add scrollTrigger if the plugin is available
-    if (window.ScrollTrigger) {
-      animationConfig.scrollTrigger = {
-        trigger: '.feature-cards-section',
-        start: 'top 80%',
-        once: true
-      };
-    }
-    
-    gsap.to('.feature-card', animationConfig);
-  }
 
   // GSAP horizontal scroll for about page orange section carousel
   if (window.gsap && window.ScrollTrigger && document.querySelector('.carousel-track')) {
@@ -447,46 +354,4 @@ document.addEventListener('DOMContentLoaded', function() {
       link.classList.remove('active');
     }
   });
-});
-
-window.addEventListener('DOMContentLoaded', () => {
-  // Feature cards initialization
-  const cards = document.querySelectorAll('.feature-card');
-  
-  cards.forEach((card, idx) => {
-    const style = window.getComputedStyle(card);
-    // Initialize feature cards if needed
-  });
-});
-
-// Modal functionality
-function openModal() {
-  const modal = document.getElementById('imageModal');
-  if (modal) {
-    modal.style.display = 'block';
-    const modalImage = document.getElementById('modalImage');
-    const caption = document.getElementById('caption');
-    if (modalImage) modalImage.src = '/assets/Demo-relance.png';
-    if (caption) caption.innerHTML = 'Exemple d\'alerte déclenchée automatiquement par retard de paiement';
-  }
-}
-
-function closeModal() {
-  const modal = document.getElementById('imageModal');
-  if (modal) {
-    modal.style.display = 'none';
-  }
-}
-
-// Event listener to close the modal
-document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.getElementById('imageModal');
-  if (modal) {
-    // Close modal on escape key press
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        closeModal();
-      }
-    });
-  }
 });
