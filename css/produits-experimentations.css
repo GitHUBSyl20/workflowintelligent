@@ -1,0 +1,580 @@
+/* =========================
+   Projets & créations (produits-experimentations.html)
+   Reprend la charte du site : orange #FF4B1F, bleu nuit #192a56, Lato,
+   cartes blanches, radius 10-16px. Seul clin d'œil musical : la portée
+   discrète en bas du bandeau.
+   ========================= */
+
+/* ---------- Hero ---------- */
+.pc-hero {
+  position: relative;
+}
+
+/* Cinq lignes fines en bas du bandeau, comme une portée. */
+.pc-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.5rem;
+  height: 33px;
+  background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.22) 0 1px, transparent 1px 8px);
+  pointer-events: none;
+}
+
+.pc-hero .container {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 2.5rem;
+}
+
+.pc-hero .hero-lede {
+  max-width: 44rem;
+}
+
+.pc-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+  margin: 1.5rem 0 0 0;
+  padding: 0;
+}
+
+.pc-jump a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.4rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #192a56;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.pc-jump a:hover {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+/* ---------- Sections projet ---------- */
+.pc-project {
+  scroll-margin-top: 5rem;
+}
+
+.pc-project-alt {
+  background: #f8f9fa;
+}
+
+.pc-project-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  grid-template-areas:
+    "head visual"
+    "body visual";
+  grid-template-rows: auto 1fr;
+  column-gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.pc-project-grid-reverse {
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  grid-template-areas:
+    "visual head"
+    "visual body";
+}
+
+.pc-project-head {
+  grid-area: head;
+}
+
+.pc-project-body {
+  grid-area: body;
+}
+
+.pc-project-visual {
+  grid-area: visual;
+  align-self: start;
+  position: sticky;
+  top: 6rem;
+}
+
+.pc-kicker {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary-dark, #d63c13);
+}
+
+.pc-project .h2-heading {
+  margin: 0 0 0.6rem 0;
+}
+
+.pc-tagline {
+  margin: 0 0 1.75rem 0;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  line-height: 1.45;
+  font-weight: 700;
+  color: var(--color-complementary, #192a56);
+}
+
+.pc-story {
+  margin: 0 0 1.5rem 0;
+}
+
+.pc-story div + div {
+  margin-top: 1rem;
+}
+
+.pc-story dt,
+.pc-subtitle,
+.pc-shows-label {
+  margin: 0 0 0.3rem 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--color-complementary, #192a56);
+}
+
+.pc-story dd {
+  margin: 0;
+  line-height: 1.65;
+  color: var(--color-text-light, #444);
+}
+
+.pc-features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem 1.5rem;
+  list-style: none;
+  margin: 0.5rem 0 1.5rem 0;
+  padding: 0;
+}
+
+.pc-features li {
+  position: relative;
+  padding-left: 1.4rem;
+  line-height: 1.5;
+  color: var(--color-text, #222);
+}
+
+.pc-features li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--color-primary, #FF4B1F);
+}
+
+.pc-audience {
+  margin: 0 0 1.5rem 0;
+  line-height: 1.65;
+  color: var(--color-text-light, #444);
+}
+
+.pc-audience strong {
+  color: var(--color-complementary, #192a56);
+}
+
+.pc-shows {
+  margin: 0 0 1rem 0;
+}
+
+.pc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0.4rem 0 0 0;
+  padding: 0;
+}
+
+.pc-tags li {
+  padding: 0.25rem 0.7rem;
+  border: 1px solid #d9deea;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--color-complementary, #192a56);
+}
+
+.pc-tech {
+  margin: 0 0 1.5rem 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.pc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.pc-actions .button {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pc-actions-center {
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.pc-status {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+.pc-status::before {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.45rem;
+  border-radius: 50%;
+  background: #f0b429;
+  vertical-align: 0.05em;
+}
+
+/* ---------- Cadres d'appareils ---------- */
+.pc-phone,
+.pc-browser {
+  margin: 0;
+}
+
+.pc-phone {
+  overflow: hidden;
+  border: 8px solid #14171f;
+  border-radius: 2rem;
+  background: #14171f;
+  box-shadow: 0 18px 40px rgba(25, 42, 86, 0.22);
+}
+
+.pc-phone img,
+.pc-browser img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pc-browser {
+  overflow: hidden;
+  border: 1px solid #dfe3ec;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(25, 42, 86, 0.16);
+}
+
+.pc-browser-bar {
+  display: flex;
+  gap: 6px;
+  padding: 10px 12px;
+  background: #eef0f4;
+  border-bottom: 1px solid #dfe3ec;
+}
+
+.pc-browser-bar span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #c9ceda;
+}
+
+/* Deux téléphones décalés (Ear Trainer). */
+.pc-visual-phones {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1rem 0 2rem 0;
+}
+
+.pc-visual-phones .pc-phone {
+  width: min(46%, 270px);
+}
+
+.pc-phone-back {
+  margin-top: 3.5rem;
+  margin-right: -1.5rem;
+  opacity: 0.92;
+  transform: rotate(-3deg);
+}
+
+.pc-phone-front {
+  position: relative;
+  z-index: 1;
+  transform: rotate(2deg);
+}
+
+/* Navigateur + téléphone en surimpression (Trove, concours). */
+.pc-visual-desktop,
+.pc-case-visual {
+  position: relative;
+  padding-bottom: 2.5rem;
+}
+
+.pc-visual-desktop .pc-browser,
+.pc-case-visual .pc-browser {
+  width: 88%;
+}
+
+.pc-phone-overlap {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 26%;
+  max-width: 190px;
+  border-width: 6px;
+  border-radius: 1.4rem;
+}
+
+/* ---------- Étude de cas ---------- */
+.pc-case-head {
+  max-width: 48rem;
+  margin: 0 auto 2.5rem auto;
+  text-align: center;
+}
+
+.pc-case-visual {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.pc-case-visual .pc-phone-overlap {
+  width: 22%;
+}
+
+.pc-case-steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.25rem;
+  list-style: none;
+  counter-reset: pc-step;
+  margin: 3rem 0 0 0;
+  padding: 0;
+}
+
+.pc-case-steps li {
+  counter-increment: pc-step;
+  position: relative;
+  padding: 1.25rem 0 0 0;
+  border-top: 3px solid #dfe3ec;
+}
+
+.pc-case-steps li::before {
+  content: "0" counter(pc-step);
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-primary-dark, #d63c13);
+}
+
+.pc-case-steps h3 {
+  margin: 0 0 0.4rem 0;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  color: var(--color-complementary, #192a56);
+}
+
+.pc-case-steps p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-light, #444);
+}
+
+.pc-case-steps .pc-case-result {
+  border-top-color: var(--color-primary, #FF4B1F);
+}
+
+.pc-case-steps .pc-case-result p {
+  font-weight: 700;
+  color: var(--color-text, #222);
+}
+
+/* ---------- Façon de travailler ---------- */
+.pc-approach {
+  background: #f8f9fa;
+}
+
+.pc-approach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  counter-reset: pc-approach;
+  margin: 0;
+  padding: 0;
+}
+
+.pc-approach-grid li {
+  counter-increment: pc-approach;
+  padding: 1.75rem 1.5rem;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 18px rgba(25, 42, 86, 0.07);
+}
+
+.pc-approach-grid li::before {
+  content: counter(pc-approach);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-bottom: 0.9rem;
+  border-radius: 50%;
+  background: var(--color-primary, #FF4B1F);
+  color: #fff;
+  font-weight: 700;
+}
+
+.pc-approach-grid h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.15rem;
+  line-height: 1.3;
+  color: var(--color-complementary, #192a56);
+}
+
+.pc-approach-grid p {
+  margin: 0;
+  line-height: 1.65;
+  color: var(--color-text-light, #444);
+}
+
+/* ---------- Transition finale ---------- */
+.pc-final .final-cta-secondary {
+  margin-top: 1.25rem;
+}
+
+/* ---------- Focus clavier ---------- */
+.pc-jump a:focus-visible,
+.pc-project a:focus-visible,
+.pc-approach a:focus-visible {
+  outline: 3px solid #192a56;
+  outline-offset: 3px;
+}
+
+/* ---------- Animations sobres ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .pc-phone,
+  .pc-browser {
+    transition: transform 0.35s ease;
+  }
+
+  .pc-phone-front:hover {
+    transform: rotate(0deg) translateY(-4px);
+  }
+}
+
+/* ---------- Tablette ---------- */
+@media (max-width: 991px) {
+  .pc-project-grid,
+  .pc-project-grid-reverse {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "head"
+      "visual"
+      "body";
+    grid-template-rows: auto;
+  }
+
+  .pc-project-visual {
+    position: relative;
+    top: auto;
+    max-width: 36rem;
+    width: 100%;
+    margin: 0 auto 2.5rem auto;
+  }
+
+  .pc-case-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .pc-case-steps .pc-case-result {
+    grid-column: 1 / -1;
+  }
+
+  .pc-approach-grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 767px) {
+  .pc-hero::after {
+    bottom: 0.75rem;
+  }
+
+  .pc-jump {
+    justify-content: center;
+  }
+
+  .pc-tagline {
+    margin-bottom: 1.25rem;
+  }
+
+  .pc-features {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pc-visual-phones .pc-phone {
+    width: 50%;
+  }
+
+  .pc-phone-back {
+    margin-top: 2.5rem;
+    margin-right: -1rem;
+  }
+
+  .pc-visual-desktop .pc-browser,
+  .pc-case-visual .pc-browser {
+    width: 90%;
+  }
+
+  .pc-phone-overlap,
+  .pc-case-visual .pc-phone-overlap {
+    width: 30%;
+    border-width: 4px;
+    border-radius: 1rem;
+  }
+
+  .pc-case-head {
+    text-align: left;
+  }
+
+  .pc-case-steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pc-actions {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .pc-actions .button {
+    width: 100%;
+  }
+}
