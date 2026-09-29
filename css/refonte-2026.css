@@ -974,6 +974,18 @@
 .hero-no-visual .hero-lede,
 .hero-no-visual .hero-reassurance { max-width: 48rem; }
 
+/* Bandeau centré (accueil) : titre sur une ligne dès 992px, équilibré en dessous */
+.hero-centered { text-align: center; }
+.hero-centered .h1-heading,
+.hero-centered .hero-subtitle { text-wrap: balance; }
+.hero-centered .hero-subtitle,
+.hero-centered .hero-lede { max-width: 48rem; margin-left: auto; margin-right: auto; }
+.hero-centered .hero-actions { justify-content: center; }
+@media (min-width: 992px) {
+  /* Le titre mesure ~28,7 fois sa taille de police : 3vw tient dans les 90vw du conteneur */
+  .hero-centered .h1-heading { font-size: min(3vw, 2.75rem); }
+}
+
 /* Segment de titre à garder sur une ligne dès que la largeur le permet */
 @media (min-width: 768px) {
   .h1-nowrap { white-space: nowrap; }
