@@ -108,34 +108,23 @@
     </div>
   </nav>
 
-  <!-- HERO -->
-  <header class="section utility-overflow-clip accent-primary-section solutions-hero">
+  <!-- HERO — fond clair : titre, explication, action principale, lien secondaire.
+       Le prix, le délai et le cadrage du diagnostic sont dans la section #diagnostic.
+       Sans la classe accent-primary-section : le menu mobile garde sa couleur (js/main.js). -->
+  <header class="section solutions-hero">
     <div class="container">
-      <div class="w-layout-grid grid-layout tablet-1-column grid-gap-lg hero-no-visual">
-        <div id="w-node-cffaef48-2b4e-5eda-7d8d-768fd6d4b66f-d6d4b66c"
-          class="w-node-_73829c4d-cafe-414e-5a5e-48334fdb3ae2-5231dd07">
-          <h1 class="h1-heading"><span class="h1-line-break h1-nowrap">Moins de recherches et de ressaisies.</span> Plus de temps pour votre activité.</h1>
-          <p class="hero-subtitle">
-            Vos équipes cherchent des informations, recopient des données ou passent d'un outil à l'autre&nbsp;?
-          </p>
-          <p class="hero-lede">
-            J'identifie avec vous ce qui peut être simplifié, puis je conçois et déploie la solution adaptée :
-            accès à vos documents, automatisation de tâches ou outil métier.
-          </p>
-          <!-- Demande generale : sans parametre, le formulaire ne preselectionne aucun type de demande. -->
-          <div class="hero-actions">
-            <a href="/contact-devis#contact-form" class="button w-button">Parlons de votre besoin</a>
-            <a href="#preuves" class="button secondary-button-on-accent-primary w-button">Voir les missions et projets</a>
-          </div>
-          <p class="hero-reassurance">
-            Un premier échange permet de préciser votre situation. Si un diagnostic est pertinent, son périmètre et
-            son calendrier sont confirmés avant le démarrage.
-          </p>
-          <p class="hero-reassurance">
-            Diagnostic de 2 à 3 processus : 690&nbsp;€ HT, recommandations prévues sous 5 à 7 jours.
-            <a href="#diagnostic">Voir le diagnostic</a>
-          </p>
+      <div class="solutions-hero-inner">
+        <h1 class="h1-heading"><span class="h1-line-break h1-nowrap">Moins de recherches et de ressaisies.</span> Plus de temps pour votre activité.</h1>
+        <p class="solutions-hero-lede">
+          Je vous aide à retrouver vos informations, connecter vos outils et automatiser vos tâches, avec des
+          solutions adaptées à votre activité.
+        </p>
+        <!-- Demande generale : sans parametre, le formulaire ne preselectionne aucun type de demande. -->
+        <div class="solutions-hero-actions">
+          <a href="/contact-devis#contact-form" class="button w-button solutions-hero-cta">Parlons de votre besoin</a>
+          <a href="#preuves" class="solutions-hero-link">Voir les missions et projets</a>
         </div>
+        <p class="solutions-hero-note">Premier échange gratuit de 30&nbsp;minutes pour présenter votre situation.</p>
       </div>
     </div>
   </header>
@@ -355,7 +344,7 @@
         </div>
 
         <p class="formats-note">
-          Un premier échange permet de vérifier que ce format correspond à votre situation. Le diagnostic est une
+          Un premier échange gratuit de 30&nbsp;minutes permet de vérifier que ce format correspond à votre situation. Le diagnostic est une
           prestation payante distincte de cet échange. Il ne vous engage pas à commander un développement.
           <br>
           <a href="/tarifs-prestations#diagnostic">Voir le contenu du diagnostic</a>

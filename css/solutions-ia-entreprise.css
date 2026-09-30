@@ -5,27 +5,131 @@
    refonte-2026.css définit plus étroits pour l'accueil.
    ========================= */
 
-/* Bandeau : même rythme que .formation-hero */
+/* =========================
+   Bandeau d'introduction — fond clair, titre sombre, orange réservé au bouton et au filet.
+   Toutes les règles sont préfixées .solutions-hero : aucune autre page n'est concernée.
+   Les !important ne font que contrer ceux de responsive-overrides.css (marges h1/p en mobile).
+   ========================= */
 .solutions-hero {
-  padding-bottom: 2.5rem;
+  background: #fff;
+  color: #222;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.solutions-hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  max-width: 50rem;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* Filet orange au-dessus du titre, même épaisseur que le liseré des cartes */
+.solutions-hero-inner::before {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 4px;
+  border-radius: 2px;
+  background: #FF4B1F;
 }
 
 .solutions-hero .h1-heading {
-  margin-bottom: 0.75rem;
+  margin: 0 !important;
+  color: #0a0a0a;
+  font-size: clamp(1.9rem, 1.1rem + 2.6vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-align: left;
+  hyphens: manual;
 }
 
-/* Mention du diagnostic sous les boutons : lien blanc souligné sur le fond orange */
-.solutions-hero .hero-reassurance a {
+.solutions-hero-lede {
+  margin: 0 !important;
+  max-width: 36rem;
+  font-size: clamp(1.05rem, 1rem + 0.35vw, 1.2rem) !important;
+  line-height: 1.6;
+  color: #444;
+}
+
+.solutions-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.75rem;
+  margin-top: 0.5rem;
+}
+
+/* Mention sous les actions : discrète, gris lisible sur blanc */
+.solutions-hero-note {
+  margin: -0.5rem 0 0 0 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* Bouton principal : orange foncé de la charte, contraste AA avec le texte blanc */
+.solutions-hero .solutions-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  background-color: #d63c13;
   color: #fff;
   font-weight: 600;
+}
+
+.solutions-hero .solutions-hero-cta:hover {
+  background-color: #b3300d;
+  color: #fff;
+}
+
+/* Lien secondaire : texte bleu nuit souligné, sans fond ni bordure */
+.solutions-hero-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #192a56;
+  font-weight: 600;
   text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.solutions-hero-link:hover {
+  color: #d63c13;
 }
 
 @media (max-width: 767px) {
-  .solutions-hero .hero-reassurance {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+  .solutions-hero {
+    padding-top: 2rem;
+    padding-bottom: 2.25rem;
+  }
+
+  .solutions-hero-inner {
+    gap: 1rem;
+  }
+
+  .solutions-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .solutions-hero .solutions-hero-cta {
+    width: 100%;
+    max-width: 24rem;
+  }
+
+  .solutions-hero-link {
+    justify-content: flex-start;
   }
 }
 
