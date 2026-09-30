@@ -33,6 +33,7 @@
   <link href="css/responsive-overrides.css" rel="stylesheet" type="text/css" />
   <link href="css/clean-shared.css" rel="stylesheet" type="text/css" />
   <link href="css/footer.css" rel="stylesheet" type="text/css" />
+  <link href="css/contact-devis.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet" />
@@ -132,26 +133,32 @@
       </div>
   </header>
 
-  <section class="section" style="padding-bottom: 0.9rem; padding-top: 0.9rem; margin-top: 0;">
-      <h2 class="h3-heading" style="margin-top: 1.5rem;">Un premier échange pour préciser votre besoin</h2>
-      <p class="paragraph-3">
-        Vous pouvez réserver un premier échange gratuit pour présenter votre situation et vérifier quel
-        accompagnement serait pertinent.
-      </p>
-      <p class="paragraph-3">
-        Le <a href="/tarifs-prestations#diagnostic">diagnostic IA et automatisation</a> est une prestation distincte,
-        proposée à 690&nbsp;€ HT sur un périmètre convenu. Il fait l'objet d'une confirmation avant le démarrage.
-      </p>
-      <p class="paragraph-3">
-        Vous pouvez également me contacter par email ou téléphone.
-      </p>
-    <div class="contact-direct" style="margin-top: 1rem; margin-bottom: 1.5rem;">
-      <p class="paragraph-3" style="margin-bottom: 0.5rem; font-weight: 600;">Me joindre directement</p>
-      <p class="paragraph-3" style="margin: 0;">
-        <a href="mailto:contact@workflowintelligent.fr" style="color: var(--color-primary, #FF4B1F); text-decoration: none;">contact@workflowintelligent.fr</a>
-        <span style="margin: 0 0.75rem; color: #999;">·</span>
-        <a href="tel:+33670092941" style="color: var(--color-primary, #FF4B1F); text-decoration: none;">06 70 09 29 41</a>
-      </p>
+  <section class="section contact-intro-section">
+    <!-- Deux colonnes : explication a gauche, coordonnees a droite (une colonne en mobile). -->
+    <div class="container contact-intro">
+      <div class="contact-intro-text">
+        <h2 class="h3-heading">Un premier échange pour préciser votre besoin</h2>
+        <p>
+          Vous pouvez réserver un premier échange gratuit pour présenter votre situation et vérifier quel
+          accompagnement serait pertinent.
+        </p>
+        <p>
+          Le <a href="/tarifs-prestations#diagnostic">diagnostic IA et automatisation</a> est une prestation distincte,
+          proposée à 690&nbsp;€ HT sur un périmètre convenu. Il fait l'objet d'une confirmation avant le démarrage.
+        </p>
+        <p>
+          Vous pouvez également me contacter par email ou téléphone.
+        </p>
+      </div>
+      <aside class="contact-direct" aria-labelledby="contact-direct-title">
+        <h3 id="contact-direct-title" class="contact-direct-title">Me joindre directement</h3>
+        <ul class="contact-direct-list" role="list">
+          <li><span class="contact-direct-label">Email</span>
+            <a href="mailto:contact@workflowintelligent.fr">contact@workflowintelligent.fr</a></li>
+          <li><span class="contact-direct-label">Téléphone</span>
+            <a href="tel:+33670092941">06&nbsp;70&nbsp;09&nbsp;29&nbsp;41</a></li>
+        </ul>
+      </aside>
     </div>
     <div class="w-layout-blockcontainer w-container">
       <div class="code-embed w-embed w-script">
