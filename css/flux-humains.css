@@ -1,0 +1,380 @@
+/* =========================
+   Flux humains — reprise graphique (Accueil, Solutions, Formation,
+   Diagnostic, À propos, Contact).
+   Feuille chargée en dernier sur ces six pages uniquement : la retirer
+   des <head> suffit à revenir à l'état précédent.
+   Aucun contenu : décors en pseudo-éléments (ignorés des technologies
+   d'assistance), couleurs, bordures, ombres, espacements, états.
+   ========================= */
+
+:root {
+  --flux-orange: #FF4B1F;
+  --flux-orange-edge-start: #F2481D;
+  --flux-orange-edge-end: #F34A20;
+  --flux-orange-deep: #B93614;       /* boutons sur fond clair, texte blanc 5,8:1 */
+  --flux-orange-deeper: #A02E10;     /* survol */
+  --flux-orange-ink: #AE3213;        /* texte des boutons blancs sur orange 6,4:1 */
+  --flux-warm-white: #FFF4E9;
+  --flux-brown: #281A13;             /* petit texte sur orange : 4,6:1 au bord le plus sombre */
+  --flux-surface: #FFF8F4;           /* sections de méthode */
+  --flux-surface-soft: #FFFAF7;      /* blocs clairs dans une section blanche */
+  --flux-card-border: #EADFD9;
+  --flux-card-shadow: 0 4px 16px rgba(74, 35, 20, 0.05);
+  --flux-line: #DED5D0;
+  --flux-ease: 160ms ease;
+}
+
+/* =========================
+   1. Bandeaux orange
+   ========================= */
+
+/* Motifs (traits 1,25 px, blanc chaud à 20 %, points de 6 px, 3 au plus par bandeau).
+   Groupe gauche : 1 point. Groupe droit : 2 points. */
+header.accent-primary-section,
+header.about-header {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--flux-orange);
+  background-image: linear-gradient(100deg,
+    var(--flux-orange-edge-start) 0%,
+    var(--flux-orange) 24%,
+    var(--flux-orange) 76%,
+    var(--flux-orange-edge-end) 100%);
+}
+
+header.accent-primary-section::before,
+header.accent-primary-section::after,
+header.about-header::before,
+.solutions-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+}
+
+/* Ordinateur : deux groupes confinés aux marges latérales. La largeur suit la
+   marge réellement libre à côté du texte (≈ 1000 px de contenu) ; le motif est
+   rogné côté texte plutôt que de s'en approcher. */
+@media (min-width: 1100px) {
+  header.accent-primary-section::before {
+    left: 0;
+    bottom: 0;
+    width: clamp(0px, calc((100vw - 1000px) / 2), 200px);
+    height: 180px;
+    background-position: left bottom;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='180' viewBox='0 0 200 180' fill='none'%3E%3Cg stroke='%23FFF4E9' stroke-opacity='.2' stroke-width='1.25' stroke-linecap='round'%3E%3Cpath d='M-4 176C26 150 40 118 76 100C108 84 132 66 140 34'/%3E%3Cpath d='M76 100C98 112 128 134 176 142'/%3E%3Cpath d='M-4 140C14 126 24 108 42 94'/%3E%3C/g%3E%3Ccircle cx='140' cy='34' r='3' fill='%23FFF4E9' fill-opacity='.22'/%3E%3C/svg%3E");
+  }
+
+  header.accent-primary-section::after {
+    right: 0;
+    top: 0;
+    width: clamp(0px, calc((100vw - 1000px) / 2), 220px);
+    height: 150px;
+    background-position: right top;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='150' viewBox='0 0 220 150' fill='none'%3E%3Cg stroke='%23FFF4E9' stroke-opacity='.2' stroke-width='1.25' stroke-linecap='round'%3E%3Cpath d='M224 16C186 20 162 42 138 66C118 86 90 100 56 104'/%3E%3Cpath d='M138 66C148 92 170 114 198 128'/%3E%3Cpath d='M224 52C204 54 190 62 180 74'/%3E%3C/g%3E%3Cg fill='%23FFF4E9' fill-opacity='.22'%3E%3Ccircle cx='56' cy='104' r='3'/%3E%3Ccircle cx='198' cy='128' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Accueil : le titre occupe presque toute la largeur en haut du bandeau,
+     les deux groupes descendent donc dans les coins bas, sous le titre. */
+  header.hero-centered::before {
+    width: clamp(0px, calc((100vw - 800px) / 2), 200px);
+    height: 150px;
+  }
+
+  header.hero-centered::after {
+    top: auto;
+    bottom: 0;
+    width: clamp(0px, calc((100vw - 800px) / 2), 220px);
+    background-position: right bottom;
+    transform: scaleY(-1);
+  }
+
+  /* Une dérive très lente, 5 px sur un cycle de 28 s. */
+  @media (prefers-reduced-motion: no-preference) {
+    header.accent-primary-section::before,
+    header.accent-primary-section::after {
+      animation: flux-drift 14s ease-in-out infinite alternate;
+    }
+
+    header.accent-primary-section::after {
+      animation-delay: -7s;
+    }
+  }
+}
+
+@keyframes flux-drift {
+  from { translate: 0 0; }
+  to { translate: 4px -3px; }
+}
+
+/* Tablette et mobile : un seul fragment, logé dans la gouttière droite (16 px),
+   statique. */
+@media (max-width: 1099px) {
+  header.accent-primary-section::after {
+    right: 0;
+    top: 40px;
+    width: 18px;
+    height: 150px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='150' viewBox='0 0 18 150' fill='none'%3E%3Cpath d='M20 0C8 30 4 64 10 92C14 112 18 128 20 150' stroke='%23FFF4E9' stroke-opacity='.2' stroke-width='1.25' stroke-linecap='round'/%3E%3Ccircle cx='10' cy='92' r='3' fill='%23FFF4E9' fill-opacity='.22'/%3E%3C/svg%3E");
+  }
+}
+
+/* À propos : un seul motif de coin, à 10 %, au-dessus du carrousel et à
+   l'écart du titre ; statique, sans halo. Retiré sous 1300 px, où la marge
+   à côté du titre disparaît. */
+@media (min-width: 1300px) {
+  header.about-header::before {
+    left: 0;
+    top: 0;
+    width: clamp(0px, calc((100vw - 1150px) / 2), 150px);
+    height: 110px;
+    background-position: left top;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='110' viewBox='0 0 150 110' fill='none'%3E%3Cg stroke='%23FFF4E9' stroke-opacity='.1' stroke-width='1.25' stroke-linecap='round'%3E%3Cpath d='M-4 20C28 24 50 40 66 62C80 80 100 90 124 88'/%3E%3Cpath d='M66 62C58 80 44 94 20 104'/%3E%3C/g%3E%3Ccircle cx='124' cy='88' r='3' fill='%23FFF4E9' fill-opacity='.12'/%3E%3C/svg%3E");
+  }
+}
+
+/* Solutions : le fond blanc et le filet orange restent. Un seul rappel de
+   courbe orange très pâle, dans la marge droite, statique. */
+.solutions-hero {
+  position: relative;
+  isolation: isolate;
+}
+
+@media (min-width: 1100px) {
+  .solutions-hero::after {
+    right: 0;
+    top: 0;
+    width: clamp(0px, calc((100vw - 860px) / 2 - 40px), 220px);
+    height: 150px;
+    background-position: right top;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='150' viewBox='0 0 220 150' fill='none'%3E%3Cg stroke='%23FF4B1F' stroke-opacity='.14' stroke-width='1.25' stroke-linecap='round'%3E%3Cpath d='M224 16C186 20 162 42 138 66C118 86 90 100 56 104'/%3E%3Cpath d='M138 66C148 92 170 114 198 128'/%3E%3C/g%3E%3Ccircle cx='198' cy='128' r='3' fill='%23FF4B1F' fill-opacity='.16'/%3E%3C/svg%3E");
+  }
+}
+
+/* Petits textes sur orange : brun très foncé (4,6:1 au pire) plutôt que blanc (3,3:1).
+   Les titres restent blancs (grand texte, 3:1 requis). */
+.accent-primary-section .hero-lede,
+.accent-primary-section .hero-reassurance,
+.accent-primary-section .hero-funding,
+.accent-primary-section .hero-funding a {
+  color: var(--flux-brown);
+}
+
+.accent-primary-section .hero-reassurance {
+  opacity: 1;
+}
+
+/* Sous-titre de l'accueil et de la formation : il reste blanc et compte comme
+   grand texte (gras, 19 px minimum). */
+.accent-primary-section .hero-subtitle {
+  font-weight: 700;
+  font-size: clamp(1.1875rem, 2.4vw, 1.5rem);
+}
+
+/* Pastilles du bandeau Formation : fond brun translucide sous le texte blanc
+   (4,8:1) au lieu d'un voile clair. */
+.accent-primary-section .hero-facts li {
+  background: rgba(48, 32, 24, 0.24);
+  border-color: rgba(255, 244, 233, 0.4);
+}
+
+/* =========================
+   2. Sections, cartes, espacements
+   ========================= */
+
+.methode-section {
+  background-color: var(--flux-surface);
+}
+
+.proof-band,
+.case-inline,
+.highlight-block,
+.tools-section,
+.security-section,
+.contact-direct,
+.fondations-list {
+  background-color: var(--flux-surface-soft);
+}
+
+.method-steps-4 > li,
+.method-steps > li,
+.skill-card,
+.marked-list,
+.security-list {
+  border-color: var(--flux-card-border);
+  box-shadow: var(--flux-card-shadow);
+}
+
+/* Cartes à filet supérieur (orange ou bleu nuit) : le filet reste intact. */
+.case-card,
+.offer-card {
+  border-right-color: var(--flux-card-border);
+  border-bottom-color: var(--flux-card-border);
+  border-left-color: var(--flux-card-border);
+  box-shadow: var(--flux-card-shadow);
+}
+
+.fondations {
+  border-top-color: var(--flux-card-border);
+}
+
+/* Frise À propos : trait gris chaud. */
+.fondations-timeline::before {
+  background: var(--flux-line);
+}
+
+.skills-grid {
+  gap: 24px;
+}
+
+@media (max-width: 767px) {
+  .method-steps-4,
+  .method-steps,
+  .case-grid,
+  .skills-grid,
+  .offer-grid {
+    gap: 16px;
+  }
+}
+
+/* Contact : espaces autour du calendrier de réservation réduits de moitié
+   (le cadre Calendly garde sa hauteur de 700 px). */
+.contact-intro {
+  margin-bottom: 1rem;
+}
+
+.contact-intro-section {
+  padding-bottom: 0;
+  --section-padding-bottom: 0rem;   /* règle mobile de responsive-overrides.css */
+}
+
+#contact-form {
+  --section-padding-top: 1rem;      /* mobile : 9,6 px -> 4,8 px */
+}
+
+#contact-form .heading-2 {
+  margin-top: 10px;
+}
+
+@media (max-width: 767px) {
+  #contact-form .heading-2 {
+    margin-top: 4px;
+  }
+}
+
+/* =========================
+   3. Boutons et focus
+   ========================= */
+
+/* Boutons sur fond clair : orange profond, texte blanc. */
+.button:not(.secondary-button-on-accent-primary),
+.main-navbar .nav-cta,
+.solutions-hero .solutions-hero-cta {
+  background-color: var(--flux-orange-deep);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(74, 35, 20, 0.14);
+  transition: background-color var(--flux-ease), border-color var(--flux-ease),
+    box-shadow var(--flux-ease), color var(--flux-ease);
+}
+
+.button:not(.secondary-button-on-accent-primary):hover,
+.main-navbar .nav-cta:hover,
+.main-navbar .nav-cta:focus,
+.solutions-hero .solutions-hero-cta:hover {
+  background-color: var(--flux-orange-deeper);
+  box-shadow: 0 4px 12px rgba(74, 35, 20, 0.18);
+}
+
+/* Bouton plein dans un bandeau orange : orange profond opaque, sans effet de
+   verre ; il reste distinct du bouton blanc. */
+.accent-primary-section .button:not(.secondary-button-on-accent-primary) {
+  background-color: var(--flux-orange-deep);
+  border: 2px solid rgba(255, 244, 233, 0.35);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.accent-primary-section .button:not(.secondary-button-on-accent-primary):hover {
+  background-color: var(--flux-orange-deeper);
+  border-color: rgba(255, 244, 233, 0.55);
+}
+
+/* Boutons blancs sur orange : texte orange profond. */
+.accent-primary-section .button.secondary-button-on-accent-primary {
+  color: var(--flux-orange-ink);
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(74, 35, 20, 0.16);
+  transition: background-color var(--flux-ease), border-color var(--flux-ease),
+    box-shadow var(--flux-ease), color var(--flux-ease);
+}
+
+.accent-primary-section .button.secondary-button-on-accent-primary:hover {
+  background-color: var(--flux-warm-white);
+  color: var(--flux-orange-ink);
+  box-shadow: 0 5px 14px rgba(74, 35, 20, 0.22);
+}
+
+/* Survol sans déplacement. */
+.accent-primary-section .button:hover {
+  transform: none;
+}
+
+/* Bouton d'envoi du formulaire, une fois actif (l'état désactivé ne change pas).
+   js/custom.js pose la couleur en style inline (#FF4B1F actif, #ccc toujours
+   couplé à disabled) : seul !important permet d'atteindre le contraste
+   sans toucher au script. */
+.contact-submit-btn:not(:disabled),
+form#email-form .contact-submit-btn:not(:disabled) {
+  background-color: var(--flux-orange-deep) !important;
+  border-radius: 8px;
+}
+
+.contact-submit-btn:not(:disabled):hover,
+form#email-form .contact-submit-btn:not(:disabled):hover {
+  background-color: var(--flux-orange-deeper) !important;
+  transform: none;
+}
+
+/* Focus clavier : contour de 3 px décalé de 3 px, brun foncé sur fond clair
+   comme sur orange, blanc chaud sur le pied de page noir. */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+.button:focus-visible,
+.main-navbar .main-nav-link:focus-visible,
+.accordion-trigger:focus-visible,
+main a:focus-visible,
+.solutions-hero a:focus-visible,
+.contact-intro a:focus-visible {
+  outline: 3px solid var(--flux-brown);
+  outline-offset: 3px;
+}
+
+.footer a:focus-visible,
+.footer button:focus-visible {
+  outline-color: var(--flux-warm-white);
+}
+
+/* =========================
+   4. Réduction des animations
+   ========================= */
+@media (prefers-reduced-motion: reduce) {
+  header.accent-primary-section::before,
+  header.accent-primary-section::after {
+    animation: none;
+  }
+
+  /* Mêmes sélecteurs que les règles qui posent les transitions. */
+  .button:not(.secondary-button-on-accent-primary),
+  .main-navbar .nav-cta,
+  .solutions-hero .solutions-hero-cta,
+  .accent-primary-section .button.secondary-button-on-accent-primary,
+  .contact-submit-btn:not(:disabled) {
+    transition: none;
+  }
+}
