@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Diagnostic et accompagnement IA pour PME | Sylvain Magana</title>
+  <title>Diagnostic IA et automatisation pour TPE et PME | Workflow Intelligent</title>
   <link rel="canonical" href="https://www.workflowintelligent.fr/tarifs-prestations" />
   <!-- Hreflang tags -->
   <link rel="alternate" hreflang="fr" href="https://www.workflowintelligent.fr/tarifs-prestations" />
@@ -11,13 +11,13 @@
   <link rel="alternate" hreflang="x-default" href="https://www.workflowintelligent.fr/tarifs-prestations" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <meta name="description"
-    content="Un diagnostic ciblé pour prioriser vos processus, puis un pilote et un déploiement selon les résultats. Découvrez le périmètre et les modalités." />
-  <meta property="og:title" content="Diagnostic et accompagnement IA pour PME | Sylvain Magana" />
+    content="Vous voulez gagner du temps sans savoir par où commencer ? Un diagnostic IA et automatisation à 690 € HT pour choisir vos priorités. Premier échange gratuit de 30 min." />
+  <meta property="og:title" content="Diagnostic IA et automatisation pour TPE et PME | Workflow Intelligent" />
   <meta property="og:description"
-    content="Un diagnostic ciblé pour prioriser vos processus, puis un pilote et un déploiement selon les résultats. Découvrez le périmètre et les modalités." />
-  <meta property="twitter:title" content="Diagnostic et accompagnement IA pour PME | Sylvain Magana" />
+    content="Vous voulez gagner du temps sans savoir par où commencer ? Un diagnostic IA et automatisation à 690 € HT pour choisir vos priorités. Premier échange gratuit de 30 min." />
+  <meta property="twitter:title" content="Diagnostic IA et automatisation pour TPE et PME | Workflow Intelligent" />
   <meta property="twitter:description"
-    content="Un diagnostic ciblé pour prioriser vos processus, puis un pilote et un déploiement selon les résultats. Découvrez le périmètre et les modalités." />
+    content="Vous voulez gagner du temps sans savoir par où commencer ? Un diagnostic IA et automatisation à 690 € HT pour choisir vos priorités. Premier échange gratuit de 30 min." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="generator" content="Custom Website" />
@@ -45,7 +45,7 @@
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Diagnostic et accompagnement IA et automatisation",
-    "description": "Diagnostic de processus a 690 EUR HT, puis pilote, deploiement et suivi sur devis selon le perimetre retenu.",
+    "description": "Diagnostic IA et automatisation a 690 EUR HT, puis prototype, mise en service et accompagnement sur devis selon le perimetre retenu.",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Sylvain Magana",
@@ -67,7 +67,7 @@
       "itemListElement": [
         {
           "@type": "Offer",
-          "name": "Diagnostic de vos processus — IA et automatisation",
+          "name": "Diagnostic IA et automatisation",
           "description": "Entretien de 1 h 30, analyse de deux à trois processus, pistes priorisées, recommandations écrites et restitution.",
           "priceSpecification": {
             "@type": "PriceSpecification",
@@ -78,12 +78,12 @@
         },
         {
           "@type": "Offer",
-          "name": "Pilote sur un périmètre limité",
+          "name": "Prototype sur un périmètre limité",
           "description": "Test d'un usage précis, avec critères de réussite définis avant sa réalisation. Sur devis."
         },
         {
           "@type": "Offer",
-          "name": "Déploiement et intégration",
+          "name": "Mise en service",
           "description": "Intégrations et développements nécessaires à la mise en service. Sur devis."
         },
         {
@@ -96,6 +96,77 @@
   }
   </script>
   <script src="js/url-handler.js"></script>
+  <!-- Styles propres a cette page : regles prefixees .tarifs-, aucune regle partagee n'est modifiee. -->
+  <style>
+    .tarifs-section { padding-top: 3rem; padding-bottom: 3rem; }
+    .tarifs-section .section-head { margin-bottom: 1.5rem; }
+    .tarifs-hero-price { font-weight: 700; }
+    .tarifs-hero .hero-actions { margin-top: 0.5rem; }
+
+    /* Situations : trois colonnes sobres, filet orange, pas de cartes */
+    .tarifs-situations { list-style: none; margin: 0 auto; padding: 0; max-width: 64rem;
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem 2rem; }
+    .tarifs-situations li { margin: 0; padding-top: 1rem; border-top: 3px solid #FF4B1F; }
+    .tarifs-situations h3 { margin: 0 0 0.4rem; font-size: 1.1rem; line-height: 1.35; color: #192a56; }
+    .tarifs-situations p { margin: 0; font-size: 0.98rem; line-height: 1.6; color: #444; }
+
+    /* Offre : deux colonnes sur ordinateur (decision + modalites | prix + contenu) */
+    .tarifs-offer { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 2rem 3rem; align-items: start; max-width: 64rem; margin: 0 auto; }
+    .tarifs-offer-text h3 { margin: 0 0 0.5rem; font-size: 1.15rem; color: #192a56; }
+    .tarifs-offer-text * + h3 { margin-top: 1.5rem; }
+    .tarifs-offer-text p { font-size: 1rem; line-height: 1.65; color: #222; margin: 0 0 0.85rem; }
+    .tarifs-terms { margin: 0; padding: 0; list-style: none; font-size: 0.98rem; line-height: 1.55; }
+    .tarifs-terms li { margin: 0 0 0.45rem; padding-left: 1.1rem; position: relative; color: #222; }
+    .tarifs-terms li::before { content: ""; position: absolute; left: 0; top: 0.6rem;
+      width: 0.4rem; height: 0.4rem; border-radius: 50%; background: #FF4B1F; }
+    .tarifs-aside { font-size: 0.95rem !important; color: #444 !important; }
+    .tarifs-offer-text .tarifs-aside { margin-top: 1rem; }
+    .tarifs-offer .offer-card { padding: 1.5rem 1.75rem; }
+    .tarifs-offer .offer-price { margin-bottom: 0.25rem; }
+    .tarifs-price-note { font-size: 0.92rem !important; color: #444; margin: 0 0 1rem !important; }
+    .tarifs-group { margin: 0 0 0.9rem; }
+    .tarifs-group h4 { margin: 0 0 0.3rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: #d63c13; }
+    .tarifs-group ul { margin: 0 !important; }
+    .tarifs-card-cta { margin-top: 0.5rem; }
+    .tarifs-card-cta .button { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; }
+    .tarifs-card-note { margin: 0.6rem 0 0 !important; font-size: 0.9rem !important; color: #444; }
+
+    /* Exemple illustratif : difficulte -> piste -> prerequis -> prochaine etape */
+    .tarifs-example { max-width: 64rem; margin: 0 auto; padding: 1.5rem; border: 1px dashed rgba(0, 0, 0, 0.25);
+      border-radius: 10px; background: #fff; }
+    .tarifs-example-label { display: inline-block; margin: 0 0 1rem !important; padding: 0.2rem 0.6rem; border-radius: 4px;
+      background: #192a56; color: #fff !important; font-size: 0.78rem !important; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; }
+    .tarifs-example ol { list-style: none; margin: 0; padding: 0; display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem 1.5rem; }
+    .tarifs-example li { margin: 0; }
+    .tarifs-example h3 { margin: 0 0 0.3rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: #d63c13; }
+    .tarifs-example p { margin: 0; font-size: 0.98rem; line-height: 1.55; color: #222; }
+
+    /* Et ensuite ? */
+    .tarifs-next { max-width: 46rem; margin: 0 auto; }
+    .tarifs-next > p { font-size: 1rem; line-height: 1.65; color: #222; margin: 0 0 1rem; }
+    .tarifs-next .marked-list { margin: 0 0 1rem; }
+    .tarifs-next .tarifs-aside { text-align: center; margin: 0; }
+    .tarifs-next .tarifs-aside a, .tarifs-offer-text a { color: #d63c13; font-weight: 600; }
+
+    @media (max-width: 991px) {
+      .tarifs-offer { grid-template-columns: minmax(0, 1fr); }
+      .tarifs-example ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 767px) {
+      .tarifs-section { padding-top: 2.25rem; padding-bottom: 2.25rem; }
+      .tarifs-situations { grid-template-columns: minmax(0, 1fr); }
+      .tarifs-example ol { grid-template-columns: minmax(0, 1fr); }
+      .tarifs-offer .offer-card, .tarifs-example { padding: 1.25rem; }
+      .tarifs-hero .hero-actions { display: block; }
+      a.tarifs-cta { display: flex !important; align-items: center; justify-content: center;
+        width: 100%; min-height: 48px; box-sizing: border-box; text-align: center; }
+    }
+  </style>
 </head>
 
 <body>
@@ -127,242 +198,189 @@
     </div>
   </nav>
   <!-- End Modern Main Navigation Bar -->
-  <header class="section utility-overflow-clip accent-primary-section">
+  <header class="section utility-overflow-clip accent-primary-section tarifs-hero">
     <div class="container">
       <div class="w-layout-grid grid-layout tablet-1-column grid-gap-lg hero-no-visual">
         <div id="w-node-cffaef48-2b4e-5eda-7d8d-768fd6d4b66f-d6d4b66c"
           class="w-node-_73829c4d-cafe-414e-5a5e-48334fdb3ae2-5231dd07">
-          <h1 class="h1-heading h1-nowrap">Du diagnostic à la mise en service</h1>
+          <h1 class="h1-heading">Gagner du temps, oui. Mais par où commencer&nbsp;?</h1>
           <p class="hero-lede">
-            Identifiez un premier chantier utile, testez-le sur un périmètre limité, puis décidez de la suite à
-            partir des résultats.
+            Je regarde avec vous comment votre entreprise fonctionne aujourd'hui, je repère ce qui peut être
+            simplifié ou automatisé, et je vous dis par quoi commencer.
           </p>
           <p class="hero-lede">
-            Si votre besoin est déjà cadré, nous partons de l'existant pour déterminer l'étape pertinente.
+            C'est le rôle du diagnostic IA et automatisation&nbsp;: <span class="tarifs-hero-price">690&nbsp;€&nbsp;HT, prix fixe</span>.
           </p>
           <div class="hero-actions">
-            <a href="/contact-devis?demande=Audit%20IA#contact-form" class="button w-button">Demander un
-              diagnostic</a>
-            <a href="#diagnostic" class="button secondary-button-on-accent-primary w-button">Voir le
-              diagnostic</a>
+            <a href="/contact-devis" class="button secondary-button-on-accent-primary w-button tarifs-cta">Parler de mon projet</a>
           </div>
+          <p class="hero-reassurance">Échange gratuit de 30&nbsp;min · Sans engagement</p>
         </div>
       </div>
     </div>
   </header>
   <main>
-    <!-- 1. DIAGNOSTIQUER -->
-    <!-- id="audit-ia" conserve en ancre de compatibilite : d'anciens liens
-         internes et externes visaient cette adresse. -->
-    <div id="audit-ia"></div>
-    <section class="section methode-section" id="diagnostic">
+    <!-- 1. SITUATIONS : exemples possibles, pas des missions realisees. -->
+    <section class="section tarifs-section" id="situations">
       <div class="container">
         <div class="section-head">
-          <h2 class="h2-heading">Diagnostiquer : choisir ce qui mérite d'être testé</h2>
+          <h2 class="h2-heading">Ce temps perdu qu'on ne voit plus</h2>
+          <p>Trois exemples possibles, parmi d'autres.</p>
         </div>
-
-        <div class="offer-grid offer-grid-1">
-          <article class="offer-card offer-card-featured">
-            <h3>Diagnostic de vos processus — IA et automatisation</h3>
-            <p class="offer-price"><strong>690&nbsp;€ HT</strong></p>
-            <ul>
-              <li>entretien dirigeant de 1&nbsp;h&nbsp;30 ;</li>
-              <li>analyse de deux à trois processus ;</li>
-              <li>identification des pistes pertinentes et de leurs prérequis ;</li>
-              <li>priorisation selon impact attendu et complexité ;</li>
-              <li>recommandations écrites de deux à trois pages ;</li>
-              <li>feuille de route à trois mois ;</li>
-              <li>restitution de 30 à 45 minutes.</li>
-            </ul>
-            <p class="offer-promise">
-              Des pistes identifiées et priorisées selon ce que révèle l'analyse.
-            </p>
-            <div class="cta-centered utility-margin-bottom-1rem">
-              <a href="/contact-devis?demande=Audit%20IA#contact-form" class="button w-button">Demander un
-                diagnostic</a>
-            </div>
-            <p class="offer-meta">
-              1 à 1,5 jour de travail, avec une livraison prévue sous 5 à 7 jours calendaires. Le périmètre et le
-              calendrier sont confirmés avant le démarrage.
-            </p>
-          </article>
-        </div>
-
-        <p class="formats-note">
-          Le diagnostic peut aussi conclure qu'il faut préparer les données, simplifier le fonctionnement ou
-          reporter un projet.
+        <ul class="tarifs-situations" role="list">
+          <li>
+            <h3>Les mêmes informations saisies deux fois</h3>
+            <p>Une commande arrive par email, puis elle est recopiée dans un tableau, puis dans le logiciel de facturation.</p>
+          </li>
+          <li>
+            <h3>Des informations difficiles à retrouver</h3>
+            <p>Un tarif, une procédure ou un contrat&nbsp;: il faut fouiller plusieurs dossiers ou demander à un collègue.</p>
+          </li>
+          <li>
+            <h3>Des comptes rendus et reportings faits à la main</h3>
+            <p>Chaque semaine, quelqu'un rassemble les chiffres de plusieurs outils et remet en forme le même document.</p>
+          </li>
+        </ul>
+        <p class="bridge-note">
+          Vous n'avez pas besoin de connaître les outils. Il suffit de me décrire ce qui vous prend du temps.
         </p>
       </div>
     </section>
 
-    <!-- LOT C — APERCU DU LIVRABLE.
-         Contenu illustratif uniquement : aucune donnee client, aucun score,
-         aucun gain chiffre. La mention est permanente, pas au survol. -->
-    <section class="section" id="livrable">
+    <!-- 2. LE DIAGNOSTIC. id="audit-ia" conserve en ancre de compatibilite ;
+         id="diagnostic" est vise par les pages Solutions et Contact. -->
+    <div id="audit-ia"></div>
+    <section class="section methode-section tarifs-section" id="diagnostic">
       <div class="container">
         <div class="section-head">
-          <h2 class="h2-heading">Ce que contient votre diagnostic</h2>
+          <h2 class="h2-heading">Le diagnostic IA et automatisation</h2>
         </div>
-
-        <div class="deliverable-preview">
-          <p class="deliverable-note">Exemple de structure — contenu illustratif, sans données client.</p>
-
-          <div class="deliverable-part">
-            <h3>1. Votre fonctionnement actuel</h3>
+        <div class="tarifs-offer">
+          <div class="tarifs-offer-text">
+            <h3>Ce qu'il vous permet de décider</h3>
             <p>
-              Processus étudiés, étapes, outils, difficultés, volumes disponibles et informations manquantes.
+              À la fin, vous savez quelles pistes méritent d'être suivies, dans quel ordre, et ce qu'il faut
+              préparer avant de vous lancer.
+            </p>
+            <p>
+              Il peut aussi conclure qu'il vaut mieux préparer vos données, simplifier un fonctionnement ou
+              reporter une automatisation. Il n'impose aucun achat ultérieur.
+            </p>
+            <h3>Modalités</h3>
+            <ul class="tarifs-terms" role="list">
+              <li><strong>Votre temps&nbsp;:</strong> l'entretien de 1&nbsp;h&nbsp;30 et la restitution de 30 à 45&nbsp;minutes.</li>
+              <li><strong>Mon temps&nbsp;:</strong> 1 à 1,5&nbsp;jour de travail.</li>
+              <li><strong>Livraison&nbsp;:</strong> sous 5 à 7&nbsp;jours calendaires.</li>
+              <li>Périmètre et calendrier confirmés avant le démarrage.</li>
+            </ul>
+            <p class="tarifs-aside">
+              Votre besoin est déjà cadré&nbsp;? Je peux vous faire une proposition adaptée.
             </p>
           </div>
 
-          <div class="deliverable-part">
-            <h3>2. Les pistes et les priorités</h3>
-            <p>
-              Intérêt attendu, complexité, prérequis et décision proposée pour chaque piste.
-            </p>
-          </div>
-
-          <div class="deliverable-part">
-            <h3>3. Le premier test recommandé</h3>
-            <p>
-              Périmètre, indicateurs, conditions de poursuite ou d'arrêt et feuille de route.
-            </p>
-          </div>
-
-          <dl class="deliverable-row">
-            <dt>Processus</dt>
-            <dd>reporting hebdomadaire.</dd>
-            <dt>Problème</dt>
-            <dd>exports et reprises manuelles.</dd>
-            <dt>Fréquence</dt>
-            <dd>à mesurer.</dd>
-            <dt>Gain à vérifier</dt>
-            <dd>réduction du temps de préparation.</dd>
-            <dt>Complexité</dt>
-            <dd>à évaluer.</dd>
-            <dt>Prérequis</dt>
-            <dd>accès aux sources et règles de calcul.</dd>
-            <dt>Décision</dt>
-            <dd>mesurer l'existant avant un pilote.</dd>
-          </dl>
-        </div>
-      </div>
-    </section>
-
-    <!-- 2, 3, 4 — TESTER, DEPLOYER, ACCOMPAGNER.
-         L'ancienne offre "Tester le potentiel" a ete retiree : son exploration
-         releve deja du diagnostic ci-dessus. -->
-    <section class="section" id="prototype-deploiement">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="h2-heading">Tester : vérifier l'intérêt d'une solution</h2>
-        </div>
-
-        <div class="offer-grid offer-grid-1">
-          <article class="offer-card">
-            <h3>Pilote sur un périmètre limité</h3>
-            <p>
-              Un pilote permet de tester un usage précis sur un périmètre limité. Nous définissons avant sa
-              réalisation les données nécessaires, les utilisateurs concernés et les critères de réussite.
-            </p>
-            <p>
-              À l'issue du test, les résultats permettent de décider s'il faut poursuivre, ajuster ou arrêter.
-            </p>
-            <p class="offer-meta">Sur devis, selon le périmètre.</p>
+          <article class="offer-card offer-card-featured" aria-labelledby="diagnostic-contenu">
+            <p class="offer-price"><strong>690&nbsp;€&nbsp;HT</strong></p>
+            <p class="tarifs-price-note">Prix fixe, pour deux à trois processus.</p>
+            <h3 id="diagnostic-contenu">Ce que comprend le diagnostic</h3>
+            <div class="tarifs-group">
+              <h4>Comprendre</h4>
+              <ul>
+                <li>entretien dirigeant de 1&nbsp;h&nbsp;30&nbsp;;</li>
+                <li>analyse de deux à trois processus.</li>
+              </ul>
+            </div>
+            <div class="tarifs-group">
+              <h4>Prioriser</h4>
+              <ul>
+                <li>identification des pistes pertinentes et de leurs prérequis&nbsp;;</li>
+                <li>priorisation selon l'impact attendu et la complexité.</li>
+              </ul>
+            </div>
+            <div class="tarifs-group">
+              <h4>Décider</h4>
+              <ul>
+                <li>recommandations écrites de deux à trois pages&nbsp;;</li>
+                <li>feuille de route à trois mois&nbsp;;</li>
+                <li>restitution de 30 à 45&nbsp;minutes.</li>
+              </ul>
+            </div>
+            <div class="tarifs-card-cta">
+              <a href="/contact-devis" class="button w-button tarifs-cta">Parler de mon projet</a>
+              <p class="tarifs-card-note">
+                On commence par un échange gratuit de 30&nbsp;min. Le diagnostic se commande ensuite, seulement si
+                vous le souhaitez.
+              </p>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section methode-section" id="deploiement">
+    <!-- 3. APERCU DU RESULTAT. Contenu illustratif uniquement : aucune donnee
+         client, aucun gain chiffre. La mention est permanente, pas au survol. -->
+    <section class="section tarifs-section" id="livrable">
       <div class="container">
         <div class="section-head">
-          <h2 class="h2-heading">Déployer : intégrer la solution au fonctionnement de l'équipe</h2>
+          <h2 class="h2-heading">À quoi ressemble une recommandation</h2>
         </div>
-
-        <div class="offer-grid offer-grid-1">
-          <article class="offer-card">
-            <h3>Mise en service</h3>
-            <p>
-              Lorsque le pilote est concluant, je réalise les intégrations et développements nécessaires à la mise en
-              service.
-            </p>
-            <p>
-              Le périmètre précise les accès, les contrôles, la documentation, la prise en main et la gestion des
-              exceptions.
-            </p>
-            <p class="offer-meta">Sur devis, selon le périmètre.</p>
-          </article>
+        <div class="tarifs-example">
+          <p class="tarifs-example-label">Exemple illustratif</p>
+          <ol>
+            <li>
+              <h3>Difficulté</h3>
+              <p>Le reporting commercial du lundi est préparé à la main à partir de trois exports.</p>
+            </li>
+            <li>
+              <h3>Piste à examiner</h3>
+              <p>Rassembler automatiquement les données dans un seul tableau, relu avant diffusion.</p>
+            </li>
+            <li>
+              <h3>Prérequis</h3>
+              <p>Des accès aux outils concernés et des règles de calcul écrites noir sur blanc.</p>
+            </li>
+            <li>
+              <h3>Prochaine étape</h3>
+              <p>Mesurer le temps passé aujourd'hui, puis tester la piste sur quelques semaines.</p>
+            </li>
+          </ol>
         </div>
       </div>
     </section>
 
-    <section class="section" id="copilote">
+    <!-- 4. ET ENSUITE ? Prototype, mise en service et accompagnement : sur devis. -->
+    <section class="section methode-section tarifs-section" id="ensuite">
       <div class="container">
-        <div class="section-head">
-          <h2 class="h2-heading">Accompagner : faire vivre les usages</h2>
-        </div>
-
-        <div class="offer-grid offer-grid-1">
-          <article class="offer-card">
-            <h3>Suivi après la mise en service</h3>
-            <p>
-              Après la mise en service, un suivi peut être prévu pour traiter les difficultés, adapter la solution et
-              accompagner les équipes.
-            </p>
-            <p>
-              La fréquence des échanges, le support et les évolutions incluses sont définis dans la proposition.
-            </p>
-            <table class="offer-levels">
-              <thead>
-                <tr>
-                  <th scope="col">Niveau</th>
-                  <th scope="col">Format</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Suivi léger</th>
-                  <td>1 point mensuel (2h) + support asynchrone</td>
-                </tr>
-                <tr>
-                  <th scope="row">Suivi renforcé</th>
-                  <td>1 point toutes les 2 semaines (2h) + budget prototypage inclus</td>
-                </tr>
-              </tbody>
-            </table>
-            <p class="offer-meta">Sur devis, selon les besoins.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PLACE DE LA FORMATION — le lien mene a la page Formation, inchangee. -->
-    <section class="section methode-section" id="formation">
-      <div class="container">
-        <div class="highlight-block">
-          <h2 class="h2-heading">La place de la formation</h2>
+        <div class="tarifs-next">
+          <div class="section-head">
+            <h2 class="h2-heading">Et ensuite&nbsp;?</h2>
+          </div>
           <p>
-            La formation peut intervenir avant un projet, pendant sa mise en service ou indépendamment de tout
-            développement.
+            Si une piste se confirme, je peux vous accompagner pour la suite. Chaque étape fait l'objet d'un devis
+            séparé&nbsp;: vous décidez à chaque fois.
           </p>
-          <p>
-            <a href="formations-ia.html">Voir les formats et tarifs de formation</a>
+          <ul class="marked-list" role="list">
+            <li><strong>Prototype&nbsp;:</strong> tester l'idée sur un périmètre limité, avec des critères de réussite fixés à l'avance.</li>
+            <li><strong>Mise en service&nbsp;:</strong> intégrer la solution à vos outils, avec prise en main et documentation.</li>
+            <li><strong>Accompagnement&nbsp;:</strong> suivre les usages, ajuster la solution, répondre aux questions de l'équipe.</li>
+          </ul>
+          <p class="tarifs-aside" id="formation">
+            Vos équipes ont d'abord besoin de prendre en main l'IA&nbsp;? <a href="formations-ia.html">Voir les formations</a>
           </p>
         </div>
       </div>
     </section>
 
-    <!-- CTA FINAL -->
-    <section class="section final-cta-section">
+    <!-- 5. INVITATION FINALE -->
+    <section class="section final-cta-section tarifs-section">
       <div class="container">
         <div class="final-cta-block">
-          <h2 class="h2-heading">Par où commencer ?</h2>
+          <h2 class="h2-heading">Parlons de ce qui vous prend du temps</h2>
           <p>
-            Le diagnostic sert à déterminer ce qu'il est pertinent de tester chez vous, et ce qu'il vaut mieux
-            préparer ou laisser de côté. Il n'est obligatoire pour personne : si votre besoin est déjà cadré, nous
-            partons de l'existant.
+            Décrivez-moi une tâche ou un fonctionnement qui vous pèse. Je vous dirai franchement si le diagnostic
+            est utile dans votre cas.
           </p>
-          <a href="/contact-devis?demande=Audit%20IA#contact-form" class="button w-button">Demander un diagnostic</a>
+          <a href="/contact-devis" class="button w-button tarifs-cta">Parler de mon projet</a>
+          <p class="final-cta-note">30&nbsp;min · Gratuit · Sans engagement</p>
           <p class="final-cta-secondary"><a href="a-propos.html">En savoir plus sur Sylvain</a></p>
         </div>
       </div>
