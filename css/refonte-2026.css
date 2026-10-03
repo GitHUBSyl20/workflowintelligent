@@ -1113,6 +1113,9 @@
 .tia-q-title:focus, .tia-result-title:focus { outline: none; }
 
 /* Page */
+/* Signature du hero du test : plus lisible que .hero-eyebrow (partagee avec Produits) ;
+   blanc gras a 19 px = grand texte, 3:1 suffit sur l'orange. */
+.tia-hero .hero-eyebrow { font-size: 1.2rem; font-weight: 700; opacity: 1; margin-bottom: .4rem; }
 .tia-section { padding-top: 2.5rem; padding-bottom: 3.5rem; }
 .tia-app { max-width: 46rem; margin: 0 auto; scroll-margin-top: 90px; transition: opacity .16s ease, transform .16s ease; }
 .tia-app.tia-leaving { opacity: 0; transform: translateY(6px); }
@@ -1201,7 +1204,7 @@
 
 /* Teaser accueil */
 .tia-teaser .section-head { margin-bottom: 1.5rem; }
-.tia-eyebrow { font-size: .8rem !important; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--color-primary-dark, #d63c13) !important; margin: 0 0 .25rem !important; }
+.tia-eyebrow { font-size: 1.05rem !important; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--color-primary-dark, #d63c13) !important; margin: 0 0 .25rem !important; }
 .tia-teaser-box { max-width: 46rem; margin: 0 auto; }
 .tia-teaser-q { margin: 0 0 .85rem; font-size: 1.15rem; color: var(--color-complementary, #192a56); }
 .tia-scale-compact { margin: 1.75rem auto 0; max-width: 46rem; }
