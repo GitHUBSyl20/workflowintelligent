@@ -1238,3 +1238,69 @@
 
 /* Teaser accueil : fond legerement teinte pour le distinguer des sections voisines */
 .tia-teaser { background: #fff8f5; }
+
+/* =========================
+   Accueil — accès compacts aux offres (remplace le bandeau récapitulatif)
+   ========================= */
+.home-offers-title {
+  margin: 0 0 1.25rem;
+  text-align: center;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+}
+
+.home-offer-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.home-offer-links li { margin: 0 !important; } /* annule li { margin-bottom } mobile de responsive-overrides.css */
+
+.home-offer-links a {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+  padding: 14px 40px 14px 16px;
+  position: relative;
+  color: #222;
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid var(--flux-card-border, #EADFD9);
+  border-radius: 10px;
+  box-shadow: var(--flux-card-shadow, 0 4px 16px rgba(74, 35, 20, 0.05));
+  transition: border-color 160ms ease;
+}
+
+.home-offer-links a::after {
+  content: "\2192";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--flux-orange-deep, #B93614);
+  font-weight: 700;
+}
+
+.home-offer-links a:hover { border-color: var(--flux-orange-deep, #B93614); }
+
+.home-offer-links strong {
+  font-size: 1rem;
+  line-height: 1.35;
+  color: var(--flux-orange-deep, #B93614);
+}
+
+.home-offer-links span {
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: #555;
+}
+
+@media (max-width: 767px) {
+  .home-offers-title { text-align: left; }
+  .home-offer-links { grid-template-columns: minmax(0, 1fr); }
+}

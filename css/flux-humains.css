@@ -13,6 +13,7 @@
   --flux-orange-edge-end: #F34A20;
   --flux-orange-deep: #B93614;       /* boutons sur fond clair, texte blanc 5,8:1 */
   --flux-orange-deeper: #A02E10;     /* survol */
+  --flux-orange-hover: #E0401A;      /* survol des boutons orange bannière */
   --flux-orange-ink: #AE3213;        /* texte des boutons blancs sur orange 6,4:1 */
   --flux-warm-white: #FFF4E9;
   --flux-brown: #281A13;             /* petit texte sur orange : 4,6:1 au bord le plus sombre */
@@ -267,11 +268,12 @@ header.about-header::before,
    3. Boutons et focus
    ========================= */
 
-/* Boutons sur fond clair : orange profond, texte blanc. */
+/* Boutons sur fond clair : même orange que la bannière, texte blanc.
+   Contraste 3,3:1 (suffisant pour un texte gras de 19 px et plus). */
 .button:not(.secondary-button-on-accent-primary):not(.tia-btn-outline),
 .main-navbar .nav-cta,
 .solutions-hero .solutions-hero-cta {
-  background-color: var(--flux-orange-deep);
+  background-color: var(--flux-orange);
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(74, 35, 20, 0.14);
   transition: background-color var(--flux-ease), border-color var(--flux-ease),
@@ -282,7 +284,7 @@ header.about-header::before,
 .main-navbar .nav-cta:hover,
 .main-navbar .nav-cta:focus,
 .solutions-hero .solutions-hero-cta:hover {
-  background-color: var(--flux-orange-deeper);
+  background-color: var(--flux-orange-hover);
   box-shadow: 0 4px 12px rgba(74, 35, 20, 0.18);
 }
 
@@ -326,13 +328,13 @@ header.about-header::before,
    sans toucher au script. */
 .contact-submit-btn:not(:disabled),
 form#email-form .contact-submit-btn:not(:disabled) {
-  background-color: var(--flux-orange-deep) !important;
+  background-color: var(--flux-orange) !important;
   border-radius: 8px;
 }
 
 .contact-submit-btn:not(:disabled):hover,
 form#email-form .contact-submit-btn:not(:disabled):hover {
-  background-color: var(--flux-orange-deeper) !important;
+  background-color: var(--flux-orange-hover) !important;
   transform: none;
 }
 

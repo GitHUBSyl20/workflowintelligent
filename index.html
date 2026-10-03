@@ -27,7 +27,7 @@
   <link href="css/responsive-overrides.css" rel="stylesheet" type="text/css" />
   <link href="css/clean-shared.css" rel="stylesheet" type="text/css" />
   <link href="css/footer.css" rel="stylesheet" type="text/css" />
-  <link href="css/refonte-2026.css" rel="stylesheet" type="text/css" />
+  <link href="css/refonte-2026.css?v=20261003" rel="stylesheet" type="text/css" />
   <link href="css/cookie-modal.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
@@ -41,6 +41,8 @@
   <script src="js/cookie-consent.js" defer></script>
   <script src="js/url-handler.js"></script>
   <link href="css/flux-humains.css" rel="stylesheet" type="text/css" />
+  <link href="css/workflow-demo.css?v=20261003" rel="stylesheet" type="text/css" />
+  <script src="js/workflow-demo.js?v=20261003" defer></script>
   <!-- Données structurées : mêmes @id que formations-ia.html -->
   <script type="application/ld+json">
   {
@@ -198,16 +200,91 @@
     </div>
   </header>
   <main>
+    <!-- EXEMPLES DE FONCTIONNEMENT : 4 scénarios en onglets (css/workflow-demo.css, js/workflow-demo.js).
+         Sans JavaScript, les 4 scénarios s'affichent l'un sous l'autre, toutes étapes visibles. -->
+    <section class="section wfd-section" id="exemples" aria-labelledby="wfd-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="h2-heading" id="wfd-title">Moins de tâches répétitives. Vous gardez la main.</h2>
+          <p>Je connecte vos outils et conçois des workflows adaptés à votre activité, avec l'IA là où elle est utile. Choisissez une situation&nbsp;: voici ce qui peut être pris en charge, et où vous intervenez.</p>
+        </div>
+
+        <div class="wfd" data-wfd>
+          <div class="wfd-tabs" role="tablist" aria-label="Situations" hidden>
+            <button type="button" class="wfd-tab" role="tab" id="wfd-tab-prospection" aria-controls="wfd-panel-prospection" aria-selected="false" tabindex="-1"><span class="wfd-ic wfd-ic--search" aria-hidden="true"></span>Prospection</button>
+            <button type="button" class="wfd-tab" role="tab" id="wfd-tab-documents" aria-controls="wfd-panel-documents" aria-selected="false" tabindex="-1"><span class="wfd-ic wfd-ic--doc" aria-hidden="true"></span>Documents internes</button>
+            <button type="button" class="wfd-tab" role="tab" id="wfd-tab-factures" aria-controls="wfd-panel-factures" aria-selected="true" tabindex="0"><span class="wfd-ic wfd-ic--invoice" aria-hidden="true"></span>Factures impayées</button>
+            <button type="button" class="wfd-tab" role="tab" id="wfd-tab-comptes-rendus" aria-controls="wfd-panel-comptes-rendus" aria-selected="false" tabindex="-1"><span class="wfd-ic wfd-ic--users" aria-hidden="true"></span>Comptes rendus</button>
+          </div>
+
+          <div class="wfd-bar">
+            <p class="wfd-badge">Exemple de fonctionnement</p>
+            <button type="button" class="wfd-control" hidden><span class="wfd-control-ic" aria-hidden="true"></span><span class="wfd-control-label">Rejouer</span></button>
+          </div>
+
+          <div class="wfd-panels">
+            <div class="wfd-panel" id="wfd-panel-prospection" role="tabpanel" aria-labelledby="wfd-tab-prospection">
+              <h3 class="wfd-panel-title">Prospection</h3>
+              <p class="wfd-pain"><span class="wfd-pain-label">Aujourd'hui</span> La prospection prend des heures et les fiches du CRM restent incomplètes.</p>
+              <ol class="wfd-flow">
+                <li class="wfd-step wfd-step--trigger"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Déclencheur</span><strong class="wfd-step-title">Nouveau prospect</strong><span class="wfd-step-text">Un contact arrive par formulaire, import ou salon.</span></span></li>
+                <li class="wfd-step wfd-step--ai"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Avec l'IA</span><strong class="wfd-step-title">Qualification proposée</strong><span class="wfd-step-text">L'IA résume l'activité du prospect, propose une qualification et rédige un premier message.</span></span></li>
+                <li class="wfd-step wfd-step--tools"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Vos outils</span><strong class="wfd-step-title">Fiche CRM complétée</strong><span class="wfd-step-text">La fiche est enrichie et rangée dans votre CRM, avec la qualification proposée.</span></span></li>
+                <li class="wfd-step wfd-step--human"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Vous</span><strong class="wfd-step-title">Validation avant envoi</strong><span class="wfd-step-text">Vous ajustez la qualification et le message, puis vous validez l'envoi.</span></span></li>
+                <li class="wfd-step wfd-step--result"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Résultat</span><strong class="wfd-step-title">Prospect qualifié</strong><span class="wfd-step-text">La fiche est à jour et le premier message est parti, avec votre accord.</span></span></li>
+              </ol>
+            </div>
+
+            <div class="wfd-panel" id="wfd-panel-documents" role="tabpanel" aria-labelledby="wfd-tab-documents">
+              <h3 class="wfd-panel-title">Documents internes</h3>
+              <p class="wfd-pain"><span class="wfd-pain-label">Aujourd'hui</span> Procédures, contrats, documentation technique&nbsp;: l'information existe, mais on ne la retrouve pas.</p>
+              <ol class="wfd-flow">
+                <li class="wfd-step wfd-step--trigger"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Déclencheur</span><strong class="wfd-step-title">Une question</strong><span class="wfd-step-text">Un collaborateur pose sa question avec ses propres mots.</span></span></li>
+                <li class="wfd-step wfd-step--ai"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Avec l'IA</span><strong class="wfd-step-title">Recherche et réponse</strong><span class="wfd-step-text">L'assistant cherche dans vos documents et formule une réponse à partir de ce qu'il y trouve.</span></span></li>
+                <li class="wfd-step wfd-step--tools"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Vos outils</span><strong class="wfd-step-title">Vos dossiers</strong><span class="wfd-step-text">Il consulte les espaces que vous avez choisi de lui ouvrir&nbsp;: drive, intranet, GED.</span></span></li>
+                <li class="wfd-step wfd-step--human"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Vous</span><strong class="wfd-step-title">Sources vérifiables</strong><span class="wfd-step-text">La réponse cite les passages utilisés&nbsp;: le collaborateur ouvre la source et vérifie avant de s'en servir.</span></span></li>
+                <li class="wfd-step wfd-step--result"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Résultat</span><strong class="wfd-step-title">Information retrouvée</strong><span class="wfd-step-text">La réponse arrive avec son document d'origine, à un clic.</span></span></li>
+              </ol>
+            </div>
+
+            <div class="wfd-panel" id="wfd-panel-factures" role="tabpanel" aria-labelledby="wfd-tab-factures">
+              <h3 class="wfd-panel-title">Factures impayées</h3>
+              <p class="wfd-pain"><span class="wfd-pain-label">Aujourd'hui</span> Les relances de factures en retard se font à la main, quand on y pense.</p>
+              <ol class="wfd-flow">
+                <li class="wfd-step wfd-step--trigger"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Déclencheur</span><strong class="wfd-step-title">Échéance dépassée</strong><span class="wfd-step-text">Une facture n'est pas réglée à sa date d'échéance.</span></span></li>
+                <li class="wfd-step wfd-step--rule"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Automatique</span><strong class="wfd-step-title">Règle de relance</strong><span class="wfd-step-text">Le workflow applique les seuils que vous avez fixés&nbsp;: rappel, relance, dernier avis.</span></span></li>
+                <li class="wfd-step wfd-step--tools"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Vos outils</span><strong class="wfd-step-title">Outil de facturation</strong><span class="wfd-step-text">Le message est préparé avec le montant, la date et le contact issus de votre outil.</span></span></li>
+                <li class="wfd-step wfd-step--human"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Vous</span><strong class="wfd-step-title">Validation avant envoi</strong><span class="wfd-step-text">Vous relisez la relance et validez l'envoi, ou vous la mettez de côté.</span></span></li>
+                <li class="wfd-step wfd-step--result"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Résultat</span><strong class="wfd-step-title">Relance envoyée</strong><span class="wfd-step-text">La relance part et le suivi de la facture est mis à jour dans votre outil.</span></span></li>
+              </ol>
+            </div>
+
+            <div class="wfd-panel" id="wfd-panel-comptes-rendus" role="tabpanel" aria-labelledby="wfd-tab-comptes-rendus">
+              <h3 class="wfd-panel-title">Comptes rendus</h3>
+              <p class="wfd-pain"><span class="wfd-pain-label">Aujourd'hui</span> Après chaque réunion, il faut rédiger le compte rendu puis le ranger au bon endroit.</p>
+              <ol class="wfd-flow">
+                <li class="wfd-step wfd-step--trigger"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Déclencheur</span><strong class="wfd-step-title">Fin de réunion</strong><span class="wfd-step-text">La réunion se termine&nbsp;; les notes ou la transcription sont disponibles.</span></span></li>
+                <li class="wfd-step wfd-step--ai"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Avec l'IA</span><strong class="wfd-step-title">Brouillon rédigé</strong><span class="wfd-step-text">L'IA rédige un brouillon&nbsp;: décisions, actions, responsables.</span></span></li>
+                <li class="wfd-step wfd-step--tools"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Vos outils</span><strong class="wfd-step-title">Outil de suivi</strong><span class="wfd-step-text">Le brouillon est déposé dans votre outil de suivi, rattaché au bon projet.</span></span></li>
+                <li class="wfd-step wfd-step--human"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Vous</span><strong class="wfd-step-title">Relecture</strong><span class="wfd-step-text">Vous relisez, corrigez si besoin et validez la version à partager.</span></span></li>
+                <li class="wfd-step wfd-step--result"><span class="wfd-ic" aria-hidden="true"></span><span class="wfd-step-body"><span class="wfd-kind">Résultat</span><strong class="wfd-step-title">Prêt à partager</strong><span class="wfd-step-text">La version relue est classée et prête à partager, sans ressaisie.</span></span></li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="wfd-foot">
+            <p>Ces scénarios illustrent le principe. Les étapes, les règles et les points de validation se définissent avec vous, selon votre activité et vos outils.</p>
+            <a href="/contact-devis" class="button w-button">Parlons de votre besoin</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- MÉTHODE -->
     <section class="section methode-section" id="methode">
       <div class="container">
         <div class="section-head">
           <h2 class="h2-heading">Une méthode en quatre temps</h2>
-          <p>
-            Un diagnostic pour identifier ce qui vaut le coup. Un prototype pour le tester vite. Un déploiement
-            accompagné pour le faire tourner dans vos outils.
-            <span class="desktop-line-break">Une formation pour que vos équipes n'en dépendent pas.</span>
-          </p>
         </div>
 
         <ol class="method-steps-4">
@@ -231,19 +308,30 @@
       </div>
     </section>
 
-    <!-- PROBLÈMES RÉSOLUS -->
-    <section class="section" id="problemes">
+    <!-- PREUVES : bandeau court. Le detail des missions vit sur une seule page,
+         solutions-ia-entreprise.html#preuves ; ajouter un client se fait la-bas. -->
+    <section class="section proof-section" id="preuves">
       <div class="container">
         <div class="section-head">
-          <h2 class="h2-heading">Les situations sur lesquelles j'interviens</h2>
+          <h2 class="h2-heading">Ils m'ont fait confiance</h2>
         </div>
-        <ul class="marked-list" role="list">
-          <li>Prospection qui prend des heures et remplit mal le CRM.</li>
-          <li>Informations internes introuvables (procédures, contrats, docs techniques).</li>
-          <li>Tâches administratives répétitives (emails, comptes rendus, reporting).</li>
-          <li>Outils IA testés sans méthode, sans résultat qui reste.</li>
-          <li>Pas de temps ni de compétence interne pour aller plus loin seul.</li>
+
+        <ul class="proof-band proof-band-2" role="list">
+          <li><strong>37</strong><span>personnes formées en 2026</span></li>
+          <li><strong>Plus de 50h</strong><span>de formation animées</span></li>
         </ul>
+
+        <div class="utility-margin-top-2rem">
+          <ul class="marked-list" role="list">
+            <li>Formation IA pour l'équipe d'Amplitude Conseil, bureau d'études à Lyon.</li>
+            <li>Prospection automatisée pour une société de nettoyage (mission en cours).</li>
+            <li>Caisse et boutique web connectées pour un commerce de cadeaux et décoration (mission en cours).</li>
+          </ul>
+        </div>
+
+        <p class="bridge-note">
+          <a href="solutions-ia-entreprise.html#preuves">Voir les missions en détail</a>
+        </p>
       </div>
     </section>
 
@@ -289,60 +377,15 @@
       </div>
     </section>
 
-    <!-- CAS D'USAGE -->
-    <section class="section methode-section" id="cas-usage">
+    <!-- ACCÈS AUX OFFRES : liens compacts vers les pages de service -->
+    <section class="section home-offers" id="offres" aria-labelledby="offres-titre">
       <div class="container">
-        <div class="section-head">
-          <h2 class="h2-heading">À quoi ça ressemble concrètement</h2>
-        </div>
-        <ul class="marked-list" role="list">
-          <li>Un agent qui enrichit et qualifie vos prospects avant que vous ne les appeliez.</li>
-          <li>Un assistant qui répond à partir de vos vrais documents, avec les sources citées.</li>
-          <li>Une automatisation qui relance vos factures impayées à des seuils que vous choisissez.</li>
-          <li>Un compte rendu de réunion généré et rangé automatiquement dans votre outil de suivi.</li>
+        <h2 class="h2-heading home-offers-title" id="offres-titre">Explorer les offres</h2>
+        <ul class="home-offer-links" role="list">
+          <li><a href="tarifs-prestations.html"><strong>Diagnostic IA et automatisation</strong><span>Ce qui vaut le coup chez vous, et son tarif</span></a></li>
+          <li><a href="solutions-ia-entreprise.html"><strong>Prototypes, agents IA et automatisations</strong><span>Des solutions reliées à vos outils, puis un accompagnement</span></a></li>
+          <li><a href="formations-ia.html"><strong>Formation IA</strong><span>Pour que vos équipes pilotent les usages</span></a></li>
         </ul>
-        <p class="bridge-note">
-          Des agents cadrés, connectés à vos outils métier, avec validation humaine avant toute action sensible.
-        </p>
-      </div>
-    </section>
-
-    <!-- PREUVES : bandeau court. Le detail des missions vit sur une seule page,
-         solutions-ia-entreprise.html#preuves ; ajouter un client se fait la-bas. -->
-    <section class="section proof-section" id="preuves">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="h2-heading">Ils m'ont fait confiance</h2>
-        </div>
-
-        <ul class="proof-band proof-band-2" role="list">
-          <li><strong>37</strong><span>personnes formées en 2026</span></li>
-          <li><strong>Plus de 50h</strong><span>de formation animées</span></li>
-        </ul>
-
-        <div class="utility-margin-top-2rem">
-          <ul class="marked-list" role="list">
-            <li>Formation IA pour l'équipe d'Amplitude Conseil, bureau d'études à Lyon.</li>
-            <li>Prospection automatisée pour une société de nettoyage (mission en cours).</li>
-            <li>Caisse et boutique web connectées pour un commerce de cadeaux et décoration (mission en cours).</li>
-          </ul>
-        </div>
-
-        <p class="bridge-note">
-          <a href="solutions-ia-entreprise.html#preuves">Voir les missions en détail</a>
-        </p>
-      </div>
-    </section>
-
-    <!-- RÉSUMÉ DES OFFRES -->
-    <section class="section" id="offres">
-      <div class="container">
-        <p class="offer-summary">
-          Diagnostic IA et automatisation · Prototype &amp; agents IA · Automatisation de workflows · Accompagnement · Formation IA
-        </p>
-        <p class="bridge-note">
-          <a href="tarifs-prestations.html">Voir le diagnostic et son tarif</a>
-        </p>
       </div>
     </section>
 
