@@ -41,6 +41,68 @@
   <script src="js/cookie-consent.js" defer></script>
   <script src="js/url-handler.js"></script>
   <link href="css/flux-humains.css" rel="stylesheet" type="text/css" />
+  <!-- Données structurées : mêmes @id que formations-ia.html -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.workflowintelligent.fr/#website",
+        "url": "https://www.workflowintelligent.fr/",
+        "name": "Workflow Intelligent",
+        "inLanguage": "fr-FR",
+        "publisher": { "@id": "https://www.workflowintelligent.fr/#organization" }
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://www.workflowintelligent.fr/#organization",
+        "name": "Workflow Intelligent",
+        "alternateName": "Sylvain Magana — consultant IA et automatisation",
+        "description": "Consultant IA et automatisation pour TPE et PME à Lyon. Diagnostic IA, prototypes, agents IA connectés aux outils métier, automatisation de workflows et formation IA.",
+        "url": "https://www.workflowintelligent.fr/",
+        "logo": "https://www.workflowintelligent.fr/assets/favicon-192.png",
+        "email": "contact@workflowintelligent.fr",
+        "telephone": "+33670092941",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8 bis avenue Général de Gaulle",
+          "postalCode": "69300",
+          "addressLocality": "Caluire-et-Cuire",
+          "addressRegion": "Auvergne-Rhône-Alpes",
+          "addressCountry": "FR"
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Lyon" },
+          { "@type": "AdministrativeArea", "name": "Auvergne-Rhône-Alpes" },
+          { "@type": "Country", "name": "France" }
+        ],
+        "founder": { "@id": "https://www.workflowintelligent.fr/#sylvain-magana" },
+        "knowsAbout": [
+          "Diagnostic IA",
+          "Automatisation des processus",
+          "Agents IA",
+          "Applications métier",
+          "Formation IA générative"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/sylvainmagana"
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.workflowintelligent.fr/#sylvain-magana",
+        "name": "Sylvain Magana",
+        "jobTitle": "Consultant IA et automatisation",
+        "url": "https://www.workflowintelligent.fr/a-propos",
+        "worksFor": { "@id": "https://www.workflowintelligent.fr/#organization" },
+        "sameAs": [
+          "https://www.linkedin.com/in/sylvainmagana"
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
