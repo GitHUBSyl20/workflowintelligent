@@ -352,6 +352,7 @@
                 <ul role="list" class="w-list-unstyled">
                     <li><a href="/contact-devis" class="footer-link footer-link-on-inverse">Contact</a></li>
                     <li><a href="a-propos.html" class="footer-link footer-link-on-inverse">À propos</a></li>
+                    <li><a href="test-ia.html" class="footer-link footer-link-on-inverse">Test IA</a></li>
                     <li><a href="formations-ia.html#financement" class="footer-link footer-link-on-inverse">Financement</a></li>
                     <li><a href="mentions-legales.html" class="footer-link footer-link-on-inverse">Mentions Légales</a></li>
                     <li><a href="conditions-generales.html" class="footer-link footer-link-on-inverse">CGU-CGV</a></li>
@@ -436,6 +437,15 @@
       const demandeParam = urlParams.get('demande');
       const typeStructureParam = urlParams.get('type_structure');
       const ressourceParam = urlParams.get('ressource');
+      const messageParam = urlParams.get('message');
+
+      // Si message=... (ex. resume du test IA express), pre-remplir le champ besoin
+      if (messageParam) {
+        const commentaires = document.getElementById('Commentaires');
+        if (commentaires && !commentaires.value) {
+          commentaires.value = messageParam.slice(0, 1000);
+        }
+      }
       
       // Si ressource=ProgrammePDF, remplir le champ caché
       if (ressourceParam === 'ProgrammePDF') {
