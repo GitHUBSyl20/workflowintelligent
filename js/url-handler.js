@@ -26,6 +26,7 @@
         'mentions-legales.html': 'mentions-legales',
         'conditions-generales.html': 'conditions-generales',
         'formations-ia.html': 'formations-ia',
+        'test-ia.html': 'test-ia',
         'index.html': '',
         // English versions
         'solutions-ia-entreprise-en.html': 'solutions-ia-entreprise-en',

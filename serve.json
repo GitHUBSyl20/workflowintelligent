@@ -35,6 +35,10 @@
       "destination": "/formations-ia.html"
     },
     {
+      "source": "/test-ia",
+      "destination": "/test-ia.html"
+    },
+    {
       "source": "/produits-experimentations",
       "destination": "/produits-experimentations.html"
     },
