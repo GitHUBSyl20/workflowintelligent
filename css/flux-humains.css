@@ -268,7 +268,7 @@ header.about-header::before,
    ========================= */
 
 /* Boutons sur fond clair : orange profond, texte blanc. */
-.button:not(.secondary-button-on-accent-primary),
+.button:not(.secondary-button-on-accent-primary):not(.tia-btn-outline),
 .main-navbar .nav-cta,
 .solutions-hero .solutions-hero-cta {
   background-color: var(--flux-orange-deep);
@@ -278,7 +278,7 @@ header.about-header::before,
     box-shadow var(--flux-ease), color var(--flux-ease);
 }
 
-.button:not(.secondary-button-on-accent-primary):hover,
+.button:not(.secondary-button-on-accent-primary):not(.tia-btn-outline):hover,
 .main-navbar .nav-cta:hover,
 .main-navbar .nav-cta:focus,
 .solutions-hero .solutions-hero-cta:hover {
@@ -288,14 +288,14 @@ header.about-header::before,
 
 /* Bouton plein dans un bandeau orange : orange profond opaque, sans effet de
    verre ; il reste distinct du bouton blanc. */
-.accent-primary-section .button:not(.secondary-button-on-accent-primary) {
+.accent-primary-section .button:not(.secondary-button-on-accent-primary):not(.tia-btn-outline) {
   background-color: var(--flux-orange-deep);
   border: 2px solid rgba(255, 244, 233, 0.35);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
 
-.accent-primary-section .button:not(.secondary-button-on-accent-primary):hover {
+.accent-primary-section .button:not(.secondary-button-on-accent-primary):not(.tia-btn-outline):hover {
   background-color: var(--flux-orange-deeper);
   border-color: rgba(255, 244, 233, 0.55);
 }
@@ -370,7 +370,7 @@ main a:focus-visible,
   }
 
   /* Mêmes sélecteurs que les règles qui posent les transitions. */
-  .button:not(.secondary-button-on-accent-primary),
+  .button:not(.secondary-button-on-accent-primary):not(.tia-btn-outline),
   .main-navbar .nav-cta,
   .solutions-hero .solutions-hero-cta,
   .accent-primary-section .button.secondary-button-on-accent-primary,
@@ -378,3 +378,7 @@ main a:focus-visible,
     transition: none;
   }
 }
+
+/* Test IA : le bouton contour reste un contour (exclu des boutons pleins ci-dessus) ;
+   dans l'encadré bleu nuit du résultat, focus blanc plutôt que brun. */
+.tia-convert .button:focus-visible { outline-color: #fff; }
