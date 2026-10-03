@@ -1096,6 +1096,9 @@
 .tia-convert .button.tia-btn-outline { color: #fff; border-color: #fff; }
 .accent-primary-section .button.tia-btn-outline:hover,
 .tia-convert .button.tia-btn-outline:hover { background: rgba(255, 255, 255, 0.14); color: #fff; border-color: #fff; }
+/* Sur le bandeau orange : voile brun leger pour porter le texte blanc a 4,7:1 (4,5:1 requis). */
+.accent-primary-section .button.tia-btn-outline { background: rgba(40, 26, 19, 0.22); }
+.accent-primary-section .button.tia-btn-outline:hover { background: rgba(40, 26, 19, 0.32); }
 
 /* Focus visible commun */
 .tia-app :focus-visible,
