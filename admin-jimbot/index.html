@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="referrer" content="no-referrer" />
+  <title>JimBot · Administration</title>
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="admin.css" />
+  <script src="admin.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Aller au contenu</a>
+  <header class="top">
+    <p class="brand">JimBot · Administration</p>
+    <nav id="nav" aria-label="Administration" hidden>
+      <a href="#/demandes">Demandes</a>
+      <a href="#/conversations">Conversations</a>
+      <span id="who" class="who"></span>
+      <button type="button" id="logout" class="link">Se déconnecter</button>
+    </nav>
+  </header>
+  <main id="main" tabindex="-1">
+    <p class="muted">Chargement…</p>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

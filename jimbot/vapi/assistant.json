@@ -1,0 +1,19 @@
+{
+  "name": "JimBot - workflowintelligent.fr",
+  "firstMessage": "Bonjour, je suis JimBot, l'assistant IA de Sylvain. Je peux vous présenter son parcours, ses réalisations et vous aider à préciser votre projet. Que souhaitez-vous savoir ?",
+  "model": {
+    "provider": "{{JIMBOT_VAPI_MODEL_PROVIDER}}",
+    "model": "{{JIMBOT_VAPI_MODEL}}",
+    "temperature": 0.2,
+    "maxTokens": 700,
+    "messages": [
+      { "role": "system", "content": "{{PROMPT_SYSTEME}}" }
+    ],
+    "toolIds": ["{{JIMBOT_VAPI_TOOL_ID}}"]
+  },
+  "metadata": {
+    "projet": "jimbot",
+    "site": "workflowintelligent.fr",
+    "canal": "chat-texte-uniquement"
+  }
+}

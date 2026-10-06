@@ -8,6 +8,48 @@
           "value": "public, max-age=31536000, immutable"
         }
       ]
+    },
+    {
+      "source": "/admin-jimbot/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
+        }
+      ]
+    },
+    {
+      "source": "/api/jimbot/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
     }
   ],
   "redirects": [
@@ -185,6 +227,11 @@
       "source": "/aides-financement-numerique.html",
       "destination": "/formations-ia#financement",
       "permanent": true
+    },
+    {
+      "source": "/admin-jimbot",
+      "destination": "/admin-jimbot/",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -255,6 +302,23 @@
     {
       "source": "/conditions-generales-en",
       "destination": "/conditions-generales-en.html"
+    }
+  ],
+  "functions": {
+    "api/jimbot/[action].js": {
+      "maxDuration": 40
+    },
+    "api/jimbot/admin/[action].js": {
+      "maxDuration": 30
+    },
+    "api/jimbot/cron/purge.js": {
+      "maxDuration": 60
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/jimbot/cron/purge",
+      "schedule": "17 3 * * *"
     }
   ]
 }

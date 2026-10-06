@@ -16,3 +16,8 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Variables d'environnement (secrets) : seul .env.example est versionné
+.env
+.env.*
+!.env.example

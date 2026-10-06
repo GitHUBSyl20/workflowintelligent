@@ -5,3 +5,11 @@ docs
 debug-assets.js
 temp_replace.py
 .cursor
+# JimBot : sources de configuration, migrations, outils et tests,
+# jamais publiés (les fonctions serveur sont dans /api).
+/jimbot
+/supabase
+/scripts
+/tests
+.env
+.env.*

@@ -1,0 +1,325 @@
+/* =====================================================================
+   JimBot : bulle et fenêtre de discussion
+   Tous les réglages visuels sont regroupés dans les variables ci-dessous.
+   Les libellés sont dans js/jimbot/jimbot-config.js.
+   ===================================================================== */
+
+.jimbot {
+  /* Couleurs (palette « Flux humains » du site) */
+  --jb-accent: #B93614;            /* boutons, texte blanc 5,8:1 */
+  --jb-accent-hover: #A02E10;
+  --jb-accent-soft: #FFF4E9;
+  --jb-surface: #FFFFFF;
+  --jb-surface-alt: #FFF8F4;
+  --jb-border: #EADFD9;
+  --jb-ink: #281A13;
+  --jb-ink-muted: #6A5A52;         /* 5,9:1 sur blanc */
+  --jb-user-bg: #B93614;
+  --jb-user-ink: #FFFFFF;
+  --jb-bot-bg: #FFF8F4;
+  --jb-bot-ink: #281A13;
+  --jb-error-bg: #FDECEA;
+  --jb-error-ink: #8A1C12;
+  --jb-success-bg: #EAF6EE;
+  --jb-success-ink: #1D5E33;
+  --jb-focus: #1A4FD6;
+
+  /* Dimensions */
+  --jb-launcher-size: 56px;
+  --jb-offset-right: 1.25rem;
+  --jb-offset-bottom: 1.25rem;
+  --jb-panel-width: 400px;
+  --jb-panel-height: min(640px, calc(100vh - 7rem));
+  --jb-radius: 14px;
+  --jb-radius-bubble: 12px;
+  --jb-shadow: 0 12px 36px rgba(74, 35, 20, 0.18);
+  --jb-font: "Lato", "Segoe UI", Arial, sans-serif;
+  --jb-font-size: 15px;
+  --jb-z: 1500;
+  --jb-z-open-mobile: 2200;
+
+  font-family: var(--jb-font);
+  font-size: var(--jb-font-size);
+  line-height: 1.5;
+  color: var(--jb-ink);
+}
+
+.jimbot--raised { --jb-offset-bottom: 5.75rem; } /* page avec un bouton collant */
+
+.jimbot *, .jimbot *::before, .jimbot *::after { box-sizing: border-box; }
+
+.jimbot .jb-sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+.jimbot :focus-visible {
+  outline: 3px solid var(--jb-focus);
+  outline-offset: 2px;
+}
+
+/* ---------- Bulle ---------- */
+.jimbot .jb-launcher {
+  position: fixed;
+  right: var(--jb-offset-right);
+  bottom: var(--jb-offset-bottom);
+  z-index: var(--jb-z);
+  width: var(--jb-launcher-size);
+  height: var(--jb-launcher-size);
+  border: 0;
+  border-radius: 50%;
+  background: var(--jb-accent);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(74, 35, 20, 0.22);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+.jimbot .jb-launcher:hover { background: var(--jb-accent-hover); }
+.jimbot .jb-launcher svg { width: 26px; height: 26px; }
+.jimbot .jb-launcher[aria-expanded="true"] { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .jimbot .jb-launcher:hover { transform: translateY(-2px); }
+}
+
+/* ---------- Fenêtre ---------- */
+.jimbot .jb-panel {
+  position: fixed;
+  right: var(--jb-offset-right);
+  bottom: var(--jb-offset-bottom);
+  z-index: var(--jb-z);
+  width: var(--jb-panel-width);
+  max-width: calc(100vw - 2 * var(--jb-offset-right));
+  height: var(--jb-panel-height);
+  display: flex;
+  flex-direction: column;
+  background: var(--jb-surface);
+  border: 1px solid var(--jb-border);
+  border-radius: var(--jb-radius);
+  box-shadow: var(--jb-shadow);
+  overflow: hidden;
+}
+.jimbot .jb-panel[hidden] { display: none; }
+
+.jimbot .jb-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: .75rem .75rem .75rem 1rem;
+  border-bottom: 1px solid var(--jb-border);
+  background: var(--jb-surface-alt);
+}
+.jimbot .jb-title { margin: 0; font-size: 1.05rem; font-weight: 700; line-height: 1.2; color: var(--jb-ink); }
+.jimbot .jb-subtitle { margin: 2px 0 0; font-size: .85rem; color: var(--jb-ink-muted); }
+.jimbot .jb-head-actions { display: flex; gap: .25rem; }
+
+.jimbot .jb-icon-btn {
+  width: 40px; height: 40px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--jb-ink);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.jimbot .jb-icon-btn:hover { background: var(--jb-accent-soft); border-color: var(--jb-border); }
+.jimbot .jb-icon-btn svg { width: 20px; height: 20px; }
+
+.jimbot .jb-notice {
+  margin: 0;
+  padding: .5rem 1rem;
+  font-size: .8rem;
+  line-height: 1.4;
+  color: var(--jb-ink-muted);
+  border-bottom: 1px solid var(--jb-border);
+}
+.jimbot .jb-notice a { color: var(--jb-accent); text-decoration: underline; }
+
+/* ---------- Messages ---------- */
+.jimbot .jb-log {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  overscroll-behavior: contain;
+}
+.jimbot .jb-msg { max-width: 88%; }
+.jimbot .jb-msg-who { margin: 0 0 2px; font-size: .75rem; font-weight: 700; color: var(--jb-ink-muted); }
+.jimbot .jb-msg-body {
+  padding: .6rem .85rem;
+  border-radius: var(--jb-radius-bubble);
+  overflow-wrap: anywhere;
+}
+.jimbot .jb-msg-body p { margin: 0 0 .5em; }
+.jimbot .jb-msg-body p:last-child, .jimbot .jb-msg-body ul:last-child, .jimbot .jb-msg-body ol:last-child { margin-bottom: 0; }
+.jimbot .jb-msg-body ul, .jimbot .jb-msg-body ol { margin: 0 0 .5em; padding-left: 1.2em; }
+.jimbot .jb-msg--user { align-self: flex-end; }
+.jimbot .jb-msg--user .jb-msg-who { text-align: right; }
+.jimbot .jb-msg--user .jb-msg-body { background: var(--jb-user-bg); color: var(--jb-user-ink); border-bottom-right-radius: 4px; white-space: pre-wrap; }
+.jimbot .jb-msg--bot { align-self: flex-start; }
+.jimbot .jb-msg--bot .jb-msg-body { background: var(--jb-bot-bg); color: var(--jb-bot-ink); border: 1px solid var(--jb-border); border-bottom-left-radius: 4px; }
+
+.jimbot .jb-alert {
+  align-self: stretch;
+  padding: .6rem .85rem;
+  border-radius: 8px;
+  font-size: .9rem;
+  background: var(--jb-error-bg);
+  color: var(--jb-error-ink);
+}
+.jimbot .jb-alert--ok { background: var(--jb-success-bg); color: var(--jb-success-ink); }
+.jimbot .jb-alert button {
+  margin-left: .5rem;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  padding: .1rem .5rem;
+  cursor: pointer;
+}
+
+.jimbot .jb-typing { align-self: flex-start; display: flex; align-items: center; gap: .5rem; color: var(--jb-ink-muted); font-size: .85rem; }
+.jimbot .jb-dots { display: inline-flex; gap: 4px; }
+.jimbot .jb-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--jb-ink-muted); opacity: .5; }
+@media (prefers-reduced-motion: no-preference) {
+  .jimbot .jb-dots span { animation: jb-blink 1.2s infinite ease-in-out; }
+  .jimbot .jb-dots span:nth-child(2) { animation-delay: .2s; }
+  .jimbot .jb-dots span:nth-child(3) { animation-delay: .4s; }
+}
+@keyframes jb-blink { 0%, 80%, 100% { opacity: .3; } 40% { opacity: 1; } }
+
+/* ---------- Zone de saisie ---------- */
+.jimbot .jb-composer {
+  display: flex;
+  align-items: flex-end;
+  gap: .5rem;
+  padding: .75rem;
+  border-top: 1px solid var(--jb-border);
+}
+.jimbot .jb-input {
+  flex: 1;
+  min-height: 44px;
+  max-height: 140px;
+  resize: none;
+  padding: .6rem .75rem;
+  border: 1px solid #CDBFB8;
+  border-radius: 10px;
+  font: inherit;
+  color: var(--jb-ink);
+  background: #fff;
+}
+.jimbot .jb-send {
+  min-height: 44px;
+  padding: 0 1rem;
+  border: 0;
+  border-radius: 10px;
+  background: var(--jb-accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.jimbot .jb-send:hover { background: var(--jb-accent-hover); }
+.jimbot .jb-send:disabled, .jimbot .jb-primary:disabled { opacity: .55; cursor: not-allowed; }
+
+.jimbot .jb-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
+  padding: 0 .75rem .75rem;
+  font-size: .8rem;
+  color: var(--jb-ink-muted);
+}
+.jimbot .jb-link-btn {
+  border: 0;
+  background: none;
+  padding: .25rem 0;
+  font: inherit;
+  font-weight: 700;
+  color: var(--jb-accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ---------- Formulaire « Être recontacté » ---------- */
+.jimbot .jb-contact { flex: 1; overflow-y: auto; padding: 1rem; }
+.jimbot .jb-contact[hidden] { display: none; }
+.jimbot .jb-contact h3 { margin: 0 0 .5rem; font-size: 1rem; }
+.jimbot .jb-contact-intro { margin: 0 0 1rem; font-size: .85rem; color: var(--jb-ink-muted); }
+.jimbot .jb-field { margin-bottom: .85rem; }
+.jimbot .jb-field label, .jimbot .jb-field legend { display: block; margin-bottom: .25rem; font-weight: 700; font-size: .9rem; }
+.jimbot .jb-field input[type="text"], .jimbot .jb-field input[type="email"], .jimbot .jb-field textarea {
+  width: 100%;
+  padding: .55rem .7rem;
+  border: 1px solid #CDBFB8;
+  border-radius: 8px;
+  font: inherit;
+  color: var(--jb-ink);
+  background: #fff;
+}
+.jimbot .jb-field input:disabled { background: #F4EFEC; color: var(--jb-ink-muted); }
+.jimbot .jb-field textarea { min-height: 120px; resize: vertical; }
+.jimbot .jb-field [aria-invalid="true"] { border-color: var(--jb-error-ink); }
+.jimbot .jb-check { display: flex; align-items: center; gap: .5rem; margin-top: .4rem; font-weight: 400; font-size: .9rem; }
+.jimbot .jb-check input { width: 18px; height: 18px; }
+.jimbot .jb-hint { margin: .25rem 0 0; font-size: .8rem; color: var(--jb-ink-muted); }
+.jimbot .jb-error { margin: .25rem 0 0; font-size: .85rem; color: var(--jb-error-ink); }
+.jimbot .jb-error:empty { display: none; }
+.jimbot .jb-required { color: var(--jb-error-ink); }
+.jimbot .jb-transmission { padding: .6rem .75rem; margin: 0 0 1rem; border-radius: 8px; background: var(--jb-accent-soft); font-size: .85rem; }
+.jimbot .jb-contact-actions { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+.jimbot .jb-primary {
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border: 0;
+  border-radius: 10px;
+  background: var(--jb-accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.jimbot .jb-primary:hover { background: var(--jb-accent-hover); }
+.jimbot .jb-secondary {
+  min-height: 44px;
+  padding: 0 1rem;
+  border: 1px solid var(--jb-border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--jb-ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ---------- Mobile : plein écran ---------- */
+@media (max-width: 600px) {
+  .jimbot { --jb-offset-right: 1rem; --jb-offset-bottom: 1rem; }
+  .jimbot--raised { --jb-offset-bottom: 5.25rem; }
+  .jimbot .jb-panel {
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    height: 100dvh;
+    border-radius: 0;
+    border: 0;
+    z-index: var(--jb-z-open-mobile);
+  }
+  .jimbot .jb-msg { max-width: 92%; }
+  .jimbot .jb-input { font-size: 16px; } /* évite le zoom automatique d'iOS */
+}
+
+@media print {
+  .jimbot { display: none !important; }
+}

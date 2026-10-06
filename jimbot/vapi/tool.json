@@ -1,0 +1,23 @@
+{
+  "type": "function",
+  "function": {
+    "name": "rechercher_connaissances_jimbot",
+    "description": "Recherche dans la base de connaissances publique de Sylvain Magana (parcours, formation, compétences, réalisations, projets en cours, offres, tarifs et disponibilités renseignés). À appeler avant toute affirmation sur Sylvain ou ses offres. Renvoie des extraits datés, ou AUCUN_RESULTAT.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "requete": {
+          "type": "string",
+          "description": "Question précise en français, reformulée à partir de la demande du visiteur (300 caractères au plus)."
+        }
+      },
+      "required": ["requete"]
+    }
+  },
+  "messages": [],
+  "server": {
+    "url": "{{JIMBOT_VAPI_TOOL_URL}}",
+    "credentialId": "{{JIMBOT_VAPI_CREDENTIAL_ID}}",
+    "timeoutSeconds": 15
+  }
+}

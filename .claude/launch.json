@@ -4,8 +4,21 @@
     {
       "name": "workflowintelligent",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", ".", "-p", "3001"],
+      "runtimeArgs": [
+        "serve",
+        ".",
+        "-p",
+        "3001"
+      ],
       "port": 3001
+    },
+    {
+      "name": "jimbot-local",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "scripts/jimbot-dev-server.mjs"
+      ],
+      "port": 3002
     }
   ]
 }
