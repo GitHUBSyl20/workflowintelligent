@@ -321,26 +321,26 @@
 /* Deux téléphones décalés (Ear Trainer). */
 .pc-visual-phones {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
   padding: 1rem 0 2rem 0;
 }
 
-.pc-visual-phones .pc-phone {
-  width: min(46%, 270px);
-}
-
-.pc-phone-back {
-  margin-top: 3.5rem;
-  margin-right: -1.5rem;
+/* Téléphone vertical (parcours) en arrière-plan, à gauche. */
+.pc-visual-phones .pc-phone-back {
+  width: min(44%, 250px);
+  margin: 0 0 0 4%;
   opacity: 0.92;
   transform: rotate(-3deg);
 }
 
-.pc-phone-front {
-  position: relative;
+/* Téléphone tenu à l'horizontale (lecture continue), au premier plan. */
+.pc-phone-landscape {
+  position: absolute;
+  right: 0;
+  bottom: 1.5rem;
   z-index: 1;
+  width: 78%;
+  border-width: 7px;
+  border-radius: 1.6rem;
   transform: rotate(2deg);
 }
 
@@ -502,7 +502,7 @@
     transition: transform 0.35s ease;
   }
 
-  .pc-phone-front:hover {
+  .pc-phone-landscape:hover {
     transform: rotate(0deg) translateY(-4px);
   }
 }
@@ -573,13 +573,16 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .pc-visual-phones .pc-phone {
-    width: 50%;
+  .pc-visual-phones .pc-phone-back {
+    width: 48%;
+    margin-left: 0;
   }
 
-  .pc-phone-back {
-    margin-top: 2.5rem;
-    margin-right: -1rem;
+  .pc-phone-landscape {
+    width: 86%;
+    bottom: 1rem;
+    border-width: 5px;
+    border-radius: 1.1rem;
   }
 
   .pc-visual-desktop .pc-browser,
