@@ -95,6 +95,28 @@
   grid-area: body;
 }
 
+.pc-project-aside {
+  grid-area: aside;
+}
+
+/* Variante : bloc complémentaire sous le visuel pour combler la colonne image */
+.pc-project-grid-aside {
+  grid-template-areas:
+    "visual head"
+    "visual body"
+    "aside body";
+  grid-template-rows: auto auto 1fr;
+}
+
+.pc-project-grid-aside .pc-project-visual {
+  position: relative;
+  top: auto;
+}
+
+.pc-project-grid-aside .pc-project-aside {
+  margin-top: 2.5rem;
+}
+
 .pc-project-visual {
   grid-area: visual;
   align-self: start;
@@ -495,6 +517,18 @@
       "visual"
       "body";
     grid-template-rows: auto;
+  }
+
+  .pc-project-grid-aside {
+    grid-template-areas:
+      "head"
+      "visual"
+      "body"
+      "aside";
+  }
+
+  .pc-project-grid-aside .pc-project-aside {
+    margin-top: 1.5rem;
   }
 
   .pc-project-visual {
