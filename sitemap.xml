@@ -31,14 +31,10 @@
     <priority>0.8</priority>
   </url>
   
-  <!-- Business pages - Medium-high priority -->
-  <url>
-    <loc>https://www.workflowintelligent.fr/tarifs-prestations</loc>
-    <lastmod>2025-01-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <!-- /tarifs-prestations redirige en 301 vers /diagnostic-ia : une URL
+       redirigee n'a pas sa place dans le sitemap. -->
 
+  <!-- Business pages - Medium-high priority -->
   <url>
     <loc>https://www.workflowintelligent.fr/formations-ia</loc>
     <lastmod>2026-10-31</lastmod>

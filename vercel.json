@@ -38,7 +38,17 @@
     },
     {
       "source": "/offres.html",
-      "destination": "/tarifs-prestations",
+      "destination": "/diagnostic-ia",
+      "permanent": true
+    },
+    {
+      "source": "/tarifs-prestations",
+      "destination": "/diagnostic-ia",
+      "permanent": true
+    },
+    {
+      "source": "/tarifs-prestations.html",
+      "destination": "/diagnostic-ia",
       "permanent": true
     },
     {
@@ -84,10 +94,6 @@
     {
       "source": "/aides-financement-numerique",
       "destination": "/aides-financement-numerique.html"
-    },
-    {
-      "source": "/tarifs-prestations",
-      "destination": "/tarifs-prestations.html"
     },
     {
       "source": "/contact-devis",
