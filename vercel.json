@@ -114,6 +114,14 @@
       "destination": "/produits-experimentations.html"
     },
     {
+      "source": "/diagnostic-ia",
+      "destination": "/diagnostic-ia.html"
+    },
+    {
+      "source": "/test-ia",
+      "destination": "/test-ia.html"
+    },
+    {
       "source": "/index-en",
       "destination": "/index-en.html"
     },
