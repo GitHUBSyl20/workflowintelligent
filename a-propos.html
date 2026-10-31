@@ -586,7 +586,9 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 .photo .badge i{width:10px;height:10px;border-radius:50%;border:2.5px solid var(--o)}
 .photo .badge:hover{border-color:var(--o);box-shadow:var(--glow)}
 .photo .b1{left:-34px;top:16%}
-.photo .b2{right:-28px;top:46%;animation-delay:-1.6s}
+/* b2 descend sous le menton : a 46% elle coupait la bouche et la machoire.
+   68% la pose sur la veste, comme le fait deja la version mobile. */
+.photo .b2{right:-28px;top:68%;animation-delay:-1.6s}
 .photo .b3{left:-14px;bottom:8%;animation-delay:-3.2s}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
