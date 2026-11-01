@@ -590,7 +590,9 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 .alt .show .stack{background:#fff}
 
 /* Maquettes d'appareils */
-.visual-p{position:relative;min-height:420px;display:flex;align-items:center;justify-content:center}
+/* --ph-w pilote les deux maquettes a la fois : le portrait et le paysage
+   montrent le meme appareil, leurs echelles ne doivent pas diverger. */
+.visual-p{--ph-w:220px;position:relative;min-height:420px;display:flex;align-items:center;justify-content:center}
 .visual-p::before{content:"";position:absolute;inset:8% 6%;border-radius:50%;background:radial-gradient(closest-side,var(--o-soft),transparent);z-index:0}
 .browser{position:relative;z-index:1;width:100%;max-width:560px;border-radius:14px;background:#fff;border:1.5px solid var(--line);overflow:hidden;box-shadow:0 40px 70px -35px rgba(10,10,10,.45);transition:transform .6s,box-shadow .6s}
 .browser .bar{display:flex;align-items:center;gap:6px;padding:10px 12px;background:var(--bg-2);border-bottom:1.5px solid var(--line)}
@@ -602,10 +604,16 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 .phone::before{content:"";position:absolute;top:6px;left:50%;width:56px;height:14px;margin-left:-28px;border-radius:10px;background:var(--ink);z-index:2}
 .phone img{display:block;width:100%;height:auto;border-radius:24px}
 .visual-p .browser + .phone{position:absolute;right:-6px;bottom:-30px;width:150px}
-.visual-p .phone.solo{width:220px;transform:rotate(-4deg)}
+.visual-p .phone.solo{width:var(--ph-w);transform:rotate(-4deg)}
 /* La portee passe devant le telephone : .phone est en z-index 2, la carte
    doit donc monter au-dessus pour que les notes restent lisibles. */
-.visual-p .land{position:absolute;z-index:3;left:0;bottom:4%;width:62%;border-radius:18px;border:8px solid var(--ink);overflow:hidden;box-shadow:0 30px 50px -28px rgba(10,10,10,.5);transform:rotate(3deg);transition:transform .6s}
+/* Paysage = le meme appareil pivote. Son petit cote d'ecran doit donc egaler
+   la largeur d'ecran du portrait, soit --ph-w moins ses 9px de bordure de
+   chaque cote. La largeur suit le rapport de l'image (1280/599), plus les
+   8px de bordure de chaque cote. Une largeur en % du conteneur, elle, ne
+   pouvait pas suivre une largeur fixe : l'ecart changeait meme de signe
+   selon la taille d'ecran. */
+.visual-p .land{position:absolute;z-index:3;left:0;bottom:-10%;width:calc((var(--ph-w) - 18px) * 1280 / 599 + 16px);border-radius:18px;border:8px solid var(--ink);overflow:hidden;box-shadow:0 30px 50px -28px rgba(10,10,10,.5);transform:rotate(3deg);transition:transform .6s}
 .visual-p .land img{display:block;width:100%;height:auto}
 .visual-p:hover .browser{transform:translateY(-6px);box-shadow:0 0 60px 6px var(--o-glow),0 40px 70px -35px rgba(10,10,10,.45)}
 .visual-p:hover .phone{transform:translateY(-10px) rotate(0deg);box-shadow:0 0 50px 4px var(--o-glow),0 40px 60px -30px rgba(10,10,10,.55)}
@@ -639,7 +647,7 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 @media (max-width:620px){
   .visual-p{min-height:340px}
   .visual-p .browser + .phone{width:110px;bottom:-20px;right:-4px;border-width:7px;border-radius:24px}
-  .visual-p .phone.solo{width:170px}
+  .visual-p{--ph-w:170px}
   .case{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){.eq{animation:none}}
