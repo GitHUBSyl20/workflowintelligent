@@ -1,5 +1,6 @@
 # 📈 SEO DEBT - Roadmap d'Optimisation
-**Domaine :** workflowintelligent.com  
+**Domaine :** www.workflowintelligent.fr  
+> Note (3 octobre 2026) : feuille de route rédigée en janvier 2025, avant la refonte ; priorités à revoir.  
 **Dernière mise à jour :** 3 Janvier 2025  
 **Statut :** URLs optimisées ✅ | Contenu à développer 🔄
 

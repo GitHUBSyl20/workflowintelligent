@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Process Modal
   const openProcessModalBtn = document.getElementById('open-process-modal-btn');
   const processModal = document.getElementById('processModal');
-  const processCloseBtn = processModal.querySelector('.modal-close');
+  const processCloseBtn = processModal ? processModal.querySelector('.modal-close') : null;
 
   if (openProcessModalBtn && processModal) {
     openProcessModalBtn.addEventListener('click', function(e) {
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Close process modal when clicking outside
   window.addEventListener('click', function(e) {
-    if (e.target === processModal) {
+    if (processModal && e.target === processModal) {
       processModal.style.display = 'none';
       document.body.style.overflow = 'auto';
     }
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Close process modal with Escape key
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && processModal.style.display === 'block') {
+    if (e.key === 'Escape' && processModal && processModal.style.display === 'block') {
       processModal.style.display = 'none';
       document.body.style.overflow = 'auto';
     }

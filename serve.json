@@ -1,0 +1,260 @@
+{
+  "cleanUrls": false,
+  "directoryListing": false,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/solutions-ia-entreprise",
+      "destination": "/solutions-ia-entreprise.html"
+    },
+    {
+      "source": "/contact-devis",
+      "destination": "/contact-devis.html"
+    },
+    {
+      "source": "/a-propos",
+      "destination": "/a-propos.html"
+    },
+    {
+      "source": "/mentions-legales",
+      "destination": "/mentions-legales.html"
+    },
+    {
+      "source": "/conditions-generales",
+      "destination": "/conditions-generales.html"
+    },
+    {
+      "source": "/formations-ia",
+      "destination": "/formations-ia.html"
+    },
+    {
+      "source": "/test-ia",
+      "destination": "/test-ia.html"
+    },
+    {
+      "source": "/produits-experimentations",
+      "destination": "/produits-experimentations.html"
+    },
+    {
+      "source": "/index-en",
+      "destination": "/index-en.html"
+    },
+    {
+      "source": "/solutions-ia-entreprise-en",
+      "destination": "/solutions-ia-entreprise-en.html"
+    },
+    {
+      "source": "/automatisation-entreprise-en",
+      "destination": "/automatisation-entreprise-en.html"
+    },
+    {
+      "source": "/tarifs-prestations-en",
+      "destination": "/tarifs-prestations-en.html"
+    },
+    {
+      "source": "/contact-devis-en",
+      "destination": "/contact-devis-en.html"
+    },
+    {
+      "source": "/a-propos-en",
+      "destination": "/a-propos-en.html"
+    },
+    {
+      "source": "/mentions-legales-en",
+      "destination": "/mentions-legales-en.html"
+    },
+    {
+      "source": "/conditions-generales-en",
+      "destination": "/conditions-generales-en.html"
+    },
+    {
+      "source": "/diagnostic-ia",
+      "destination": "/diagnostic-ia.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/index-en",
+      "destination": "/",
+      "type": 307
+    },
+    {
+      "source": "/index-en.html",
+      "destination": "/",
+      "type": 307
+    },
+    {
+      "source": "/solutions-ia-entreprise-en",
+      "destination": "/solutions-ia-entreprise",
+      "type": 307
+    },
+    {
+      "source": "/solutions-ia-entreprise-en.html",
+      "destination": "/solutions-ia-entreprise",
+      "type": 307
+    },
+    {
+      "source": "/automatisation-entreprise-en",
+      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "type": 307
+    },
+    {
+      "source": "/automatisation-entreprise-en.html",
+      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "type": 307
+    },
+    {
+      "source": "/aides-financement-numerique-en",
+      "destination": "/formations-ia#financement",
+      "type": 308
+    },
+    {
+      "source": "/aides-financement-numerique-en.html",
+      "destination": "/formations-ia#financement",
+      "type": 308
+    },
+    {
+      "source": "/tarifs-prestations-en",
+      "destination": "/diagnostic-ia",
+      "type": 307
+    },
+    {
+      "source": "/tarifs-prestations-en.html",
+      "destination": "/diagnostic-ia",
+      "type": 307
+    },
+    {
+      "source": "/contact-devis-en",
+      "destination": "/contact-devis",
+      "type": 307
+    },
+    {
+      "source": "/contact-devis-en.html",
+      "destination": "/contact-devis",
+      "type": 307
+    },
+    {
+      "source": "/a-propos-en",
+      "destination": "/a-propos",
+      "type": 307
+    },
+    {
+      "source": "/a-propos-en.html",
+      "destination": "/a-propos",
+      "type": 307
+    },
+    {
+      "source": "/mentions-legales-en",
+      "destination": "/mentions-legales",
+      "type": 307
+    },
+    {
+      "source": "/mentions-legales-en.html",
+      "destination": "/mentions-legales",
+      "type": 307
+    },
+    {
+      "source": "/conditions-generales-en",
+      "destination": "/conditions-generales",
+      "type": 307
+    },
+    {
+      "source": "/conditions-generales-en.html",
+      "destination": "/conditions-generales",
+      "type": 307
+    },
+    {
+      "source": "/solutions-intelligence-artificielle-en",
+      "destination": "/solutions-ia-entreprise",
+      "type": 307
+    },
+    {
+      "source": "/solutions-intelligence-artificielle-en.html",
+      "destination": "/solutions-ia-entreprise",
+      "type": 307
+    },
+    {
+      "source": "/ai-tools.html",
+      "destination": "/solutions-ia-entreprise",
+      "type": 308
+    },
+    {
+      "source": "/solutions-intelligence-artificielle.html",
+      "destination": "/solutions-ia-entreprise",
+      "type": 308
+    },
+    {
+      "source": "/automatisations.html",
+      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "type": 308
+    },
+    {
+      "source": "/automatisation-processus-metier.html",
+      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "type": 308
+    },
+    {
+      "source": "/subventions-aides-numeriques.html",
+      "destination": "/formations-ia#financement",
+      "type": 308
+    },
+    {
+      "source": "/offres.html",
+      "destination": "/diagnostic-ia",
+      "type": 308
+    },
+    {
+      "source": "/business-informations.html",
+      "destination": "/contact-devis",
+      "type": 308
+    },
+    {
+      "source": "/about.html",
+      "destination": "/a-propos",
+      "type": 308
+    },
+    {
+      "source": "/aides.html",
+      "destination": "/formations-ia#financement",
+      "type": 308
+    },
+    {
+      "source": "/cgu-cgv.html",
+      "destination": "/conditions-generales",
+      "type": 308
+    },
+    {
+      "source": "/automatisation-entreprise",
+      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "type": 308
+    },
+    {
+      "source": "/automatisation-entreprise.html",
+      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "type": 308
+    },
+    {
+      "source": "/aides-financement-numerique",
+      "destination": "/formations-ia#financement",
+      "type": 308
+    },
+    {
+      "source": "/aides-financement-numerique.html",
+      "destination": "/formations-ia#financement",
+      "type": 308
+    },
+    {
+      "source": "/tarifs-prestations",
+      "destination": "/diagnostic-ia",
+      "type": 308
+    },
+    {
+      "source": "/tarifs-prestations.html",
+      "destination": "/diagnostic-ia",
+      "type": 308
+    }
+  ]
+}

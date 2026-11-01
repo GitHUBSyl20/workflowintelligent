@@ -1,0 +1,215 @@
+<!--
+  ARCHIVE — NON PUBLIÉE. Section « Démonstrateurs IA » retirée de solutions-ia-entreprise.html
+  le 29/09/2026 (version salon). Copie à l'identique de la version en ligne (commit 9733b82).
+  Ne pas lier ce fichier : le dossier docs/ est exclu du déploiement (.vercelignore).
+  Orientation pour la réintégration : docs/demonstrateurs/README.md
+-->
+    <!-- Section 6 bis — démonstrateurs. La classe portfolio-section est requise : js/main.js lie les
+         accordeons via le selecteur .portfolio-section .accordion .accordion-trigger. -->
+    <section id="ai-tools-portfolio" class="section portfolio-section methode-section">
+      <div class="container small-container">
+        <div class="section-head">
+          <h2 class="h2-heading">Démonstrateurs IA</h2>
+          <p>
+            Deux démonstrateurs pour montrer ce qu'une IA cadrée sait faire — et où s'arrête son périmètre.
+          </p>
+          <p>
+            Pas des missions clients : ils tournent sur des données de démonstration.
+          </p>
+        </div>
+        <div class="accordion">
+          <!--
+            La carte "Développement assisté" (application musicale) a été déplacée vers la page
+            /produits-experimentations : c'est un produit personnel, pas un démonstrateur B2B.
+          -->
+          <!--       <Accordion Item 2: AI Tool Placeholder 
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger">
+              <h4 class="utility-margin-bottom-0">Chatbot</h4>
+            </button>
+            <div class="content">
+              <div class="portfolio-content-grid">
+                <div class="portfolio-text utility-text-align-justify">
+                  <p class="paragraph-3 utility-text-align-justify">Placeholder for Chatbot content.</p>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- Accordion Item 1: Assistant commercial documentaire -->
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger">
+              <h4 class="utility-margin-bottom-0 title-orange">Assistant commercial documentaire <span
+                  class="demo-badge">Démonstrateur</span></h4>
+            </button>
+            <div class="content">
+              <div class="portfolio-content-grid">
+                <div class="portfolio-text utility-text-align-justify">
+                  <p class="demo-disclaimer">Données de démonstration — Menuiseries Démo (fictif)</p>
+                  <p class="demo-claim">Vos documents. Vos équipes. L'IA en appui, pas aux commandes.</p>
+
+                  <h4 class="paragraph-3 utility-text-align-justify">
+                    Problématique
+                  </h4>
+                  <p>
+                    Dans une équipe commerciale, plusieurs personnes répondent aux mêmes questions à partir de la
+                    même documentation : fiches produits, conditions de garantie, références chantier. Les documents
+                    évoluent, les réponses divergent d'une personne à l'autre, et une erreur sur une garantie ou une
+                    option technique coûte cher.
+                  </p>
+
+                  <h4 class="paragraph-3 utility-text-align-justify">
+                    Ce que fait l'assistant
+                  </h4>
+                  <ul>
+                    <li>Il répond à partir de vos propres documents, pas d'informations génériques.</li>
+                    <li>Il cite la référence du document utilisé, pour que la réponse soit vérifiable.</li>
+                    <li>Il dit qu'il n'a pas l'information plutôt que d'inventer.</li>
+                    <li>Il applique les mêmes règles pour toute l'équipe.</li>
+                  </ul>
+
+                  <h4 class="paragraph-3 utility-text-align-justify">
+                    Où s'arrête son périmètre
+                  </h4>
+                  <ul>
+                    <li>Il ne donne aucun prix : toute demande chiffrée est renvoyée au service devis.</li>
+                    <li>Il ne sort pas des documents qu'on lui a confiés.</li>
+                    <li>Il ne décide rien : il prépare la réponse, la personne valide.</li>
+                  </ul>
+
+                  <!--
+                    VIDÉO DE DÉMONSTRATION — à activer quand le MP4 est déposé.
+                    1. Déposer le fichier dans assets/ sous le nom demo-assistant-documentaire.mp4
+                       (format vertical 9:16, muet, < 90 s) et, si possible, une image d'attente
+                       assets/demo-assistant-documentaire-poster.webp
+                    2. Décommenter le bloc ci-dessous.
+                    Variante hébergement YouTube « non répertoriée » : remplacer <video> par une iframe.
+                    À éviter si possible — une iframe YouTube dépose des traceurs tiers avant le
+                    consentement géré par la modale cookies du site.
+
+                  <div class="demo-video">
+                    <video controls muted playsinline preload="metadata"
+                      poster="/assets/demo-assistant-documentaire-poster.webp">
+                      <source src="/assets/demo-assistant-documentaire.mp4" type="video/mp4" />
+                      Votre navigateur ne peut pas lire cette vidéo.
+                    </video>
+                  </div>
+                  -->
+
+                  <h4 class="paragraph-3 utility-text-align-justify">
+                    Le scénario de la démonstration
+                  </h4>
+                  <p>
+                    Un commercial interne prépare une réponse pour un établissement recevant du public. Il demande
+                    quelles options de sécurité sont disponibles sur une gamme : l'assistant les liste et cite la
+                    fiche produit correspondante. Il demande ensuite un prix pour quarante fenêtres : l'assistant
+                    refuse de chiffrer et le renvoie au service devis. Il cherche enfin une référence chantier avec
+                    vitrage acoustique : l'assistant répond et cite le document source.
+                  </p>
+                  <p>
+                    Ce que cette démonstration montre, c'est la <strong>fiabilité documentaire</strong> de
+                    l'assistant — pas une expertise du secteur de la menuiserie ni des marchés publics. Le savoir
+                    métier reste celui de votre entreprise.
+                  </p>
+
+                  <h4 class="paragraph-3 utility-text-align-justify">
+                    Pourquoi pas simplement ChatGPT avec vos PDF ?
+                  </h4>
+                  <p>
+                    Pour une personne seule avec quelques documents, un projet ChatGPT suffit — et je forme
+                    justement les équipes à s'en servir. Un assistant métier devient utile quand toute une équipe
+                    doit donner <strong>la même réponse</strong>, à partir des <strong>mêmes documents à jour</strong>,
+                    avec des <strong>règles identiques</strong> — pas de prix, citation obligatoire — et qu'on veut
+                    pouvoir repérer les questions qui restent sans réponse.
+                  </p>
+                  <p>
+                    C'est pertinent quand plusieurs personnes répondent à partir de la même documentation, quand une
+                    erreur de réponse coûte cher (prix, garantie, conformité), ou quand la documentation change
+                    souvent.
+                  </p>
+
+                  <h4 class="paragraph-3 utility-text-align-justify">
+                    Ce que j'apporte
+                  </h4>
+                  <p>
+                    Rendre l'IA fiable sur vos documents : lecture exhaustive, réponse sourcée et vérifiable, refus
+                    d'inventer, mêmes règles pour toute l'équipe — et la formation de vos équipes pour qu'elles
+                    restent autonomes.
+                  </p>
+                  <p>
+                    Ce démonstrateur tourne sur un corpus fictif et n'est pas accessible en libre-service. Je le fais
+                    tourner en direct lors d'un échange, sur vos propres documents si vous le souhaitez.
+                  </p>
+                  <p class="utility-text-align-center">
+                    <a href="/contact-devis?demande=Audit%20IA#contact-form" class="button w-button">Voir la
+                      démonstration en direct</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 2: Assistant de premier niveau (demandes entrantes) -->
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger">
+              <h4 class="utility-margin-bottom-0 title-orange">Assistant de premier niveau, disponible hors horaires
+                <span class="demo-badge">Démonstrateur</span></h4>
+            </button>
+            <div class="content">
+              <div class="portfolio-content-grid">
+                <div class="portfolio-text utility-text-align-justify">
+                  <p class="demo-disclaimer">Démonstration — commerce de proximité (animalerie)</p>
+
+                  <h4 class="paragraph-3 utility-text-align-justify">
+                    Problématique
+                  </h4>
+                  <p>
+                    Les clients posent souvent des questions simples mais essentielles : quel produit pour quel
+                    besoin, est-il disponible, à quelle heure êtes-vous ouvert le dimanche. Ces demandes arrivent
+                    surtout le soir, le week-end ou en dehors des heures d'ouverture. Résultat : des occasions
+                    manquées, du temps perdu en magasin et des clients qui restent sans réponse.
+                  </p>
+
+                  <h4 class="paragraph-3 utility-text-align-justify">
+                    Ce que fait l'assistant
+                  </h4>
+                  <ul>
+                    <li>Il traite les demandes courantes à toute heure, à partir des informations que vous lui
+                      confiez.</li>
+                    <li>Il oriente vers le bon produit, le bon rayon ou la bonne information pratique.</li>
+                    <li>Il recueille les coordonnées de la personne pour que vous puissiez la rappeler.</li>
+                    <li>Il s'intègre à un site vitrine ou à une fiche d'établissement en ligne.</li>
+                  </ul>
+
+                  <h4 class="paragraph-3 utility-text-align-justify">
+                    Où s'arrête son périmètre
+                  </h4>
+                  <ul>
+                    <li>Il passe la main à une personne de l'équipe dès que la demande sort de son périmètre.</li>
+                    <li>Il ne s'engage sur rien à votre place : ni prix négocié, ni promesse de délai.</li>
+                    <li>Il ne répond qu'à partir des informations qu'on lui a données sur votre activité.</li>
+                  </ul>
+
+                  <p class="utility-text-align-center">
+                    <a href="https://moncompagnon-joyeux-animaux.vercel.app/" target="_blank" rel="noopener">Tester ce
+                      démonstrateur</a>
+                  </p>
+
+                  <p>
+                    Ce démonstrateur est fonctionnel et transposable à tout commerce ou établissement recevant du
+                    public. Si vous voulez mesurer ce qu'un assistant de premier niveau absorberait chez vous, on peut
+                    partir de vos demandes réelles.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="bridge-note">
+          Ces démonstrateurs sont orientés entreprise. Les produits que je conçois pour mon propre compte sont
+          regroupés sur la page
+          <a href="produits-experimentations.html">Projets &amp; créations</a>.
+        </p>
+      </div>
+    </section>

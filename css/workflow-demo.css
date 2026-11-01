@@ -1,0 +1,422 @@
+/* =========================
+   Exemples de fonctionnement (accueil, section #exemples)
+   Composant autonome : toutes les classes sont préfixées « wfd- », aucune
+   règle globale. Couleurs et boutons repris de flux-humains.css et
+   refonte-2026.css (chargées avant cette feuille).
+   Sans JavaScript : les 4 scénarios sont empilés, toutes étapes visibles.
+   Avec JavaScript (.is-ready) : onglets, un scénario visible à la fois.
+   Animation (.is-anim) : seulement si prefers-reduced-motion ne le refuse pas ;
+   les étapes en attente gardent un texte lisible, seul le cadre s'estompe.
+   ========================= */
+
+.wfd {
+  --wfd-orange: var(--flux-orange, #FF4B1F);
+  --wfd-orange-deep: var(--flux-orange-deep, #B93614);
+  --wfd-navy: #192a56;
+  --wfd-ink: #222;
+  --wfd-text: #444;
+  --wfd-muted: #6b6460;           /* 5,6:1 sur blanc */
+  --wfd-border: var(--flux-card-border, #EADFD9);
+  --wfd-line: var(--flux-line, #DED5D0);
+  --wfd-surface: var(--flux-surface-soft, #FFFAF7);
+  --wfd-gap: 24px;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+/* ---------- Icônes (masques SVG, couleur = currentColor) ---------- */
+.wfd-ic--search  { --wfd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E"); }
+.wfd-ic--doc     { --wfd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z'/%3E%3Cpath d='M14 3v5h5M9 13h6M9 17h6'/%3E%3C/svg%3E"); }
+.wfd-ic--invoice { --wfd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Cpath d='M3 10h18M7 15h4'/%3E%3C/svg%3E"); }
+.wfd-ic--users   { --wfd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='8' r='3.5'/%3E%3Cpath d='M2.5 20a6.5 6.5 0 0 1 13 0'/%3E%3Cpath d='M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5a6.5 6.5 0 0 1 3.5 5.5'/%3E%3C/svg%3E"); }
+.wfd-step--trigger { --wfd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 2 4 14h7l-1 8 9-12h-7z'/%3E%3C/svg%3E"); }
+.wfd-step--rule    { --wfd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12'/%3E%3Ccircle cx='16' cy='6' r='2'/%3E%3Ccircle cx='10' cy='12' r='2'/%3E%3Ccircle cx='18' cy='18' r='2'/%3E%3C/svg%3E"); }
+.wfd-step--ai      { --wfd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z'/%3E%3Cpath d='M19 16v4M17 18h4'/%3E%3C/svg%3E"); }
+.wfd-step--tools   { --wfd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='4' width='6' height='6' rx='1.5'/%3E%3Crect x='14' y='4' width='6' height='6' rx='1.5'/%3E%3Crect x='4' y='14' width='6' height='6' rx='1.5'/%3E%3Crect x='14' y='14' width='6' height='6' rx='1.5'/%3E%3C/svg%3E"); }
+.wfd-step--human   { --wfd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='8' r='3.5'/%3E%3Cpath d='M2.5 20a6.5 6.5 0 0 1 13 0M16 11l2 2 4-4'/%3E%3C/svg%3E"); }
+.wfd-step--result  { --wfd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7.5'/%3E%3C/svg%3E"); }
+.wfd-control             { --wfd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12a9 9 0 1 0 3-6.7'/%3E%3Cpath d='M3 3v6h6'/%3E%3C/svg%3E"); }
+.wfd-control[data-action="pause"]  { --wfd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round'%3E%3Cpath d='M9 5v14M15 5v14'/%3E%3C/svg%3E"); }
+.wfd-control[data-action="resume"] { --wfd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E%3Cpath d='M7 4.5v15l12-7.5z'/%3E%3C/svg%3E"); }
+
+.wfd-ic::before,
+.wfd-control-ic::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: currentColor;
+  -webkit-mask: var(--wfd-icon) center / contain no-repeat;
+  mask: var(--wfd-icon) center / contain no-repeat;
+}
+
+/* ---------- Onglets ---------- */
+.wfd-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 1.25rem;
+}
+
+.wfd-tabs[hidden] { display: none; }
+
+.wfd-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 16px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--wfd-ink);
+  background: #fff;
+  border: 1px solid var(--wfd-line);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.wfd-tab:hover { border-color: #a99d97; }
+
+.wfd-tab[aria-selected="true"] {
+  background: var(--wfd-navy);
+  border-color: var(--wfd-navy);
+  color: #fff;
+}
+
+.wfd-tab .wfd-ic {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------- Bandeau : mention + contrôle ---------- */
+.wfd-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 36px;
+  margin: 0 0 10px;
+}
+
+.wfd .wfd-badge {
+  margin: 0;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--wfd-navy);
+  background: rgba(25, 42, 86, 0.07);
+  border-radius: 999px;
+}
+
+.wfd-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--wfd-navy);
+  background: #fff;
+  border: 1px solid var(--wfd-line);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.wfd-control:hover { border-color: #a99d97; }
+.wfd-control[hidden] { display: none; }
+
+.wfd-control-ic {
+  width: 14px;
+  height: 14px;
+}
+
+/* ---------- Panneaux ---------- */
+.wfd-panels {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.wfd-panel {
+  background: var(--wfd-surface);
+  border: 1px solid var(--wfd-border);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: var(--flux-card-shadow, 0 4px 16px rgba(74, 35, 20, 0.05));
+}
+
+.wfd-panel-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+
+/* Onglets actifs : panneaux superposés dans la même cellule, la hauteur reste
+   celle du plus long scénario (pas de saut au changement d'onglet). */
+.wfd.is-ready .wfd-panels { gap: 0; }
+.wfd.is-ready .wfd-panel { grid-area: 1 / 1; }
+.wfd.is-ready .wfd-panel:not(.is-active) { visibility: hidden; }
+.wfd.is-ready .wfd-panel-title { display: none; }
+
+.wfd .wfd-pain {
+  margin: 0 0 18px;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--wfd-text);
+}
+
+.wfd-pain-label {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 1px 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--wfd-ink);
+  background: #fff;
+  border: 1px solid var(--wfd-line);
+  border-radius: 6px;
+}
+
+/* ---------- Étapes ---------- */
+.wfd-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--wfd-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wfd-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0 !important;      /* responsive-overrides.css pose li { margin-bottom: .15em !important } en mobile */
+  padding: 14px 14px 16px;
+  background: #fff;
+  border: 1.5px solid var(--wfd-orange);
+  border-radius: 12px;
+  box-shadow: 0 8px 18px -14px rgba(185, 54, 20, 0.55);
+  transition: border-color 350ms ease, background-color 350ms ease, box-shadow 350ms ease;
+}
+
+.wfd-step > .wfd-ic {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+  border-radius: 8px;
+  color: #fff;
+  background: var(--wfd-orange-deep);
+  transition: background-color 350ms ease, color 350ms ease;
+}
+
+.wfd-step-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.wfd-kind {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wfd-orange-deep);
+  transition: color 350ms ease;
+}
+
+.wfd-step-title {
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--wfd-ink);
+}
+
+.wfd-step-text {
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: var(--wfd-text);
+}
+
+/* Intervention humaine : cadre pointillé bleu nuit, pastille « Vous ». */
+.wfd-step--human {
+  border: 2px dashed var(--wfd-navy);
+  box-shadow: 0 8px 18px -14px rgba(25, 42, 86, 0.5);
+}
+
+.wfd-step--human > .wfd-ic { background: var(--wfd-navy); }
+
+.wfd-step--human .wfd-kind {
+  align-self: flex-start;
+  padding: 1px 9px;
+  color: #fff;
+  background: var(--wfd-navy);
+  border-radius: 999px;
+}
+
+/* Résultat : carte pleine orange profond, texte blanc (5,8:1). */
+.wfd-step--result {
+  background: var(--wfd-orange-deep);
+  border-color: var(--wfd-orange-deep);
+}
+
+.wfd-step--result > .wfd-ic { background: #fff; color: var(--wfd-orange-deep); }
+.wfd-step--result .wfd-kind,
+.wfd-step--result .wfd-step-title,
+.wfd-step--result .wfd-step-text { color: #fff; }
+
+/* Liaisons entre étapes : un rail gris et son remplissage orange. */
+.wfd-step + .wfd-step::before,
+.wfd-step + .wfd-step::after {
+  content: "";
+  position: absolute;
+  top: 29px;
+  left: calc(-1 * var(--wfd-gap) - 1.5px);
+  width: var(--wfd-gap);
+  height: 2px;
+  background: var(--wfd-line);
+  pointer-events: none;
+}
+
+.wfd-step + .wfd-step::after {
+  background: var(--wfd-orange);
+  transform-origin: left center;
+  transition: transform 400ms ease;
+}
+
+/* ---------- États de l'animation ----------
+   Étape en attente : cadre et pictogramme neutres, texte inchangé. */
+.wfd.is-anim .wfd-step:not(.is-on) {
+  background: #fff;
+  border-color: var(--wfd-border);
+  box-shadow: none;
+}
+
+.wfd.is-anim .wfd-step--human:not(.is-on) { border-color: #b7bccb; }
+
+.wfd.is-anim .wfd-step:not(.is-on) > .wfd-ic {
+  color: var(--wfd-muted);
+  background: #f1ece9;
+}
+
+.wfd.is-anim .wfd-step:not(.is-on) .wfd-kind { color: var(--wfd-muted); }
+.wfd.is-anim .wfd-step--human:not(.is-on) .wfd-kind { color: #fff; background: #5f6680; }
+
+.wfd.is-anim .wfd-step--result:not(.is-on) .wfd-step-title { color: var(--wfd-ink); }
+.wfd.is-anim .wfd-step--result:not(.is-on) .wfd-step-text { color: var(--wfd-text); }
+
+.wfd.is-anim .wfd-step:not(.is-on)::after { transform: scaleX(0); }
+
+.wfd.is-anim .wfd-step.is-on { animation: wfd-pop 380ms ease-out; }
+
+@keyframes wfd-pop {
+  from { transform: translateY(4px); }
+  to { transform: none; }
+}
+
+/* ---------- Pied : note + appel à l'action ---------- */
+.wfd-foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+/* Une seule ligne sur ordinateur ; équilibrée sur deux lignes en dessous. */
+.wfd .wfd-foot p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
+  text-wrap: balance;
+}
+
+.wfd-foot .button {
+  flex: none;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Tablette et mobile : lecture verticale compacte ---------- */
+@media (max-width: 1023px) {
+  .wfd { --wfd-gap: 10px; }
+
+  .wfd-flow { grid-template-columns: minmax(0, 1fr); }
+
+  .wfd-step {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .wfd-step-title { font-size: 16px; }
+  .wfd-step-text { font-size: 15px; }
+
+  .wfd-step + .wfd-step::before,
+  .wfd-step + .wfd-step::after {
+    top: calc(-1 * var(--wfd-gap) - 1.5px);
+    left: 29px;
+    width: 2px;
+    height: var(--wfd-gap);
+  }
+
+  .wfd-step + .wfd-step::after { transform-origin: center top; }
+  .wfd.is-anim .wfd-step:not(.is-on)::after { transform: scaleY(0); }
+}
+
+@media (max-width: 767px) {
+  .wfd-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+  }
+
+  .wfd-tab {
+    padding: 10px 10px;
+    font-size: 14.5px;
+    text-align: center;
+  }
+
+  .wfd-panel { padding: 14px; }
+
+  .wfd-foot {
+    align-items: stretch;
+    text-align: left;
+  }
+
+  .wfd-foot .button {
+    width: 100%;
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wfd-tab,
+  .wfd-step,
+  .wfd-step > .wfd-ic,
+  .wfd-kind,
+  .wfd-step + .wfd-step::after {
+    transition: none;
+  }
+
+  .wfd .wfd-step.is-on { animation: none; }
+}

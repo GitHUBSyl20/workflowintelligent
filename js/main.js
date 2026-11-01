@@ -1,14 +1,3 @@
-
-// WebFont Loader
-if (window.WebFont) {
-  WebFont.load({
-    google: {
-      families: [
-        "Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic",
-      ],
-    },
-  });
-}
 // Webflow Touch Detection
 (function (o, c) {
   var n = c.documentElement,
@@ -18,7 +7,8 @@ if (window.WebFont) {
     (n.className += t + "touch");
 })(window, document);
 
-function onReady(fn) {
+// main.js est charge sans defer sur la plupart des pages : attendre le DOM.
+function whenDomReady(fn) {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', fn);
   } else {
@@ -26,108 +16,35 @@ function onReady(fn) {
   }
 }
 
-onReady(function() {
-  var $tabLinks = $('.w-tab-link');
-  var $tabMenus = $('.w-tab-menu');
-  var $tabPanes = $('.w-tab-pane');
-  var $tabs = $('.w-tabs');
+// Onglets (pages EN) : un seul panneau actif par groupe .w-tabs
+whenDomReady(function () {
+  document.querySelectorAll('.w-tabs').forEach(function (tabs) {
+    var links = tabs.querySelectorAll('.w-tab-link');
+    var panes = tabs.querySelectorAll('.w-tab-pane');
+    if (!links.length) return;
 
-  $tabLinks.each(function(i, el) {
-  });
-
-  $tabMenus.each(function(i, el) {
-  });
-
-  $tabPanes.each(function(i, el) {
-  });
-
-  $tabs.each(function(i, el) {
-  });
-
-  $tabLinks.on('click', function(e) {
-  });
-
-  // Hide Webflow "Made in Webflow" badge if present
-  (function () {
-    "use strict";
-    function hideWebflowBadge() {
-      const selectors = [
-        ".w-webflow-badge",
-        '[class*="webflow-badge"]',
-        '[class*="made-in-webflow"]',
-      ];
-      selectors.forEach((selector) => {
-        document.querySelectorAll(selector).forEach((el) => {
-          el.style.display = "none";
-        });
+    function activate(link) {
+      var tab = link.getAttribute('data-w-tab');
+      links.forEach(function (l) { l.classList.toggle('w--current', l === link); });
+      panes.forEach(function (p) {
+        p.classList.toggle('w--tab-active', p.getAttribute('data-w-tab') === tab);
       });
     }
-    // Use MutationObserver to hide badge if it appears later
-    const observer = new MutationObserver(hideWebflowBadge);
-    observer.observe(document.body, { childList: true, subtree: true });
-    // Initial call
-    hideWebflowBadge();
-  })();
 
-});
+    links.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        activate(link);
+      });
+    });
 
-// Minimal, robust tab switching for all pages
-$(function() {
-  $('.w-tab-link').on('click', function(e) {
-    e.preventDefault();
-    var $clicked = $(this);
-    var tab = $clicked.attr('data-w-tab');
-    var $tabs = $clicked.closest('.w-tabs');
-    var $links = $tabs.find('.w-tab-link');
-    var $panes = $tabs.find('.w-tab-pane');
-    $links.removeClass('w--current');
-    $clicked.addClass('w--current');
-    $panes.removeClass('w--tab-active');
-    $panes.filter('[data-w-tab="' + tab + '"]').addClass('w--tab-active');
-  });
-  // On load, ensure only one tab is active
-  $('.w-tabs').each(function() {
-    var $tabs = $(this);
-    var $links = $tabs.find('.w-tab-link');
-    var $panes = $tabs.find('.w-tab-pane');
-    var $current = $links.filter('.w--current');
-    if ($current.length === 0) {
-      $links.first().addClass('w--current');
-      $panes.removeClass('w--tab-active');
-      $panes.first().addClass('w--tab-active');
+    // Au chargement, garantir un onglet actif
+    if (!tabs.querySelector('.w-tab-link.w--current')) {
+      links[0].classList.add('w--current');
+      panes.forEach(function (p, i) { p.classList.toggle('w--tab-active', i === 0); });
     }
   });
 });
-
-
-
-  // GSAP animation for feature cards
-  if (window.gsap && document.querySelector('.feature-card')) {
-    // Register ScrollTrigger if available
-    if (window.gsap.registerPlugin && window.ScrollTrigger) {
-      window.gsap.registerPlugin(window.ScrollTrigger);
-    }
-    
-    // Build animation config
-    const animationConfig = {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      stagger: 0.18,
-      ease: 'power2.out'
-    };
-    
-    // Only add scrollTrigger if the plugin is available
-    if (window.ScrollTrigger) {
-      animationConfig.scrollTrigger = {
-        trigger: '.feature-cards-section',
-        start: 'top 80%',
-        once: true
-      };
-    }
-    
-    gsap.to('.feature-card', animationConfig);
-  }
 
   // GSAP horizontal scroll for about page orange section carousel
   if (window.gsap && window.ScrollTrigger && document.querySelector('.carousel-track')) {
@@ -150,130 +67,80 @@ $(function() {
   }
 
 
-$(document).ready(function(){
-  // Portfolio Accordion Script
-  // Selects accordion links within sections having an ID starting with "automatisation-portfolio" or "ai-tools-portfolio"
-  // This makes it reusable if you add a similar accordion to the AI tools page.
-  $(".portfolio-section .accordion .accordion-trigger").on("click", function(e){
-    const $this = $(this);
-    const $content = $this.siblings(".content");
-    const $accordion = $this.closest('.accordion');
-    const $item = $this.closest('.accordion-item');
+// Accordeon des sections .portfolio-section : un seul panneau ouvert a la fois.
+// Fermeture 1000 ms, ouverture 800 ms (courbes easeOutQuart / easeOutCubic).
+(function () {
+  var EASE_CLOSE = 'cubic-bezier(0.25, 1, 0.5, 1)';
+  var EASE_OPEN = 'cubic-bezier(0.33, 1, 0.68, 1)';
+  var reduceMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const wasActive = $this.hasClass("active");
+  function stopAnimations(el) {
+    if (el.getAnimations) el.getAnimations().forEach(function (a) { a.cancel(); });
+  }
 
-    // Remove .active and .open from all items in this accordion
-    $accordion.find('.accordion-trigger.active').removeClass("active");
-    $accordion.find('.accordion-item.open').removeClass("open");
-    
-    // Instead of simple slideUp, create a more elegant animation
-    $accordion.find('.content').each(function() {
-      const $thisContent = $(this);
-      if ($thisContent.is(':visible')) {
-        $thisContent.css('overflow', 'hidden')
-          .animate({
-            height: 0,
-            opacity: 0,
-            paddingTop: 0,
-            paddingBottom: 0
-          }, {
-            duration: 1000,
-            easing: 'easeOutQuart',
-            complete: function() {
-              $(this).hide().css({
-                height: '',
-                opacity: '',
-                paddingTop: '',
-                paddingBottom: '',
-                overflow: ''
-              });
-            }
+  function closePanel(content) {
+    stopAnimations(content);
+    if (getComputedStyle(content).display === 'none') return;
+    if (reduceMotion || !content.animate) {
+      content.removeAttribute('style');
+      return;
+    }
+    var cs = getComputedStyle(content);
+    var from = { height: cs.height, opacity: 1, paddingTop: cs.paddingTop, paddingBottom: cs.paddingBottom };
+    content.style.display = 'block';
+    content.style.overflow = 'hidden';
+    content.animate([from, { height: '0px', opacity: 0, paddingTop: '0px', paddingBottom: '0px' }],
+      { duration: 1000, easing: EASE_CLOSE })
+      .onfinish = function () { content.removeAttribute('style'); };
+  }
+
+  function openPanel(content) {
+    stopAnimations(content);
+    content.style.display = 'block';
+    if (reduceMotion || !content.animate) return;
+    var cs = getComputedStyle(content);
+    var to = { height: cs.height, opacity: 1, paddingTop: cs.paddingTop, paddingBottom: cs.paddingBottom };
+    content.style.overflow = 'hidden';
+    content.animate([{ height: '0px', opacity: 0, paddingTop: '0px', paddingBottom: '0px' }, to],
+      { duration: 800, easing: EASE_OPEN })
+      .onfinish = function () { content.style.overflow = ''; };
+  }
+
+  whenDomReady(function () {
+    document.querySelectorAll('.portfolio-section .accordion').forEach(function (accordion) {
+      var triggers = accordion.querySelectorAll('.accordion-trigger');
+
+      triggers.forEach(function (trigger) {
+        trigger.setAttribute('aria-expanded', trigger.classList.contains('active') ? 'true' : 'false');
+
+        trigger.addEventListener('click', function () {
+          var item = trigger.closest('.accordion-item');
+          var content = item && item.querySelector('.content');
+          var wasActive = trigger.classList.contains('active');
+
+          // Tout fermer, puis rouvrir celui-ci s'il etait ferme
+          triggers.forEach(function (t) {
+            t.classList.remove('active');
+            t.setAttribute('aria-expanded', 'false');
+            var it = t.closest('.accordion-item');
+            if (it) it.classList.remove('open');
           });
-      }
-    });
-
-    if (!wasActive) {
-      $this.addClass("active");
-      $item.addClass("open");
-      
-      // Instead of simple slideDown, create a more elegant animation
-      $content.css({
-        display: 'block',
-        height: 0,
-        opacity: 0,
-        paddingTop: 0,
-        paddingBottom: 0,
-        overflow: 'hidden'
-      }).animate({
-        height: $content[0].scrollHeight,
-        opacity: 1,
-        paddingTop: '',
-        paddingBottom: ''
-      }, {
-        duration: 800,
-        easing: 'easeOutCubic',
-        complete: function() {
-          $(this).css({
-            height: '',
-            overflow: ''
+          accordion.querySelectorAll('.content').forEach(function (c) {
+            if (c !== content || wasActive) closePanel(c);
           });
-        }
+
+          if (!wasActive && content) {
+            trigger.classList.add('active');
+            trigger.setAttribute('aria-expanded', 'true');
+            item.classList.add('open');
+            openPanel(content);
+          }
+        });
       });
-    }
-  });
-
-  // Add easing functions if not already included with jQuery
-  if (typeof $.easing.easeOutCubic !== 'function') {
-    $.extend($.easing, {
-      easeOutCubic: function (x, t, b, c, d) {
-        return c * ((t = t / d - 1) * t * t + 1) + b;
-      },
-      easeOutQuart: function (x, t, b, c, d) {
-        return -c * ((t = t / d - 1) * t * t * t - 1) + b;
-      }
     });
-  }
-
-  // --- Modal Logic for Recap Table ---
-  const openBtn = $('#open-modal-btn');
-  const closeBtn = $('#close-modal-btn');
-  const modal = $('#recap-modal');
-
-  function showModal() {
-    modal.css('display', 'flex');
-    setTimeout(() => modal.addClass('active'), 10); // allow display to apply before transition
-  }
-
-  function hideModal() {
-    modal.removeClass('active');
-    setTimeout(() => modal.css('display', 'none'), 300); // wait for transition to finish
-  }
-
-  if (openBtn.length && modal.length) {
-    openBtn.on('click', function(e) {
-      e.preventDefault();
-      showModal();
-    });
-  }
-
-  if (closeBtn.length) {
-    closeBtn.on('click', hideModal);
-  }
-
-  // Hide modal on overlay click
-  modal.on('click', function(e) {
-    if ($(e.target).is(modal)) {
-      hideModal();
-    }
   });
-
-  // Hide modal on Escape key press
-  $(document).on('keyup', function(e) {
-    if (e.key === "Escape" && modal.hasClass('active')) {
-      hideModal();
-    }
-  });
-});
+})();
 
 // ============================================
 // Hamburger menu - SIMPLE & RELIABLE VERSION
@@ -309,17 +176,29 @@ $(document).ready(function(){
       hamburger.classList.toggle('active', isOpen);
       navLinks.classList.toggle('open', isOpen);
       document.body.classList.toggle('menu-open', isOpen);
-      
-      if (hamburger.hasAttribute('aria-expanded')) {
-        hamburger.setAttribute('aria-expanded', isOpen);
-      }
+
+      // Toujours renseigne : le bouton est un <div role="button">, rien d'autre
+      // n'annonce l'etat ouvert/ferme.
+      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     }
+
+    // Etat initial annonce des le chargement.
+    hamburger.setAttribute('aria-expanded', 'false');
     
     // Strategy: Use ONLY click event (works on both mobile and desktop)
     // Let the browser handle touch → click conversion naturally
     // NO preventDefault(), NO complex touch logic
     hamburger.addEventListener('click', function(e) {
       toggle();
+    });
+
+    // Un <div role="button"> ne convertit pas Entree / Espace en clic :
+    // sans ceci le menu est inaccessible au clavier.
+    hamburger.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        toggle();
+      }
     });
     
     // Close menu when clicking links
@@ -415,58 +294,19 @@ $(document).ready(function(){
 document.addEventListener('DOMContentLoaded', function() {
   const links = document.querySelectorAll('.main-nav-link');
   const currentPath = window.location.pathname;
-  const currentPage = currentPath.split('/').pop() || 'index.html';
+  // Compare sans l'extension .html : en production les URL sont propres (/formations-ia)
+  const pageName = path => (path.split(/[?#]/)[0].split('/').pop() || 'index').replace(/\.html$/, '');
+  const currentPage = pageName(currentPath);
   let matchFound = false;
 
   links.forEach(link => {
-    const linkPage = link.getAttribute('href').split('/').pop() || 'index.html';
-    if (linkPage === currentPage && !matchFound) {
+    if (!matchFound && !link.classList.contains('nav-cta') && pageName(link.getAttribute('href')) === currentPage) {
       link.classList.add('active');
+      link.setAttribute('aria-current', 'page');
       matchFound = true;
     } else {
       link.classList.remove('active');
+      link.removeAttribute('aria-current');
     }
   });
-});
-
-window.addEventListener('DOMContentLoaded', () => {
-  // Feature cards initialization
-  const cards = document.querySelectorAll('.feature-card');
-  
-  cards.forEach((card, idx) => {
-    const style = window.getComputedStyle(card);
-    // Initialize feature cards if needed
-  });
-});
-
-// Modal functionality
-function openModal() {
-  const modal = document.getElementById('imageModal');
-  if (modal) {
-    modal.style.display = 'block';
-    const modalImage = document.getElementById('modalImage');
-    const caption = document.getElementById('caption');
-    if (modalImage) modalImage.src = '/assets/Demo-relance.png';
-    if (caption) caption.innerHTML = 'Exemple d\'alerte déclenchée automatiquement par retard de paiement';
-  }
-}
-
-function closeModal() {
-  const modal = document.getElementById('imageModal');
-  if (modal) {
-    modal.style.display = 'none';
-  }
-}
-
-// Event listener to close the modal
-document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.getElementById('imageModal');
-  if (modal) {
-    // Close modal on escape key press
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        closeModal();
-      }
-    });
-  }
 });

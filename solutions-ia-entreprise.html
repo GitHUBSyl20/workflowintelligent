@@ -425,6 +425,9 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 /* ---------- Situations : aujourd'hui → ce qui peut être mis en place ---------- */
 .sits{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .sit{display:flex;flex-direction:column;padding:28px 24px;scroll-margin-top:100px}
+/* Cible de la redirection de /automatisation-entreprise, page supprimee.
+   L article porte deja id="sit2", utilise par le JS du hub. */
+#reduire-saisies{scroll-margin-top:128px}
 .sit .hd{display:flex;align-items:center;gap:14px;margin-bottom:20px}
 .sit .hd i{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:3px solid var(--o);font-style:normal;font-weight:800;color:var(--o);transition:.35s}
 .sit:hover .hd i,.sit.flash .hd i{background:var(--o);color:#fff;box-shadow:0 0 0 6px var(--o-soft)}
@@ -673,7 +676,7 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
         <div class="fix"><p class="lbl">Ce qui peut être mis en place</p>Je mets en place un accès adapté : recherche documentaire, réponses appuyées sur vos sources, extraction d'informations ou synthèses à vérifier.</div>
       </article>
       <article class="sit card rv" id="sit2">
-        <div class="hd"><i>2</i><h3>Réduire les saisies et transferts manuels</h3></div>
+        <div class="hd"><i>2</i><h3 id="reduire-saisies">Réduire les saisies et transferts manuels</h3></div>
         <div class="now"><p class="lbl">Aujourd'hui</p>Une même donnée est saisie dans un tableau, recopiée dans un logiciel, puis reprise dans un email.</div>
         <div class="wire" aria-hidden="true"></div>
         <div class="fix"><p class="lbl">Ce qui peut être mis en place</p>Je relie vos outils et automatise les opérations qui suivent des règles fiables, avec validation humaine si nécessaire.</div>
