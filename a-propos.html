@@ -585,7 +585,9 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 .photo .badge{position:absolute;z-index:2;display:inline-flex;align-items:center;gap:9px;padding:10px 14px;border-radius:14px;background:#fff;border:1.5px solid var(--line);box-shadow:0 18px 30px -18px rgba(10,10,10,.35);font-size:14px;font-weight:800;color:var(--ink);white-space:nowrap;animation:float 5s ease-in-out infinite;transition:border-color .3s,box-shadow .3s}
 .photo .badge i{width:10px;height:10px;border-radius:50%;border:2.5px solid var(--o)}
 .photo .badge:hover{border-color:var(--o);box-shadow:var(--glow)}
-.photo .b1{left:-34px;top:16%}
+/* b1 remonte au-dessus du sommet des cheveux, mesure a 9,2% du cadre :
+   a 16% elle masquait la coiffure. 3% est la valeur deja utilisee en mobile. */
+.photo .b1{left:-34px;top:3%}
 /* b2 descend sous le menton : a 46% elle coupait la bouche et la machoire.
    68% la pose sur la veste, comme le fait deja la version mobile. */
 .photo .b2{right:-28px;top:68%;animation-delay:-1.6s}
