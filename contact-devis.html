@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <style>
 :root{
   --o:#FF4B1F;--o-d:#E03A12;--o-soft:#FFF1EC;--o-glow:rgba(255,75,31,.3);
@@ -639,6 +640,9 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 .formation:not([hidden]){animation:faqIn .45s ease}
 .formation .ft{grid-column:1/-1;font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--o)}
 .formation input,.formation select,.formation textarea{background:#fff}
+.form .captcha{margin-top:24px}
+.form .captcha-ko{margin-top:10px;font-size:14px;font-weight:600;color:#A32218}
+.form .captcha-ko a{color:inherit}
 .form .send{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:24px}
 .form .send .btn{border:0;cursor:pointer}
 .form .rgpd{font-size:13.5px;color:var(--mute);flex:1;min-width:220px}
@@ -819,6 +823,10 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
           </div>
           <div class="f full"><label for="message">Votre besoin en quelques mots (facultatif)</label><textarea id="message" name="message" placeholder="Une tâche, une recherche d'information ou une suite de manipulations qui vous prend du temps."></textarea></div>
         </div>
+        <div class="captcha">
+          <div class="g-recaptcha" data-sitekey="6LeFb4grAAAAANX2WNvp7NwShpCYyqrLd_HXSF6O"></div>
+          <p class="captcha-ko" id="captcha-ko" hidden>La verification anti-spam ne s'est pas chargee, souvent a cause d'un bloqueur de publicites. Desactivez-le sur cette page, ou ecrivez-moi directement a <a href="mailto:contact@workflowintelligent.fr">contact@workflowintelligent.fr</a>.</p>
+        </div>
         <div class="send">
           <button type="submit" class="btn btn-o">Envoyer ma demande <span class="ar" aria-hidden="true">→</span></button>
           <p class="rgpd">Vos données servent uniquement à répondre à votre demande et sont conservées 3 ans. Vous pouvez y accéder ou les faire supprimer à tout moment : voir les <a href="mentions-legales.html">mentions légales</a>.</p>
@@ -994,6 +1002,18 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
       if(bad.length){bad[0].focus();bad[0].reportValidity();}
       return;
     }
+    /* Formspree refuse l'envoi (400) sans jeton anti-spam : on le verifie ici
+       plutot que de laisser partir une requete vouee a l'echec. */
+    var ko=document.getElementById('captcha-ko');
+    var jeton=(window.grecaptcha&&grecaptcha.getResponse)?grecaptcha.getResponse():null;
+    if(jeton===null){ko.hidden=false;ko.scrollIntoView({block:'center'});return;}
+    ko.hidden=true;
+    if(!jeton){
+      st.textContent='Merci de cocher la case \u00ab Je ne suis pas un robot \u00bb avant d\u2019envoyer.';
+      st.classList.add('show','err');
+      document.querySelector('.g-recaptcha').scrollIntoView({block:'center'});
+      return;
+    }
     var label=btn.innerHTML;
     btn.disabled=true;btn.innerHTML='Envoi en cours\u2026';
     st.classList.remove('show','err');
@@ -1001,6 +1021,7 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
       .then(function(r){
         if(!r.ok)throw new Error('HTTP '+r.status);
         form.reset();sync();
+        if(window.grecaptcha&&grecaptcha.reset)grecaptcha.reset();
         st.textContent=sel.value==='Formation'
           ?'Votre demande a bien \u00e9t\u00e9 envoy\u00e9e. Je prendrai contact avec vous pour pr\u00e9ciser votre besoin de formation et le format le plus adapt\u00e9 \u00e0 votre \u00e9quipe.'
           :'Votre demande a bien \u00e9t\u00e9 envoy\u00e9e. Je prendrai contact avec vous pour pr\u00e9ciser votre situation et v\u00e9rifier le p\u00e9rim\u00e8tre adapt\u00e9.';
