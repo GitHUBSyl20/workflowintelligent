@@ -293,7 +293,10 @@ section{padding:104px 0;position:relative}
 .rail.dark a span{background:#1A1A1A;color:#fff}
 @media (min-width:1360px){.rail{display:block}}
 /* Assez de marge à gauche : l'étiquette de la section en cours reste affichée */
-@media (min-width:1600px){.rail a.cur span{opacity:1;transform:translate(0,-50%)}}
+/* Le libelle de la section courante ne reste affiche que s'il tient sans
+   toucher le texte. Seuil cale sur le plus long, "Trumpet Trove Explorer" :
+   a 1600px il s'arretait a 2px du contenu. */
+@media (min-width:1660px){.rail a.cur span{opacity:1;transform:translate(0,-50%)}}
 
 /* ---------- Curseur neurone ---------- */
 html.cur-on,html.cur-on *{cursor:none!important}
@@ -690,8 +693,8 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
   <span class="fill" id="railFill"></span>
   <ol>
     <li><a href="#top"><i></i><span>Projets</span></a></li>
-    <li><a href="#ear-trainer"><i></i><span>Ear Trainer</span></a></li>
-    <li><a href="#trove-explorer"><i></i><span>Trove Explorer</span></a></li>
+    <li><a href="#ear-trainer"><i></i><span>Trumpet Ear Trainer</span></a></li>
+    <li><a href="#trove-explorer"><i></i><span>Trumpet Trove Explorer</span></a></li>
     <li><a href="#concours-caluire"><i></i><span>Concours Caluire</span></a></li>
     <li><a href="#methode"><i></i><span>Ma façon de travailler</span></a></li>
     <li><a href="#contact"><i></i><span>Missions</span></a></li>
