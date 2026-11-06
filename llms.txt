@@ -8,7 +8,7 @@ Le site est en français. Les prix sont indiqués hors taxes.
 
 - [Solutions IA et automatisation](https://www.workflowintelligent.fr/solutions-ia-entreprise): réduire les saisies et tâches manuelles, exploiter les informations internes, du diagnostic au déploiement.
 - [Diagnostic et tarifs](https://www.workflowintelligent.fr/tarifs-prestations): diagnostic IA et automatisation à 690 € HT (entretien de 1 h 30, analyse de deux à trois processus, pistes priorisées, restitution), puis prototype, mise en service et accompagnement sur devis.
-- [Formations IA](https://www.workflowintelligent.fr/formations-ia): formations-action IA générative de 3 h 30 ou d'une journée sur les cas de travail réels de l'équipe, 10 participants maximum, à partir de 590 € HT ; présentiel à Lyon et en Auvergne-Rhône-Alpes, distanciel possible.
+- [Formations IA](https://www.workflowintelligent.fr/formations-ia): formations-action IA générative de 3 h 30 ou d'une journée en binômes sur les cas de travail réels de l'équipe, chaque participant repart avec un livrable métier ; 12 participants maximum, à partir de 590 € HT ; présentiel à Lyon et en Auvergne-Rhône-Alpes, distanciel possible.
 - [Test IA express](https://www.workflowintelligent.fr/test-ia): 8 questions pour situer un besoin (chat, assistant, automatisation, workflow IA ou agent). Gratuit, sans inscription.
 
 ## À propos et contact
