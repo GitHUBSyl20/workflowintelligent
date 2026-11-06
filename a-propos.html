@@ -34,6 +34,8 @@ p{margin:0}
 :focus-visible{outline:3px solid var(--o);outline-offset:3px;border-radius:8px}
 section{padding:104px 0;position:relative}
 .sec-head{max-width:720px;margin:0 0 52px}
+.sec-head-wide{max-width:none}
+.sec-head-wide > p:not(.eyebrow){max-width:720px}
 .sec-head p{color:var(--mute);font-size:18px;margin-top:16px}
 
 /* Étiquette "neurone" : anneau + trace, repris du logo */
@@ -750,7 +752,7 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 <!-- RÔLE -->
 <section class="alt" id="role">
   <div class="wrap">
-    <div class="sec-head rv">
+    <div class="sec-head sec-head-wide rv">
       <p class="eyebrow">Mon rôle</p>
       <h2>Comprendre, réaliser, <em>accompagner</em></h2>
     </div>
@@ -798,7 +800,7 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 <!-- FONDATIONS (fond sombre) -->
 <section class="dark" id="fondations" data-dark>
   <div class="wrap">
-    <div class="sec-head rv">
+    <div class="sec-head sec-head-wide rv">
       <p class="eyebrow">Fondations</p>
       <h2>Des fondations <em>entretenues en continu</em></h2>
       <p>L'IA et l'automatisation prolongent un parcours déjà long : une formation scientifique, un apprentissage intensif du développement, puis la pratique en entreprise. Elles élargissent ce que je peux construire : lire un document, trier une demande, préparer une réponse.</p>

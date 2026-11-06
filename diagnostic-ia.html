@@ -31,6 +31,8 @@ p{margin:0}
 :focus-visible{outline:3px solid var(--o);outline-offset:3px;border-radius:8px}
 section{padding:104px 0;position:relative}
 .sec-head{max-width:720px;margin:0 0 52px}
+.sec-head-wide{max-width:none}
+.sec-head-wide > p:not(.eyebrow){max-width:720px}
 .sec-head p{color:var(--mute);font-size:18px;margin-top:16px}
 
 /* Étiquette "neurone" : anneau + trace, repris du logo */
@@ -826,7 +828,7 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 <!-- EXEMPLE DE RECOMMANDATION (fond sombre) -->
 <section class="dark" id="livrable" data-dark>
   <div class="wrap">
-    <div class="sec-head rv">
+    <div class="sec-head sec-head-wide rv">
       <p class="eyebrow">Le livrable</p>
       <h2>À quoi ressemble <em>une recommandation</em></h2>
     </div>
