@@ -31,6 +31,8 @@ p{margin:0}
 :focus-visible{outline:3px solid var(--o);outline-offset:3px;border-radius:8px}
 section{padding:104px 0;position:relative}
 .sec-head{max-width:720px;margin:0 0 52px}
+.sec-head-wide{max-width:none}
+.sec-head-wide > p:not(.eyebrow){max-width:720px}
 .sec-head p{color:var(--mute);font-size:18px;margin-top:16px}
 
 /* Étiquette "neurone" : anneau + trace, repris du logo */
@@ -871,7 +873,7 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 <!-- MÉTHODE (fond sombre) -->
 <section class="dark" id="methode" data-dark>
   <div class="wrap">
-    <div class="sec-head rv">
+    <div class="sec-head sec-head-wide rv">
       <p class="eyebrow">La méthode</p>
       <h2>Une formation conçue <em>autour de votre réalité</em></h2>
       <p>Une formation IA ne devrait pas s'arrêter à une démonstration de ChatGPT. Les participants apprennent mieux lorsqu'ils travaillent sur des situations proches de celles qu'ils rencontrent réellement : leurs tâches, leurs documents, leurs contraintes.</p>

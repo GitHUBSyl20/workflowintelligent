@@ -34,7 +34,8 @@ p{margin:0}
 :focus-visible{outline:3px solid var(--o);outline-offset:3px;border-radius:8px}
 section{padding:104px 0;position:relative}
 .sec-head{max-width:720px;margin:0 0 52px}
-.sec-head-wide{max-width:1000px}
+.sec-head-wide{max-width:none}
+.sec-head-wide > p:not(.eyebrow){max-width:720px}
 .sec-head p{color:var(--mute);font-size:18px;margin-top:16px}
 
 /* Étiquette "neurone" : anneau + trace, repris du logo */
@@ -771,7 +772,7 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 <!-- DIAGNOSTIC + FORMATION -->
 <section id="diagnostic">
   <div class="wrap">
-    <div class="sec-head rv">
+    <div class="sec-head sec-head-wide rv">
       <p class="eyebrow">Par où commencer</p>
       <h2>Commencez par savoir <em>ce qui mérite d'être amélioré.</em></h2>
       <p>Vous pensez que l'IA ou l'automatisation pourrait vous aider, sans savoir où commencer ? Le diagnostic part de vos tâches, de vos outils et de vos informations pour identifier un premier chantier utile.</p>

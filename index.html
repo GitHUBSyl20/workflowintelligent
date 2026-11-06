@@ -34,6 +34,8 @@ p{margin:0}
 :focus-visible{outline:3px solid var(--o);outline-offset:3px;border-radius:8px}
 section{padding:104px 0;position:relative}
 .sec-head{max-width:720px;margin:0 0 52px}
+.sec-head-wide{max-width:none}
+.sec-head-wide > p:not(.eyebrow){max-width:720px}
 .sec-head p{color:var(--mute);font-size:18px;margin-top:16px}
 
 /* Étiquette "neurone" : anneau + trace, repris du logo */
@@ -546,7 +548,7 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 <!-- METHODE -->
 <section id="methode">
   <div class="wrap">
-    <div class="sec-head rv">
+    <div class="sec-head sec-head-wide rv">
       <p class="eyebrow">Une méthode en quatre temps</p>
       <h2>On vérifie que ça vaut le coup <em>avant</em> de construire.</h2>
     </div>
@@ -562,7 +564,7 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 <!-- PREUVES -->
 <section class="proof" id="preuves">
   <div class="wrap">
-    <div class="sec-head rv">
+    <div class="sec-head sec-head-wide rv">
       <p class="eyebrow">Ils m'ont fait confiance</p>
       <h2>Du concret, chez de <em>vraies entreprises.</em></h2>
     </div>
@@ -608,7 +610,7 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 <!-- OFFRES -->
 <section id="offres" class="alt">
   <div class="wrap">
-    <div class="sec-head rv">
+    <div class="sec-head sec-head-wide rv">
       <p class="eyebrow">Les offres</p>
       <h2>Du diagnostic à la <em>montée en compétence.</em></h2>
     </div>
