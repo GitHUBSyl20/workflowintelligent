@@ -12,133 +12,163 @@
   ],
   "redirects": [
     {
+      "source": "/solutions-ia-entreprise",
+      "destination": "/automatisation-processus",
+      "permanent": true
+    },
+    {
+      "source": "/solutions-ia-entreprise.html",
+      "destination": "/automatisation-processus",
+      "permanent": true
+    },
+    {
+      "source": "/formations-ia",
+      "destination": "/formation-ia-lyon",
+      "permanent": true
+    },
+    {
+      "source": "/formations-ia.html",
+      "destination": "/formation-ia-lyon",
+      "permanent": true
+    },
+    {
+      "source": "/diagnostic-ia",
+      "destination": "/audit-ia",
+      "permanent": true
+    },
+    {
+      "source": "/diagnostic-ia.html",
+      "destination": "/audit-ia",
+      "permanent": true
+    },
+    {
       "source": "/index-en",
       "destination": "/",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/index-en.html",
       "destination": "/",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/solutions-ia-entreprise-en",
-      "destination": "/solutions-ia-entreprise",
-      "permanent": false
+      "destination": "/automatisation-processus",
+      "permanent": true
     },
     {
       "source": "/solutions-ia-entreprise-en.html",
-      "destination": "/solutions-ia-entreprise",
-      "permanent": false
+      "destination": "/automatisation-processus",
+      "permanent": true
     },
     {
       "source": "/automatisation-entreprise-en",
-      "destination": "/solutions-ia-entreprise#reduire-saisies",
-      "permanent": false
+      "destination": "/automatisation-processus#reduire-saisies",
+      "permanent": true
     },
     {
       "source": "/automatisation-entreprise-en.html",
-      "destination": "/solutions-ia-entreprise#reduire-saisies",
-      "permanent": false
+      "destination": "/automatisation-processus#reduire-saisies",
+      "permanent": true
     },
     {
       "source": "/aides-financement-numerique-en",
-      "destination": "/formations-ia#financement",
+      "destination": "/formation-ia-lyon#financement",
       "permanent": true
     },
     {
       "source": "/aides-financement-numerique-en.html",
-      "destination": "/formations-ia#financement",
+      "destination": "/formation-ia-lyon#financement",
       "permanent": true
     },
     {
       "source": "/tarifs-prestations-en",
-      "destination": "/diagnostic-ia",
-      "permanent": false
+      "destination": "/audit-ia",
+      "permanent": true
     },
     {
       "source": "/tarifs-prestations-en.html",
-      "destination": "/diagnostic-ia",
-      "permanent": false
+      "destination": "/audit-ia",
+      "permanent": true
     },
     {
       "source": "/contact-devis-en",
       "destination": "/contact-devis",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/contact-devis-en.html",
       "destination": "/contact-devis",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/a-propos-en",
       "destination": "/a-propos",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/a-propos-en.html",
       "destination": "/a-propos",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/mentions-legales-en",
       "destination": "/mentions-legales",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/mentions-legales-en.html",
       "destination": "/mentions-legales",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/conditions-generales-en",
       "destination": "/conditions-generales",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/conditions-generales-en.html",
       "destination": "/conditions-generales",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/solutions-intelligence-artificielle-en",
-      "destination": "/solutions-ia-entreprise",
-      "permanent": false
+      "destination": "/automatisation-processus",
+      "permanent": true
     },
     {
       "source": "/solutions-intelligence-artificielle-en.html",
-      "destination": "/solutions-ia-entreprise",
-      "permanent": false
+      "destination": "/automatisation-processus",
+      "permanent": true
     },
     {
       "source": "/ai-tools.html",
-      "destination": "/solutions-ia-entreprise",
+      "destination": "/automatisation-processus",
       "permanent": true
     },
     {
       "source": "/solutions-intelligence-artificielle.html",
-      "destination": "/solutions-ia-entreprise",
+      "destination": "/automatisation-processus",
       "permanent": true
     },
     {
       "source": "/automatisations.html",
-      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "destination": "/automatisation-processus#reduire-saisies",
       "permanent": true
     },
     {
       "source": "/automatisation-processus-metier.html",
-      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "destination": "/automatisation-processus#reduire-saisies",
       "permanent": true
     },
     {
       "source": "/subventions-aides-numeriques.html",
-      "destination": "/formations-ia#financement",
+      "destination": "/formation-ia-lyon#financement",
       "permanent": true
     },
     {
       "source": "/offres.html",
-      "destination": "/diagnostic-ia",
+      "destination": "/audit-ia",
       "permanent": true
     },
     {
@@ -153,7 +183,7 @@
     },
     {
       "source": "/aides.html",
-      "destination": "/formations-ia#financement",
+      "destination": "/formation-ia-lyon#financement",
       "permanent": true
     },
     {
@@ -168,39 +198,39 @@
     },
     {
       "source": "/automatisation-entreprise",
-      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "destination": "/automatisation-processus#reduire-saisies",
       "permanent": true
     },
     {
       "source": "/automatisation-entreprise.html",
-      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "destination": "/automatisation-processus#reduire-saisies",
       "permanent": true
     },
     {
       "source": "/aides-financement-numerique",
-      "destination": "/formations-ia#financement",
+      "destination": "/formation-ia-lyon#financement",
       "permanent": true
     },
     {
       "source": "/aides-financement-numerique.html",
-      "destination": "/formations-ia#financement",
+      "destination": "/formation-ia-lyon#financement",
       "permanent": true
     },
     {
       "source": "/tarifs-prestations",
-      "destination": "/diagnostic-ia",
+      "destination": "/audit-ia",
       "permanent": true
     },
     {
       "source": "/tarifs-prestations.html",
-      "destination": "/diagnostic-ia",
+      "destination": "/audit-ia",
       "permanent": true
     }
   ],
   "rewrites": [
     {
-      "source": "/solutions-ia-entreprise",
-      "destination": "/solutions-ia-entreprise.html"
+      "source": "/automatisation-processus",
+      "destination": "/automatisation-processus.html"
     },
     {
       "source": "/contact-devis",
@@ -219,8 +249,8 @@
       "destination": "/conditions-generales.html"
     },
     {
-      "source": "/formations-ia",
-      "destination": "/formations-ia.html"
+      "source": "/formation-ia-lyon",
+      "destination": "/formation-ia-lyon.html"
     },
     {
       "source": "/test-ia",
@@ -263,8 +293,8 @@
       "destination": "/conditions-generales-en.html"
     },
     {
-      "source": "/diagnostic-ia",
-      "destination": "/diagnostic-ia.html"
+      "source": "/audit-ia",
+      "destination": "/audit-ia.html"
     }
   ]
 }

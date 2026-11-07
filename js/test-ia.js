@@ -271,7 +271,7 @@
       convert =
         '<p>À ce niveau, la clé, c’est que votre équipe sache bien utiliser l’outil. Une formation courte suffit souvent à passer à la pratique.</p>' +
         '<div class="tia-convert-actions">' +
-          '<a href="formations-ia.html" class="button w-button" data-cible="formation">Former mon équipe</a>' +
+          '<a href="formation-ia-lyon.html" class="button w-button" data-cible="formation">Former mon équipe</a>' +
           '<a href="' + esc(contactUrl('Premier echange', res)) + '" class="button w-button tia-btn-outline" data-cible="contact">Parler de mon projet</a>' +
         '</div>';
     } else {

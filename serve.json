@@ -7,8 +7,8 @@
       "destination": "/index.html"
     },
     {
-      "source": "/solutions-ia-entreprise",
-      "destination": "/solutions-ia-entreprise.html"
+      "source": "/automatisation-processus",
+      "destination": "/automatisation-processus.html"
     },
     {
       "source": "/contact-devis",
@@ -27,8 +27,8 @@
       "destination": "/conditions-generales.html"
     },
     {
-      "source": "/formations-ia",
-      "destination": "/formations-ia.html"
+      "source": "/formation-ia-lyon",
+      "destination": "/formation-ia-lyon.html"
     },
     {
       "source": "/test-ia",
@@ -71,8 +71,8 @@
       "destination": "/conditions-generales-en.html"
     },
     {
-      "source": "/diagnostic-ia",
-      "destination": "/diagnostic-ia.html"
+      "source": "/audit-ia",
+      "destination": "/audit-ia.html"
     }
   ],
   "redirects": [
@@ -88,42 +88,42 @@
     },
     {
       "source": "/solutions-ia-entreprise-en",
-      "destination": "/solutions-ia-entreprise",
+      "destination": "/automatisation-processus",
       "type": 307
     },
     {
       "source": "/solutions-ia-entreprise-en.html",
-      "destination": "/solutions-ia-entreprise",
+      "destination": "/automatisation-processus",
       "type": 307
     },
     {
       "source": "/automatisation-entreprise-en",
-      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "destination": "/automatisation-processus#reduire-saisies",
       "type": 307
     },
     {
       "source": "/automatisation-entreprise-en.html",
-      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "destination": "/automatisation-processus#reduire-saisies",
       "type": 307
     },
     {
       "source": "/aides-financement-numerique-en",
-      "destination": "/formations-ia#financement",
+      "destination": "/formation-ia-lyon#financement",
       "type": 308
     },
     {
       "source": "/aides-financement-numerique-en.html",
-      "destination": "/formations-ia#financement",
+      "destination": "/formation-ia-lyon#financement",
       "type": 308
     },
     {
       "source": "/tarifs-prestations-en",
-      "destination": "/diagnostic-ia",
+      "destination": "/audit-ia",
       "type": 307
     },
     {
       "source": "/tarifs-prestations-en.html",
-      "destination": "/diagnostic-ia",
+      "destination": "/audit-ia",
       "type": 307
     },
     {
@@ -168,42 +168,42 @@
     },
     {
       "source": "/solutions-intelligence-artificielle-en",
-      "destination": "/solutions-ia-entreprise",
+      "destination": "/automatisation-processus",
       "type": 307
     },
     {
       "source": "/solutions-intelligence-artificielle-en.html",
-      "destination": "/solutions-ia-entreprise",
+      "destination": "/automatisation-processus",
       "type": 307
     },
     {
       "source": "/ai-tools.html",
-      "destination": "/solutions-ia-entreprise",
+      "destination": "/automatisation-processus",
       "type": 308
     },
     {
       "source": "/solutions-intelligence-artificielle.html",
-      "destination": "/solutions-ia-entreprise",
+      "destination": "/automatisation-processus",
       "type": 308
     },
     {
       "source": "/automatisations.html",
-      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "destination": "/automatisation-processus#reduire-saisies",
       "type": 308
     },
     {
       "source": "/automatisation-processus-metier.html",
-      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "destination": "/automatisation-processus#reduire-saisies",
       "type": 308
     },
     {
       "source": "/subventions-aides-numeriques.html",
-      "destination": "/formations-ia#financement",
+      "destination": "/formation-ia-lyon#financement",
       "type": 308
     },
     {
       "source": "/offres.html",
-      "destination": "/diagnostic-ia",
+      "destination": "/audit-ia",
       "type": 308
     },
     {
@@ -218,7 +218,7 @@
     },
     {
       "source": "/aides.html",
-      "destination": "/formations-ia#financement",
+      "destination": "/formation-ia-lyon#financement",
       "type": 308
     },
     {
@@ -228,32 +228,32 @@
     },
     {
       "source": "/automatisation-entreprise",
-      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "destination": "/automatisation-processus#reduire-saisies",
       "type": 308
     },
     {
       "source": "/automatisation-entreprise.html",
-      "destination": "/solutions-ia-entreprise#reduire-saisies",
+      "destination": "/automatisation-processus#reduire-saisies",
       "type": 308
     },
     {
       "source": "/aides-financement-numerique",
-      "destination": "/formations-ia#financement",
+      "destination": "/formation-ia-lyon#financement",
       "type": 308
     },
     {
       "source": "/aides-financement-numerique.html",
-      "destination": "/formations-ia#financement",
+      "destination": "/formation-ia-lyon#financement",
       "type": 308
     },
     {
       "source": "/tarifs-prestations",
-      "destination": "/diagnostic-ia",
+      "destination": "/audit-ia",
       "type": 308
     },
     {
       "source": "/tarifs-prestations.html",
-      "destination": "/diagnostic-ia",
+      "destination": "/audit-ia",
       "type": 308
     }
   ]
