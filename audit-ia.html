@@ -28,6 +28,7 @@
     "@type": "Offer",
     "price": "690",
     "priceCurrency": "EUR",
+    "description": "Prix déduit d'un projet d'automatisation ou d'une application métier de 3 000 € HT ou plus, signé dans les 60 jours suivant la restitution.",
     "url": "https://www.workflowintelligent.fr/audit-ia",
     "priceSpecification": {
      "@type": "UnitPriceSpecification",
@@ -650,7 +651,8 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 .pricebox{padding:36px 32px;position:sticky;top:100px;border-color:var(--o)}
 .pricebox .amount{font-size:58px;font-weight:800;color:var(--o);letter-spacing:-.03em;line-height:1}
 .pricebox .amount small{font-size:19px;color:var(--mute);margin-left:6px}
-.pricebox .fixed{font-weight:700;color:var(--ink);margin:8px 0 26px}
+.pricebox .fixed{font-weight:700;color:var(--ink);margin:8px 0 14px}
+.pricebox .deduct{background:var(--o-soft);border-radius:12px;padding:12px 16px;font-size:14.5px;color:var(--txt);margin:0 0 26px}
 .stages{position:relative;display:grid;gap:18px;margin:0 0 26px;padding-left:44px}
 .stages::before{content:"";position:absolute;left:14px;top:14px;bottom:14px;width:3px;border-radius:3px;background:linear-gradient(var(--o),var(--o-soft))}
 .stage{position:relative}
@@ -846,6 +848,7 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
       <aside class="pricebox card rv">
         <p class="amount">690 €<small>HT</small></p>
         <p class="fixed">Prix fixe, pour deux à trois processus.</p>
+        <p class="deduct"><b>Déduits ensuite</b> de votre projet d'automatisation ou d'application métier de 3 000 € HT ou plus, si son devis est signé dans les 60 jours.</p>
         <h3>Ce que comprend le diagnostic</h3>
         <div class="stages">
           <div class="stage"><h4>Comprendre</h4><ul><li>entretien dirigeant de 1 h 30 ;</li><li>analyse de deux à trois processus.</li></ul></div>
