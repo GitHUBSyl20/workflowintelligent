@@ -294,7 +294,7 @@ whenDomReady(function () {
 document.addEventListener('DOMContentLoaded', function() {
   const links = document.querySelectorAll('.main-nav-link');
   const currentPath = window.location.pathname;
-  // Compare sans l'extension .html : en production les URL sont propres (/formations-ia)
+  // Compare sans l'extension .html : en production les URL sont propres (/formation-ia-lyon)
   const pageName = path => (path.split(/[?#]/)[0].split('/').pop() || 'index').replace(/\.html$/, '');
   const currentPage = pageName(currentPath);
   let matchFound = false;

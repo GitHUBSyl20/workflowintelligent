@@ -18,14 +18,15 @@
     
     // Liste des pages avec leurs URLs optimisées
     const urlMappings = {
-        'solutions-ia-entreprise.html': 'solutions-ia-entreprise',
+        'automatisation-processus.html': 'automatisation-processus',
         'automatisation-entreprise.html': 'automatisation-entreprise',
         'tarifs-prestations.html': 'tarifs-prestations',
         'contact-devis.html': 'contact-devis',
         'a-propos.html': 'a-propos',
         'mentions-legales.html': 'mentions-legales',
         'conditions-generales.html': 'conditions-generales',
-        'formations-ia.html': 'formations-ia',
+        'formation-ia-lyon.html': 'formation-ia-lyon',
+        'audit-ia.html': 'audit-ia',
         'test-ia.html': 'test-ia',
         'index.html': '',
         // English versions
