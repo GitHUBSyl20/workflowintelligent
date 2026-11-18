@@ -586,6 +586,10 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 .book > *,.fwrap > *{min-width:0}
 
 .cal{padding:26px;position:relative}
+.cal-consent{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:12px 4px}
+.cal-consent p{margin:0;color:var(--mute);font-size:15px;line-height:1.55}
+.cal-consent .cal-consent-title{color:var(--ink);font-weight:700;font-size:19px}
+.cal-consent .cal-consent-alt{font-size:14px}
 .cal .ch{display:flex;align-items:center;gap:14px;padding-bottom:18px;margin-bottom:18px;border-bottom:1.5px dashed var(--line)}
 .cal .ch img{width:44px;height:auto;border-radius:10px}
 .cal .ch b{display:block;color:var(--ink);font-size:17px}
@@ -764,13 +768,33 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
       </div>
       <!-- Emplacement de l'agenda : à la mise en ligne, le module Calendly de Sylvain prend sa place -->
       <div class="cal card rv" id="cal">
-        <!-- Calendly inline widget begin -->
-        <div class="calendly-inline-widget"
-          data-url="https://calendly.com/automation_ai/new-meeting"
-          style="min-width: 220px; height: 700px"></div>
-        <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-        <!-- Calendly inline widget end -->
+        <!-- Calendly chargé seulement au clic : aucun cookie tiers avant l'accord du visiteur -->
+        <div class="cal-consent" id="cal-consent">
+          <p class="cal-consent-title">Réserver un créneau</p>
+          <p>L'agenda est fourni par Calendly (États-Unis), qui dépose des cookies et reçoit les informations saisies lors de la réservation. Il ne se charge que si vous l'affichez. Voir les <a href="mentions-legales.html#cookies">mentions légales</a>.</p>
+          <button type="button" class="btn btn-o" id="cal-load">Afficher l'agenda</button>
+          <p class="cal-consent-alt">Vous préférez ne pas l'afficher ? Écrivez-moi ou appelez-moi directement.</p>
+        </div>
       </div>
+      <script>
+        (function () {
+          var btn = document.getElementById('cal-load');
+          if (!btn) return;
+          btn.addEventListener('click', function () {
+            var box = document.getElementById('cal');
+            var w = document.createElement('div');
+            w.className = 'calendly-inline-widget';
+            w.setAttribute('data-url', 'https://calendly.com/automation_ai/new-meeting');
+            w.style.minWidth = '220px';
+            w.style.height = '700px';
+            box.replaceChild(w, document.getElementById('cal-consent'));
+            var s = document.createElement('script');
+            s.src = 'https://assets.calendly.com/assets/external/widget.js';
+            s.async = true;
+            document.body.appendChild(s);
+          });
+        })();
+      </script>
     </div>
   </div>
 </section>
