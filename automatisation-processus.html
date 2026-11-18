@@ -479,6 +479,24 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
 .mcard p.d{font-size:15.5px;color:var(--mute)}
 .mcard svg.bgn{position:absolute;right:-18px;bottom:-24px;width:96px;color:var(--o);opacity:.08;transition:opacity .4s,transform .4s}
 .mcard:hover svg.bgn{opacity:.3;transform:translate(-6px,-6px)}
+#missions .sec-head > p:not(.eyebrow){margin-top:16px;color:var(--mute)}
+.mstats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:56px}
+.mstat{padding:24px}
+.mstat b{display:block;font-size:44px;line-height:1;letter-spacing:-.03em;color:var(--ink);font-weight:800}
+.mstat > span{display:block;margin-top:8px;color:var(--mute);font-size:15px}
+.mstat b .count{display:inline;margin:0;color:inherit;font-size:inherit}
+.mgroup{font-size:22px;margin:0 0 20px}
+.mcards + .mgroup{margin-top:56px}
+.mrows{margin:0 0 18px}
+.mrows dt{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin-top:12px}
+.mrows dt:first-child{margin-top:0}
+.mrows dd{margin:4px 0 0;font-size:15px;color:var(--mute)}
+.mfig{list-style:none;margin:auto 0 0;padding:16px 0 0;border-top:1px solid var(--line);display:grid;gap:6px;position:relative;z-index:1}
+.mfig li{font-size:14.5px;color:var(--txt);margin:0 !important}
+.mfig b{color:var(--o);font-weight:800}
+.mperso{margin-top:40px;font-size:16px;color:var(--mute)}
+.mperso a{color:var(--o);font-weight:700;text-decoration:none;white-space:nowrap}
+.mperso a:hover{text-decoration:underline}
 
 /* ---------- Déploiement : trace verticale qui se remplit au scroll ---------- */
 .dark{background:var(--ink);color:#fff}
@@ -574,6 +592,7 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
   .page-hero .wrap,.person,.offer-grid{grid-template-columns:1fr}
   .page-hero .hubw{max-width:460px}
   .sits,.mcards{grid-template-columns:1fr}
+  .mstats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .price{padding:30px 24px}
 }
 @media (max-width:620px){
@@ -722,30 +741,130 @@ html::-webkit-scrollbar-thumb:hover{background:var(--o-ink)}
     <div class="sec-head sec-head-wide rv">
       <p class="eyebrow">Sur le terrain</p>
       <h2>Missions réalisées et <em>projets en cours</em></h2>
+      <p>Des formations animées en entreprise et en organisme de formation, des projets de données et d'automatisation livrés ou en cours. Les clients sont nommés quand ils l'ont accepté.</p>
     </div>
+    <div class="mstats">
+      <div class="mstat card rv"><b>+<span class="count" data-to="70">70</span>&nbsp;h</b><span>de formation animées</span></div>
+      <div class="mstat card rv"><b><span class="count" data-to="61">61</span></b><span>participations cumulées</span></div>
+      <div class="mstat card rv"><b><span class="count" data-to="6">6</span></b><span>clients formation</span></div>
+      <div class="mstat card rv"><b><span class="count" data-to="3">3</span></b><span>projets de données et d'automatisation</span></div>
+    </div>
+
+    <h3 class="mgroup rv">Formations animées</h3>
     <div class="mcards">
+      <article class="mcard card rv">
+        <span class="chip done">Formation réalisée</span>
+        <h3>Planair</h3>
+        <p class="sector">Bureau d'études en transition énergétique · Chambéry</p>
+        <dl class="mrows">
+          <dt>Le besoin</dt>
+          <dd>Une équipe d'ingénieurs qui rédige pour des collectivités, avec une exigence : pouvoir se fier à ce que l'IA lui rend.</dd>
+          <dt>Ce que j'ai fait</dt>
+          <dd>Une formation-action sur un vrai dossier public de délégation de service public. Les participants ont appris à structurer une demande, à repérer les pièces du dossier et à faire critiquer sa réponse par l'IA.</dd>
+        </dl>
+        <ul class="mfig">
+          <li><b>½ journée</b> sur site</li>
+          <li><b>3</b> participants</li>
+          <li><b>5</b> prompts métier remis à l'équipe</li>
+        </ul>
+        <svg class="bgn" viewBox="0 0 250 310" aria-hidden="true"><use href="#neurons"/></svg>
+      </article>
       <article class="mcard card rv">
         <span class="chip done">Formation réalisée</span>
         <h3>Amplitude Conseil</h3>
         <p class="sector">Bureau d'études acoustique et vibrations · Lyon</p>
-        <p class="d">Une formation-action à l'IA animée auprès de l'équipe, à partir de situations métier.</p>
+        <dl class="mrows">
+          <dt>Le besoin</dt>
+          <dd>Une équipe d'acousticiens qui utilisait déjà l'IA, sans cadre, alors qu'elle signe des rapports engageant sa responsabilité.</dd>
+          <dt>Ce que j'ai fait</dt>
+          <dd>Une formation sur site à partir des dossiers apportés par l'équipe : quel outil pour quelle tâche, comment rédiger une demande, comment vérifier une réponse avant de s'en servir.</dd>
+        </dl>
+        <!-- Emplacement témoignage du gérant (à ajouter quand il sera obtenu) -->
+        <ul class="mfig">
+          <li><b>4 h</b> sur site</li>
+          <li><b>4</b> participants, du débutant à l'utilisateur régulier</li>
+          <li><b>4</b> outils comparés</li>
+        </ul>
+        <svg class="bgn" viewBox="0 0 250 310" aria-hidden="true"><use href="#neurons"/></svg>
+      </article>
+      <article class="mcard card rv">
+        <span class="chip done">5 interventions en 2026</span>
+        <h3>Indépendants et créateurs d'entreprise</h3>
+        <p class="sector">Pour des organismes de formation</p>
+        <dl class="mrows">
+          <dt>Le besoin</dt>
+          <dd>Des personnes en reconversion ou en création d'activité, souvent financées par le CPF, qui doivent passer d'un usage ponctuel des modèles de langage à une méthode de travail.</dd>
+          <dt>Ce que j'ai fait</dt>
+          <dd>Des sessions de 2 à 3 jours, sur place ou à distance, autour d'un projet fil rouge : rédiger, chercher, vérifier, puis organiser son projet et son offre avec l'IA. S'y ajoutent des accompagnements individuels.</dd>
+        </dl>
+        <ul class="mfig">
+          <li><b>52 h</b> sur les 3 sessions longues</li>
+          <li><b>54</b> participations</li>
+          <li>Présentiel et distanciel</li>
+        </ul>
+        <svg class="bgn" viewBox="0 0 250 310" aria-hidden="true"><use href="#neurons"/></svg>
+      </article>
+    </div>
+
+    <h3 class="mgroup rv">Projets de données et d'automatisation</h3>
+    <div class="mcards">
+      <article class="mcard card rv">
+        <span class="chip done">Mission réalisée · mai 2026</span>
+        <h3>Procelya</h3>
+        <p class="sector">Base investisseurs · Levée de fonds</p>
+        <dl class="mrows">
+          <dt>Le besoin</dt>
+          <dd>18 000 contacts LinkedIn, dont 3 % joignables par email, et 11 fichiers de roadshows (2017 à 2026). La présence de chaque investisseur n'y était notée que par la couleur des cellules.</dd>
+          <dt>Ce que j'ai fait</dt>
+          <dd>Tout centralisé dans HubSpot. Rapprochement automatique par email, contrôle à la main des 48 cas incertains. Lecture des couleurs Excel par un script Python. Classement des contacts en 9 profils. Aucune donnée existante n'a été écrasée.</dd>
+        </dl>
+        <ul class="mfig">
+          <li><b>986</b> contacts joignables par email, au lieu de 573</li>
+          <li><b>713</b> investisseurs qualifiés</li>
+          <li><b>364</b> contacts prêts pour une campagne</li>
+        </ul>
         <svg class="bgn" viewBox="0 0 250 310" aria-hidden="true"><use href="#neurons"/></svg>
       </article>
       <article class="mcard card rv">
         <span class="chip live">Mission en cours</span>
         <h3>Société de nettoyage</h3>
         <p class="sector">Propreté et services</p>
-        <p class="d">Une mission d'activation commerciale : enrichissement d'une base, qualification et automatisation de la prospection.</p>
+        <dl class="mrows">
+          <dt>Le besoin</dt>
+          <dd>Une base de prospects ancienne et incomplète, et aucune prospection par email.</dd>
+          <dt>Ce que j'ai fait</dt>
+          <dd>Audit et classement par secteur des entreprises de la base, vérification des emails, configuration du CRM relié à l'outil d'envoi, trois séquences rédigées puis validées par le gérant, tests avant chaque lancement.</dd>
+          <dt>Où on en est</dt>
+          <dd>Premier segment lancé en octobre 2026, deux autres programmés jusqu'à fin janvier.</dd>
+        </dl>
+        <ul class="mfig">
+          <li><b>1 476</b> entreprises auditées</li>
+          <li><b>615</b> emails vérifiés</li>
+          <li><b>520</b> contacts en 3 segments</li>
+        </ul>
         <svg class="bgn" viewBox="0 0 250 310" aria-hidden="true"><use href="#neurons"/></svg>
       </article>
       <article class="mcard card rv">
         <span class="chip live">Mission en cours</span>
         <h3>Cadeaux et décoration</h3>
         <p class="sector">Commerce de détail · Lyon</p>
-        <p class="d">Caisse et site marchand reliés, fiches produits préparées par lots avec l'IA. Un projet sur plusieurs mois, où chaque fiche est validée avant publication.</p>
+        <dl class="mrows">
+          <dt>Le besoin</dt>
+          <dd>Ouvrir un site marchand alimenté par le logiciel de caisse, alors que les fiches produits n'existaient pas et que les photos sont chez les fournisseurs.</dd>
+          <dt>Ce que j'ai fait</dt>
+          <dd>Une base qui rapproche les articles de la caisse et les fichiers fournisseurs, un tableau de suivi produit par produit pour la gérante, la structure de la boutique, un environnement de test pour le connecteur avec l'éditeur de caisse.</dd>
+          <dt>Où on en est</dt>
+          <dd>Tests du connecteur en cours, ouverture prévue en avril 2027.</dd>
+        </dl>
+        <ul class="mfig">
+          <li><b>825</b> articles de caisse croisés</li>
+          <li><b>441</b> produits suivis</li>
+          <li><b>20</b> marques préparées</li>
+        </ul>
         <svg class="bgn" viewBox="0 0 250 310" aria-hidden="true"><use href="#neurons"/></svg>
       </article>
     </div>
+    <p class="mperso rv">En dehors des missions, je conçois aussi mes propres applications et sites web autour de la musique. <a href="produits-experimentations.html">Voir mes projets personnels&nbsp;<span aria-hidden="true">→</span></a></p>
   </div>
 </section>
 
